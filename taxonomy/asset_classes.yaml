@@ -1,0 +1,28 @@
+classes: [Equities, Fixed Income, Credit, FX, Commodities, Derivatives, Multi-asset]
+synonyms:
+  equity: Equities
+  equities: Equities
+  stocks: Equities
+  long/short: Equities
+  long short: Equities
+  l/s: Equities
+  rates: Fixed Income
+  bonds: Fixed Income
+  treasuries: Fixed Income
+  fixed income: Fixed Income
+  high yield: Credit
+  hy: Credit
+  ig: Credit
+  leveraged loans: Credit
+  structured credit: Credit
+  distressed: Credit
+  foreign exchange: FX
+  currencies: FX
+  oil: Commodities
+  metals: Commodities
+  options: Derivatives
+  swaps: Derivatives
+  exotics: Derivatives
+  structured products: Derivatives
+  multi-asset: Multi-asset
+  macro: Multi-asset

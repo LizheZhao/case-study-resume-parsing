@@ -1,0 +1,55 @@
+# Core sector enum from the brief. other_sector_tags holds narrower names; this map
+# lets a tag be promoted into a core sector without a re-parse.
+core: [Technology, Healthcare, Financials, Energy, Industrials, Consumer, Credit, Macro, Other]
+tag_to_core:
+  tmt: Technology
+  technology media telecom: Technology
+  software: Technology
+  internet: Technology
+  semiconductors: Technology
+  fintech: Technology
+  media: Technology
+  telecom: Technology
+  pharmaceuticals: Healthcare
+  pharma: Healthcare
+  biotech: Healthcare
+  biotechnology: Healthcare
+  medtech: Healthcare
+  medical devices: Healthcare
+  life sciences tools: Healthcare
+  diagnostics: Healthcare
+  healthcare services: Healthcare
+  hospitals: Healthcare
+  therapeutics: Healthcare
+  digital health: Healthcare
+  banks: Financials
+  insurance: Financials
+  asset managers: Financials
+  real estate: Financials
+  reits: Financials
+  oil and gas: Energy
+  oil & gas: Energy
+  renewables: Energy
+  renewable energy: Energy
+  utilities: Energy
+  specialty chemicals: Industrials
+  chemicals: Industrials
+  infrastructure: Industrials
+  transportation: Industrials
+  aerospace: Industrials
+  defense: Industrials
+  retail: Consumer
+  consumer electronics: Consumer
+  consumer internet: Consumer
+  consumer staples: Consumer
+  consumer discretionary: Consumer
+  luxury: Consumer
+  high yield: Credit
+  leveraged loans: Credit
+  structured credit: Credit
+  distressed: Credit
+  investment grade: Credit
+  rates: Macro
+  fx: Macro
+  commodities: Macro
+  sovereign: Macro

@@ -1,0 +1,53 @@
+types: [Hedge fund, Asset manager, Sell-side bank, Sell-side broker, PE/VC, Consulting, Corporate, Academic, Other]
+# Known firms the EntityRuler can tag; the LLM uses its own knowledge when a firm is absent here.
+known_firms:
+  Millennium Management: Hedge fund
+  Millennium: Hedge fund
+  Citadel: Hedge fund
+  Point72: Hedge fund
+  Bridgewater: Hedge fund
+  Two Sigma: Hedge fund
+  D.E. Shaw: Hedge fund
+  Man Group: Hedge fund
+  Balyasny: Hedge fund
+  ExodusPoint: Hedge fund
+  BlackRock: Asset manager
+  Fidelity: Asset manager
+  Vanguard: Asset manager
+  Wellington: Asset manager
+  T. Rowe Price: Asset manager
+  PIMCO: Asset manager
+  Goldman Sachs: Sell-side bank
+  Morgan Stanley: Sell-side bank
+  J.P. Morgan: Sell-side bank
+  JPMorgan: Sell-side bank
+  Bank of America: Sell-side bank
+  Citi: Sell-side bank
+  Barclays: Sell-side bank
+  UBS: Sell-side bank
+  Credit Suisse: Sell-side bank
+  Deutsche Bank: Sell-side bank
+  BNP Paribas: Sell-side bank
+  Société Générale: Sell-side bank
+  Societe Generale: Sell-side bank
+  HSBC: Sell-side bank
+  Bank of China: Sell-side bank
+  ICICI Securities: Sell-side broker
+  Kotak Securities: Sell-side broker
+  Anand Rathi: Sell-side broker
+  Leerink Partners: Sell-side broker
+  Jefferies: Sell-side bank
+  Evercore: Sell-side bank
+  Lazard: Sell-side bank
+  Blackstone: PE/VC
+  KKR: PE/VC
+  Carlyle: PE/VC
+  Apollo: PE/VC
+  TPG: PE/VC
+  Sequoia: PE/VC
+  McKinsey: Consulting
+  Bain: Consulting
+  BCG: Consulting
+  Boston Consulting Group: Consulting
+  Deloitte: Consulting
+  Accenture: Consulting

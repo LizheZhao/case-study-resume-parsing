@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.pytest_cache/
+.ruff_cache/
+*.sqlite
+*.sqlite-journal
+evals/results/
+.claude/worktrees/

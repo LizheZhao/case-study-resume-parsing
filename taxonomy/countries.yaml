@@ -1,0 +1,61 @@
+# ISO-2 code -> name, region, phone prefix, and location aliases (cities, states, demonyms)
+# region is one of: US, Europe, APAC, Other
+# The LLM outputs the ISO-2 code only; region is always derived from this table.
+regions: [US, Europe, APAC, Other]
+countries:
+  US: {name: United States, region: US, phone: ["+1"], aliases: [USA, U.S., New York, NY, Greenwich, CT, Connecticut, Boston, MA, Chicago, IL, San Francisco, CA, California, Los Angeles, Houston, TX, Texas, Ann Arbor, MI, Michigan, Brooklyn, Philadelphia, PA, Washington DC, Seattle, Miami, Stamford]}
+  CA: {name: Canada, region: Other, phone: ["+1"], aliases: [Toronto, Montreal, Vancouver]}
+  GB: {name: United Kingdom, region: Europe, phone: ["+44"], aliases: [UK, U.K., England, London, Edinburgh, Manchester, Oxford, Cambridge]}
+  FR: {name: France, region: Europe, phone: ["+33"], aliases: [Paris, Lyon]}
+  DE: {name: Germany, region: Europe, phone: ["+49"], aliases: [Frankfurt, Berlin, Munich]}
+  CH: {name: Switzerland, region: Europe, phone: ["+41"], aliases: [Zurich, Geneva]}
+  NL: {name: Netherlands, region: Europe, phone: ["+31"], aliases: [Amsterdam]}
+  IE: {name: Ireland, region: Europe, phone: ["+353"], aliases: [Dublin]}
+  ES: {name: Spain, region: Europe, phone: ["+34"], aliases: [Madrid, Barcelona]}
+  IT: {name: Italy, region: Europe, phone: ["+39"], aliases: [Milan, Rome]}
+  SE: {name: Sweden, region: Europe, phone: ["+46"], aliases: [Stockholm]}
+  LU: {name: Luxembourg, region: Europe, phone: ["+352"], aliases: []}
+  PT: {name: Portugal, region: Europe, phone: ["+351"], aliases: [Lisbon]}
+  PL: {name: Poland, region: Europe, phone: ["+48"], aliases: [Warsaw]}
+  HK: {name: Hong Kong, region: APAC, phone: ["+852"], aliases: [Hong Kong SAR, HKSAR]}
+  CN: {name: China, region: APAC, phone: ["+86"], aliases: [Shanghai, Beijing, Shenzhen, Guangzhou, Jiangxi, PRC, Mainland China]}
+  SG: {name: Singapore, region: APAC, phone: ["+65"], aliases: []}
+  JP: {name: Japan, region: APAC, phone: ["+81"], aliases: [Tokyo]}
+  KR: {name: South Korea, region: APAC, phone: ["+82"], aliases: [Seoul, Korea]}
+  TW: {name: Taiwan, region: APAC, phone: ["+886"], aliases: [Taipei]}
+  IN: {name: India, region: APAC, phone: ["+91"], aliases: [Mumbai, Bombay, Delhi, New Delhi, Noida, Gurgaon, Gurugram, Bangalore, Bengaluru, Hyderabad, Chennai, Pune, Kolkata]}
+  AU: {name: Australia, region: APAC, phone: ["+61"], aliases: [Sydney, Melbourne]}
+  NZ: {name: New Zealand, region: APAC, phone: ["+64"], aliases: [Auckland]}
+  MY: {name: Malaysia, region: APAC, phone: ["+60"], aliases: [Kuala Lumpur]}
+  ID: {name: Indonesia, region: APAC, phone: ["+62"], aliases: [Jakarta]}
+  TH: {name: Thailand, region: APAC, phone: ["+66"], aliases: [Bangkok]}
+  VN: {name: Vietnam, region: APAC, phone: ["+84"], aliases: [Ho Chi Minh City, Hanoi]}
+  PH: {name: Philippines, region: APAC, phone: ["+63"], aliases: [Manila]}
+  AE: {name: United Arab Emirates, region: Other, phone: ["+971"], aliases: [UAE, Dubai, Abu Dhabi]}
+  SA: {name: Saudi Arabia, region: Other, phone: ["+966"], aliases: [Riyadh]}
+  QA: {name: Qatar, region: Other, phone: ["+974"], aliases: [Doha]}
+  IL: {name: Israel, region: Other, phone: ["+972"], aliases: [Tel Aviv]}
+  ZA: {name: South Africa, region: Other, phone: ["+27"], aliases: [Johannesburg, Cape Town]}
+  MA: {name: Morocco, region: Other, phone: ["+212"], aliases: [Rabat, Casablanca]}
+  EG: {name: Egypt, region: Other, phone: ["+20"], aliases: [Cairo]}
+  NG: {name: Nigeria, region: Other, phone: ["+234"], aliases: [Lagos]}
+  BR: {name: Brazil, region: Other, phone: ["+55"], aliases: [Sao Paulo, São Paulo, Rio de Janeiro]}
+  MX: {name: Mexico, region: Other, phone: ["+52"], aliases: [Mexico City]}
+  AR: {name: Argentina, region: Other, phone: ["+54"], aliases: [Buenos Aires]}
+  CL: {name: Chile, region: Other, phone: ["+56"], aliases: [Santiago]}
+  CO: {name: Colombia, region: Other, phone: ["+57"], aliases: [Bogota, Bogotá]}
+  TR: {name: Turkey, region: Other, phone: ["+90"], aliases: [Istanbul]}
+  RU: {name: Russia, region: Other, phone: ["+7"], aliases: [Moscow]}
+# Multi-country market labels the LLM may use in markets_covered when the resume says so
+market_labels:
+  Greater China: [CN, HK, TW]
+  Asia: APAC
+  APAC: APAC
+  Asia-Pacific: APAC
+  Europe: Europe
+  EMEA: Europe
+  North America: [US, CA]
+  LatAm: Other
+  Latin America: Other
+  Middle East: Other
+  Global: null

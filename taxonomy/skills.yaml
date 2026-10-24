@@ -1,0 +1,91 @@
+# variant (lowercase) -> {canonical, category}. Categories: programming, tools, domain, cert.
+# derive/skills.py lowercases the LLM's skill strings, looks them up here, then falls back to
+# rapidfuzz >= 90 against the variant keys, then keeps the lowercased string as its own token.
+skills:
+  python: {canonical: python, category: programming}
+  py: {canonical: python, category: programming}
+  r: {canonical: r, category: programming}
+  sql: {canonical: sql, category: programming}
+  c++: {canonical: cpp, category: programming}
+  cpp: {canonical: cpp, category: programming}
+  c#: {canonical: csharp, category: programming}
+  c# / .net: {canonical: csharp, category: programming}
+  .net: {canonical: csharp, category: programming}
+  java: {canonical: java, category: programming}
+  matlab: {canonical: matlab, category: programming}
+  vba: {canonical: vba, category: programming}
+  excel vba: {canonical: vba, category: programming}
+  excel with vba: {canonical: vba, category: programming}
+  scala: {canonical: scala, category: programming}
+  julia: {canonical: julia, category: programming}
+  sas: {canonical: sas, category: programming}
+  stata: {canonical: stata, category: programming}
+  javascript: {canonical: javascript, category: programming}
+  bash: {canonical: bash, category: programming}
+  excel: {canonical: excel, category: tools}
+  microsoft excel: {canonical: excel, category: tools}
+  powerpoint: {canonical: powerpoint, category: tools}
+  bloomberg: {canonical: bloomberg, category: tools}
+  bloomberg terminal: {canonical: bloomberg, category: tools}
+  factset: {canonical: factset, category: tools}
+  capital iq: {canonical: capital-iq, category: tools}
+  capiq: {canonical: capital-iq, category: tools}
+  s&p capital iq: {canonical: capital-iq, category: tools}
+  refinitiv: {canonical: refinitiv, category: tools}
+  eikon: {canonical: refinitiv, category: tools}
+  wind: {canonical: wind, category: tools}
+  wind database: {canonical: wind, category: tools}
+  tableau: {canonical: tableau, category: tools}
+  power bi: {canonical: power-bi, category: tools}
+  git: {canonical: git, category: tools}
+  mongodb: {canonical: mongodb, category: tools}
+  pandas: {canonical: pandas, category: tools}
+  numpy: {canonical: numpy, category: tools}
+  scikit-learn: {canonical: scikit-learn, category: tools}
+  sklearn: {canonical: scikit-learn, category: tools}
+  pytorch: {canonical: pytorch, category: tools}
+  tensorflow: {canonical: tensorflow, category: tools}
+  dcf: {canonical: dcf, category: domain}
+  discounted cash flow: {canonical: dcf, category: domain}
+  lbo: {canonical: lbo, category: domain}
+  financial modeling: {canonical: financial-modeling, category: domain}
+  financial modelling: {canonical: financial-modeling, category: domain}
+  three-statement: {canonical: financial-modeling, category: domain}
+  valuation: {canonical: valuation, category: domain}
+  relative valuation: {canonical: valuation, category: domain}
+  comps: {canonical: valuation, category: domain}
+  backtesting: {canonical: backtesting, category: domain}
+  backtest: {canonical: backtesting, category: domain}
+  factor models: {canonical: factor-models, category: domain}
+  multi-factor: {canonical: factor-models, category: domain}
+  multi-factor model: {canonical: factor-models, category: domain}
+  alpha research: {canonical: alpha-research, category: domain}
+  signal research: {canonical: alpha-research, category: domain}
+  statistical arbitrage: {canonical: stat-arb, category: domain}
+  stat arb: {canonical: stat-arb, category: domain}
+  machine learning: {canonical: machine-learning, category: domain}
+  ml: {canonical: machine-learning, category: domain}
+  deep learning: {canonical: machine-learning, category: domain}
+  nlp: {canonical: nlp, category: domain}
+  time series: {canonical: time-series, category: domain}
+  econometrics: {canonical: econometrics, category: domain}
+  stochastic calculus: {canonical: stochastic-calculus, category: domain}
+  monte carlo: {canonical: monte-carlo, category: domain}
+  options pricing: {canonical: derivatives-pricing, category: domain}
+  derivatives pricing: {canonical: derivatives-pricing, category: domain}
+  pricing library: {canonical: derivatives-pricing, category: domain}
+  greeks: {canonical: derivatives-pricing, category: domain}
+  risk management: {canonical: risk-management, category: domain}
+  portfolio construction: {canonical: portfolio-construction, category: domain}
+  performance attribution: {canonical: performance-attribution, category: domain}
+  equity research: {canonical: equity-research, category: domain}
+  due diligence: {canonical: due-diligence, category: domain}
+  expert interviews: {canonical: primary-research, category: domain}
+  expert calls: {canonical: primary-research, category: domain}
+  alternative data: {canonical: alternative-data, category: domain}
+  earnings models: {canonical: financial-modeling, category: domain}
+  cfa: {canonical: cfa, category: cert}
+  chartered financial analyst: {canonical: cfa, category: cert}
+  frm: {canonical: frm, category: cert}
+  caia: {canonical: caia, category: cert}
+  cpa: {canonical: cpa, category: cert}

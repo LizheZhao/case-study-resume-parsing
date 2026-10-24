@@ -1,0 +1,21 @@
+# Ranking weights; see docs/design.md section 8. Editable in the Search page advanced expander.
+rule:
+  approach: 3
+  sector: 3
+  location: 2
+  markets_covered: 2
+  years_in_range: 2
+  skill_preferred: 1
+  degree: 1
+  certification: 1
+  asset_class: 1
+location:
+  current_match: 1.0
+  worked_match: 0.5
+  region_only_factor: 0.5
+blend:
+  rule: 0.5
+  keyword: 0.2
+  embedding: 0.3
+years_decay_outside_range: 2.0
+fuzzy_skill_threshold: 90
