@@ -1,0 +1,275 @@
+{
+  "meta": {
+    "candidate_id": "60494a768739",
+    "source_file": "RYAN PATEL - Resume.pdf",
+    "file_sha256": "60494a76873965c1a27d06a593b1239344766c9d156595a3cec220858401ea41",
+    "file_bytes": 93149,
+    "page_count": 2,
+    "parsed_at": "2026-10-24T21:37:02+00:00",
+    "extraction_path": "text",
+    "llm_model": "claude-sonnet-5-5",
+    "prompt_version": "v1",
+    "schema_version": 1,
+    "parse_status": "ok",
+    "attempts": [
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 38428,
+        "input_tokens": 1900,
+        "output_tokens": 6882,
+        "error": null,
+        "cache_read_tokens": 2934,
+        "cache_creation_tokens": 0
+      }
+    ],
+    "text_quality": {
+      "unknown_ratio_before": 0.0017331022530329288,
+      "unknown_ratio_after": 0.0017331022530329288,
+      "repairs": 0,
+      "chars_per_page": 2484.5,
+      "max_image_page_coverage": 0.0
+    }
+  },
+  "extracted": {
+    "name": "Ryan Patel",
+    "contact": {
+      "email": "ryan.patel0403@gmail.com",
+      "phone": "+1 (516) 523-3113",
+      "location_text": "342 Atlantic Avenue, Apartment 4B, Brooklyn, NY 11201",
+      "linkedin": null
+    },
+    "summary_text": null,
+    "education": [
+      {
+        "institution": "Columbia Business School, Columbia University",
+        "degree": "Bachelor of Science in Business",
+        "degree_level": "Bachelor",
+        "field": "Finance and International Business (Minor in Statistics)",
+        "start": "2013-09",
+        "end": "2017-05",
+        "gpa": "3.61/4.00",
+        "honors": [
+          "Dean's Merit Scholarship (awarded for all four years)",
+          "Student Leadership Excellence Award (awarded to top 3 graduating seniors)",
+          "Academic Achievement Recognition"
+        ],
+        "country": "US"
+      }
+    ],
+    "experience": [
+      {
+        "employer": "Meridian Capital Partners",
+        "title": "Investment Professional, Generalist – Soft Catalyst & Fundamental Long/Short",
+        "location_text": "Greenwich, CT",
+        "country": "US",
+        "start": "2023-03",
+        "end": null,
+        "is_current": true,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Hedge fund",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Primary investor responsible for managing the only long short fundamental equity portfolio at Meridian Capital Partners",
+          "Lead investment decisions for the portfolio including sizing of positions based on conviction level/idiosyncratic volatility, hedging of positions using public peers and/or appropriate sector ETFs/market indices, and timing of position initiation and monetization",
+          "Generate new investment ideas based on detailed and disciplined diligence processes, including meetings with C-Suite Executives/IR, calls with third-party experts, attending industry conferences, and analyses of alternative datasets provided by third parties",
+          "Provide portfolio updates on a bi-weekly basis to Meridian's Founder/CIO and CRO including formal quarterly updates/presentations on position level performances, hit rates, and key risk metrics such as target volatility and factor attribution"
+        ]
+      },
+      {
+        "employer": "Millennium Management",
+        "title": "Investment Analyst, Consumer & TMT – North53 Capital",
+        "location_text": "New York, NY",
+        "country": "US",
+        "start": "2021-09",
+        "end": "2022-08",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Hedge fund",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Consumer",
+            "evidence": {
+              "quote": "managing the Consumer and Technology portfolio"
+            }
+          },
+          {
+            "label": "Technology",
+            "evidence": {
+              "quote": "managing the Consumer and Technology portfolio"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "TMT"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Principal analyst responsible for managing the Consumer and Technology portfolio within the $4.2bn gross portfolio for Vertex Capital",
+          "Co-managed the risk exposures of the Consumer and Technology portfolio with the Senior Portfolio Manager including discretion over position sizing (idiosyncratic volatility/conviction), alpha/factor exposures (hedges), and timing of position entry/exit",
+          "Presented new investment ideas based on fundamental analyses, primary research, industry events/conferences, sector expert consultations, and company management meetings; actively present findings/ideas through written memos and deep dive analyses",
+          "Constructed and maintained financial models for core positions, with analyses evaluating growth drivers, competitive positioning, and structural/strategic transformation; includes operating model, DCF, comparable companies, LBO, and precedent transactions"
+        ]
+      },
+      {
+        "employer": "Apollo Global Management",
+        "title": "Associate – Private Equity",
+        "location_text": "New York, NY",
+        "country": "US",
+        "start": "2019-08",
+        "end": "2021-08",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "PE/VC",
+        "asset_classes": [],
+        "sectors": [
+          {
+            "label": "Consumer",
+            "evidence": {
+              "quote": "Business & Technology Services, Consumer, and Healthcare"
+            }
+          },
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Business & Technology Services, Consumer, and Healthcare"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Business & Technology Services"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Evaluated and executed private equity investments across the Business & Technology Services, Consumer, and Healthcare industries",
+          "Performed due diligence on businesses to determine competitive advantages, key growth drivers, addressable markets, and risks",
+          "Worked directly with management at portfolio companies to manage any operational and liquidity risk, particularly during COVID",
+          "Board observer: Strategic Safety Solutions (global industrial consulting firm), MedTech Manufacturing (medical device contract manufacturer)"
+        ]
+      },
+      {
+        "employer": "J.P.Mogan",
+        "title": "Analyst – Healthcare Investment Banking",
+        "location_text": "New York, NY",
+        "country": "US",
+        "start": "2017-07",
+        "end": "2019-07",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "adjacent",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Analyst – Healthcare Investment Banking"
+            }
+          }
+        ],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Ranked top tier of analyst class in two years at J.P. Morgan; winner of Firmwide Summer Analyst Financial Modeling Competition",
+          "Participated in all aspects of M&A, equity, and debt transactions including idea generation, due diligence, and valuation",
+          "Exclusive financial advisor – BioPharm Corp's $8.5bn acquisition of Oncology Therapeutics Inc",
+          "Exclusive financial advisor and lead-left arranger of financing – Blackstone Life Sciences' acquisition of Clinical Research Partners"
+        ]
+      },
+      {
+        "employer": "J.P.Mogan",
+        "title": "Analyst – Healthcare Investment Banking",
+        "location_text": "New York, NY",
+        "country": "US",
+        "start": "2016",
+        "end": "2016",
+        "is_current": false,
+        "employment_type": "internship",
+        "relevance": "adjacent",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Analyst – Healthcare Investment Banking"
+            }
+          }
+        ],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": []
+      },
+      {
+        "employer": "Global Education Alliance",
+        "title": "Co-Founder",
+        "location_text": "Mumbai, IN",
+        "country": "IN",
+        "start": "2017-01",
+        "end": null,
+        "is_current": true,
+        "employment_type": "part_time",
+        "relevance": "unrelated",
+        "firm_type": "Other",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Created a non-profit organization dedicated to providing educational resources, technology access, and vocational training to underserved communities",
+          "65+ students have completed certification programs and secured employment in technology and manufacturing sectors throughout the Maharashtra region"
+        ]
+      },
+      {
+        "employer": "Beta Alpha Psi, Gamma Chapter – Professional Business Fraternity",
+        "title": "President, Alumni Relations Chair, Finance Committee",
+        "location_text": "New York, NY",
+        "country": "US",
+        "start": "2014-02",
+        "end": "2017-05",
+        "is_current": false,
+        "employment_type": "part_time",
+        "relevance": "unrelated",
+        "firm_type": "Other",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Led 140+ members and organized signature events across Columbia Business School, earning Outstanding Organization Award among 30+ student groups",
+          "Managed relationships with 400+ active alumni and coordinated 3 professional networking events per semester, increasing alumni engagement by 65%"
+        ]
+      }
+    ],
+    "skills": {
+      "programming": [],
+      "tools": [],
+      "domain": []
+    },
+    "certifications": [],
+    "languages": [],
+    "awards": [
+      "Winner of Firmwide Summer Analyst Financial Modeling Competition",
+      "Outstanding Organization Award",
+      "Finalist in Goldman Sachs Investment Banking Case Competition",
+      "Winner of Morgan Stanley Financial Markets Challenge"
+    ],
+    "investment_approach": {
+      "label": "Fundamental",
+      "evidence": {
+        "quote": "the only long short fundamental equity portfolio at Meridian Capital Partners"
+      }
+    },
+    "search_summary": "Mid-level fundamental investor with hedge fund long/short equity experience since 2021 plus 2 years in private equity. Equities across Consumer, Technology and Healthcare, currently as generalist. Most recent employer Meridian Capital Partners (Hedge fund), Investment Professional, Generalist, managing the firm's only long/short fundamental equity portfolio, including position sizing, hedging and timing. Previously principal analyst for Consumer and Technology within a $4.2bn gross portfolio at Millennium Management; built operating, DCF, comps and LBO models. Apollo private equity associate. B.S. in Business, Columbia Business School."
+  }
+}

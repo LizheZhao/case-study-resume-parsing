@@ -1,0 +1,225 @@
+{
+  "meta": {
+    "candidate_id": "198398458280",
+    "source_file": "Vikram Shah.docx",
+    "file_sha256": "198398458280dae94af473c292c966e71fd3df2a4f8d46a091a5ec63182e302f",
+    "file_bytes": 20184,
+    "page_count": 1,
+    "parsed_at": "2026-10-24T21:36:55+00:00",
+    "extraction_path": "text",
+    "llm_model": "claude-sonnet-5-5",
+    "prompt_version": "v1",
+    "schema_version": 1,
+    "parse_status": "ok",
+    "attempts": [
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 24604,
+        "input_tokens": 1419,
+        "output_tokens": 4534,
+        "error": null,
+        "cache_read_tokens": 2934,
+        "cache_creation_tokens": 0
+      }
+    ],
+    "text_quality": {
+      "unknown_ratio_before": 0.0044742729306487695,
+      "unknown_ratio_after": 0.0044742729306487695,
+      "repairs": 0,
+      "chars_per_page": 3904.0,
+      "max_image_page_coverage": 0.0
+    }
+  },
+  "extracted": {
+    "name": "Vikram Shah",
+    "contact": {
+      "email": "Vshah@gmail.com",
+      "phone": "267-328-0909",
+      "location_text": null,
+      "linkedin": null
+    },
+    "summary_text": null,
+    "education": [
+      {
+        "institution": "Northwestern University - Kellogg School of Management",
+        "degree": "Bachelor of Science in Business Administration",
+        "degree_level": "Bachelor",
+        "field": "Business Administration",
+        "start": null,
+        "end": "2014-05",
+        "gpa": "3.44/4.00",
+        "honors": [
+          "Dean's Honor List (Fall 2012 - Spring 2014)",
+          "Greek Award of Distinction (2011, 2012)"
+        ],
+        "country": "US"
+      }
+    ],
+    "experience": [
+      {
+        "employer": "Cinctive Capital Management",
+        "title": "Investment Analyst",
+        "location_text": "New York, NY",
+        "country": "US",
+        "start": "2021-09",
+        "end": null,
+        "is_current": true,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Hedge fund",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Technology",
+            "evidence": {
+              "quote": "~75 Technology/Media stocks under coverage (with primary focus on cloud computing and digital advertising sectors)"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Media",
+          "Cloud Computing",
+          "Digital Advertising"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Work directly with portfolio managers to deploy long/short equity strategy across ~75 Technology/Media stocks under coverage (with primary focus on cloud computing and digital advertising sectors)",
+          "Source investment ideas through fundamental research, financial KPI analysis, alternative data tracking, and macroeconomic trend analysis across covered sectors",
+          "Conduct quarterly management meetings to discuss strategic initiatives, growth opportunities, operational efficiency programs, and competitive positioning within industry verticals",
+          "Develop tactical trading strategies around earnings events and create detailed investment previews highlighting recommended actions based on consensus expectations, proprietary data analysis, valuation metrics, and catalyst timing",
+          "Coverage includes leading technology companies across cloud infrastructure, e-commerce platforms, digital advertising, streaming services, enterprise software, mobility platforms, online marketplaces, social media, and digital entertainment sectors"
+        ]
+      },
+      {
+        "employer": "Goldman Sachs",
+        "title": "Equity Research, U.S. Internet & Interactive Entertainment – Associate",
+        "location_text": "New York, NY",
+        "country": "US",
+        "start": "2019-02",
+        "end": "2021-09",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Technology",
+            "evidence": {
+              "quote": "Supporting coverage of technology and media sectors for Institutional Investor ranked equity analyst team"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Media",
+          "Internet",
+          "Interactive Entertainment"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Supporting coverage of technology and media sectors for Institutional Investor ranked equity analyst team covering 40+ stocks with over $4.5 trillion in combined market capitalization",
+          "Built comprehensive financial models and conducted fundamental analysis to generate investment recommendations using DCF, comparable company, and sum-of-the-parts valuation methodologies",
+          "Maintained relationships with institutional investor clients including hedge funds and mutual funds, providing sector insights, company-specific research, and investment forecasting to support their decision-making processes",
+          "Supported IPO due diligence for eight investment banking transactions, contributing to pre-marketing investor education, financial model construction, valuation analysis, and research coverage initiation"
+        ]
+      },
+      {
+        "employer": "J.P. Morgan Asset Management",
+        "title": "U.S. Equity, Business Management – Associate",
+        "location_text": "New York, NY",
+        "country": "US",
+        "start": "2017-07",
+        "end": "2019-02",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "adjacent",
+        "firm_type": "Asset manager",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Coordinated research vendor relationships for 120+ Portfolio Managers and Research Analysts across 180+ external research providers, implementing process improvements following regulatory changes",
+          "Analyzed assets under management and capital flows with Chief Investment Officers to determine optimal capacity targets and strategic positioning across 50+ active investment strategies",
+          "Managed vendor relationships with research networks, data providers, and analytics platforms to enhance investment decision-making capabilities"
+        ]
+      },
+      {
+        "employer": "J.P. Morgan Chase & Co.",
+        "title": "Office of the CFO, Strategy and Analytics – Analyst",
+        "location_text": "New York, NY",
+        "country": "US",
+        "start": "2016-05",
+        "end": "2017-07",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "adjacent",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Analyzed the firm’s expense drivers (such as strategic investments, headcount growth, and location presence) and partnered with business lines to forecast a three year budget that aligned with the CFO’s key priorities"
+        ]
+      },
+      {
+        "employer": "PwC",
+        "title": "Corporate Development & Transaction Services (CDTS) – Analyst",
+        "location_text": "New York, NY",
+        "country": "US",
+        "start": "2014-08",
+        "end": "2016-05",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "adjacent",
+        "firm_type": "Consulting",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Developed comprehensive financial models (P&L, balance sheet, cash flow projections) supporting origination of complex client engagements and strategic transaction advisory services"
+        ]
+      }
+    ],
+    "skills": {
+      "programming": [],
+      "tools": [
+        "Bloomberg",
+        "FactSet",
+        "Microsoft Office"
+      ],
+      "domain": [
+        "Financial Modeling"
+      ]
+    },
+    "certifications": [
+      "CFA® Charterholder, CFA Institute: Issued March 2019"
+    ],
+    "languages": [
+      {
+        "name": "Mandarin",
+        "level": "fluent"
+      },
+      {
+        "name": "Cantonese",
+        "level": "conversational"
+      }
+    ],
+    "awards": [],
+    "investment_approach": {
+      "label": "Fundamental",
+      "evidence": {
+        "quote": "Source investment ideas through fundamental research, financial KPI analysis, alternative data tracking"
+      }
+    },
+    "search_summary": "Mid-level fundamental equity analyst with experience in sell-side research (2019-2021) and buy-side long/short investing (2021-present). Equities; Technology and Media, focused on cloud computing and digital advertising. Most recent employer Cinctive Capital Management (hedge fund), Investment Analyst covering ~75 Technology/Media stocks. Built DCF, comparable company and sum-of-the-parts models at Goldman Sachs; supported eight IPO due diligence transactions; developed earnings-event trading strategies. BS in Business Administration, Northwestern University (Kellogg); CFA charterholder."
+  }
+}

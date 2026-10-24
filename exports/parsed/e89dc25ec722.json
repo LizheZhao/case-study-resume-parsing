@@ -1,0 +1,283 @@
+{
+  "meta": {
+    "candidate_id": "e89dc25ec722",
+    "source_file": "Chen Li (Alex).docx",
+    "file_sha256": "e89dc25ec72226b57e354e25e4800fdf6eabe2843a95cb8258a354d93e3812fe",
+    "file_bytes": 20104,
+    "page_count": 1,
+    "parsed_at": "2026-10-24T21:36:30+00:00",
+    "extraction_path": "text",
+    "llm_model": "claude-sonnet-5-5",
+    "prompt_version": "v1",
+    "schema_version": 1,
+    "parse_status": "ok",
+    "attempts": [
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 35956,
+        "input_tokens": 1581,
+        "output_tokens": 6292,
+        "error": null,
+        "cache_read_tokens": 2934,
+        "cache_creation_tokens": 0
+      }
+    ],
+    "text_quality": {
+      "unknown_ratio_before": 0.001976284584980237,
+      "unknown_ratio_after": 0.001976284584980237,
+      "repairs": 0,
+      "chars_per_page": 4283.0,
+      "max_image_page_coverage": 0.0
+    }
+  },
+  "extracted": {
+    "name": "Chen Li (Alex)",
+    "contact": {
+      "email": "Alex_chen2024@gmail.com",
+      "phone": "+852 65478923",
+      "location_text": null,
+      "linkedin": null
+    },
+    "summary_text": null,
+    "education": [
+      {
+        "institution": "University of Hong Kong",
+        "degree": "Master of Science in Financial Technology",
+        "degree_level": "Master",
+        "field": "Financial Technology",
+        "start": "2021-09",
+        "end": "2023-07",
+        "gpa": null,
+        "honors": [],
+        "country": "HK"
+      },
+      {
+        "institution": "University of Hong Kong",
+        "degree": "Bachelor of Business Administration (Finance)",
+        "degree_level": "Bachelor",
+        "field": "Finance",
+        "start": "2017-09",
+        "end": "2021-07",
+        "gpa": null,
+        "honors": [],
+        "country": "HK"
+      }
+    ],
+    "experience": [
+      {
+        "employer": "Bank of China",
+        "title": "Investment Analyst",
+        "location_text": "Hong Kong",
+        "country": "HK",
+        "start": "2021-06",
+        "end": "2023-09",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Technology",
+            "evidence": {
+              "quote": "Independently developed, constructed and actively managed a multi-factor quantitative model focusing on Greater China technology equities"
+            }
+          }
+        ],
+        "other_sector_tags": [],
+        "markets_covered": [
+          {
+            "label": "Greater China",
+            "evidence": {
+              "quote": "Independently developed, constructed and actively managed a multi-factor quantitative model focusing on Greater China technology equities"
+            }
+          },
+          {
+            "label": "Asia",
+            "evidence": {
+              "quote": "quantitative analysis on large-scale Asian equity datasets"
+            }
+          }
+        ],
+        "bullets": [
+          "Conduct comprehensive quantitative analysis on large-scale Asian equity datasets to provide statistical support for portfolio managers. Analyze market trends, sector rotations, and statistical anomalies, delivering actionable insights for investment decision-making and strategy optimization.",
+          "Independently developed, constructed and actively managed a multi-factor quantitative model focusing on Greater China technology equities, achieving superior risk-adjusted returns with Sharpe ratio of 1.8+ over 12-month period.",
+          "Established automated market surveillance system to monitor real-time market conditions, news sentiment, and macro events to identify investment opportunities and manage portfolio risk exposures.",
+          "Conducted rigorous backtesting and performance attribution analysis of systematic trading strategies, utilizing advanced statistical methods and machine learning techniques to enhance strategy performance and risk management."
+        ]
+      },
+      {
+        "employer": "Bank of China",
+        "title": "Investment Intern",
+        "location_text": "Hong Kong",
+        "country": "HK",
+        "start": "2019-12",
+        "end": "2021-05",
+        "is_current": false,
+        "employment_type": "internship",
+        "relevance": "core",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [],
+        "sectors": [
+          {
+            "label": "Technology",
+            "evidence": {
+              "quote": "Performed comprehensive research on Asian technology and healthcare sectors"
+            }
+          },
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Performed comprehensive research on Asian technology and healthcare sectors"
+            }
+          }
+        ],
+        "other_sector_tags": [],
+        "markets_covered": [
+          {
+            "label": "Greater China",
+            "evidence": {
+              "quote": "covering 15+ sub-industries and 35+ companies across Greater China markets"
+            }
+          }
+        ],
+        "bullets": [
+          "Performed comprehensive research on Asian technology and healthcare sectors, covering 15+ sub-industries and 35+ companies across Greater China markets.",
+          "Supported investment team by conducting expert interviews, analyzing financial statements, building DCF and relative valuation models, and preparing detailed investment research reports for portfolio review."
+        ]
+      },
+      {
+        "employer": "Chinese University of Hong Kong",
+        "title": "Research Assistant (Economics Area)",
+        "location_text": "Hong Kong",
+        "country": "HK",
+        "start": "2019-03",
+        "end": "2021-03",
+        "is_current": false,
+        "employment_type": "academic",
+        "relevance": "adjacent",
+        "firm_type": "Academic",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Efficiently processed and analyzed over 200,000 historical Asian market firm-level data points using Python and R, conducting comprehensive statistical analysis for academic research. Implemented advanced data processing techniques resulting in 25x improvement in research team computational efficiency.",
+          "Utilized Python and GIS mapping tools to analyze regional economic activity data from satellite imagery, generating 400+ analytical outputs including statistical reports and visualization packages for publication."
+        ]
+      },
+      {
+        "employer": "Meridian Asia Capital",
+        "title": "Finance Market Department Intern (Chinese Bond and Equity Market)",
+        "location_text": "Jiangxi, China",
+        "country": "CN",
+        "start": "2019-07",
+        "end": "2019-08",
+        "is_current": false,
+        "employment_type": "internship",
+        "relevance": "core",
+        "firm_type": "Other",
+        "asset_classes": [
+          "Fixed Income",
+          "Equities"
+        ],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [
+          {
+            "label": "CN",
+            "evidence": {
+              "quote": "Chinese Bond and Equity Market"
+            }
+          }
+        ],
+        "bullets": [
+          "Conducted thorough investigation and analysis of equity information, resulting in the preparation of two comprehensive Equity Pledge Business Investigation Reports.",
+          "Assisted in company research and played a key role in drafting Bill Credit Investigation Reports."
+        ]
+      },
+      {
+        "employer": "Fujia Aid Teaching Society",
+        "title": "Vice President & Head of Public Relations Team",
+        "location_text": "Hong Kong",
+        "country": "HK",
+        "start": "2019-09",
+        "end": "2020-06",
+        "is_current": false,
+        "employment_type": "part_time",
+        "relevance": "unrelated",
+        "firm_type": "Other",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Developed strategic initiatives for the organization and supervised two regional programs: Guangzhou Rural Education Project and Shenzhen Migrant Children Support Initiative.",
+          "Led organizational marketing efforts across CUHK campus, increasing membership by 40% and creating educational video content to expand community engagement and awareness."
+        ]
+      },
+      {
+        "employer": "University Swimming Club",
+        "title": "Head of Promotion Team",
+        "location_text": "Hong Kong",
+        "country": "HK",
+        "start": "2018-09",
+        "end": "2019-09",
+        "is_current": false,
+        "employment_type": "part_time",
+        "relevance": "unrelated",
+        "firm_type": "Other",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Managed promotional activities for the swimming club, collaborating with multiple student organizations to coordinate events including Inter-University Swimming Gala (80+ participants) and Water Safety Workshop series.",
+          "Developed and maintained digital communication platforms including WeChat groups and Instagram accounts to enhance member engagement and information dissemination."
+        ]
+      }
+    ],
+    "skills": {
+      "programming": [
+        "Python",
+        "R",
+        "SQL"
+      ],
+      "tools": [
+        "Microsoft Office Suite (Excel with VBA, PowerPoint, Word)",
+        "Bloomberg Terminal",
+        "WIND Database"
+      ],
+      "domain": []
+    },
+    "certifications": [],
+    "languages": [
+      {
+        "name": "English",
+        "level": "fluent"
+      },
+      {
+        "name": "Chinese (Mandarin)",
+        "level": "native"
+      },
+      {
+        "name": "Chinese (Cantonese)",
+        "level": "fluent"
+      }
+    ],
+    "awards": [
+      "Dean's List (4 semesters)",
+      "Outstanding Academic Achievement Award",
+      "Top 5% in Provincial University Entrance Examination"
+    ],
+    "investment_approach": {
+      "label": "Both",
+      "evidence": {
+        "quote": "multi-factor quantitative model focusing on Greater China technology equities"
+      }
+    },
+    "search_summary": "Junior investment analyst, systematic and fundamental, with 2 years of full-time and 1.5 years of internship experience. Equities across technology and healthcare, covering Greater China markets. Most recent employer Bank of China (Sell-side bank), Investment Analyst. Built a multi-factor model on Greater China technology equities with Sharpe ratio of 1.8+ over 12 months; covered 35+ companies with DCF and relative valuation models; Python, R, SQL, Bloomberg. MSc Financial Technology, University of Hong Kong; no certifications."
+  }
+}

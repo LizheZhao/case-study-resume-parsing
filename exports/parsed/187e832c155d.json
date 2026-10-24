@@ -1,0 +1,349 @@
+{
+  "meta": {
+    "candidate_id": "187e832c155d",
+    "source_file": "Priya Nakamura_sellside_healthcare_RLTM.docx",
+    "file_sha256": "187e832c155d333d4c8c41c7e42812e30400b502f5edfde457a8d0b0c1ef44f2",
+    "file_bytes": 20605,
+    "page_count": 1,
+    "parsed_at": "2026-10-24T21:37:02+00:00",
+    "extraction_path": "text",
+    "llm_model": "claude-sonnet-5-5",
+    "prompt_version": "v1",
+    "schema_version": 1,
+    "parse_status": "ok",
+    "attempts": [
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 38506,
+        "input_tokens": 1874,
+        "output_tokens": 7140,
+        "error": null,
+        "cache_read_tokens": 2934,
+        "cache_creation_tokens": 0
+      }
+    ],
+    "text_quality": {
+      "unknown_ratio_before": 0.01779935275080906,
+      "unknown_ratio_after": 0.01779935275080906,
+      "repairs": 0,
+      "chars_per_page": 5196.0,
+      "max_image_page_coverage": 0.0
+    }
+  },
+  "extracted": {
+    "name": "Priya Nakamura",
+    "contact": {
+      "email": null,
+      "phone": null,
+      "location_text": null,
+      "linkedin": null
+    },
+    "summary_text": "I have been covering the healthcare sector for 9years, currently employed with ICICI Securities. Coverage includes 25 healthcare stocks spread across different sub segments of healthcare / pharmaceutical value chain.",
+    "education": [
+      {
+        "institution": "Mumbai Institute of Management Studies (MIMS)",
+        "degree": "MBA",
+        "degree_level": "Master",
+        "field": "Finance",
+        "start": "2011",
+        "end": "2013",
+        "gpa": null,
+        "honors": [],
+        "country": "IN"
+      },
+      {
+        "institution": "University of Pune",
+        "degree": "MCOM",
+        "degree_level": "Master",
+        "field": null,
+        "start": null,
+        "end": "2013",
+        "gpa": null,
+        "honors": [],
+        "country": "IN"
+      },
+      {
+        "institution": "Thakur College of Commerce",
+        "degree": "B.M.S",
+        "degree_level": "Bachelor",
+        "field": null,
+        "start": null,
+        "end": "2007",
+        "gpa": null,
+        "honors": [],
+        "country": null
+      },
+      {
+        "institution": "Jai Hind College",
+        "degree": "HSC",
+        "degree_level": "High School",
+        "field": null,
+        "start": null,
+        "end": "2004",
+        "gpa": null,
+        "honors": [],
+        "country": null
+      },
+      {
+        "institution": "Modern High School and Junior College",
+        "degree": "SSC",
+        "degree_level": "Secondary School",
+        "field": null,
+        "start": null,
+        "end": "2002",
+        "gpa": null,
+        "honors": [],
+        "country": null
+      }
+    ],
+    "experience": [
+      {
+        "employer": "ICICI Securities",
+        "title": "Lead Healthcare Analyst",
+        "location_text": null,
+        "country": null,
+        "start": "2023-05",
+        "end": null,
+        "is_current": true,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side broker",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Extensive coverage of 32 companies spread across all segments (pharma, hospital, diagnostics and medical devices) of the listed Indian healthcare universe."
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Pharma",
+          "Hospitals",
+          "Diagnostics",
+          "Medical Devices"
+        ],
+        "markets_covered": [
+          {
+            "label": "IN",
+            "evidence": {
+              "quote": "listed Indian healthcare universe"
+            }
+          }
+        ],
+        "bullets": [
+          "Extensive coverage of 32 companies spread across all segments (pharma, hospital, diagnostics and medical devices) of the listed Indian healthcare universe.",
+          "Actively managed primary fund raise for Jupiter Hospital, Innova Captab, Entero Healthcare and AKUMS.",
+          "Periodical meetings with industry participants (listed & unlisted) to get a perspective of industry and key functioning areas of a company."
+        ]
+      },
+      {
+        "employer": "J.P. Morgan Chase",
+        "title": "Lead Healthcare Analyst",
+        "location_text": null,
+        "country": null,
+        "start": "2021-09",
+        "end": "2023-05",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Formal coverage includes 22 companies across the healthcare value chain."
+            }
+          }
+        ],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Formal coverage includes 22 companies across the healthcare value chain.",
+          "Periodical meetings with industry experts to get a perspective of industry and key functioning areas of a company.",
+          "Arranged corporate meetings/road shows, connect senior management of companies with key investors."
+        ]
+      },
+      {
+        "employer": "Jardine Lloyd Thompson",
+        "title": "Lead Pharma Analyst",
+        "location_text": null,
+        "country": null,
+        "start": "2020-01",
+        "end": "2021-09",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Other",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "17 pharma companies under direct coverage"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Pharma"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Started my journey as a Lead Analyst at Anand Rathi with 17 pharma companies under direct coverage. Portfolio consisted of a blend of large and mid-cap companies..",
+          "Periodically update clients on corporate actions, news flow related to companies and events/updates pertaining to Healthcare sector globally",
+          "Arranged corporate meetings/road shows, connect senior management of companies with key investors."
+        ]
+      },
+      {
+        "employer": "Centrum Broking Ltd",
+        "title": "Research Analyst",
+        "location_text": null,
+        "country": null,
+        "start": "2017-01",
+        "end": "2019-12",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side broker",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Built extensive domain expertise in the pharmaceutical sector"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Pharmaceuticals"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Focused approach towards analyzing and recommending differentiated and undervalued investment opportunities to institutional clients. Developed comprehensive sectoral themes and provided regular updates on regulatory, competitive, and market dynamics to help clients make informed investment decisions.",
+          "Built extensive domain expertise in the pharmaceutical sector and consistently published high-quality research including initiation reports, sector outlook pieces, quarterly earnings analysis, and thematic investment reports.",
+          "Companies under direct coverage include MediCore Pharmaceuticals, Apex Lifesciences, BioGenex Labs, Zenith Therapeutics, Prism Pharma, VitalMed Industries, GlobalCare India, InnovaPharm Solutions, LifeTech Laboratories, Precision Biopharma, NexGen Medicines, and Quantum Healthcare Limited.",
+          "Supported senior analyst coverage of large-cap pharmaceutical companies through financial modeling, competitive analysis, and research report preparation for blue-chip healthcare names.",
+          "Maintained close monitoring of critical industry issues including regulatory compliance with USFDA, EMA and domestic authorities, manufacturing capabilities, API sourcing strategies, competitive positioning analysis, and patent cliff assessments."
+        ]
+      },
+      {
+        "employer": "Morgan Stanley",
+        "title": "Equity Research Analyst",
+        "location_text": null,
+        "country": null,
+        "start": "2015-10",
+        "end": "2016-12",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space."
+            }
+          },
+          {
+            "label": "Other",
+            "evidence": {
+              "quote": "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space."
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Pharmaceuticals",
+          "Specialty Chemicals"
+        ],
+        "markets_covered": [
+          {
+            "label": "IN",
+            "evidence": {
+              "quote": "Indian pharmaceutical and speciality chemical space"
+            }
+          }
+        ],
+        "bullets": [
+          "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space. Build up financial models by getting details from interaction with company management and in depth analysis of various ratios and other financial parameters.",
+          "Screen various companies, try to study them on various parameters of value investing and sensibly highlight them in the report prepared for initiating coverage and IPOs, so that clients can take informed decisions.",
+          "Once a company is under coverage, I actively track them, prepare result update periodically and also prepare presentations for sales team for them to develop good understanding of the company.",
+          "My portfolio consisted of mid-cap pharmaceutical and speciality chemical companies like Syngene International, Neuland Laboratories, Strides Shasun, Thyrocare, Dr LalPathlabs, Aarti Industries and Navin Fluorine."
+        ]
+      },
+      {
+        "employer": "Transparent Value",
+        "title": "Equity Research Analyst",
+        "location_text": null,
+        "country": null,
+        "start": "2013-10",
+        "end": "2015-10",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Asset manager",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "25 US and European large-cap pharmaceutical companies like Gilead Sciences, Zimmer Biomet Holding, Hospital Corporation of America, GSK and Meda AB"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Pharmaceuticals"
+        ],
+        "markets_covered": [
+          {
+            "label": "US",
+            "evidence": {
+              "quote": "25 US and European large-cap pharmaceutical companies"
+            }
+          },
+          {
+            "label": "Europe",
+            "evidence": {
+              "quote": "25 US and European large-cap pharmaceutical companies"
+            }
+          }
+        ],
+        "bullets": [
+          "Analysed companies by reading financials & press release published by company, thoroughly understand the dynamics of the sector covered and understand the key drivers affecting a particular company for building better quality models. Taking into account macro-economic factors for building the model by reading and having team discussions and build model whose final outcome is Required Business Performance (RBP) probability.",
+          "Write earnings report for a company based on the outcome of the models build. Tracking companies in the portfolio on a daily basis for related news & events and making adjustments to the models if some fundamental changes occur which affect the company’s key drivers of earnings and make adjustments for corporate actions completed by company in the portfolio.",
+          "My portfolio consisted of 25 US and European large-cap pharmaceutical companies like Gilead Sciences, Zimmer Biomet Holding, Hospital Corporation of America, GSK and Meda AB."
+        ]
+      }
+    ],
+    "skills": {
+      "programming": [],
+      "tools": [],
+      "domain": [
+        "Financial modeling"
+      ]
+    },
+    "certifications": [],
+    "languages": [],
+    "awards": [],
+    "investment_approach": {
+      "label": "Fundamental",
+      "evidence": {
+        "quote": "Screen various companies, try to study them on various parameters of value investing"
+      }
+    },
+    "search_summary": "Lead-level fundamental equity research analyst in healthcare, with experience since 2013 (profile states 9 years of coverage). Equities; healthcare including pharma, hospitals, diagnostics, medical devices, plus speciality chemicals earlier. Covers the listed Indian healthcare universe; earlier covered US and European large-cap pharma. Most recent employer ICICI Securities (sell-side broker), Lead Healthcare Analyst, covering 32 companies. Managed primary fund raises for Jupiter Hospital, Innova Captab, Entero Healthcare and AKUMS; built financial models and initiation reports. MBA Finance, Mumbai Institute of Management Studies. No certifications listed."
+  }
+}

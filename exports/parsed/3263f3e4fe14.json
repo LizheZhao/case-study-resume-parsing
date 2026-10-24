@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "candidate_id": "3263f3e4fe14",
+    "source_file": "Michael Rodriguez, CFA.docx",
+    "file_sha256": "3263f3e4fe14cb114411c3c91ae8dd08408a7638c6d1771b6e4871d8d0e97ba0",
+    "file_bytes": 29922,
+    "page_count": 1,
+    "parsed_at": "2026-10-24T21:36:23+00:00",
+    "extraction_path": "text",
+    "llm_model": "claude-sonnet-5-5",
+    "prompt_version": "v1",
+    "schema_version": 1,
+    "parse_status": "ok",
+    "attempts": [
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 29405,
+        "input_tokens": 1396,
+        "output_tokens": 5435,
+        "error": null,
+        "cache_read_tokens": 2934,
+        "cache_creation_tokens": 0
+      }
+    ],
+    "text_quality": {
+      "unknown_ratio_before": 0.004640371229698376,
+      "unknown_ratio_after": 0.004640371229698376,
+      "repairs": 0,
+      "chars_per_page": 3638.0,
+      "max_image_page_coverage": 0.0
+    }
+  },
+  "extracted": {
+    "name": "Michael Rodriguez, CFA",
+    "contact": {
+      "email": "mrodriguez84@gmail.com",
+      "phone": "317.441.1999",
+      "location_text": "600 Congress St. #208 Boston, MA 01125",
+      "linkedin": null
+    },
+    "summary_text": null,
+    "education": [
+      {
+        "institution": "University of Michigan, Ross School of Business",
+        "degree": "Bachelor of Science in Business",
+        "degree_level": "Bachelor",
+        "field": "Finance",
+        "start": null,
+        "end": "2017-05",
+        "gpa": "3.5/4.0",
+        "honors": [
+          "Business Leadership Program: Selected as one of 120 Ross students out of a class of 1,200",
+          "Merit Scholar Program: Awarded partial scholarship by selective Ross program"
+        ],
+        "country": "US"
+      }
+    ],
+    "experience": [
+      {
+        "employer": "Fidelity Asset Management",
+        "title": "Analyst, Consumer Internet & Software",
+        "location_text": "Boston, MA",
+        "country": "US",
+        "start": "2022-05",
+        "end": null,
+        "is_current": true,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Asset manager",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Technology",
+            "evidence": {
+              "quote": "Initiated on 20+ names across TMT sector through diligence on public filings, industry experts and valuation analysis"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "TMT",
+          "Consumer Internet",
+          "Software"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Initiated on 20+ names across TMT sector through diligence on public filings, industry experts and valuation analysis",
+          "Contributed to weekly portfolio review committee and investment process meetings to determine equity allocation across $1-2 billion AUM mutual fund",
+          "Met directly with management teams as a part of investment process to assess corporate strategy & initiatives"
+        ]
+      },
+      {
+        "employer": "William Blair, Equity Research",
+        "title": "Associate, TMT",
+        "location_text": "Chicago, IL",
+        "country": "US",
+        "start": "2019-04",
+        "end": "2022-01",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Technology",
+            "evidence": {
+              "quote": "Covered 20+ names across TMT sector providing quarterly earnings estimates and research reports"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "TMT",
+          "Consumer Internet",
+          "3D Printing"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Covered 20+ names across TMT sector providing quarterly earnings estimates and research reports",
+          "Wrote coverage initiation reports and built IPO syndicate models from scratch on 10+ consumer internet companies",
+          "Built and updated models with earnings releases to prepare notes with adjusted forecasts and valuation metrics",
+          "Published a differentiated 70+ page report on 3D printing industry highlighting 29 competitors with extensive discussion of technology, products, pricing and financial performance; researched forward looking manufacturing trends"
+        ]
+      },
+      {
+        "employer": "William Blair, Fixed Income Sales & Trading",
+        "title": "Jr. Desk Analyst",
+        "location_text": "Chicago, IL",
+        "country": "US",
+        "start": "2018-04",
+        "end": "2019-04",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [
+          "Fixed Income",
+          "Credit"
+        ],
+        "sectors": [
+          {
+            "label": "Credit",
+            "evidence": {
+              "quote": "Contributed fundamental research for clients on various HY, XO and IG credits"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "High Yield",
+          "Crossover",
+          "Investment Grade"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Contributed fundamental research for clients on various HY, XO and IG credits as a junior desk analyst by building three-statement valuation models to pitch relative value ideas and drive desk revenue across coverage of 10+ names",
+          "Priced 100+ corporate bonds daily for inventory RUNZ on Bloomberg and ALLQ quoted markets",
+          "Responsible for odd lot market making in High yield, Investment Grade and Hybrid securities up to $500m"
+        ]
+      },
+      {
+        "employer": "Guaranteed Rate, Mortgage Trading",
+        "title": "Capital Markets Analyst",
+        "location_text": "Chicago, IL",
+        "country": "US",
+        "start": "2017-07",
+        "end": "2018-03",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Other",
+        "asset_classes": [
+          "Fixed Income"
+        ],
+        "sectors": [],
+        "other_sector_tags": [
+          "Mortgage",
+          "MBS"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Managed mortgage origination pipeline for strategic lending partnership utilizing Excel, SQL and proprietary risk management systems to hedge interest rate exposure through MBS forward contracts"
+        ]
+      },
+      {
+        "employer": "Magnetar Capital Management",
+        "title": "Summer Intern",
+        "location_text": "Evanston, IL",
+        "country": "US",
+        "start": "2016-05",
+        "end": "2016-08",
+        "is_current": false,
+        "employment_type": "internship",
+        "relevance": "core",
+        "firm_type": "Hedge fund",
+        "asset_classes": [
+          "Fixed Income"
+        ],
+        "sectors": [],
+        "other_sector_tags": [
+          "Residential Mortgage",
+          "Securitization"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Structured, pooled and delivered residential mortgage loans weekly exceeding $30M into agency and non-agency securitization products"
+        ]
+      },
+      {
+        "employer": "Ross Investment Banking Club",
+        "title": "Member",
+        "location_text": null,
+        "country": null,
+        "start": "2015-03",
+        "end": "2017-05",
+        "is_current": false,
+        "employment_type": "part_time",
+        "relevance": "unrelated",
+        "firm_type": "Other",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Viewed banking firm presentations, networked with professionals and participated in financial modeling exercises"
+        ]
+      },
+      {
+        "employer": "Campus Tutoring Service",
+        "title": "Tutor",
+        "location_text": "Ann Arbor, MI",
+        "country": "US",
+        "start": "2015-01",
+        "end": "2015-05",
+        "is_current": false,
+        "employment_type": "part_time",
+        "relevance": "unrelated",
+        "firm_type": "Academic",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Tutored individuals in one-on-one sessions on the subjects: Macroeconomics, Excel, Finite Math and Accounting"
+        ]
+      }
+    ],
+    "skills": {
+      "programming": [
+        "SQL"
+      ],
+      "tools": [
+        "Bloomberg Terminal",
+        "Excel",
+        "FactSet",
+        "S&P Capital IQ"
+      ],
+      "domain": [
+        "Advanced Financial Modeling",
+        "Statistical Analysis",
+        "Hypothesis Testing"
+      ]
+    },
+    "certifications": [
+      "CFA Charterholder: Passed Level III in June 2021 after completing the previous two levels consecutively",
+      "FINRA: Registered Representative and active holder of Series 7, 63 and 87 licenses during equity research tenure"
+    ],
+    "languages": [],
+    "awards": [],
+    "investment_approach": {
+      "label": "Fundamental",
+      "evidence": {
+        "quote": "Initiated on 20+ names across TMT sector through diligence on public filings, industry experts and valuation analysis"
+      }
+    },
+    "search_summary": "Mid-level fundamental analyst with research experience since 2018 across equities and credit. Covers TMT, consumer internet and software equities; earlier covered HY, crossover and IG credits. Most recent employer Fidelity Asset Management (asset manager), Analyst, Consumer Internet & Software. Initiated on 20+ names, contributed to allocation of a $1-2 billion AUM mutual fund, built IPO syndicate models for 10+ consumer internet companies, wrote a 70+ page 3D printing report. Tools: Bloomberg, FactSet, Capital IQ. BS Finance, University of Michigan Ross; CFA charterholder."
+  }
+}

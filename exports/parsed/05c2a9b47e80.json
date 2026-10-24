@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "candidate_id": "05c2a9b47e80",
+    "source_file": "Omar El-Hassan 202405.pdf",
+    "file_sha256": "05c2a9b47e801013b8f27a8261200d5c9b8df4272f7e9b1825555b3ca9a7e79b",
+    "file_bytes": 146198,
+    "page_count": 1,
+    "parsed_at": "2026-10-24T21:36:37+00:00",
+    "extraction_path": "text",
+    "llm_model": "claude-sonnet-5-5",
+    "prompt_version": "v1",
+    "schema_version": 1,
+    "parse_status": "ok",
+    "attempts": [
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 21516,
+        "input_tokens": 704,
+        "output_tokens": 3481,
+        "error": null,
+        "cache_read_tokens": 2934,
+        "cache_creation_tokens": 0
+      }
+    ],
+    "text_quality": {
+      "unknown_ratio_before": 0.17801047120418848,
+      "unknown_ratio_after": 0.02617801047120419,
+      "repairs": 42,
+      "chars_per_page": 1640.0,
+      "max_image_page_coverage": 0.0
+    }
+  },
+  "extracted": {
+    "name": "Omar El-Hassan",
+    "contact": {
+      "email": "o.elhassan15@gmail.com",
+      "phone": "+ 33678924531",
+      "location_text": null,
+      "linkedin": null
+    },
+    "summary_text": null,
+    "education": [
+      {
+        "institution": "INSA Lyon",
+        "degree": "Diplôme d'Ingénieur",
+        "degree_level": null,
+        "field": "Financial Engineering",
+        "start": "2019-09",
+        "end": "2022-09",
+        "gpa": null,
+        "honors": [],
+        "country": "FR"
+      },
+      {
+        "institution": "Universite Lyon",
+        "degree": "Master's degree",
+        "degree_level": "Master's",
+        "field": "Quantitative Finance",
+        "start": "2021-09",
+        "end": "2022-09",
+        "gpa": null,
+        "honors": [],
+        "country": "FR"
+      },
+      {
+        "institution": "École Royale Navale",
+        "degree": "Preparatory Classes",
+        "degree_level": null,
+        "field": "Mathematics and Physics",
+        "start": "2017-09",
+        "end": "2019-07",
+        "gpa": null,
+        "honors": [],
+        "country": "MA"
+      }
+    ],
+    "experience": [
+      {
+        "employer": "BNP Paribas CIB",
+        "title": "Quantitative Developer",
+        "location_text": "Paris, France",
+        "country": "FR",
+        "start": "2022-05",
+        "end": null,
+        "is_current": true,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [
+          "Fixed Income",
+          "Derivatives"
+        ],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Introduction of a new model (one factor Gaussian copula model)",
+          "Implement a new exotic payoff (local spread option)",
+          "Implementation of new features for trading desks (Scenario analysis, Greeks computation, ...)"
+        ]
+      },
+      {
+        "employer": "BNP Paribas CIB",
+        "title": "Internship",
+        "location_text": "Paris, France",
+        "country": "FR",
+        "start": "2022-04",
+        "end": "2022-08",
+        "is_current": false,
+        "employment_type": "internship",
+        "relevance": "core",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [
+          "Derivatives"
+        ],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Built automated testing framework in C# for derivatives pricing validation"
+        ]
+      },
+      {
+        "employer": "Société Générale - SGATS (SGCIB)",
+        "title": "Quantitative Strategist - Intern",
+        "location_text": "Rabat, Morocco",
+        "country": "MA",
+        "start": "2021-06",
+        "end": "2021-08",
+        "is_current": false,
+        "employment_type": "internship",
+        "relevance": "core",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Development and back testing of momentum-based trading strategies",
+          "Performance optimization of yield curve construction algorithms"
+        ]
+      }
+    ],
+    "skills": {
+      "programming": [
+        "C++",
+        "C# / .NET",
+        "Python",
+        "Java",
+        "R",
+        "SQL",
+        "MongoDB"
+      ],
+      "tools": [
+        "Excel"
+      ],
+      "domain": [
+        "Machine Learning",
+        "Stochastic calculus",
+        "Probability theory",
+        "Statistics"
+      ]
+    },
+    "certifications": [],
+    "languages": [
+      {
+        "name": "English",
+        "level": null
+      },
+      {
+        "name": "Arabic",
+        "level": null
+      }
+    ],
+    "awards": [],
+    "investment_approach": {
+      "label": "Systematic",
+      "evidence": {
+        "quote": "Development and back testing of momentum-based trading strategies"
+      }
+    },
+    "search_summary": "Junior systematic quantitative developer with relevant experience since 2021, including internships. Derivatives and fixed income pricing; no sector focus stated. Most recent employer: BNP Paribas CIB (sell-side bank), Quantitative Developer in the R&D Front Office Fixed Income team. Introduced a one factor Gaussian copula model and a local spread option exotic payoff in a C++ pricing library; built a C# automated testing framework for derivatives pricing validation; back-tested momentum strategies. Master's degree in Quantitative Finance, Universite Lyon; Diplôme d'Ingénieur, INSA Lyon. No certifications."
+  }
+}

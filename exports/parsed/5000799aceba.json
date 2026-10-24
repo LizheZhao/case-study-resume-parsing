@@ -1,0 +1,315 @@
+{
+  "meta": {
+    "candidate_id": "5000799aceba",
+    "source_file": "Zara Al-Rashid.docx",
+    "file_sha256": "5000799acebafbe1edfe25ff4b0641a6ec3b0b2f2a2a79615b647de8f1ca26b2",
+    "file_bytes": 22357,
+    "page_count": 1,
+    "parsed_at": "2026-10-24T21:37:35+00:00",
+    "extraction_path": "text",
+    "llm_model": "claude-sonnet-5-5",
+    "prompt_version": "v1",
+    "schema_version": 1,
+    "parse_status": "ok",
+    "attempts": [
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 40096,
+        "input_tokens": 1451,
+        "output_tokens": 7076,
+        "error": null,
+        "cache_read_tokens": 2934,
+        "cache_creation_tokens": 0
+      }
+    ],
+    "text_quality": {
+      "unknown_ratio_before": 0.010309278350515464,
+      "unknown_ratio_after": 0.010309278350515464,
+      "repairs": 0,
+      "chars_per_page": 3404.0,
+      "max_image_page_coverage": 0.0
+    }
+  },
+  "extracted": {
+    "name": "Dr. Zara Al-Rashid",
+    "contact": {
+      "email": null,
+      "phone": null,
+      "location_text": null,
+      "linkedin": null
+    },
+    "summary_text": null,
+    "education": [
+      {
+        "institution": "Indian School of Business Management (ISBM), Pune",
+        "degree": "PGDM (Finance)",
+        "degree_level": null,
+        "field": "Finance",
+        "start": null,
+        "end": "2012",
+        "gpa": "7.2/10 (Finance)",
+        "honors": [],
+        "country": "IN"
+      },
+      {
+        "institution": "K.J. Somaiya Medical College, Mumbai",
+        "degree": "M.B.B.S",
+        "degree_level": null,
+        "field": null,
+        "start": null,
+        "end": "2010",
+        "gpa": "63.87%",
+        "honors": [],
+        "country": "IN"
+      },
+      {
+        "institution": "Mithibai College, Mumbai",
+        "degree": "XII Std.(PCMB)",
+        "degree_level": null,
+        "field": "PCMB",
+        "start": null,
+        "end": "2004",
+        "gpa": "89.00%",
+        "honors": [
+          "Top 0.2% Maharashtra state board"
+        ],
+        "country": "IN"
+      },
+      {
+        "institution": "St. Xavier's High School, Mumbai",
+        "degree": "X Std.",
+        "degree_level": null,
+        "field": null,
+        "start": null,
+        "end": "2002",
+        "gpa": "90.43%",
+        "honors": [
+          "Top 5% Maharashtra state board"
+        ],
+        "country": "IN"
+      }
+    ],
+    "experience": [
+      {
+        "employer": "Meridian Research Partners",
+        "title": "Lead Analyst – Pharmaceuticals and Healthcare",
+        "location_text": null,
+        "country": null,
+        "start": "2022-05",
+        "end": null,
+        "is_current": true,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Other",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Lead Analyst – Pharmaceuticals and Healthcare"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Pharmaceuticals"
+        ],
+        "markets_covered": [
+          {
+            "label": "IN",
+            "evidence": {
+              "quote": "Generate investment ideas and publish equity research ratings with price targets on Indian healthcare sector companies across 28 stocks under coverage"
+            }
+          }
+        ],
+        "bullets": [
+          "Generate investment ideas and publish equity research ratings with price targets on Indian healthcare sector companies across 28 stocks under coverage"
+        ]
+      },
+      {
+        "employer": "Prism Financial Services",
+        "title": "Lead Analyst – Pharmaceuticals and Healthcare",
+        "location_text": null,
+        "country": null,
+        "start": "2020-10",
+        "end": "2022-04",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side broker",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Lead Analyst – Pharmaceuticals and Healthcare"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Pharmaceuticals"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Voted by top domestic institutional investors: Axis Mutual Fund, SBI Mutual Fund, Nippon Life Asset Management, ICICI Prudential MF, Aditya Birla Sun Life MF, Reliance MF, LIC MF, Mirae Asset MF, Invesco MF, and Sundaram MF",
+          "Investment recommendation adopted by major institutional client resulting in 35% increase in brokerage commission revenue"
+        ]
+      },
+      {
+        "employer": "Kotak Securities",
+        "title": "Lead Analyst – Pharmaceuticals and Healthcare",
+        "location_text": null,
+        "country": null,
+        "start": "2018-04",
+        "end": "2020-04",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side broker",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Lead Analyst – Pharmaceuticals and Healthcare"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Pharmaceuticals"
+        ],
+        "markets_covered": [
+          {
+            "label": "IN",
+            "evidence": {
+              "quote": "Published sector thematic reports on Indian generics expansion, digital health initiatives, respiratory drug market, and healthcare policy reforms"
+            }
+          }
+        ],
+        "bullets": [
+          "Published sector thematic reports on Indian generics expansion, digital health initiatives, respiratory drug market, and healthcare policy reforms",
+          "Hosted Organized healthcare policy conference in Mumbai covering regulatory changes, generic drug policies, and government health initiatives with key policymakers"
+        ]
+      },
+      {
+        "employer": "DataFlow Research India Pvt. Limited, Noida",
+        "title": "Manager – Equity Research",
+        "location_text": "Noida",
+        "country": "IN",
+        "start": "2015-05",
+        "end": "2018-03",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Other",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Member, U.S. Healthcare Services ER team (Institutional Investor (II) Runner up) at Leerink Partners"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Healthcare Services"
+        ],
+        "markets_covered": [
+          {
+            "label": "US",
+            "evidence": {
+              "quote": "Member, U.S. Healthcare Services ER team (Institutional Investor (II) Runner up) at Leerink Partners"
+            }
+          }
+        ],
+        "bullets": [
+          "Member, U.S. Healthcare Services ER team (Institutional Investor (II) Runner up) at Leerink Partners",
+          "Awarded \"Excellence in Research\" recognition for superior analytical work and report quality (2015)"
+        ]
+      },
+      {
+        "employer": "J.P. Morgan Securities, London",
+        "title": "Equity Research Associate",
+        "location_text": "London",
+        "country": "GB",
+        "start": "2013-09",
+        "end": "2014-11",
+        "is_current": false,
+        "employment_type": "part_time",
+        "relevance": "core",
+        "firm_type": "Sell-side bank",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Assist in team transition during replacement of a research associate and to work closely with the team",
+          "Attended meetings & calls with company IRs, institutional investors, & industry experts",
+          "Attended a company investor day at LSE and prepared a key takeaways note for publication"
+        ]
+      },
+      {
+        "employer": "Cipla Pharmaceuticals, Mumbai",
+        "title": "Summer Intern",
+        "location_text": "Mumbai",
+        "country": "IN",
+        "start": "2011-04",
+        "end": "2011-05",
+        "is_current": false,
+        "employment_type": "internship",
+        "relevance": "unrelated",
+        "firm_type": "Corporate",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Competitive Positioning strategy for newly launched generic Calpol T using MDS (Perceptual Mapping)",
+          "Formulated competitive positioning strategy & communication tactics as a result of which Calpol T Key achievements had overtaken more than 90 brands in same category and is currently holding the 2nd rank"
+        ]
+      }
+    ],
+    "skills": {
+      "programming": [],
+      "tools": [
+        "MS Office",
+        "Bloomberg",
+        "Factset",
+        "Reuters"
+      ],
+      "domain": [
+        "FDA",
+        "MedPAC",
+        "CMS",
+        "WHO",
+        "German DRG",
+        "USRDS",
+        "PubMed"
+      ]
+    },
+    "certifications": [],
+    "languages": [],
+    "awards": [
+      "Awarded \"Excellence in Research\" recognition for superior analytical work and report quality (2015)",
+      "Scored 99.92 percentile in Quantitative Aptitude in CAT-2009",
+      "Winner, Pinnacle Cup-2010 and 2011, Mumbai Institute of Management Table Tennis championship",
+      "Winner, Champions Trophy-2010 Table Tennis tournament"
+    ],
+    "investment_approach": {
+      "label": "Fundamental",
+      "evidence": {
+        "quote": "Generate investment ideas and publish equity research ratings with price targets on Indian healthcare sector companies across 28 stocks under coverage"
+      }
+    },
+    "search_summary": "Lead-level fundamental equity research analyst, with equity research experience since 2013. Equities in pharmaceuticals and healthcare. Covers Indian healthcare companies, 28 stocks under coverage. Most recent employer: Meridian Research Partners (Other), Lead Analyst – Pharmaceuticals and Healthcare. Skills: published ratings and price targets; recommendation adopted by major institutional client driving 35% increase in brokerage commission revenue; Bloomberg, Factset. PGDM (Finance), Indian School of Business Management, Pune; MBBS, K.J. Somaiya Medical College; no certifications listed."
+  }
+}

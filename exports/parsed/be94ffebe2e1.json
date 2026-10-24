@@ -1,0 +1,220 @@
+{
+  "meta": {
+    "candidate_id": "be94ffebe2e1",
+    "source_file": "MARINA SILVA COSTA.docx",
+    "file_sha256": "be94ffebe2e1076bc32f5b8e6415588309266fbd9690e766ee438de0281522a9",
+    "file_bytes": 18400,
+    "page_count": 1,
+    "parsed_at": "2026-10-24T21:36:15+00:00",
+    "extraction_path": "text",
+    "llm_model": "claude-sonnet-5-5",
+    "prompt_version": "v1",
+    "schema_version": 1,
+    "parse_status": "ok",
+    "attempts": [
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 21357,
+        "input_tokens": 1244,
+        "output_tokens": 3676,
+        "error": null,
+        "cache_read_tokens": 2934,
+        "cache_creation_tokens": 0
+      }
+    ],
+    "text_quality": {
+      "unknown_ratio_before": 0.0024813895781637717,
+      "unknown_ratio_after": 0.0024813895781637717,
+      "repairs": 0,
+      "chars_per_page": 3509.0,
+      "max_image_page_coverage": 0.0
+    }
+  },
+  "extracted": {
+    "name": "Marina Silva Costa",
+    "contact": {
+      "email": "marina.costa.finance@gmail.com",
+      "phone": "+44 (785) 429-1673",
+      "location_text": null,
+      "linkedin": null
+    },
+    "summary_text": null,
+    "education": [
+      {
+        "institution": "MIT Sloan School of Management",
+        "degree": "Master of business administration (MBA)",
+        "degree_level": "Master",
+        "field": null,
+        "start": "2019-08",
+        "end": "2021-05",
+        "gpa": null,
+        "honors": [],
+        "country": "US"
+      },
+      {
+        "institution": "Fundacao Getulio Vargas",
+        "degree": "BS in Economics",
+        "degree_level": "Bachelor",
+        "field": "Economics",
+        "start": "2013",
+        "end": "2016",
+        "gpa": null,
+        "honors": [],
+        "country": "BR"
+      }
+    ],
+    "experience": [
+      {
+        "employer": "Vanguard Group",
+        "title": "Equity Research Analyst",
+        "location_text": "Boston, USA / London, United Kingdom",
+        "country": "US",
+        "start": "2021-08",
+        "end": null,
+        "is_current": true,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Asset manager",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "focused on healthcare, consumer discretionary an telecom companies"
+            }
+          },
+          {
+            "label": "Consumer",
+            "evidence": {
+              "quote": "consumer discretionary an telecom companies"
+            }
+          },
+          {
+            "label": "Other",
+            "evidence": {
+              "quote": "telecom companies operating primarily in emerging Latam and EMEA"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Consumer Discretionary",
+          "Telecom"
+        ],
+        "markets_covered": [
+          {
+            "label": "Latin America",
+            "evidence": {
+              "quote": "operating primarily in emerging Latam and EMEA"
+            }
+          },
+          {
+            "label": "EMEA",
+            "evidence": {
+              "quote": "operating primarily in emerging Latam and EMEA"
+            }
+          }
+        ],
+        "bullets": [
+          "Develops investment recommendations on publicly traded companies through fundamental research including financial modeling and proprietary studies, focused on healthcare, consumer discretionary an telecom companies operating primarily in emerging Latam and EMEA."
+        ]
+      },
+      {
+        "employer": "Vanguard Group",
+        "title": "Equity Research Summer Analyst",
+        "location_text": "Boston, USA / London, United Kingdom",
+        "country": "US",
+        "start": "2020-06",
+        "end": "2020-08",
+        "is_current": false,
+        "employment_type": "internship",
+        "relevance": "core",
+        "firm_type": "Asset manager",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Other",
+            "evidence": {
+              "quote": "water technology publicly traded companies"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Water Technology"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Developed investment recommendations on water technology publicly traded companies through fundamental research including financial modeling and proprietary studies"
+        ]
+      },
+      {
+        "employer": "Bain & Company",
+        "title": "Business Analyst",
+        "location_text": "Sao Paulo, Brazil",
+        "country": "BR",
+        "start": "2016",
+        "end": "2019",
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "adjacent",
+        "firm_type": "Consulting",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Analyzed growth potential of e-commerce sales at major electronics retailer by proposing and estimating the impact of digital transformation initiatives such as omnichannel strategy, enhanced product recommendations and optimized logistics network",
+          "Examined market and consumer trends affecting retail technology company for next 8 years, by consulting industry expert networks and identifying best practices; strategic framework was published in internal knowledge repository",
+          "Built a dynamic pricing tool for a major consumer electronics company, to recommend price adjustments for each of the 35 main product categories, across 4 distribution channels and 180+ regional markets",
+          "Redesigned customer service processes for major retail chain, creating standardized protocols, optimizing staffing levels, and developing workforce scheduling tool; during pilot implementation, coached store managers to ensure successful change management",
+          "Implemented strategic sourcing transformation at major grocery chain, leading cross-functional teams of 3-4 client members in each product category to deliver ~4 percentage points of gross margin improvement",
+          "Supervised progress of initiatives in supply chain optimization engagement for retail client, and in digital transformation program for logistics provider, managing junior client teams and ensuring execution excellence",
+          "Developed a recommendation for a major infrastructure player regarding entrance in a new segment, by mapping main players, margins, current and potential market size, capabilities required, and investment needed",
+          "Investigated structure and functioning of more than 15 loyalty programs, by interviewing colleagues from all over the world, and reaching out to market experts, to redesign loyalty program of a banking client",
+          "Managed progress of 200+ initiatives in a large-scale lean manufacturing engagement for an aerospace player, by coordinating work of directors and managers of the company",
+          "Led launch of McKinsey’s first case competition, receiving 3.300 applications to an in-person event that mobilized +50 consultants from McKinsey Brazil"
+        ]
+      }
+    ],
+    "skills": {
+      "programming": [
+        "Python",
+        "R",
+        "VBA"
+      ],
+      "tools": [
+        "Excel"
+      ],
+      "domain": [
+        "Financial modeling",
+        "Fundamental research"
+      ]
+    },
+    "certifications": [],
+    "languages": [
+      {
+        "name": "Portuguese",
+        "level": "fluent"
+      },
+      {
+        "name": "English",
+        "level": "fluent"
+      },
+      {
+        "name": "Spanish",
+        "level": "conversational"
+      }
+    ],
+    "awards": [],
+    "investment_approach": {
+      "label": "Fundamental",
+      "evidence": {
+        "quote": "through fundamental research including financial modeling and proprietary studies"
+      }
+    },
+    "search_summary": "Early-career fundamental equity research analyst, in role since 2021 after a 2020 summer analyst internship. Equities across healthcare, consumer discretionary and telecom, covering emerging Latin America and EMEA. Most recent employer Vanguard Group (Asset manager), Equity Research Analyst. Builds financial models and proprietary studies; previously a Bain & Company business analyst for three years, built a dynamic pricing tool spanning 35 product categories and 180+ regional markets; Python, R, Excel/VBA. MBA, MIT Sloan; BS Economics, Fundacao Getulio Vargas; GMAT 740."
+  }
+}

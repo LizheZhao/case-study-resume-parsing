@@ -1,0 +1,355 @@
+{
+  "meta": {
+    "candidate_id": "595961ed436e",
+    "source_file": "Viktor Sharat.docx",
+    "file_sha256": "595961ed436ed4c9fe7b6ba4de0323e812a0eac0add421671f449b8235bd22ec",
+    "file_bytes": 26003,
+    "page_count": 1,
+    "parsed_at": "2026-10-24T21:37:25+00:00",
+    "extraction_path": "text",
+    "llm_model": "claude-sonnet-5-5",
+    "prompt_version": "v1",
+    "schema_version": 1,
+    "parse_status": "ok",
+    "attempts": [
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 48257,
+        "input_tokens": 1257,
+        "output_tokens": 8485,
+        "error": null,
+        "cache_read_tokens": 2934,
+        "cache_creation_tokens": 0
+      }
+    ],
+    "text_quality": {
+      "unknown_ratio_before": 0.011730205278592375,
+      "unknown_ratio_after": 0.011730205278592375,
+      "repairs": 1,
+      "chars_per_page": 3100.0,
+      "max_image_page_coverage": 0.0
+    }
+  },
+  "extracted": {
+    "name": "Viktor Sharat",
+    "contact": {
+      "email": null,
+      "phone": null,
+      "location_text": null,
+      "linkedin": null
+    },
+    "summary_text": null,
+    "education": [
+      {
+        "institution": "Mumbai Institute of Management Studies and Research",
+        "degree": "PGDM",
+        "degree_level": "Postgraduate diploma",
+        "field": null,
+        "start": null,
+        "end": "2015",
+        "gpa": "2.5/4",
+        "honors": [],
+        "country": "IN"
+      },
+      {
+        "institution": "Padmashree Dr.D.Y.Patil Institute of Biotechnology and Bioinformatics, Navi Mumbai",
+        "degree": "M.Tech(Integrated)",
+        "degree_level": "Integrated Master's",
+        "field": null,
+        "start": null,
+        "end": "2010",
+        "gpa": "68%",
+        "honors": [],
+        "country": "IN"
+      },
+      {
+        "institution": "Bharti Vidyapeeth junior college, Navi Mumbai",
+        "degree": "HSC",
+        "degree_level": "Higher secondary",
+        "field": null,
+        "start": null,
+        "end": "2006",
+        "gpa": "72%",
+        "honors": [],
+        "country": "IN"
+      },
+      {
+        "institution": "Don Bosco High School, Navi Mumbai",
+        "degree": "SSC",
+        "degree_level": "Secondary",
+        "field": null,
+        "start": null,
+        "end": "2004",
+        "gpa": "73%",
+        "honors": [],
+        "country": "IN"
+      }
+    ],
+    "experience": [
+      {
+        "employer": "Axis Mutual Fund",
+        "title": "Research Analyst",
+        "location_text": null,
+        "country": null,
+        "start": null,
+        "end": null,
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Asset manager",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Tracked 38 companies within the healthcare fund portfolio"
+            }
+          },
+          {
+            "label": "Other",
+            "evidence": {
+              "quote": "Covering Pharmaceuticals and Specialty Chemicals"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Pharmaceuticals",
+          "Specialty Chemicals"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Tracked 38 companies within the healthcare fund portfolio and conducted meetings with various stakeholders (management teams, buy-side analysts) to provide strategic inputs to senior fund managers."
+        ]
+      },
+      {
+        "employer": "Meridian Capital",
+        "title": "Research analyst",
+        "location_text": null,
+        "country": null,
+        "start": null,
+        "end": null,
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side broker",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Energy",
+            "evidence": {
+              "quote": "Completed comprehensive sector report on renewable energy (~120 pages)"
+            }
+          },
+          {
+            "label": "Industrials",
+            "evidence": {
+              "quote": "Also published detailed analysis on Indian infrastructure sector"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Renewable Energy",
+          "Infrastructure"
+        ],
+        "markets_covered": [
+          {
+            "label": "IN",
+            "evidence": {
+              "quote": "Also published detailed analysis on Indian infrastructure sector"
+            }
+          }
+        ],
+        "bullets": [
+          "Completed comprehensive sector report on renewable energy (~120 pages) within 3 months of joining and began receiving institutional votes within first quarter.",
+          "Also published detailed analysis on Indian infrastructure sector",
+          "Applied sector-agnostic investment approach focusing on company fundamentals regardless of market capitalization constraints"
+        ]
+      },
+      {
+        "employer": "ICICI Securities Limited",
+        "title": "Research Analyst",
+        "location_text": null,
+        "country": null,
+        "start": null,
+        "end": null,
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "core",
+        "firm_type": "Sell-side broker",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Covered Healthcare, Oil&Gas, Logistics and Alcobev"
+            }
+          },
+          {
+            "label": "Energy",
+            "evidence": {
+              "quote": "Covered Healthcare, Oil&Gas, Logistics and Alcobev"
+            }
+          },
+          {
+            "label": "Industrials",
+            "evidence": {
+              "quote": "Covered Healthcare, Oil&Gas, Logistics and Alcobev"
+            }
+          },
+          {
+            "label": "Consumer",
+            "evidence": {
+              "quote": "Covered Healthcare, Oil&Gas, Logistics and Alcobev"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Oil&Gas",
+          "Logistics",
+          "Alcobev",
+          "Digital Health",
+          "Renewable Energy"
+        ],
+        "markets_covered": [],
+        "bullets": [
+          "Maintained active coverage of 42 stocks across multiple sectors.",
+          "Advanced from research associate to lead analyst within 3 years.",
+          "Consistently received top performance ratings throughout tenure",
+          "Initiated coverage reports on digital health platforms and renewable energy companies, generating superior returns for institutional clients over time"
+        ]
+      },
+      {
+        "employer": "BioAnalytics Research India Ltd.",
+        "title": "Biomodeller Trainee",
+        "location_text": null,
+        "country": "IN",
+        "start": null,
+        "end": null,
+        "is_current": false,
+        "employment_type": "full_time",
+        "relevance": "adjacent",
+        "firm_type": "Other",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "Contributing member of team developing AI-based drug target identification system for precision medicine applications"
+        ]
+      },
+      {
+        "employer": "Mumbai Cancer Research Institute (MCRI)",
+        "title": "Research Associate",
+        "location_text": null,
+        "country": "IN",
+        "start": null,
+        "end": null,
+        "is_current": false,
+        "employment_type": "academic",
+        "relevance": "unrelated",
+        "firm_type": "Academic",
+        "asset_classes": [],
+        "sectors": [],
+        "other_sector_tags": [],
+        "markets_covered": [],
+        "bullets": [
+          "8 months of research experience at Mumbai Cancer Research Institute (MCRI) as a Research Associate",
+          "Co-author in research paper entitled \"Machine Learning Applications in Biomarker Discovery for Targeted Cancer Therapy\" published in Journal of Computational Biology and Bioinformatics (ISSN:2456-7891)"
+        ]
+      },
+      {
+        "employer": "Prism Asset Management Pvt Ltd.",
+        "title": "Summer Internship Project",
+        "location_text": null,
+        "country": null,
+        "start": null,
+        "end": null,
+        "is_current": false,
+        "employment_type": "internship",
+        "relevance": "core",
+        "firm_type": "Asset manager",
+        "asset_classes": [
+          "Equities"
+        ],
+        "sectors": [
+          {
+            "label": "Technology",
+            "evidence": {
+              "quote": "Comprehensive equity analysis of Indian Technology Sector"
+            }
+          }
+        ],
+        "other_sector_tags": [],
+        "markets_covered": [
+          {
+            "label": "IN",
+            "evidence": {
+              "quote": "Comprehensive equity analysis of Indian Technology Sector"
+            }
+          }
+        ],
+        "bullets": [
+          "Comprehensive equity analysis of Indian Technology Sector"
+        ]
+      },
+      {
+        "employer": "Reliance Infrastructure Ltd.",
+        "title": "Concurrent Project",
+        "location_text": null,
+        "country": null,
+        "start": null,
+        "end": null,
+        "is_current": false,
+        "employment_type": "internship",
+        "relevance": "adjacent",
+        "firm_type": "Corporate",
+        "asset_classes": [],
+        "sectors": [
+          {
+            "label": "Energy",
+            "evidence": {
+              "quote": "Strategic market analysis of Indian Renewable Energy Companies."
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Renewable Energy"
+        ],
+        "markets_covered": [
+          {
+            "label": "IN",
+            "evidence": {
+              "quote": "Strategic market analysis of Indian Renewable Energy Companies."
+            }
+          }
+        ],
+        "bullets": [
+          "Strategic market analysis of Indian Renewable Energy Companies."
+        ]
+      }
+    ],
+    "skills": {
+      "programming": [],
+      "tools": [],
+      "domain": []
+    },
+    "certifications": [
+      "Chartered Financial Analyst Level 3 (CFA, USA)"
+    ],
+    "languages": [],
+    "awards": [],
+    "investment_approach": {
+      "label": "Fundamental",
+      "evidence": {
+        "quote": "focusing on company fundamentals regardless of market capitalization constraints"
+      }
+    },
+    "search_summary": "Senior fundamental equity research analyst with roughly 10 years of relevant experience. Equities across Healthcare, Pharmaceuticals, Specialty Chemicals, Oil & Gas, Logistics, Alcobev, Renewable Energy and Infrastructure. Indian markets covered (infrastructure, technology). Latest listed employer: Axis Mutual Fund (Asset manager), Research Analyst. Covered 42 stocks at ICICI Securities, rose from research associate to lead analyst within 3 years, tracked 38 healthcare portfolio companies, wrote a ~120-page renewable energy report. PGDM, Mumbai Institute of Management Studies and Research; CFA Level 3 completed."
+  }
+}
