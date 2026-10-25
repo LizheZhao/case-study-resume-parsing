@@ -133,7 +133,7 @@ class Labeled(BaseModel):
     evidence: Evidence
 
 class Contact(BaseModel):
-    email: str | None; phone: str | None; location_text: str | None; linkedin: str | None
+    email: str | None; phone: str | None; location_text: str | None
 
 class Education(BaseModel):
     institution: str
@@ -142,8 +142,6 @@ class Education(BaseModel):
     field: str | None
     start: str | None             # YYYY-MM, YYYY if month unknown
     end: str | None
-    gpa: str | None
-    honors: list[str] = []
     country: str | None           # ISO-2 of the institution if stated or unambiguous
 
 class Experience(BaseModel):
@@ -161,6 +159,7 @@ class Experience(BaseModel):
     sectors: list[Labeled] = []           # label from Sector enum, with evidence
     other_sector_tags: list[str] = []     # free text, e.g. "Specialty Chemicals"
     markets_covered: list[Labeled] = []   # ISO-2 or region label, ONLY when stated
+    duration_months: int | None   # from duration text, used when dates are absent
     bullets: list[str]
 
 class Skills(BaseModel):
@@ -174,13 +173,11 @@ class Language(BaseModel):
 class ParsedResume(BaseModel):
     name: str
     contact: Contact
-    summary_text: str | None      # the candidate's own profile paragraph, verbatim
     education: list[Education]
     experience: list[Experience]
     skills: Skills
     certifications: list[str] = []   # "CFA", "CFA Level II candidate", "FRM"
     languages: list[Language] = []
-    awards: list[str] = []
     investment_approach: Labeled      # label from Approach, with evidence
     search_summary: str = Field(min_length=200, max_length=700)
 ```
@@ -326,6 +323,72 @@ On retry, append:
 </validation_errors>
 Fix only these and return the full tool call again.
 ```
+
+### 5.4 Three calls per resume (replaces the single call)
+
+The full `ParsedResume` schema exceeds the structured-output grammar limit, so
+parsing is three smaller calls, each with constrained decoding
+(`client.messages.parse(..., output_format=Model)`):
+
+| Call | Input | Output model | Runs |
+|---|---|---|---|
+| profile | source filename + resume text | `Profile`: name, contact, education, skills, certifications, languages | parallel with experience |
+| experience | resume text | `ExperienceList`: list of `Experience` | parallel with profile |
+| assessment | verified Profile + verified ExperienceList as JSON, plus resume text for quotes | `Assessment`: investment_approach (Labeled), search_summary | after cross-verification |
+
+The filename goes to the profile call because names, certifications and sector
+hints live there ("Michael Rodriguez, CFA.docx",
+"Priya Nakamura_sellside_healthcare_RLTM.docx"). Prompt rule: the filename
+corroborates; it is never the sole source for anything except the name.
+
+Display-only fields are dropped from the schema: `summary_text`, `awards`,
+`education.honors`, `education.gpa`, `contact.linkedin`.
+
+Each `Experience` gains `duration_months: int | None`, filled from duration
+text ("8 years 10 months" → 106, "3 Months" → 3, "8 weeks" → 2) when the
+resume gives a duration. The derive layer uses dates when both are present
+and `duration_months` otherwise. Viktor Sharat is the live case: seven roles,
+no dates, durations only.
+
+The retry ladder (Sonnet, Sonnet with errors, Opus with errors) applies per
+call. `ParsedResume` is assembled from the three outputs and is the record
+stored; downstream code is unchanged.
+
+### 5.5 Cross-verification between the LLM and deterministic text parsing
+
+A registry of checks, one row per field, in `parse/verify.py`. Each row names
+a deterministic extractor over the repaired text (and filename), a comparator,
+and the regeneration target. The registry is data; adding a check is adding a
+row.
+
+| Field | Deterministic source | Comparator | On disagreement, regenerate |
+|---|---|---|---|
+| `name` | filename stem minus suffixes like `Resume`, `CV`, `CFA`, dates; first non-empty text line | token-set ratio ≥ 80 against either | `name` |
+| `contact.email` | email regex | exact, case-insensitive | `contact` |
+| `contact.phone` | phone regex (`+` and 7+ digits with separators) | digits-only equality | `contact` |
+| `certifications` | regex for CFA, FRM, CAIA, CPA, ACCA (text + filename), "Level I/II/III candidate" | set equality on canonical cert tokens | `certifications` |
+| `skills` | taxonomy term matcher over text (`skills.yaml` variants, word-boundary, case-insensitive) | every matched taxonomy term must appear in the LLM list after normalization; LLM extras are allowed | `skills` |
+| `experience[i].start/end` | every `YYYY-MM` or `YYYY` the LLM emits must correspond to a month-year or year token in the text (month names, `'22`, `Sept.2017`, etc.) | grounded or not | that role's dates |
+| `experience[i].duration_months` | duration regex (`N years M months`, `N months`, `N weeks`) near the role's employer line | equality within 1 month | that role |
+| `experience` count | number of distinct employer lines matched from `known_firms` plus title-line patterns | LLM must have ≥ that many roles | `experience` (whole list) |
+| `education[i].degree_level` | degree keyword regex (MBA, MSc/MS/Master, BSc/BA/BBA/Bachelor, PhD, PGDM, Diplôme d'Ingénieur → Masters) | mapped level equals LLM level | that education entry |
+| `contact` country / current role country | phone-prefix lookup and location-alias gazetteer from `countries.yaml` | equality | `contact` or that role |
+
+Policy:
+
+1. Run all checks after the profile and experience calls return.
+2. For each disagreement, make one targeted regeneration call with a schema
+   containing only that field (or that list item), the resume text, the LLM's
+   previous value, and the deterministic finding stated as evidence
+   ("The text contains 'CFA' at: '...'; your certifications list was empty.").
+3. Re-run that field's check. If it still disagrees, keep the LLM value,
+   record the pair in `quality.unresolved` (field, llm_value, text_value), and
+   count it. The Evals page lists unresolved items per resume.
+4. The assessment call receives the verified profile and experience JSON, not
+   the raw LLM output, so the summary is written from checked facts.
+
+`meta` gains `verification: {checks_run, disagreements, regenerated,
+unresolved: [...]}`.
 
 ## 6. SQLite schema
 
