@@ -5,36 +5,18 @@ import json
 import sys
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict
-from datetime import UTC, datetime
 from pathlib import Path
 
 from dotenv import load_dotenv
 
 from resume_search.extract import ExtractedText, extract
+from resume_search.ingest.pipeline import attempt_cost, build_meta, ingest, rederive
 from resume_search.parse import ParseOk, parse_resume
-from resume_search.parse.client import OPUS, Attempt, ParseResult, verification_dict
-from resume_search.parse.prompt import PROMPT_VERSION
-
-SCHEMA_VERSION = 1
-
+from resume_search.parse.client import ParseResult
+from resume_search.store.db import connect, list_candidates
 
 SUPPORTED = {".docx", ".pdf"}
-
-# USD per million tokens: (input, output). Cache reads are $0.20 for both models; cache writes
-# are billed at 1.25x the input price.
-PRICES = {OPUS: (4.0, 20.0)}
-SONNET_PRICE = (2.0, 10.0)
-CACHE_READ_PRICE = 0.20
-
-
-def attempt_cost(a: Attempt) -> float:
-    p_in, p_out = PRICES.get(a.model, SONNET_PRICE)
-    return (
-        a.input_tokens * p_in
-        + a.cache_creation_tokens * p_in * 1.25
-        + a.cache_read_tokens * CACHE_READ_PRICE
-        + a.output_tokens * p_out
-    ) / 1e6
+DEFAULT_DB = "exports/candidates.sqlite"
 
 
 def _supported(paths: list[str]) -> list[str]:
@@ -69,29 +51,10 @@ def _cmd_extract(args: argparse.Namespace) -> int:
     return 0
 
 
-def _meta(e: ExtractedText, result: ParseResult) -> dict:
-    return {
-        "candidate_id": e.candidate_id,
-        "source_file": e.source_file,
-        "file_sha256": e.file_sha256,
-        "file_bytes": e.file_bytes,
-        "page_count": e.page_count,
-        "parsed_at": datetime.now(UTC).isoformat(timespec="seconds"),
-        "extraction_path": e.extraction_path.value,
-        "llm_model": result.attempts[-1].model,
-        "prompt_version": PROMPT_VERSION,
-        "schema_version": SCHEMA_VERSION,
-        "parse_status": result.parse_status,
-        "attempts": [asdict(a) for a in result.attempts],
-        "verification": verification_dict(result.verification) if isinstance(result, ParseOk) else None,
-        "text_quality": _quality(e),
-    }
-
-
 def _parse_one(path: str, out: Path) -> tuple[ExtractedText, ParseResult]:
     e = extract(path)
     result = parse_resume(e)
-    doc: dict = {"meta": _meta(e, result), "extracted": None}
+    doc: dict = {"meta": build_meta(e, result), "extracted": None}
     if isinstance(result, ParseOk):
         doc["extracted"] = result.record.model_dump(mode="json")
     else:
@@ -142,6 +105,43 @@ def _cmd_parse(args: argparse.Namespace) -> int:
     return 1 if failed else 0
 
 
+def _cmd_ingest(args: argparse.Namespace) -> int:
+    if args.reparse_derive_only:
+        print(f"rederived {rederive(args.db)} candidates")
+        return 0
+    jobs = ingest(_supported(args.paths), args.db, force=args.force, workers=args.workers)
+    total = 0.0
+    for j in jobs:
+        total += j.cost_usd or 0.0
+        print(
+            f"{j.source_file}\t{j.status.value}\tin={j.input_tokens or 0} out={j.output_tokens or 0}"
+            f"\t{j.latency_ms or 0}ms\t${j.cost_usd or 0:.4f}\t{j.error or ''}"
+        )
+    print(f"total cost ${total:.4f}")
+    return 1 if any(j.status.value == "failed" for j in jobs) else 0
+
+
+def _cmd_rederive(args: argparse.Namespace) -> int:
+    print(f"rederived {rederive(args.db)} candidates")
+    return 0
+
+
+def _cmd_show(args: argparse.Namespace) -> int:
+    needle = args.candidate.lower()
+    hits = [
+        r
+        for r in list_candidates(connect(args.db))
+        if r.meta["candidate_id"].startswith(needle) or needle in r.extracted.name.lower()
+    ]
+    if not hits:
+        print(f"no candidate matches '{args.candidate}'", file=sys.stderr)
+        return 1
+    for r in hits:
+        print(f"{r.extracted.name} ({r.meta['candidate_id']})")
+        print(json.dumps(r.derived.model_dump(mode="json"), indent=2, ensure_ascii=False))
+    return 0
+
+
 def main(argv: list[str] | None = None) -> None:
     load_dotenv()
     parser = argparse.ArgumentParser(prog="resume-search")
@@ -155,5 +155,19 @@ def main(argv: list[str] | None = None) -> None:
     p_par.add_argument("--out", default="exports/parsed")
     p_par.add_argument("--workers", type=int, default=4)
     p_par.set_defaults(func=_cmd_parse)
+    p_ing = sub.add_parser("ingest", help="extract, parse, derive and index resumes into SQLite")
+    p_ing.add_argument("paths", nargs="*")
+    p_ing.add_argument("--db", default=DEFAULT_DB)
+    p_ing.add_argument("--force", action="store_true")
+    p_ing.add_argument("--workers", type=int, default=4)
+    p_ing.add_argument("--reparse-derive-only", action="store_true")
+    p_ing.set_defaults(func=_cmd_ingest)
+    p_red = sub.add_parser("rederive", help="rebuild derived fields and vectors without API calls")
+    p_red.add_argument("--db", default=DEFAULT_DB)
+    p_red.set_defaults(func=_cmd_rederive)
+    p_show = sub.add_parser("show", help="print a candidate's derived fields")
+    p_show.add_argument("candidate", help="candidate_id prefix or name substring")
+    p_show.add_argument("--db", default=DEFAULT_DB)
+    p_show.set_defaults(func=_cmd_show)
     args = parser.parse_args(argv)
     sys.exit(args.func(args))
