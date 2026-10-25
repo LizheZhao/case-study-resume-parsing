@@ -5,59 +5,97 @@
     "file_sha256": "3263f3e4fe14cb114411c3c91ae8dd08408a7638c6d1771b6e4871d8d0e97ba0",
     "file_bytes": 29922,
     "page_count": 1,
-    "parsed_at": "2026-10-25T13:03:04+00:00",
+    "parsed_at": "2026-10-25T20:58:24+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v2",
-    "schema_version": 1,
+    "prompt_version": "v7",
+    "schema_version": 2,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 2725,
+        "latency_ms": 5687,
         "input_tokens": 1396,
-        "output_tokens": 359,
+        "output_tokens": 357,
         "error": null,
-        "cache_read_tokens": 2383,
-        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 2906,
         "call": "profile"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 9721,
+        "latency_ms": 13012,
         "input_tokens": 1360,
-        "output_tokens": 1959,
+        "output_tokens": 2120,
         "error": null,
-        "cache_read_tokens": 2851,
-        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 4578,
         "call": "experience"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 6302,
-        "input_tokens": 1931,
-        "output_tokens": 766,
+        "latency_ms": 5793,
+        "input_tokens": 1909,
+        "output_tokens": 817,
         "error": null,
-        "cache_read_tokens": 1236,
+        "cache_read_tokens": 1379,
         "cache_creation_tokens": 0,
         "call": "regen:skills"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 10955,
-        "input_tokens": 3725,
-        "output_tokens": 1365,
+        "latency_ms": 10957,
+        "input_tokens": 3880,
+        "output_tokens": 1782,
         "error": null,
-        "cache_read_tokens": 1453,
+        "cache_read_tokens": 1884,
         "cache_creation_tokens": 0,
         "call": "assessment"
       }
     ],
     "verification": {
-      "checks_run": 22,
+      "checks_run": 23,
       "disagreements": 1,
       "regenerated": 1,
-      "unresolved": [],
+      "unresolved": [
+        {
+          "field": "skills",
+          "llm_value": {
+            "programming": [
+              "SQL"
+            ],
+            "tools": [
+              "Bloomberg Terminal",
+              "Excel",
+              "FactSet",
+              "S&P Capital IQ",
+              "Bloomberg",
+              "RUNZ",
+              "ALLQ"
+            ],
+            "domain": [
+              "Advanced Financial Modeling",
+              "Statistical Analysis",
+              "Hypothesis Testing",
+              "three-statement valuation models",
+              "IPO syndicate models",
+              "valuation analysis",
+              "MBS forward contracts"
+            ]
+          },
+          "text_value": [
+            "bloomberg",
+            "capital-iq",
+            "equity-research",
+            "excel",
+            "factset",
+            "financial-modeling",
+            "risk-management",
+            "sql",
+            "valuation"
+          ]
+        }
+      ],
       "details": [
         {
           "field": "skills",
@@ -79,9 +117,9 @@
               "Statistical Analysis",
               "Hypothesis Testing",
               "three-statement valuation models",
-              "valuation analysis",
               "IPO syndicate models",
-              "hedging interest rate exposure through MBS forward contracts"
+              "valuation analysis",
+              "MBS forward contracts"
             ]
           },
           "text_value": [
@@ -119,6 +157,7 @@
         "degree": "Bachelor of Science in Business",
         "degree_level": "Bachelors",
         "field": "Finance",
+        "minor_fields": [],
         "start": null,
         "end": "2017-05",
         "country": "US"
@@ -140,13 +179,10 @@
         "Advanced Financial Modeling",
         "Statistical Analysis",
         "Hypothesis Testing",
-        "valuation analysis",
         "three-statement valuation models",
         "IPO syndicate models",
-        "equity research",
-        "risk management",
-        "hedging interest rate exposure through MBS forward contracts",
-        "market making"
+        "valuation analysis",
+        "MBS forward contracts"
       ]
     },
     "certifications": [
@@ -162,12 +198,17 @@
         "title": "Analyst, Consumer Internet & Software",
         "location_text": "Boston, MA",
         "country": "US",
-        "start": "2022-05",
-        "end": null,
+        "start": [
+          "2022-05"
+        ],
+        "end": [
+          null
+        ],
         "is_current": true,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Asset manager",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -175,7 +216,13 @@
           {
             "label": "Technology",
             "evidence": {
-              "quote": "Initiated on 20+ names across TMT sector through diligence on public filings, industry experts and valuation analysis"
+              "quote": "Initiated on 20+ names across TMT sector through diligence on public filings"
+            }
+          },
+          {
+            "label": "Consumer",
+            "evidence": {
+              "quote": "Analyst, Consumer Internet & Software"
             }
           }
         ],
@@ -197,12 +244,17 @@
         "title": "Associate, TMT",
         "location_text": "Chicago, IL",
         "country": "US",
-        "start": "2019-04",
-        "end": "2022-01",
+        "start": [
+          "2019-04"
+        ],
+        "end": [
+          "2022-01"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side broker",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -211,6 +263,12 @@
             "label": "Technology",
             "evidence": {
               "quote": "Covered 20+ names across TMT sector providing quarterly earnings estimates and research reports"
+            }
+          },
+          {
+            "label": "Consumer",
+            "evidence": {
+              "quote": "built IPO syndicate models from scratch on 10+ consumer internet companies"
             }
           }
         ],
@@ -233,12 +291,17 @@
         "title": "Jr. Desk Analyst",
         "location_text": "Chicago, IL",
         "country": "US",
-        "start": "2018-04",
-        "end": "2019-04",
+        "start": [
+          "2018-04"
+        ],
+        "end": [
+          "2019-04"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side broker",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Fixed Income",
           "Credit"
@@ -253,8 +316,7 @@
         ],
         "other_sector_tags": [
           "High Yield",
-          "Investment Grade",
-          "Crossover"
+          "Investment Grade"
         ],
         "markets_covered": [],
         "duration_months": null,
@@ -269,20 +331,24 @@
         "title": "Capital Markets Analyst",
         "location_text": "Chicago, IL",
         "country": "US",
-        "start": "2017-07",
-        "end": "2018-03",
+        "start": [
+          "2017-07"
+        ],
+        "end": [
+          "2018-03"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Other",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Fixed Income",
           "Derivatives"
         ],
         "sectors": [],
         "other_sector_tags": [
-          "Mortgage",
-          "MBS"
+          "Mortgage"
         ],
         "markets_covered": [],
         "duration_months": null,
@@ -295,20 +361,24 @@
         "title": "Summer Intern",
         "location_text": "Evanston, IL",
         "country": "US",
-        "start": "2016-05",
-        "end": "2016-08",
+        "start": [
+          "2016-05"
+        ],
+        "end": [
+          "2016-08"
+        ],
         "is_current": false,
         "employment_type": "internship",
         "relevance": "core",
         "firm_type": "Hedge fund",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Fixed Income",
           "Credit"
         ],
         "sectors": [],
         "other_sector_tags": [
-          "Residential Mortgage",
-          "Securitization"
+          "Residential Mortgage"
         ],
         "markets_covered": [],
         "duration_months": null,
@@ -318,15 +388,20 @@
       },
       {
         "employer": "Ross Investment Banking Club",
-        "title": "Member",
+        "title": "",
         "location_text": null,
         "country": null,
-        "start": "2015-03",
-        "end": "2017-05",
+        "start": [
+          "2015-03"
+        ],
+        "end": [
+          "2017-05"
+        ],
         "is_current": false,
-        "employment_type": "part_time",
+        "employment_type": "extracurricular",
         "relevance": "unrelated",
         "firm_type": "Other",
+        "firm_hq_country": null,
         "asset_classes": [],
         "sectors": [],
         "other_sector_tags": [],
@@ -338,15 +413,20 @@
       },
       {
         "employer": "Campus Tutoring Service",
-        "title": "Tutor",
+        "title": "",
         "location_text": "Ann Arbor, MI",
         "country": "US",
-        "start": "2015-01",
-        "end": "2015-05",
+        "start": [
+          "2015-01"
+        ],
+        "end": [
+          "2015-05"
+        ],
         "is_current": false,
-        "employment_type": "part_time",
+        "employment_type": "extracurricular",
         "relevance": "unrelated",
-        "firm_type": "Academic",
+        "firm_type": "Other",
+        "firm_hq_country": null,
         "asset_classes": [],
         "sectors": [],
         "other_sector_tags": [],
@@ -363,6 +443,6 @@
         "quote": "Initiated on 20+ names across TMT sector through diligence on public filings, industry experts and valuation analysis"
       }
     },
-    "search_summary": "Senior fundamental equity analyst (8.8y relevant). Covers equities, fixed income, credit and derivatives, across technology/TMT, consumer internet, software, high yield, investment grade and MBS. Currently Analyst, Consumer Internet & Software at Fidelity Asset Management (asset manager). Initiated on 20+ TMT names, built IPO syndicate models on 10+ consumer internet companies, wrote a 70+ page 3D printing report on 29 competitors. BS in Business (Finance), University of Michigan Ross; CFA Charterholder, FINRA Series 7, 63, 87."
+    "search_summary": "Senior fundamental equity analyst (8.8y relevant). Covers equities, fixed income, credit and derivatives across technology, consumer internet, software and TMT. Currently at Fidelity Asset Management (asset manager) as Analyst, Consumer Internet & Software. Initiated on 20+ names across TMT sector at Fidelity; at William Blair, published a 70+ page 3D printing industry report covering 29 competitors. Skills include Bloomberg Terminal, FactSet and S&P Capital IQ. Bachelor of Science in Business, University of Michigan, Ross School of Business; CFA Charterholder, FINRA Series 7, 63, 87."
   }
 }

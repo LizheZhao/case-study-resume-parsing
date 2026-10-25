@@ -5,80 +5,59 @@
     "file_sha256": "187e832c155d333d4c8c41c7e42812e30400b502f5edfde457a8d0b0c1ef44f2",
     "file_bytes": 20605,
     "page_count": 1,
-    "parsed_at": "2026-10-25T13:03:51+00:00",
+    "parsed_at": "2026-10-25T20:58:50+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v2",
-    "schema_version": 1,
+    "prompt_version": "v7",
+    "schema_version": 2,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 7258,
+        "latency_ms": 2881,
         "input_tokens": 1874,
-        "output_tokens": 1076,
+        "output_tokens": 401,
         "error": null,
-        "cache_read_tokens": 2383,
+        "cache_read_tokens": 2906,
         "cache_creation_tokens": 0,
         "call": "profile"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 31046,
+        "latency_ms": 13858,
         "input_tokens": 1829,
-        "output_tokens": 4524,
+        "output_tokens": 2944,
         "error": null,
-        "cache_read_tokens": 2851,
+        "cache_read_tokens": 4578,
         "cache_creation_tokens": 0,
         "call": "experience"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 8943,
-        "input_tokens": 2209,
-        "output_tokens": 564,
+        "latency_ms": 5219,
+        "input_tokens": 2166,
+        "output_tokens": 543,
         "error": null,
-        "cache_read_tokens": 1236,
+        "cache_read_tokens": 1379,
         "cache_creation_tokens": 0,
         "call": "regen:skills"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 15388,
-        "input_tokens": 5032,
-        "output_tokens": 1233,
+        "latency_ms": 12058,
+        "input_tokens": 5259,
+        "output_tokens": 1885,
         "error": null,
-        "cache_read_tokens": 1453,
+        "cache_read_tokens": 1884,
         "cache_creation_tokens": 0,
         "call": "assessment"
       }
     ],
     "verification": {
-      "checks_run": 24,
+      "checks_run": 25,
       "disagreements": 1,
       "regenerated": 1,
-      "unresolved": [
-        {
-          "field": "skills",
-          "llm_value": {
-            "programming": [],
-            "tools": [],
-            "domain": [
-              "financial modeling",
-              "value investing",
-              "ratio analysis",
-              "competitive analysis",
-              "competitive positioning analysis",
-              "patent cliff assessments",
-              "Required Business Performance (RBP) probability"
-            ]
-          },
-          "text_value": [
-            "equity-research",
-            "financial-modeling"
-          ]
-        }
-      ],
+      "unresolved": [],
       "details": [
         {
           "field": "skills",
@@ -87,12 +66,11 @@
             "tools": [],
             "domain": [
               "financial modeling",
-              "value investing",
-              "ratio analysis",
               "competitive analysis",
-              "competitive positioning analysis",
-              "patent cliff assessments",
-              "Required Business Performance (RBP) probability"
+              "value investing",
+              "earnings analysis",
+              "initiation reports",
+              "IPO coverage"
             ]
           },
           "text_value": [
@@ -123,24 +101,27 @@
         "degree": "MBA",
         "degree_level": "MBA",
         "field": "Finance",
+        "minor_fields": [],
         "start": "2011",
         "end": "2013",
-        "country": "IN"
+        "country": null
       },
       {
         "institution": "University of Pune",
         "degree": "MCOM",
         "degree_level": "Masters",
         "field": null,
+        "minor_fields": [],
         "start": null,
         "end": "2013",
-        "country": "IN"
+        "country": null
       },
       {
         "institution": "Thakur College of Commerce",
         "degree": "B.M.S",
         "degree_level": "Bachelors",
         "field": null,
+        "minor_fields": [],
         "start": null,
         "end": "2007",
         "country": null
@@ -150,6 +131,7 @@
         "degree": "HSC",
         "degree_level": "Other",
         "field": null,
+        "minor_fields": [],
         "start": null,
         "end": "2004",
         "country": null
@@ -159,6 +141,7 @@
         "degree": "SSC",
         "degree_level": "Other",
         "field": null,
+        "minor_fields": [],
         "start": null,
         "end": "2002",
         "country": null
@@ -168,13 +151,12 @@
       "programming": [],
       "tools": [],
       "domain": [
+        "equity research",
         "financial modeling",
-        "value investing",
-        "ratio analysis",
         "competitive analysis",
-        "competitive positioning analysis",
-        "patent cliff assessments",
-        "Required Business Performance (RBP) probability"
+        "value investing",
+        "earnings analysis",
+        "initiation reports"
       ]
     },
     "certifications": [],
@@ -185,12 +167,17 @@
         "title": "Lead Healthcare Analyst",
         "location_text": null,
         "country": null,
-        "start": "2023-05",
-        "end": null,
+        "start": [
+          "2023-05"
+        ],
+        "end": [
+          null
+        ],
         "is_current": true,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side broker",
+        "firm_hq_country": "IN",
         "asset_classes": [
           "Equities"
         ],
@@ -198,7 +185,7 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "Lead Healthcare Analyst"
+              "quote": "Extensive coverage of 32 companies spread across all segments (pharma, hospital, diagnostics and medical devices)"
             }
           }
         ],
@@ -212,7 +199,7 @@
           {
             "label": "IN",
             "evidence": {
-              "quote": "the listed Indian healthcare universe"
+              "quote": "of the listed Indian healthcare universe"
             }
           }
         ],
@@ -228,12 +215,17 @@
         "title": "Lead Healthcare Analyst",
         "location_text": null,
         "country": null,
-        "start": "2021-09",
-        "end": "2023-05",
+        "start": [
+          "2021-09"
+        ],
+        "end": [
+          "2023-05"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side bank",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -259,12 +251,17 @@
         "title": "Lead Pharma Analyst",
         "location_text": null,
         "country": null,
-        "start": "2020-01",
-        "end": "2021-09",
+        "start": [
+          "2020-01"
+        ],
+        "end": [
+          "2021-09"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Other",
+        "firm_hq_country": "GB",
         "asset_classes": [
           "Equities"
         ],
@@ -272,7 +269,7 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "Lead Pharma Analyst"
+              "quote": "Lead Analyst at Anand Rathi with 17 pharma companies under direct coverage"
             }
           }
         ],
@@ -292,12 +289,17 @@
         "title": "Research Analyst",
         "location_text": null,
         "country": null,
-        "start": "2017-01",
-        "end": "2019-12",
+        "start": [
+          "2017-01"
+        ],
+        "end": [
+          "2019-12"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side broker",
+        "firm_hq_country": "IN",
         "asset_classes": [
           "Equities"
         ],
@@ -327,12 +329,17 @@
         "title": "Equity Research Analyst",
         "location_text": null,
         "country": null,
-        "start": "2015-10",
-        "end": "2016-12",
+        "start": [
+          "2015-10"
+        ],
+        "end": [
+          "2016-12"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side bank",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -340,13 +347,13 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "Indian pharmaceutical and speciality chemical space"
+              "quote": "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space."
             }
           },
           {
-            "label": "Other",
+            "label": "Materials",
             "evidence": {
-              "quote": "speciality chemical space"
+              "quote": "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space."
             }
           }
         ],
@@ -358,7 +365,7 @@
           {
             "label": "IN",
             "evidence": {
-              "quote": "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space"
+              "quote": "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space."
             }
           }
         ],
@@ -375,12 +382,17 @@
         "title": "Equity Research Analyst",
         "location_text": null,
         "country": null,
-        "start": "2013-10",
-        "end": "2015-10",
+        "start": [
+          "2013-10"
+        ],
+        "end": [
+          "2015-10"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Asset manager",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -388,7 +400,7 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "large-cap pharmaceutical companies"
+              "quote": "My portfolio consisted of 25 US and European large-cap pharmaceutical companies"
             }
           }
         ],
@@ -399,13 +411,13 @@
           {
             "label": "US",
             "evidence": {
-              "quote": "25 US and European large-cap pharmaceutical companies"
+              "quote": "My portfolio consisted of 25 US and European large-cap pharmaceutical companies"
             }
           },
           {
             "label": "Europe",
             "evidence": {
-              "quote": "25 US and European large-cap pharmaceutical companies"
+              "quote": "My portfolio consisted of 25 US and European large-cap pharmaceutical companies"
             }
           }
         ],
@@ -420,9 +432,9 @@
     "investment_approach": {
       "label": "Fundamental",
       "evidence": {
-        "quote": "try to study them on various parameters of value investing"
+        "quote": "Screen various companies, try to study them on various parameters of value investing and sensibly highlight them in the report prepared for initiating coverage and IPOs"
       }
     },
-    "search_summary": "Principal fundamental equity research analyst (12.8y relevant) covering equities in healthcare, pharma, hospitals, diagnostics, medical devices and specialty chemicals. Markets: India, US and Europe. Currently Lead Healthcare Analyst at ICICI Securities (sell-side broker). Standout work: coverage of 32 Indian healthcare companies, primary fund raises for Jupiter Hospital, Innova Captab, Entero Healthcare and AKUMS, and a 25-stock US and European large-cap pharma portfolio. MBA in Finance, Mumbai Institute of Management Studies (MIMS); no certifications listed."
+    "search_summary": "Principal fundamental equity research analyst (12.9y relevant). Covers equities across healthcare, including pharma, hospitals, diagnostics, medical devices and specialty chemicals. Markets covered are India, the US and Europe. Current employer is ICICI Securities (sell-side broker), Lead Healthcare Analyst. At ICICI Securities, covers 32 companies and managed primary fund raise for Jupiter Hospital, Innova Captab, Entero Healthcare and AKUMS; at Transparent Value, covered 25 US and European large-cap pharma companies. Skills include financial modeling and value investing. MBA in Finance from Mumbai Institute of Management Studies (MIMS)."
   }
 }

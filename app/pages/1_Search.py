@@ -33,16 +33,16 @@ ss = st.session_state
 st.text_area(
     "Job description or keywords", key="jd_text", height=140,
     placeholder="Senior healthcare analyst in APAC, fundamental, CFA preferred",
-    help="Feeds the keyword and embedding scores. Fill filters from it to pre-set the filters.",
+    help="Drives the keyword and embedding scores. Press the button below to have it fill in the filters too.",
 )
 st.button(
     "Fill filters from description", on_click=lambda: ss.update(_parse_pending=True),
-    disabled=not ss["jd_text"].strip(), help="One API call",
+    disabled=not ss["jd_text"].strip(), help="Makes one API call.",
 )
 if ss.get("_parse_error"):
-    st.error(f"Couldn't read the job description. {ss['_parse_error']}")
+    st.error(f"Could not make sense of that job description. {ss['_parse_error']}")
 elif ss.get("_parsed"):
-    st.caption("Filters filled from the job description. Edit any of them below.")
+    st.caption("Filters filled in from the description. Change any of them below before you search.")
 
 
 def options_with(base: list[str], key: str) -> list[str]:
@@ -70,7 +70,7 @@ try:
     req = common.requisition_from_state(ss)
 except ValueError as exc:
     req = None
-    st.error(f"Some filters can't be combined: {exc}")
+    st.error(f"These filters clash: {exc}")
 n_set = 0 if req is None else sum(
     getattr(req, f) is not None for f in common.MODE_FIELDS
 ) + (req.years_min is not None or req.years_max is not None) + bool(req.skills_required or req.skills_preferred)
@@ -80,7 +80,7 @@ with st.expander(f"Filters ({n_set} set)" if n_set else "Filters", expanded=True
     c = st.columns(3)
     with c[0]:
         picker("Regions", "f_regions", tax["regions"], "location",
-               help="Countries picked inside a region narrow it. A region with none picked counts whole.")
+               help="Pick countries inside a region to narrow it down. Leave them empty and the whole region counts.")
     with c[1]:
         labeled("Countries", None)
         st.multiselect("Countries", choices, key="f_countries", format_func=common.country_option,
@@ -125,7 +125,7 @@ with st.expander(f"Filters ({n_set} set)" if n_set else "Filters", expanded=True
     c = st.columns(2)
     with c[0]:
         picker("Required skills", "f_skills_req", picks["skills"], None, accept_new_options=True,
-               help="Required skills always prune candidates.")
+               help="A required skill removes anyone without it. Preferred skills only add to the score.")
     with c[1]:
         picker("Preferred skills", "f_skills_pref", picks["skills"], None, accept_new_options=True)
 
@@ -135,13 +135,13 @@ if st.button("Search", type="primary", disabled=req is None):
     ss["_page"] = 0
 last = ss.get("_last")
 if last is None:
-    st.info("Set filters or paste a job description, then press Search.")
+    st.info("Set a few filters or paste a job description, then hit Search.")
     st.stop()
 
 results = common.run_search(last["req"], common.db_path(), last["top"])
 searched = Requisition.model_validate_json(last["req"])
 if searched.is_empty():
-    st.caption("No filters or description, so every candidate matches.")
+    st.caption("Nothing to filter on yet, so this is everyone.")
 
 # The LLM reorders the top of the list. A failure keeps the plain ranking.
 reasons: dict[str, str] = {}
@@ -186,7 +186,7 @@ for rank, r in enumerate(shown, start + 1):
         if r.keywords:
             st.caption("Keyword hits: " + ", ".join(r.keywords))
         with st.expander("Score details"):
-            st.caption("Match score blends the rule, keyword and embedding scores.")
+            st.caption("Match score is a blend of the three: rule, keyword, embedding.")
             st.dataframe(
                 pd.DataFrame([{"rule": b.rule, "keyword": b.keyword, "embedding": b.embedding}]),
                 hide_index=True,

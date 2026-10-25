@@ -5,56 +5,56 @@
     "file_sha256": "5000799acebafbe1edfe25ff4b0641a6ec3b0b2f2a2a79615b647de8f1ca26b2",
     "file_bytes": 22357,
     "page_count": 1,
-    "parsed_at": "2026-10-25T13:04:25+00:00",
+    "parsed_at": "2026-10-25T20:58:48+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v2",
-    "schema_version": 1,
+    "prompt_version": "v7",
+    "schema_version": 2,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 10079,
+        "latency_ms": 2748,
         "input_tokens": 1451,
-        "output_tokens": 429,
+        "output_tokens": 426,
         "error": null,
-        "cache_read_tokens": 2383,
+        "cache_read_tokens": 2906,
         "cache_creation_tokens": 0,
         "call": "profile"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 26490,
+        "latency_ms": 9503,
         "input_tokens": 1418,
-        "output_tokens": 3306,
+        "output_tokens": 2023,
         "error": null,
-        "cache_read_tokens": 2851,
+        "cache_read_tokens": 4578,
         "cache_creation_tokens": 0,
         "call": "experience"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 3380,
-        "input_tokens": 1816,
-        "output_tokens": 317,
+        "latency_ms": 3356,
+        "input_tokens": 1815,
+        "output_tokens": 381,
         "error": null,
-        "cache_read_tokens": 1236,
+        "cache_read_tokens": 1379,
         "cache_creation_tokens": 0,
         "call": "regen:skills"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 10813,
-        "input_tokens": 3739,
-        "output_tokens": 1347,
+        "latency_ms": 11530,
+        "input_tokens": 3951,
+        "output_tokens": 1893,
         "error": null,
-        "cache_read_tokens": 1453,
+        "cache_read_tokens": 1884,
         "cache_creation_tokens": 0,
         "call": "assessment"
       }
     ],
     "verification": {
-      "checks_run": 23,
+      "checks_run": 24,
       "disagreements": 1,
       "regenerated": 1,
       "unresolved": [],
@@ -77,7 +77,8 @@
               "PubMed"
             ],
             "domain": [
-              "MDS (Perceptual Mapping)"
+              "Perceptual Mapping",
+              "MDS"
             ]
           },
           "text_value": [
@@ -106,9 +107,10 @@
     "education": [
       {
         "institution": "Indian School of Business Management (ISBM), Pune",
-        "degree": "PGDM (Finance)",
+        "degree": "PGDM",
         "degree_level": "Masters",
         "field": "Finance",
+        "minor_fields": [],
         "start": null,
         "end": "2012",
         "country": "IN"
@@ -116,8 +118,9 @@
       {
         "institution": "K.J. Somaiya Medical College, Mumbai",
         "degree": "M.B.B.S",
-        "degree_level": "Other",
-        "field": null,
+        "degree_level": "Bachelors",
+        "field": "Medicine",
+        "minor_fields": [],
         "start": null,
         "end": "2010",
         "country": "IN"
@@ -126,7 +129,8 @@
         "institution": "Mithibai College, Mumbai",
         "degree": "XII Std.(PCMB)",
         "degree_level": "Other",
-        "field": "PCMB",
+        "field": null,
+        "minor_fields": [],
         "start": null,
         "end": "2004",
         "country": "IN"
@@ -136,6 +140,7 @@
         "degree": "X Std.",
         "degree_level": "Other",
         "field": null,
+        "minor_fields": [],
         "start": null,
         "end": "2002",
         "country": "IN"
@@ -157,8 +162,9 @@
         "PubMed"
       ],
       "domain": [
-        "equity research",
-        "MDS (Perceptual Mapping)"
+        "Equity research",
+        "Perceptual Mapping",
+        "MDS"
       ]
     },
     "certifications": [],
@@ -169,12 +175,17 @@
         "title": "Lead Analyst – Pharmaceuticals and Healthcare",
         "location_text": null,
         "country": null,
-        "start": "2022-05",
-        "end": null,
+        "start": [
+          "2022-05"
+        ],
+        "end": [
+          null
+        ],
         "is_current": true,
         "employment_type": "full_time",
         "relevance": "core",
-        "firm_type": "Sell-side broker",
+        "firm_type": "Other",
+        "firm_hq_country": null,
         "asset_classes": [
           "Equities"
         ],
@@ -182,7 +193,7 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "Lead Analyst – Pharmaceuticals and Healthcare"
+              "quote": "publish equity research ratings with price targets on Indian healthcare sector companies"
             }
           }
         ],
@@ -207,12 +218,17 @@
         "title": "Lead Analyst – Pharmaceuticals and Healthcare",
         "location_text": null,
         "country": null,
-        "start": "2020-10",
-        "end": "2022-04",
+        "start": [
+          "2020-10"
+        ],
+        "end": [
+          "2022-04"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side broker",
+        "firm_hq_country": null,
         "asset_classes": [
           "Equities"
         ],
@@ -239,12 +255,17 @@
         "title": "Lead Analyst – Pharmaceuticals and Healthcare",
         "location_text": null,
         "country": null,
-        "start": "2018-04",
-        "end": "2020-04",
+        "start": [
+          "2018-04"
+        ],
+        "end": [
+          "2020-04"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side broker",
+        "firm_hq_country": "IN",
         "asset_classes": [
           "Equities"
         ],
@@ -259,7 +280,14 @@
         "other_sector_tags": [
           "Pharmaceuticals"
         ],
-        "markets_covered": [],
+        "markets_covered": [
+          {
+            "label": "IN",
+            "evidence": {
+              "quote": "Published sector thematic reports on Indian generics expansion"
+            }
+          }
+        ],
         "duration_months": null,
         "bullets": [
           "Published sector thematic reports on Indian generics expansion, digital health initiatives, respiratory drug market, and healthcare policy reforms",
@@ -271,12 +299,17 @@
         "title": "Manager – Equity Research",
         "location_text": "Noida",
         "country": "IN",
-        "start": "2015-05",
-        "end": "2018-03",
+        "start": [
+          "2015-05"
+        ],
+        "end": [
+          "2018-03"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Other",
+        "firm_hq_country": null,
         "asset_classes": [
           "Equities"
         ],
@@ -295,7 +328,7 @@
           {
             "label": "US",
             "evidence": {
-              "quote": "Member, U.S. Healthcare Services ER team (Institutional Investor (II) Runner up) at Leerink Partners"
+              "quote": "Member, U.S. Healthcare Services ER team"
             }
           }
         ],
@@ -310,12 +343,21 @@
         "title": "Equity Research Associate",
         "location_text": "London",
         "country": "GB",
-        "start": "2013-09",
-        "end": "2014-11",
+        "start": [
+          "2013-09",
+          "2013-12",
+          "2014-11"
+        ],
+        "end": [
+          "2013-09",
+          "2013-12",
+          "2014-11"
+        ],
         "is_current": false,
-        "employment_type": "full_time",
+        "employment_type": "internship",
         "relevance": "core",
         "firm_type": "Sell-side bank",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -334,15 +376,29 @@
         "title": "Summer Intern",
         "location_text": "Mumbai",
         "country": "IN",
-        "start": "2011-04",
-        "end": "2011-05",
+        "start": [
+          "2011-04"
+        ],
+        "end": [
+          "2011-05"
+        ],
         "is_current": false,
         "employment_type": "internship",
-        "relevance": "unrelated",
+        "relevance": "adjacent",
         "firm_type": "Corporate",
+        "firm_hq_country": "IN",
         "asset_classes": [],
-        "sectors": [],
-        "other_sector_tags": [],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Competitive Positioning strategy for newly launched generic Calpol T"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Pharmaceuticals"
+        ],
         "markets_covered": [],
         "duration_months": null,
         "bullets": [
@@ -354,9 +410,9 @@
     "investment_approach": {
       "label": "Fundamental",
       "evidence": {
-        "quote": "Generate investment ideas and publish equity research ratings with price targets on Indian healthcare sector companies across 28 stocks under coverage"
+        "quote": "publish equity research ratings with price targets on Indian healthcare sector companies across 28 stocks under coverage"
       }
     },
-    "search_summary": "Principal fundamental equity research analyst (11.9y relevant). Covers equities in healthcare, pharmaceuticals and healthcare services. Markets covered are India and the US. Currently Lead Analyst – Pharmaceuticals and Healthcare at Meridian Research Partners (sell-side broker). Publishes ratings with price targets across 28 stocks under coverage; an investment recommendation adopted by an institutional client produced a 35% increase in brokerage commission revenue; uses Bloomberg and Factset. Holds a PGDM (Finance) from Indian School of Business Management (ISBM), Pune."
+    "search_summary": "Principal fundamental equity research analyst (10.8y relevant). Covers equities in healthcare, pharmaceuticals and healthcare services. Markets covered: India and US. Current employer is Meridian Research Partners (other), as Lead Analyst – Pharmaceuticals and Healthcare. At Meridian Research Partners, publishes ratings with price targets across 28 stocks under coverage; at Prism Financial Services, an investment recommendation adopted by an institutional client led to a 35% increase in brokerage commission revenue. Skills include Bloomberg, Factset and Reuters. Holds a PGDM in Finance from Indian School of Business Management (ISBM), Pune."
   }
 }

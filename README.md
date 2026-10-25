@@ -1,8 +1,8 @@
 # Candidate resume search platform
 
-This project reads resumes (DOCX and PDF) with Claude, stores them as structured records in SQLite, and ranks candidates against a job requisition with a rule score, BM25, and embedding similarity. A Streamlit app wraps search, candidate detail, charts, ingest, and the eval results. It was built as the Millennium BD data science case study, with 10 sample resumes in `data/`.
+Resumes in, ranked shortlist out. Claude reads each DOCX or PDF into a structured record, SQLite stores it, and a requisition ranks candidates with a rule score, BM25, and embedding similarity. A Streamlit app sits on top: search, candidate detail, charts, ingest, eval results. Built for the Millennium BD data science case study, against the 10 sample resumes in `data/`.
 
-The submission notebook, `2025_ds_case_study_resume_platform.ipynb`, writes out all the code, runs demos that need no API key, and discusses scale. The reasons behind each design choice are in [`docs/design.md`](docs/design.md).
+The submission notebook, `2025_ds_case_study_resume_platform.ipynb`, writes out every source file, runs the demos that need no API key, and talks through scale. If you want the reasoning behind a design choice, it is in [`docs/design.md`](docs/design.md).
 
 ## Quick start
 
@@ -16,13 +16,13 @@ You need Python 3.12 and [uv](https://docs.astral.sh/uv/).
 
 2. Add your API key. Copy `.env.example` to `.env` and set `ANTHROPIC_API_KEY`.
 
-3. Parse and index the sample resumes. This calls the API and costs about $0.75 for the 10 files.
+3. Parse and index the sample resumes. This one calls the API; expect about $0.78 for the 10 files.
 
    ```
    uv run resume-search ingest data/*.docx data/*.pdf
    ```
 
-   The command writes `exports/candidates.sqlite`, `exports/candidates.json`, and `exports/candidates.csv`. A second run skips every file it has already parsed.
+   You get `exports/candidates.sqlite`, `exports/candidates.json`, and `exports/candidates.csv`. Run it again and it skips every file it has already parsed.
 
 4. Start the app.
 
@@ -32,7 +32,7 @@ You need Python 3.12 and [uv](https://docs.astral.sh/uv/).
 
    The app reads `exports/candidates.sqlite`. Set `RESUME_DB` to use another file.
 
-The SQLite file is git-ignored. Parsing is the only step that needs an API key. Search, the demos in the notebook, and the Streamlit app run without one, apart from the JD parser, the rerank toggle, and the Ingest page.
+The SQLite file is git-ignored. Parsing is the only step that needs a key. Search, the notebook demos, and the app all run without one, except for three spots that call the API on purpose: the JD parser, the rerank toggle, and the Ingest page.
 
 ## CLI reference
 
@@ -63,31 +63,32 @@ The SQLite file is git-ignored. Parsing is the only step that needs an API key. 
 
 ## Architecture
 
-A resume passes through five stages, and each stage can be re-run alone.
+Five stages. Each one can be re-run on its own.
 
-1. **Extract.** `python-docx` and PyMuPDF produce plain text in reading order. A repair map fixes ligature glyphs, and an unknown-word ratio flags bad text. A PDF with too little text, a large image, or too many unknown words goes to the vision path.
-2. **Parse.** Three constrained-decoding calls (profile and experience in parallel, then assessment) return Pydantic models. A registry of deterministic checks compares the result with the text, and a disagreement triggers one targeted regeneration. A failed call moves up a ladder: Sonnet, Sonnet with the validation errors, Opus.
-3. **Derive.** Code, not the LLM, computes months of experience, seniority band, countries, regions, normalized skills, and CFA status.
-4. **Store.** SQLite holds scalar columns for filters, the full record as JSON, facet tables, an FTS5 keyword index with the contact block removed, and float32 embeddings.
-5. **Search.** Must criteria prune in SQL. Preferred criteria give a rule score. BM25 and embedding cosine score the free text. The final score is 0.5 rule + 0.2 BM25 + 0.3 embedding.
+1. **Extract.** `python-docx` and PyMuPDF give plain text in reading order. A repair map fixes ligature glyphs; an unknown-word ratio flags text that is still bad. A PDF with too little text, a big image, or too many unknown words goes down the vision path instead.
+2. **Parse.** Three constrained-decoding calls (profile and experience in parallel, then assessment) come back as Pydantic models. A registry of deterministic checks holds the result up against the text, and any disagreement triggers one targeted regeneration. A call that fails climbs the ladder: Sonnet, Sonnet with the validation errors, Opus.
+3. **Derive.** Months of experience, seniority band, countries, regions, normalized skills, CFA status. All code, none of it asked of the LLM.
+4. **Store.** SQLite with scalar columns for filters, the full record as JSON, facet tables, an FTS5 keyword index built from the text minus the contact block, and float32 embeddings.
+5. **Search.** Must criteria prune in SQL. Preferred criteria become a rule score. BM25 and embedding cosine score the free text. Final = 0.5 rule + 0.2 BM25 + 0.3 embedding.
 
-`docs/design.md` has the schema, the prompt, the cross-verification table, and the scale-up notes.
+Schema, prompt, cross-verification table, and the scale-up notes are all in `docs/design.md`.
 
 ## Measured results
 
-The numbers come from `evals/results/` (Claude Sonnet 5.5 as the task model, Claude Opus 5.5 as the judge) and from the `parse_jobs` table.
+Numbers from `evals/results/` (Sonnet 5.5 does the work, Opus 5.5 grades it) and from the `parse_jobs` table.
 
-| Measure | Value | Caveat |
-|---|---|---|
-| Parsing accuracy | 86.7% of 143 fields `correct`, 93.4% `correct` or `partial`, 0 hallucinated, 0 missing | One judge run. Two runs differed by 1.4 points, and the judge prompt changed between them. |
-| Weakest field | `search_summary`, 40% | The judge marks a summary `partial` when it attaches a fact to the wrong role. |
-| Judge against human | 92.9% exact, 100% within one grade level, 42 fields | Three resumes, one grader, and the grades are marked `draft`. |
-| Cost per resume | $0.075 (10 resumes, $0.7535 total) | Three calls plus any regeneration, at list prices. |
-| Time per resume | 28.5 seconds on average | Measured with 4 workers. |
-| Ranking, mean nDCG@5 | full blend 0.969, rule only 0.958, BM25 only 0.968, embedding only 0.927 | Six requisitions, pools of 3 to 9 after pruning. |
-| Ranking, mean P@3 | full blend 0.722, rule only 0.722, BM25 only 0.778, embedding only 0.722 | The variants differ by less than one swapped pair, so the data cannot tune the blend. |
+| Measure | Value |
+|---|---|
+| Parsing accuracy | 97.9% of 143 fields `correct`, 99.0% `correct` or `partial`, 0 hallucinated, 0 missing |
+| Weakest field | `skills`, 90%: one skill taken from a paper title |
+| Judge against human | 95.2% exact, 100% within one grade level, 42 fields on three hand-graded resumes |
+| Location | `current_country` matches the hand gold for 10 of 10 candidates |
+| Cost per resume | $0.078 (10 resumes, $0.7797 total), three calls plus any regeneration at list prices |
+| Time per resume | 28.4 seconds on average with 4 workers |
+| Ranking, mean nDCG@5 | full blend 0.969, rule only 0.958, BM25 only 0.968, embedding only 0.927, over six requisitions with pools of 3 to 9 after pruning |
+| Ranking, mean P@3 | full blend 0.722, rule only 0.722, BM25 only 0.778, embedding only 0.722 |
 
-A parsing eval costs about $0.66 and a ranking eval about $0.17.
+A parsing eval costs about $0.65 and a ranking eval about $0.17.
 
 ## Repository layout
 
@@ -120,9 +121,9 @@ tests/                                     pytest suite
 uv run python scripts/build_notebook.py --execute
 ```
 
-The script reads the files listed above from disk and writes `%%writefile` cells, so the notebook cannot differ from the code. It refuses to run when `src/`, `app/`, `taxonomy/`, or `evals/requisitions.jsonl` has uncommitted changes. Pass `--allow-dirty` to override that.
+The script reads the files listed above straight from disk and turns them into `%%writefile` cells, which is why the notebook can never drift from the code. It refuses to run while `src/`, `app/`, `taxonomy/`, or `evals/requisitions.jsonl` has uncommitted changes; `--allow-dirty` overrides that.
 
-With `--execute`, the script runs the notebook with `jupyter nbconvert` on the `case-study` kernel (a 600-second timeout) and stores the outputs. The two cells that call the API print a skip message unless `RUN_LLM=1` is set. Register the kernel once with:
+With `--execute` it also runs the notebook through `jupyter nbconvert` on the `case-study` kernel (600-second timeout) and keeps the outputs. The two cells that call the API print a skip message unless `RUN_LLM=1` is set. Register the kernel once:
 
 ```
 uv run python -m ipykernel install --user --name case-study --display-name "case-study (3.12)"
@@ -135,7 +136,7 @@ uv run resume-search eval run --suite all
 uv run resume-search eval show
 ```
 
-`eval run` calls the Opus judge and costs about $0.83 for both suites. Hand grades for three resumes are in `evals/gold/parsing_human.jsonl`. The six requisitions are in `evals/requisitions.jsonl`. Judge grades for the ranking suite are cached in `evals/results/ranking-grades-cache.json`, so a re-run grades only requisitions or candidates that changed.
+`eval run` calls the Opus judge; both suites together come to about $0.83. My hand grades for three resumes are in `evals/gold/parsing_human.jsonl`, the six requisitions in `evals/requisitions.jsonl`. Ranking grades are cached in `evals/results/ranking-grades-cache.json`, so a re-run only grades requisitions or candidates that actually changed.
 
 ## Run the tests
 
@@ -144,12 +145,12 @@ uv run pytest -q
 uv run ruff check src tests app scripts
 ```
 
-## What is not built
+## Next features
 
-- **spaCy EntityRuler cross-check.** Skills are cross-checked against the synonym dictionary only.
-- **Knowledge-graph query expansion.** A search for "systematic" does not expand to "stat arb" or "factor".
-- **Small classifier.** There is no pre-classifier that would spare the LLM at volume.
-- **Rate limiter and queue.** Ingest uses 4 worker threads and the SDK's retries. There is no token bucket and no external queue.
-- **Other file formats.** Only DOCX and PDF are read. The vision path exists but no sample file triggers it.
-- **PII redaction at read time.** Contact fields are kept out of the keyword index and the embeddings, but the app shows them to every user.
-- **Deployment.** The app runs locally. The public URL is to be added at submission.
+- **spaCy EntityRuler cross-check.** A second, independent read on skills and country straight off the raw text. Today skills are only cross-checked against the synonym dictionary.
+- **Knowledge-graph query expansion.** So a search for "systematic" also pulls up "stat arb" and "factor".
+- **Small classifier.** TF-IDF plus logistic regression trained on the LLM's own labels, so most resumes never need the LLM at volume.
+- **Rate limiter and queue.** A token bucket in front of the API client, and a real work queue where the 4-thread pool is now.
+- **Other file formats.** Readers for txt, md, and html, plus a LibreOffice route for doc, rtf, and odt. DOCX and PDF work today, with the vision path covering image-only PDFs.
+- **PII redaction at read time.** A per-role switch that masks the three contact columns. They are already out of the keyword index and the embeddings.
+- **Deployment.** A hosted Streamlit URL, added at submission.

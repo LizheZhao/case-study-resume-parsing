@@ -13,7 +13,7 @@ st.title("Candidate")
 db = common.conn()
 rows = db.execute("SELECT candidate_id, name FROM candidates ORDER BY name").fetchall()
 if not rows:
-    st.info("No candidates yet. Ingest resumes first.")
+    st.info("No candidates in the database yet. Ingest some resumes first.")
     st.stop()
 names = {r["candidate_id"]: r["name"] for r in rows}
 ids = list(names)
@@ -36,11 +36,11 @@ c = st.columns(4)
 c[0].metric("Location", common.location_label(d.current_country, d.current_region))
 c[1].metric("Seniority", d.seniority_band or common.UNKNOWN)
 c[2].metric("Relevant years", f"{d.months_full_time_relevant / 12:.1f}",
-            help="Full-time roles in investing or a closely related function. Drives seniority.")
+            help="Full-time roles in investing or something close to it. This is what sets the seniority band.")
 c[3].metric("Internship years", f"{d.months_internship / 12:.1f}")
 c = st.columns(4)
 c[0].metric("Core years", f"{d.months_full_time_core / 12:.1f}",
-            help="Full-time roles in investing itself, a subset of relevant years.")
+            help="Full-time roles in investing proper. A subset of the relevant years.")
 c[1].metric("Approach", d.investment_approach)
 c[2].metric("Highest degree", d.highest_degree or "n/a")
 c[3].metric("CFA", (d.cfa_level or "yes") if d.has_cfa else "no")
@@ -85,7 +85,7 @@ if gantt:
     fig.update_yaxes(autorange="reversed", title=None)
     st.plotly_chart(fig)
 else:
-    st.caption("No role has dates.")
+    st.caption("None of the roles carry dates.")
 
 st.subheader("Education")
 edu = pd.read_sql(
@@ -133,7 +133,7 @@ c[1].metric("Disagreements", ver.get("disagreements", "n/a"))
 c[2].metric("Regenerated", ver.get("regenerated", "n/a"))
 c[3].metric("Unresolved", len(ver.get("unresolved", [])))
 if ver.get("unresolved"):
-    st.warning("Unresolved: " + "; ".join(str(u) for u in ver["unresolved"]))
+    st.warning("Still disagree after regeneration (kept the LLM value): " + "; ".join(str(u) for u in ver["unresolved"]))
 if ver.get("details"):
     with st.expander("Disagreement details"):
         st.json(ver["details"])

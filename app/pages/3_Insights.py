@@ -26,7 +26,7 @@ cands = q(
     "highest_degree, record_json FROM candidates"
 )
 if cands.empty:
-    st.info("No candidates yet. Ingest resumes first.")
+    st.info("Nothing to chart yet. Ingest some resumes first.")
     st.stop()
 st.caption(f"{len(cands)} candidates")
 

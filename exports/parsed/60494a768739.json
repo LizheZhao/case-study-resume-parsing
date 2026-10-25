@@ -5,58 +5,68 @@
     "file_sha256": "60494a76873965c1a27d06a593b1239344766c9d156595a3cec220858401ea41",
     "file_bytes": 93149,
     "page_count": 2,
-    "parsed_at": "2026-10-25T13:03:40+00:00",
+    "parsed_at": "2026-10-25T20:59:31+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v2",
-    "schema_version": 1,
+    "prompt_version": "v7",
+    "schema_version": 2,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 10016,
+        "latency_ms": 2283,
         "input_tokens": 1900,
-        "output_tokens": 272,
+        "output_tokens": 294,
         "error": null,
-        "cache_read_tokens": 2383,
+        "cache_read_tokens": 2906,
         "cache_creation_tokens": 0,
         "call": "profile"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 10918,
+        "latency_ms": 12084,
         "input_tokens": 1864,
-        "output_tokens": 2295,
+        "output_tokens": 2435,
         "error": null,
-        "cache_read_tokens": 2851,
+        "cache_read_tokens": 4578,
         "cache_creation_tokens": 0,
         "call": "experience"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 11381,
+        "latency_ms": 4705,
         "input_tokens": 2247,
-        "output_tokens": 399,
+        "output_tokens": 543,
         "error": null,
-        "cache_read_tokens": 1236,
+        "cache_read_tokens": 1379,
         "cache_creation_tokens": 0,
         "call": "regen:skills"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 13968,
-        "input_tokens": 4478,
-        "output_tokens": 1703,
+        "latency_ms": 12027,
+        "input_tokens": 2660,
+        "output_tokens": 1002,
         "error": null,
-        "cache_read_tokens": 1453,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 4453,
+        "call": "regen:experience_item"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 13594,
+        "input_tokens": 4635,
+        "output_tokens": 2115,
+        "error": null,
+        "cache_read_tokens": 1884,
         "cache_creation_tokens": 0,
         "call": "assessment"
       }
     ],
     "verification": {
-      "checks_run": 20,
-      "disagreements": 1,
-      "regenerated": 1,
+      "checks_run": 21,
+      "disagreements": 3,
+      "regenerated": 2,
       "unresolved": [],
       "details": [
         {
@@ -65,17 +75,17 @@
             "programming": [],
             "tools": [],
             "domain": [
+              "operating model",
               "DCF",
               "comparable companies",
               "LBO",
               "precedent transactions",
-              "operating model",
-              "financial modeling",
               "factor attribution",
-              "M&A",
-              "due diligence",
               "position sizing",
-              "hedging"
+              "hedging",
+              "financial modeling",
+              "due diligence",
+              "M&A"
             ]
           },
           "text_value": [
@@ -85,6 +95,70 @@
             "lbo",
             "valuation"
           ]
+        },
+        {
+          "field": "experience[3].start",
+          "llm_value": [
+            "2016-06",
+            "2017-07"
+          ],
+          "text_value": {
+            "months": [
+              "2013-09",
+              "2014-02",
+              "2017-01",
+              "2017-05",
+              "2017-07",
+              "2019-07",
+              "2019-08",
+              "2021-08",
+              "2021-09",
+              "2022-08",
+              "2023-03"
+            ],
+            "years": [
+              "2013",
+              "2014",
+              "2016",
+              "2017",
+              "2019",
+              "2021",
+              "2022",
+              "2023"
+            ]
+          }
+        },
+        {
+          "field": "experience[3].end",
+          "llm_value": [
+            "2016-08",
+            "2019-07"
+          ],
+          "text_value": {
+            "months": [
+              "2013-09",
+              "2014-02",
+              "2017-01",
+              "2017-05",
+              "2017-07",
+              "2019-07",
+              "2019-08",
+              "2021-08",
+              "2021-09",
+              "2022-08",
+              "2023-03"
+            ],
+            "years": [
+              "2013",
+              "2014",
+              "2016",
+              "2017",
+              "2019",
+              "2021",
+              "2022",
+              "2023"
+            ]
+          }
         }
       ]
     },
@@ -108,7 +182,10 @@
         "institution": "Columbia Business School, Columbia University",
         "degree": "Bachelor of Science in Business",
         "degree_level": "Bachelors",
-        "field": "Finance and International Business",
+        "field": "Business: Concentration in Finance and International Business",
+        "minor_fields": [
+          "Statistics"
+        ],
         "start": "2013-09",
         "end": "2017-05",
         "country": "US"
@@ -118,18 +195,17 @@
       "programming": [],
       "tools": [],
       "domain": [
+        "operating model",
         "DCF",
         "comparable companies",
         "LBO",
         "precedent transactions",
-        "operating model",
-        "financial modeling",
         "factor attribution",
-        "M&A",
-        "due diligence",
-        "valuation",
         "position sizing",
-        "hedging"
+        "hedging",
+        "financial modeling",
+        "due diligence",
+        "valuation"
       ]
     },
     "certifications": [],
@@ -140,12 +216,17 @@
         "title": "Investment Professional, Generalist – Soft Catalyst & Fundamental Long/Short",
         "location_text": "Greenwich, CT",
         "country": "US",
-        "start": "2023-03",
-        "end": null,
+        "start": [
+          "2023-03"
+        ],
+        "end": [
+          null
+        ],
         "is_current": true,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Hedge fund",
+        "firm_hq_country": null,
         "asset_classes": [
           "Equities"
         ],
@@ -165,12 +246,17 @@
         "title": "Investment Analyst, Consumer & TMT – North53 Capital",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2021-09",
-        "end": "2022-08",
+        "start": [
+          "2021-09"
+        ],
+        "end": [
+          "2022-08"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Hedge fund",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -205,12 +291,17 @@
         "title": "Associate – Private Equity",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2019-08",
-        "end": "2021-08",
+        "start": [
+          "2019-08"
+        ],
+        "end": [
+          "2021-08"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "PE/VC",
+        "firm_hq_country": "US",
         "asset_classes": [],
         "sectors": [
           {
@@ -221,6 +312,12 @@
           },
           {
             "label": "Healthcare",
+            "evidence": {
+              "quote": "across the Business & Technology Services, Consumer, and Healthcare"
+            }
+          },
+          {
+            "label": "Technology",
             "evidence": {
               "quote": "across the Business & Technology Services, Consumer, and Healthcare"
             }
@@ -243,15 +340,22 @@
         "title": "Analyst – Healthcare Investment Banking",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2017-07",
-        "end": "2019-07",
+        "start": [
+          "2016",
+          "2017-07"
+        ],
+        "end": [
+          "2016",
+          "2019-07"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "adjacent",
         "firm_type": "Sell-side bank",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities",
-          "Fixed Income"
+          "Credit"
         ],
         "sectors": [
           {
@@ -276,12 +380,17 @@
         "title": "Co-Founder",
         "location_text": "Mumbai, IN",
         "country": "IN",
-        "start": "2017-01",
-        "end": null,
+        "start": [
+          "2017-01"
+        ],
+        "end": [
+          null
+        ],
         "is_current": true,
-        "employment_type": "part_time",
+        "employment_type": "extracurricular",
         "relevance": "unrelated",
         "firm_type": "Other",
+        "firm_hq_country": null,
         "asset_classes": [],
         "sectors": [],
         "other_sector_tags": [],
@@ -297,12 +406,17 @@
         "title": "President, Alumni Relations Chair, Finance Committee",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2014-02",
-        "end": "2017-05",
+        "start": [
+          "2014-02"
+        ],
+        "end": [
+          "2017-05"
+        ],
         "is_current": false,
-        "employment_type": "part_time",
+        "employment_type": "extracurricular",
         "relevance": "unrelated",
         "firm_type": "Other",
+        "firm_hq_country": null,
         "asset_classes": [],
         "sectors": [],
         "other_sector_tags": [],
@@ -320,6 +434,6 @@
         "quote": "Primary investor responsible for managing the only long short fundamental equity portfolio at Meridian Capital Partners"
       }
     },
-    "search_summary": "Senior fundamental equity investor (8.6y relevant). Covers equities and fixed income across consumer, technology, healthcare, and business and technology services. Currently Investment Professional, Generalist at Meridian Capital Partners (hedge fund), managing its only long/short fundamental equity portfolio. Standouts include position sizing and hedging decisions, a Consumer and Technology portfolio within a $4.2bn gross portfolio at Millennium Management, and advising on an $8.5bn acquisition. Holds a Bachelor of Science in Business from Columbia Business School, Columbia University; no certifications."
+    "search_summary": "Senior fundamental equity investor (8.6y relevant). Coverage spans equities and credit across consumer, technology, healthcare, TMT and business and technology services. Currently at Meridian Capital Partners (hedge fund) as Investment Professional, Generalist – Soft Catalyst & Fundamental Long/Short. At Millennium Management, managed the Consumer and Technology portfolio within a $4.2bn gross portfolio and built DCF and LBO models. At J.P.Mogan, advised on BioPharm Corp's $8.5bn acquisition of Oncology Therapeutics Inc. Holds a Bachelor of Science in Business from Columbia Business School, Columbia University."
   }
 }

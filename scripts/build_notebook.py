@@ -435,7 +435,7 @@ def build() -> nbformat.NotebookNode:
     ]
 
     dirs = sorted({p.parent.as_posix() for g in files.values() for p in g if p.parent != Path(".")})
-    cells.append(md("## Code\n\nThe cells in this part write the repository's source files. Each header names the file, and the sentence under it says what the file does."))
+    cells.append(md("## Code\n\nThese cells write the repository's source files back to disk. Each header names the file; the line under it says what the file is for."))
     cells.append(code(SETUP_DIRS.format(
         dirs=repr(dirs), empty=repr([p.as_posix() for p in empty])
     )))
@@ -451,24 +451,24 @@ def build() -> nbformat.NotebookNode:
 
     cells += [md(text.INSTALL_INTRO), code(INSTALL), md(text.DEMO_INTRO), code(DEMO_SETUP)]
     cells += [
-        md("### Extraction\n\nOne DOCX and one PDF: the first 20 lines of extracted text and the text-quality numbers. The PDF is Omar El-Hassan's, which has ligature glyphs."),
+        md("### Extraction\n\nOne DOCX and one PDF, first 20 lines of extracted text plus the text-quality numbers. The PDF is Omar El-Hassan's, picked because its font emits ligature glyphs."),
         code(DEMO_EXTRACT),
-        md("#### Ligature repair\n\nThe PDF font encodes `ti` as `Ɵ` (U+019F), so the raw text has words such as `QuanƟtaƟve`. Repair and a fuzzy fix bring the unknown-word ratio down from 17.8% to 2.6%."),
+        md("#### Ligature repair\n\nThat font encodes `ti` as `Ɵ` (U+019F), so the raw text is full of words like `QuanƟtaƟve`. The repair map plus a fuzzy fix take the unknown-word ratio from 17.8% down to 2.6%."),
         code(DEMO_REPAIR),
-        md("### A stored record\n\nThe parse result for Chen Li, read from `exports/parsed/`. This is what the LLM returned after validation, and the verification block that compared it with deterministic text parsing."),
+        md("### A stored record\n\nChen Li's parse result from `exports/parsed/`: what the LLM returned once it passed validation, then the verification block that held it up against deterministic text parsing."),
         code(DEMO_RECORD),
         code(DEMO_VERIFY),
-        md("### The derived table\n\nOne row per candidate, from the database. Years, band, country, and CFA status are computed in code from the extracted record, never asked of the LLM."),
+        md("### The derived table\n\nOne row per candidate, straight from the database. Years, band, country, and CFA status are all computed in code from the extracted record. The LLM is never asked for them."),
         code(DEMO_TABLE),
-        md("### Search\n\nThree requisitions built by hand, with no JD parsing and no API call. Columns: `final` is the blend, `rule` the preferred-criteria score, `kw` the BM25 score, `emb` the embedding score, each on 0 to 1 within the pruned set. `+` and `-` mark chips that matched and did not. A requisition with no free text drops `kw` and `emb`. When a requisition has only must criteria, as in the third search, every survivor scores 1.0 and the tie is broken by name."),
+        md("### Search\n\nThree requisitions built by hand, no JD parsing, no API call. `final` is the blend, `rule` the preferred-criteria score, `kw` BM25, `emb` the embedding score, each scaled 0 to 1 within the pruned set. `+` and `-` mark chips that matched and did not. No free text means no `kw` and no `emb`. And when a requisition is all must criteria, as in the third search, every survivor scores 1.0 and the tie goes to name order."),
         code(DEMO_SEARCH),
-        md("### Insights\n\nTwo of the Insights page's charts. The tables print the same numbers, so the cell is readable where plots do not render."),
+        md("### Insights\n\nTwo of the charts from the Insights page. The tables print the same numbers, so the cell still reads where plots do not render."),
         code(DEMO_INSIGHTS),
-        md("### Evaluation metrics\n\nRead from the latest files in `evals/results/`. Parsing first: per-field accuracy from the Opus judge."),
+        md("### Evaluation metrics\n\nRead from the latest files in `evals/results/`. Parsing first, per-field accuracy as graded by Opus."),
         code(DEMO_EVALS),
-        md("Judge against the human grades, on the three hand-graded resumes."),
+        md("The judge against my hand grades on the three calibration resumes."),
         code(DEMO_AGREEMENT),
-        md("Ranking: nDCG@5 and P@3 per requisition for the full blend and the three single-signal ablations."),
+        md("Ranking: nDCG@5 and P@3 per requisition, full blend next to the three single-signal ablations."),
         code(DEMO_RANKING),
         md(text.LLM_INTRO),
         md("#### Parse one resume end to end"),

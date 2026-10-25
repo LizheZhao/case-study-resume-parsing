@@ -123,7 +123,7 @@ def this_run(df: pd.DataFrame) -> None:
 
 def history(df: pd.DataFrame) -> None:
     with st.expander(f"Job history ({len(df)} jobs)"):
-        everything = st.toggle("Show every job", help="Off shows the latest job per file.")
+        everything = st.toggle("Show every job", help="Off shows only the latest job for each file.")
         shown = df if everything else df.drop_duplicates("source_file")
         st.dataframe(shown, hide_index=True, column_config=STATUS_COLUMN)
 
@@ -138,7 +138,7 @@ def panel() -> None:
 
 
 if running:
-    st.info("Ingest running. The table refreshes every 2 seconds.")
+    st.info("Ingest is running. The table refreshes itself every 2 seconds.")
     st.fragment(run_every=2)(panel)()
 else:
     if holder is not None and not holder.get("handled"):

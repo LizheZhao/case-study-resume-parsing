@@ -5,50 +5,79 @@
     "file_sha256": "3c85961c484c061e734be36e83e2969b6b9e8437150a81211831c4ddbe38995a",
     "file_bytes": 23476,
     "page_count": 1,
-    "parsed_at": "2026-10-25T13:02:37+00:00",
+    "parsed_at": "2026-10-25T20:58:24+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v2",
-    "schema_version": 1,
+    "prompt_version": "v7",
+    "schema_version": 2,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 2613,
+        "latency_ms": 6311,
         "input_tokens": 1306,
-        "output_tokens": 265,
+        "output_tokens": 304,
         "error": null,
-        "cache_read_tokens": 2383,
-        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 2906,
         "call": "profile"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 8665,
+        "latency_ms": 12875,
         "input_tokens": 1266,
-        "output_tokens": 1745,
+        "output_tokens": 1820,
         "error": null,
-        "cache_read_tokens": 2851,
-        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 4578,
         "call": "experience"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 10467,
-        "input_tokens": 3319,
-        "output_tokens": 1590,
+        "latency_ms": 3097,
+        "input_tokens": 1590,
+        "output_tokens": 364,
         "error": null,
-        "cache_read_tokens": 1453,
+        "cache_read_tokens": 1379,
         "cache_creation_tokens": 0,
+        "call": "regen:skills"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 10604,
+        "input_tokens": 3459,
+        "output_tokens": 1558,
+        "error": null,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 1884,
         "call": "assessment"
       }
     ],
     "verification": {
-      "checks_run": 16,
-      "disagreements": 0,
-      "regenerated": 0,
+      "checks_run": 18,
+      "disagreements": 1,
+      "regenerated": 1,
       "unresolved": [],
-      "details": []
+      "details": [
+        {
+          "field": "skills",
+          "llm_value": {
+            "programming": [],
+            "tools": [],
+            "domain": [
+              "Financial modeling & analysis",
+              "healthcare industry domain expertise",
+              "public equities",
+              "private transactions"
+            ]
+          },
+          "text_value": [
+            "due-diligence",
+            "financial-modeling",
+            "valuation"
+          ]
+        }
+      ]
     },
     "text_quality": {
       "unknown_ratio_before": 0.010256410256410256,
@@ -68,12 +97,25 @@
     "education": [
       {
         "institution": "Harvard University",
-        "degree": "Bachelor of Arts in Economics",
+        "degree": "Bachelor of Arts",
         "degree_level": "Bachelors",
         "field": "Economics",
+        "minor_fields": [
+          "Molecular Biology"
+        ],
         "start": null,
         "end": "2013",
         "country": "US"
+      },
+      {
+        "institution": "Stanford University",
+        "degree": "Summer Program: Healthcare Innovation, Biotechnology Commercialization",
+        "degree_level": "Other",
+        "field": "Healthcare Innovation, Biotechnology Commercialization",
+        "minor_fields": [],
+        "start": null,
+        "end": null,
+        "country": null
       }
     ],
     "skills": {
@@ -84,18 +126,9 @@
         "healthcare industry domain expertise",
         "public equities",
         "private transactions",
-        "financial modeling",
-        "investment analyses",
         "due diligence",
-        "underwriting",
-        "asset management",
         "corporate valuation",
-        "M&A",
-        "IPOs",
-        "follow-on offerings",
-        "structured credit",
-        "growth equity",
-        "royalty financings"
+        "underwriting"
       ]
     },
     "certifications": [],
@@ -106,12 +139,17 @@
         "title": "Healthcare Analyst, Investment Team",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2019-10",
-        "end": null,
+        "start": [
+          "2019-10"
+        ],
+        "end": [
+          null
+        ],
         "is_current": true,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Hedge fund",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -127,8 +165,7 @@
           "Life Sciences Tools & Diagnostics",
           "MedTech",
           "Therapeutics & Services",
-          "Digital Health",
-          "AI-enabled diagnostics"
+          "Digital Health & AI-enabled diagnostics"
         ],
         "markets_covered": [],
         "duration_months": null,
@@ -145,12 +182,17 @@
         "title": "Senior Associate, Investment Team",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2019-01",
-        "end": "2019-09",
+        "start": [
+          "2019-01"
+        ],
+        "end": [
+          "2019-09"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side bank",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Credit",
           "Equities"
@@ -178,12 +220,17 @@
         "title": "Associate, Investment Team",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2017-04",
-        "end": "2018-12",
+        "start": [
+          "2017-04"
+        ],
+        "end": [
+          "2018-12"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side bank",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Credit",
           "Equities"
@@ -211,12 +258,17 @@
         "title": "Analyst, Healthcare Investment Banking Group",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2013-06",
-        "end": "2015-03",
+        "start": [
+          "2013-06"
+        ],
+        "end": [
+          "2015-03"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "adjacent",
         "firm_type": "Sell-side bank",
+        "firm_hq_country": "CH",
         "asset_classes": [
           "Equities"
         ],
@@ -224,7 +276,7 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "Analyst, Healthcare Investment Banking Group"
+              "quote": "Provided client coverage in therapeutics, medical devices and healthcare services for acquisitions and financings"
             }
           }
         ],
@@ -249,6 +301,6 @@
         "quote": "Led due diligence on 12 potential investments with total transaction value of $2.1B across public and private healthcare opportunities"
       }
     },
-    "search_summary": "Principal fundamental healthcare analyst (11.4y relevant). Covers equities and credit in healthcare, including Life Sciences Tools & Diagnostics, MedTech, Therapeutics & Services, Digital Health and AI-enabled diagnostics. Currently Healthcare Analyst, Investment Team at Coatue Management (hedge fund). Generated 340bps of outperformance versus healthcare benchmarks with 85% hit rate on long recommendations; led due diligence on 12 investments totaling $2.1B; executed 8 transactions worth $12B+ at Credit Suisse. Holds a Bachelor of Arts in Economics from Harvard University; no certifications listed."
+    "search_summary": "Principal fundamental healthcare analyst (11.1y relevant). Covers equities and credit across healthcare, including Life Sciences Tools & Diagnostics, MedTech, Therapeutics & Services and Digital Health. Current employer is Coatue Management (hedge fund), title Healthcare Analyst, Investment Team. At Coatue, generated 340bps of outperformance versus healthcare sector benchmarks with an 85% hit rate on long recommendations and led due diligence on 12 potential investments totaling $2.1B. Skills include financial modeling and analysis, corporate valuation and underwriting. Holds a Bachelor of Arts in Economics from Harvard University."
   }
 }

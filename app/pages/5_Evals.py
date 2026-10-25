@@ -32,7 +32,7 @@ def show_parsing(doc: dict) -> None:
     cols[1].metric("Field accuracy", f"{m['accuracy']:.0%}")
     cols[2].metric("Soft accuracy", f"{m['soft_accuracy']:.0%}")
     cols[3].metric("Hallucinated / missing", f"{m['hallucinated']} / {m['missing']}")
-    st.markdown("**Per-field accuracy.** Accuracy is correct over total; soft counts partial as half.")
+    st.markdown("**Per-field accuracy.** Accuracy is correct over total. Soft accuracy gives half credit for partial.")
     st.dataframe(
         pd.DataFrame(m["per_field"]).T.rename_axis("field").reset_index(),
         hide_index=True, column_config={
@@ -60,8 +60,8 @@ def show_parsing(doc: dict) -> None:
             st.markdown("**Disagreements.**")
             st.dataframe(pd.DataFrame(rows), hide_index=True)
     else:
-        st.info("No human grades found for these candidates (evals/gold/parsing_human.jsonl).")
-    st.markdown("**Per candidate.** The judge's grade and reason for every field.")
+        st.info("No hand grades for these candidates in evals/gold/parsing_human.jsonl, so no agreement to show.")
+    st.markdown("**Per candidate.** Every field, with the judge's grade and its one-line reason.")
     for item in sorted(doc["items"], key=lambda i: i["accuracy"]):
         label = f"{item['name']}: {item['accuracy']:.0%} correct, {item['soft_accuracy']:.0%} soft"
         with st.expander(label):
@@ -71,7 +71,7 @@ def show_parsing(doc: dict) -> None:
 def show_ranking(doc: dict) -> None:
     m = doc["metrics"]
     items = doc["items"]
-    st.markdown("**nDCG@5 and P@3 by requisition.** Same judged pool and grades for every variant.")
+    st.markdown("**nDCG@5 and P@3 by requisition.** Every variant is scored on the same judged pool with the same grades.")
     rows = [
         {"requisition": i["title"], "pool": i["pool_size"], "relevant": i["relevant_in_pool"],
          **{f"{label} nDCG@5": i[f"{v}_ndcg5"] for v, label in VARIANTS.items()},
@@ -98,8 +98,8 @@ st.header("Eval results")
 found = {s: latest_result(RESULTS, s) for s in SUITES}
 if not any(found.values()):
     st.info(
-        "No eval results yet. Run `uv run resume-search eval run --suite all`; it writes "
-        "evals/results/<suite>-<timestamp>.json and this page shows the latest file per suite."
+        "No eval results yet. Run `uv run resume-search eval run --suite all`. It writes "
+        "evals/results/<suite>-<timestamp>.json, and this page picks up the latest file per suite."
     )
 for suite, hit in found.items():
     if hit is None:
@@ -110,7 +110,7 @@ for suite, hit in found.items():
     try:
         SHOW[suite](doc)
     except (KeyError, TypeError) as exc:
-        st.error(f"{path.name} does not match the expected format: {exc!r}")
+        st.error(f"{path.name} is not in the shape this page expects: {exc!r}")
     with st.expander("Raw JSON"):
         st.json(doc)
 

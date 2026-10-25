@@ -5,58 +5,68 @@
     "file_sha256": "595961ed436ed4c9fe7b6ba4de0323e812a0eac0add421671f449b8235bd22ec",
     "file_bytes": 26003,
     "page_count": 1,
-    "parsed_at": "2026-10-25T13:04:22+00:00",
+    "parsed_at": "2026-10-25T20:59:00+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v2",
-    "schema_version": 1,
+    "prompt_version": "v7",
+    "schema_version": 2,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 3460,
+        "latency_ms": 3228,
         "input_tokens": 1257,
-        "output_tokens": 406,
+        "output_tokens": 407,
         "error": null,
-        "cache_read_tokens": 2383,
+        "cache_read_tokens": 2906,
         "cache_creation_tokens": 0,
         "call": "profile"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 26588,
+        "latency_ms": 9914,
         "input_tokens": 1226,
-        "output_tokens": 4310,
+        "output_tokens": 2055,
         "error": null,
-        "cache_read_tokens": 2851,
+        "cache_read_tokens": 4578,
         "cache_creation_tokens": 0,
         "call": "experience"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 3685,
-        "input_tokens": 1522,
-        "output_tokens": 314,
+        "latency_ms": 3026,
+        "input_tokens": 1466,
+        "output_tokens": 341,
         "error": null,
-        "cache_read_tokens": 1236,
+        "cache_read_tokens": 1379,
         "cache_creation_tokens": 0,
         "call": "regen:skills"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 10948,
-        "input_tokens": 3701,
-        "output_tokens": 1143,
+        "latency_ms": 14168,
+        "input_tokens": 3589,
+        "output_tokens": 2727,
         "error": null,
-        "cache_read_tokens": 1453,
+        "cache_read_tokens": 4578,
+        "cache_creation_tokens": 0,
+        "call": "regen:experience"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 10184,
+        "input_tokens": 3892,
+        "output_tokens": 1629,
+        "error": null,
+        "cache_read_tokens": 1884,
         "cache_creation_tokens": 0,
         "call": "assessment"
       }
     ],
     "verification": {
-      "checks_run": 32,
-      "disagreements": 1,
-      "regenerated": 1,
+      "checks_run": 30,
+      "disagreements": 2,
+      "regenerated": 2,
       "unresolved": [],
       "details": [
         {
@@ -64,14 +74,48 @@
           "llm_value": {
             "programming": [],
             "tools": [],
-            "domain": [
-              "equity analysis",
-              "sector-agnostic investment approach",
-              "strategic market analysis"
-            ]
+            "domain": []
           },
           "text_value": [
             "machine-learning"
+          ]
+        },
+        {
+          "field": "experience",
+          "llm_value": [
+            [
+              "Axis Mutual Fund (US$1.2 billion+)",
+              2
+            ],
+            [
+              "Meridian Capital",
+              10
+            ],
+            [
+              "ICICI Securities Limited",
+              106
+            ],
+            [
+              "BioAnalytics Research India Ltd.",
+              7
+            ],
+            [
+              "Prism Asset Management Pvt Ltd.",
+              3
+            ],
+            [
+              "Reliance Infrastructure Ltd.",
+              2
+            ]
+          ],
+          "text_value": [
+            2,
+            10,
+            106,
+            7,
+            8,
+            3,
+            2
           ]
         }
       ]
@@ -97,33 +141,37 @@
         "degree": "PGDM",
         "degree_level": "Masters",
         "field": null,
+        "minor_fields": [],
         "start": null,
         "end": "2015",
         "country": "IN"
       },
       {
-        "institution": "Padmashree Dr.D.Y.Patil Institute of Biotechnology and Bioinformatics",
+        "institution": "Padmashree Dr.D.Y.Patil Institute of Biotechnology and Bioinformatics, Navi Mumbai",
         "degree": "M.Tech(Integrated)",
         "degree_level": "Masters",
         "field": null,
+        "minor_fields": [],
         "start": null,
         "end": "2010",
         "country": "IN"
       },
       {
-        "institution": "Bharti Vidyapeeth junior college",
+        "institution": "Bharti Vidyapeeth junior college, Navi Mumbai",
         "degree": "HSC",
         "degree_level": "Other",
         "field": null,
+        "minor_fields": [],
         "start": null,
         "end": "2006",
         "country": "IN"
       },
       {
-        "institution": "Don Bosco High School",
+        "institution": "Don Bosco High School, Navi Mumbai",
         "degree": "SSC",
         "degree_level": "Other",
         "field": null,
+        "minor_fields": [],
         "start": null,
         "end": "2004",
         "country": "IN"
@@ -133,10 +181,7 @@
       "programming": [],
       "tools": [],
       "domain": [
-        "equity analysis",
-        "sector-agnostic investment approach",
-        "strategic market analysis",
-        "machine learning"
+        "Machine Learning"
       ]
     },
     "certifications": [
@@ -149,12 +194,13 @@
         "title": "Research Analyst",
         "location_text": null,
         "country": null,
-        "start": null,
-        "end": null,
+        "start": [],
+        "end": [],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Asset manager",
+        "firm_hq_country": "IN",
         "asset_classes": [
           "Equities"
         ],
@@ -162,13 +208,13 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "Pharmaceuticals and Specialty Chemicals"
+              "quote": "Covering Pharmaceuticals and Specialty Chemicals"
             }
           },
           {
-            "label": "Other",
+            "label": "Materials",
             "evidence": {
-              "quote": "Pharmaceuticals and Specialty Chemicals"
+              "quote": "Covering Pharmaceuticals and Specialty Chemicals"
             }
           }
         ],
@@ -187,12 +233,13 @@
         "title": "Research analyst",
         "location_text": null,
         "country": null,
-        "start": null,
-        "end": null,
+        "start": [],
+        "end": [],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
-        "firm_type": "Sell-side broker",
+        "firm_type": "Other",
+        "firm_hq_country": null,
         "asset_classes": [
           "Equities"
         ],
@@ -200,13 +247,13 @@
           {
             "label": "Energy",
             "evidence": {
-              "quote": "sector report on renewable energy"
+              "quote": "Completed comprehensive sector report on renewable energy (~120 pages)"
             }
           },
           {
             "label": "Industrials",
             "evidence": {
-              "quote": "Indian infrastructure sector"
+              "quote": "published detailed analysis on Indian infrastructure sector"
             }
           }
         ],
@@ -218,7 +265,7 @@
           {
             "label": "IN",
             "evidence": {
-              "quote": "Indian infrastructure sector"
+              "quote": "published detailed analysis on Indian infrastructure sector"
             }
           }
         ],
@@ -232,12 +279,13 @@
         "title": "Research Analyst",
         "location_text": null,
         "country": null,
-        "start": null,
-        "end": null,
+        "start": [],
+        "end": [],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side broker",
+        "firm_hq_country": "IN",
         "asset_classes": [
           "Equities"
         ],
@@ -282,13 +330,14 @@
         "employer": "BioAnalytics Research India Ltd.",
         "title": "Biomodeller Trainee",
         "location_text": null,
-        "country": "IN",
-        "start": null,
-        "end": null,
+        "country": null,
+        "start": [],
+        "end": [],
         "is_current": false,
-        "employment_type": "full_time",
-        "relevance": "adjacent",
-        "firm_type": "Other",
+        "employment_type": "internship",
+        "relevance": "unrelated",
+        "firm_type": "Corporate",
+        "firm_hq_country": "IN",
         "asset_classes": [],
         "sectors": [],
         "other_sector_tags": [],
@@ -301,14 +350,15 @@
       {
         "employer": "Mumbai Cancer Research Institute (MCRI)",
         "title": "Research Associate",
-        "location_text": "Mumbai",
-        "country": "IN",
-        "start": null,
-        "end": null,
+        "location_text": null,
+        "country": null,
+        "start": [],
+        "end": [],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "unrelated",
         "firm_type": "Other",
+        "firm_hq_country": null,
         "asset_classes": [],
         "sectors": [],
         "other_sector_tags": [],
@@ -323,12 +373,13 @@
         "title": "Summer Internship Project",
         "location_text": null,
         "country": null,
-        "start": null,
-        "end": null,
+        "start": [],
+        "end": [],
         "is_current": false,
         "employment_type": "internship",
         "relevance": "core",
         "firm_type": "Asset manager",
+        "firm_hq_country": "IN",
         "asset_classes": [
           "Equities"
         ],
@@ -336,7 +387,7 @@
           {
             "label": "Technology",
             "evidence": {
-              "quote": "Indian Technology Sector"
+              "quote": "Comprehensive equity analysis of Indian Technology Sector"
             }
           }
         ],
@@ -345,7 +396,7 @@
           {
             "label": "IN",
             "evidence": {
-              "quote": "Indian Technology Sector"
+              "quote": "Comprehensive equity analysis of Indian Technology Sector"
             }
           }
         ],
@@ -359,18 +410,19 @@
         "title": "Concurrent Project",
         "location_text": null,
         "country": null,
-        "start": null,
-        "end": null,
+        "start": [],
+        "end": [],
         "is_current": false,
         "employment_type": "internship",
         "relevance": "adjacent",
         "firm_type": "Corporate",
+        "firm_hq_country": "IN",
         "asset_classes": [],
         "sectors": [
           {
             "label": "Energy",
             "evidence": {
-              "quote": "Indian Renewable Energy Companies"
+              "quote": "Strategic market analysis of Indian Renewable Energy Companies."
             }
           }
         ],
@@ -381,7 +433,7 @@
           {
             "label": "IN",
             "evidence": {
-              "quote": "Indian Renewable Energy Companies"
+              "quote": "Strategic market analysis of Indian Renewable Energy Companies."
             }
           }
         ],
@@ -397,6 +449,6 @@
         "quote": "Applied sector-agnostic investment approach focusing on company fundamentals regardless of market capitalization constraints"
       }
     },
-    "search_summary": "Principal fundamental equity analyst (10.4y relevant). Covers equities in healthcare, pharmaceuticals, specialty chemicals, renewable energy, oil and gas, logistics, alcobev and infrastructure. Markets covered: India. Most recent employer is Axis Mutual Fund (asset manager), title Research Analyst. Maintained coverage of 42 stocks at ICICI Securities, tracked 38 healthcare portfolio companies at Axis, and wrote a ~120-page renewable energy sector report within 3 months. Holds a PGDM from Mumbai Institute of Management Studies and Research; Chartered Financial Analyst Level 3 (CFA, USA)."
+    "search_summary": "Senior fundamental equity analyst (9.8y relevant). Covers equities across healthcare, materials, energy, industrials and consumer sectors. Markets covered include India. Most recent listed employer is Axis Mutual Fund (asset manager), title Research Analyst. At ICICI Securities Limited, maintained coverage of 42 stocks and advanced from research associate to lead analyst within 3 years; at Axis Mutual Fund, tracked 38 healthcare fund portfolio companies. Skills include Machine Learning. Holds a PGDM from Mumbai Institute of Management Studies and Research; completed Chartered Financial Analyst Level 3 (CFA, USA)."
   }
 }

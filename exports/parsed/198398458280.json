@@ -5,56 +5,56 @@
     "file_sha256": "198398458280dae94af473c292c966e71fd3df2a4f8d46a091a5ec63182e302f",
     "file_bytes": 20184,
     "page_count": 1,
-    "parsed_at": "2026-10-25T13:03:44+00:00",
+    "parsed_at": "2026-10-25T20:58:43+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v2",
-    "schema_version": 1,
+    "prompt_version": "v7",
+    "schema_version": 2,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 10107,
+        "latency_ms": 2180,
         "input_tokens": 1419,
         "output_tokens": 276,
         "error": null,
-        "cache_read_tokens": 2383,
+        "cache_read_tokens": 2906,
         "cache_creation_tokens": 0,
         "call": "profile"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 19991,
+        "latency_ms": 9302,
         "input_tokens": 1389,
-        "output_tokens": 1775,
+        "output_tokens": 1870,
         "error": null,
-        "cache_read_tokens": 2851,
+        "cache_read_tokens": 4578,
         "cache_creation_tokens": 0,
         "call": "experience"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 3981,
+        "latency_ms": 3974,
         "input_tokens": 1783,
-        "output_tokens": 454,
+        "output_tokens": 518,
         "error": null,
-        "cache_read_tokens": 1236,
+        "cache_read_tokens": 1379,
         "cache_creation_tokens": 0,
         "call": "regen:skills"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 8848,
-        "input_tokens": 3551,
-        "output_tokens": 1434,
+        "latency_ms": 8947,
+        "input_tokens": 3635,
+        "output_tokens": 1462,
         "error": null,
-        "cache_read_tokens": 1453,
+        "cache_read_tokens": 1884,
         "cache_creation_tokens": 0,
         "call": "assessment"
       }
     ],
     "verification": {
-      "checks_run": 18,
+      "checks_run": 19,
       "disagreements": 1,
       "regenerated": 1,
       "unresolved": [],
@@ -109,6 +109,7 @@
         "degree": "Bachelor of Science in Business Administration",
         "degree_level": "Bachelors",
         "field": "Business Administration",
+        "minor_fields": [],
         "start": null,
         "end": "2014-05",
         "country": "US"
@@ -124,17 +125,15 @@
       "domain": [
         "Financial Modeling",
         "DCF",
-        "comparable company analysis",
-        "sum-of-the-parts valuation",
+        "comparable company",
+        "sum-of-the-parts",
         "fundamental research",
-        "fundamental analysis",
         "financial KPI analysis",
         "alternative data tracking",
         "macroeconomic trend analysis",
         "valuation analysis",
         "IPO due diligence",
-        "equity research",
-        "long/short equity"
+        "equity research"
       ]
     },
     "certifications": [
@@ -156,12 +155,17 @@
         "title": "Investment Analyst",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2021-09",
-        "end": null,
+        "start": [
+          "2021-09"
+        ],
+        "end": [
+          null
+        ],
         "is_current": true,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Hedge fund",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -193,12 +197,17 @@
         "title": "Equity Research, U.S. Internet & Interactive Entertainment – Associate",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2019-02",
-        "end": "2021-09",
+        "start": [
+          "2019-02"
+        ],
+        "end": [
+          "2021-09"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side bank",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -206,7 +215,7 @@
           {
             "label": "Technology",
             "evidence": {
-              "quote": "Supporting coverage of technology and media sectors"
+              "quote": "Supporting coverage of technology and media sectors for Institutional Investor ranked equity analyst team"
             }
           }
         ],
@@ -229,12 +238,17 @@
         "title": "U.S. Equity, Business Management – Associate",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2017-07",
-        "end": "2019-02",
+        "start": [
+          "2017-07"
+        ],
+        "end": [
+          "2019-02"
+        ],
         "is_current": false,
         "employment_type": "full_time",
-        "relevance": "core",
+        "relevance": "adjacent",
         "firm_type": "Asset manager",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -253,12 +267,17 @@
         "title": "Office of the CFO, Strategy and Analytics – Analyst",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2016-05",
-        "end": "2017-07",
+        "start": [
+          "2016-05"
+        ],
+        "end": [
+          "2017-07"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "adjacent",
         "firm_type": "Sell-side bank",
+        "firm_hq_country": "US",
         "asset_classes": [],
         "sectors": [],
         "other_sector_tags": [],
@@ -273,12 +292,17 @@
         "title": "Corporate Development & Transaction Services (CDTS) – Analyst",
         "location_text": "New York, NY",
         "country": "US",
-        "start": "2014-08",
-        "end": "2016-05",
+        "start": [
+          "2014-08"
+        ],
+        "end": [
+          "2016-05"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "adjacent",
         "firm_type": "Consulting",
+        "firm_hq_country": "GB",
         "asset_classes": [],
         "sectors": [],
         "other_sector_tags": [],
@@ -292,9 +316,9 @@
     "investment_approach": {
       "label": "Fundamental",
       "evidence": {
-        "quote": "Source investment ideas through fundamental research, financial KPI analysis, alternative data tracking, and macroeconomic trend analysis across covered sectors"
+        "quote": "Source investment ideas through fundamental research, financial KPI analysis, alternative data tracking, and macroeconomic trend analysis"
       }
     },
-    "search_summary": "Principal fundamental equity analyst (12.2y relevant). Focus on equities in technology and media, with emphasis on cloud computing and digital advertising. Currently Investment Analyst at Cinctive Capital Management (hedge fund). Standout skills: long/short equity coverage of ~75 Technology/Media stocks, DCF, comparable company and sum-of-the-parts valuation, and support of IPO due diligence for eight transactions at Goldman Sachs. Holds a Bachelor of Science in Business Administration from Northwestern University - Kellogg School of Management; CFA Charterholder."
+    "search_summary": "Principal fundamental equity analyst (12.2y relevant). Covers equities in technology and media, including cloud computing and digital advertising. Current employer is Cinctive Capital Management (hedge fund), title Investment Analyst. At Cinctive, deploys a long/short equity strategy across ~75 Technology/Media stocks with portfolio managers; at Goldman Sachs, supported IPO due diligence for eight investment banking transactions. Skills include Bloomberg, FactSet, DCF and comparable company valuation. Holds a Bachelor of Science in Business Administration from Northwestern University - Kellogg School of Management, and is a CFA Charterholder."
   }
 }

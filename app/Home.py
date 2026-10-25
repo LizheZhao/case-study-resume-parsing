@@ -12,9 +12,9 @@ PAGES = (
 st.set_page_config(page_title="Resume Search", layout="wide")
 st.title("Candidate resume search")
 st.write(
-    "Find hedge fund candidates for a role. Each resume is read into a structured profile, so "
-    "you can filter by location, seniority, sector and skills, then rank candidates by how well "
-    "they fit a job description."
+    "Find candidates for a role. Every resume has been read into a structured profile, so you "
+    "can filter on location, seniority, sector and skills, then rank whoever is left by how well "
+    "they fit the job description you paste in."
 )
 
 n_cand = common.conn().execute("SELECT COUNT(*) FROM candidates").fetchone()[0]
@@ -27,4 +27,4 @@ with st.container(border=True):
         link.page_link(path, label=label, icon=icon)
         text.caption(purpose)
 
-st.caption(f"Database: {common.db_path()} (set RESUME_DB to change)")
+st.caption(f"Reading {common.db_path()}. Set RESUME_DB to point somewhere else.")

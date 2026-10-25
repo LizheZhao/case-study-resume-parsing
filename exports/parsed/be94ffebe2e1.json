@@ -5,56 +5,56 @@
     "file_sha256": "be94ffebe2e1076bc32f5b8e6415588309266fbd9690e766ee438de0281522a9",
     "file_bytes": 18400,
     "page_count": 1,
-    "parsed_at": "2026-10-25T13:02:45+00:00",
+    "parsed_at": "2026-10-25T20:58:19+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v2",
-    "schema_version": 1,
+    "prompt_version": "v7",
+    "schema_version": 2,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 3810,
+        "latency_ms": 5181,
         "input_tokens": 1244,
         "output_tokens": 322,
         "error": null,
-        "cache_read_tokens": 2383,
-        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 2906,
         "call": "profile"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 7833,
+        "latency_ms": 11447,
         "input_tokens": 1209,
-        "output_tokens": 1560,
+        "output_tokens": 1642,
         "error": null,
-        "cache_read_tokens": 2851,
-        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 4578,
         "call": "experience"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 11036,
+        "latency_ms": 4018,
         "input_tokens": 1537,
-        "output_tokens": 450,
+        "output_tokens": 462,
         "error": null,
-        "cache_read_tokens": 1236,
-        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 1379,
         "call": "regen:skills"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 8616,
-        "input_tokens": 3138,
-        "output_tokens": 1006,
+        "latency_ms": 9095,
+        "input_tokens": 3238,
+        "output_tokens": 1213,
         "error": null,
-        "cache_read_tokens": 1453,
-        "cache_creation_tokens": 0,
+        "cache_read_tokens": 0,
+        "cache_creation_tokens": 1884,
         "call": "assessment"
       }
     ],
     "verification": {
-      "checks_run": 15,
+      "checks_run": 16,
       "disagreements": 1,
       "regenerated": 1,
       "unresolved": [],
@@ -107,6 +107,7 @@
         "degree": "Master of business administration (MBA)",
         "degree_level": "MBA",
         "field": null,
+        "minor_fields": [],
         "start": "2019-08",
         "end": "2021-05",
         "country": "US"
@@ -116,6 +117,7 @@
         "degree": "BS in Economics",
         "degree_level": "Bachelors",
         "field": "Economics",
+        "minor_fields": [],
         "start": "2013",
         "end": "2016",
         "country": "BR"
@@ -156,13 +158,18 @@
         "employer": "Vanguard Group",
         "title": "Equity Research Analyst",
         "location_text": "Boston, USA / London, United Kingdom",
-        "country": "GB",
-        "start": "2021-08",
-        "end": null,
+        "country": null,
+        "start": [
+          "2021-08"
+        ],
+        "end": [
+          null
+        ],
         "is_current": true,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Asset manager",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -213,13 +220,18 @@
         "employer": "Vanguard Group",
         "title": "Equity Research Summer Analyst",
         "location_text": "Boston, USA / London, United Kingdom",
-        "country": "GB",
-        "start": "2020-06",
-        "end": "2020-08",
+        "country": null,
+        "start": [
+          "2020-06"
+        ],
+        "end": [
+          "2020-08"
+        ],
         "is_current": false,
         "employment_type": "internship",
         "relevance": "core",
         "firm_type": "Asset manager",
+        "firm_hq_country": "US",
         "asset_classes": [
           "Equities"
         ],
@@ -245,26 +257,39 @@
         "title": "Business Analyst",
         "location_text": "Sao Paulo, Brazil",
         "country": "BR",
-        "start": "2016",
-        "end": "2019",
+        "start": [
+          "2016"
+        ],
+        "end": [
+          "2019"
+        ],
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "adjacent",
         "firm_type": "Consulting",
+        "firm_hq_country": "US",
         "asset_classes": [],
-        "sectors": [],
-        "other_sector_tags": [],
+        "sectors": [
+          {
+            "label": "Consumer",
+            "evidence": {
+              "quote": "Analyzed growth potential of e-commerce sales at major electronics retailer"
+            }
+          }
+        ],
+        "other_sector_tags": [
+          "Retail",
+          "Consumer Electronics"
+        ],
         "markets_covered": [],
         "duration_months": null,
         "bullets": [
-          "Consumer",
           "Analyzed growth potential of e-commerce sales at major electronics retailer by proposing and estimating the impact of digital transformation initiatives such as omnichannel strategy, enhanced product recommendations and optimized logistics network",
           "Examined market and consumer trends affecting retail technology company for next 8 years, by consulting industry expert networks and identifying best practices; strategic framework was published in internal knowledge repository",
           "Built a dynamic pricing tool for a major consumer electronics company, to recommend price adjustments for each of the 35 main product categories, across 4 distribution channels and 180+ regional markets",
           "Redesigned customer service processes for major retail chain, creating standardized protocols, optimizing staffing levels, and developing workforce scheduling tool; during pilot implementation, coached store managers to ensure successful change management",
           "Implemented strategic sourcing transformation at major grocery chain, leading cross-functional teams of 3-4 client members in each product category to deliver ~4 percentage points of gross margin improvement",
           "Supervised progress of initiatives in supply chain optimization engagement for retail client, and in digital transformation program for logistics provider, managing junior client teams and ensuring execution excellence",
-          "Strategy & Operations – excluding consumer",
           "Developed a recommendation for a major infrastructure player regarding entrance in a new segment, by mapping main players, margins, current and potential market size, capabilities required, and investment needed",
           "Investigated structure and functioning of more than 15 loyalty programs, by interviewing colleagues from all over the world, and reaching out to market experts, to redesign loyalty program of a banking client",
           "Managed progress of 200+ initiatives in a large-scale lean manufacturing engagement for an aerospace player, by coordinating work of directors and managers of the company",
@@ -278,6 +303,6 @@
         "quote": "Develops investment recommendations on publicly traded companies through fundamental research including financial modeling and proprietary studies"
       }
     },
-    "search_summary": "Senior fundamental equity research analyst (8.2y relevant). Covers equities in healthcare, consumer, technology and telecom, plus water technology during an earlier internship. Markets covered: LatAm and EMEA. Currently Equity Research Analyst at Vanguard Group (asset manager). Skills include financial modeling, proprietary studies, and Python, R and VBA; built a dynamic pricing tool across 35 product categories and 180+ regional markets at Bain. Holds an MBA from MIT Sloan School of Management; no certifications listed."
+    "search_summary": "Senior fundamental equity research analyst (8.2y relevant). Covers equities in healthcare, consumer discretionary and telecom. Markets covered are LatAm and EMEA. Currently an Equity Research Analyst at Vanguard Group (asset manager). At Vanguard Group, work includes financial modeling and proprietary studies. At Bain & Company, built a dynamic pricing tool spanning 35 product categories, 4 distribution channels and 180+ regional markets. Skills include Python, R, VBA and Excel. Holds an MBA from MIT Sloan School of Management."
   }
 }

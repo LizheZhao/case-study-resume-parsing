@@ -5,46 +5,46 @@
     "file_sha256": "05c2a9b47e801013b8f27a8261200d5c9b8df4272f7e9b1825555b3ca9a7e79b",
     "file_bytes": 146198,
     "page_count": 1,
-    "parsed_at": "2026-10-25T13:03:11+00:00",
+    "parsed_at": "2026-10-25T20:58:59+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v2",
-    "schema_version": 1,
+    "prompt_version": "v7",
+    "schema_version": 2,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 11567,
+        "latency_ms": 6140,
         "input_tokens": 704,
-        "output_tokens": 504,
+        "output_tokens": 1015,
         "error": null,
-        "cache_read_tokens": 2383,
+        "cache_read_tokens": 2906,
         "cache_creation_tokens": 0,
         "call": "profile"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 9188,
+        "latency_ms": 4128,
         "input_tokens": 668,
-        "output_tokens": 1502,
+        "output_tokens": 704,
         "error": null,
-        "cache_read_tokens": 2851,
+        "cache_read_tokens": 4578,
         "cache_creation_tokens": 0,
         "call": "experience"
       },
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 14251,
-        "input_tokens": 1872,
-        "output_tokens": 1072,
+        "latency_ms": 9770,
+        "input_tokens": 1917,
+        "output_tokens": 1410,
         "error": null,
-        "cache_read_tokens": 1453,
+        "cache_read_tokens": 1884,
         "cache_creation_tokens": 0,
         "call": "assessment"
       }
     ],
     "verification": {
-      "checks_run": 16,
+      "checks_run": 17,
       "disagreements": 0,
       "regenerated": 0,
       "unresolved": [],
@@ -71,6 +71,7 @@
         "degree": "Diplôme d'Ingénieur",
         "degree_level": "Masters",
         "field": "Financial Engineering",
+        "minor_fields": [],
         "start": "2019-09",
         "end": "2022-09",
         "country": "FR"
@@ -80,6 +81,7 @@
         "degree": "Master's degree",
         "degree_level": "Masters",
         "field": "Quantitative Finance",
+        "minor_fields": [],
         "start": "2021-09",
         "end": "2022-09",
         "country": "FR"
@@ -89,6 +91,7 @@
         "degree": "Preparatory Classes",
         "degree_level": "Other",
         "field": "Mathematics and Physics",
+        "minor_fields": [],
         "start": "2017-09",
         "end": "2019-07",
         "country": "MA"
@@ -98,11 +101,11 @@
       "programming": [
         "C++",
         "C#",
-        "C# / .NET",
         "Python",
         "Java",
         "R",
-        "SQL"
+        "SQL",
+        ".NET"
       ],
       "tools": [
         "MongoDB",
@@ -118,14 +121,11 @@
         "Scenario analysis",
         "Greeks computation",
         "Monte Carlo",
-        "Neural Network",
-        "gradient descent",
         "momentum-based trading strategies",
+        "back testing",
         "yield curve construction",
-        "Differential equations",
-        "Modern Portfolio Theory",
-        "derivatives pricing",
-        "back testing"
+        "Neural Network",
+        "gradient descent"
       ]
     },
     "certifications": [],
@@ -145,12 +145,17 @@
         "title": "Quantitative Developer",
         "location_text": "Paris, France",
         "country": "FR",
-        "start": "2022-05",
-        "end": null,
+        "start": [
+          "2022-05"
+        ],
+        "end": [
+          null
+        ],
         "is_current": true,
         "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side bank",
+        "firm_hq_country": "FR",
         "asset_classes": [
           "Fixed Income",
           "Derivatives"
@@ -171,12 +176,17 @@
         "title": "Internship",
         "location_text": "Paris, France",
         "country": "FR",
-        "start": "2022-04",
-        "end": "2022-08",
+        "start": [
+          "2022-04"
+        ],
+        "end": [
+          "2022-08"
+        ],
         "is_current": false,
         "employment_type": "internship",
         "relevance": "core",
         "firm_type": "Sell-side bank",
+        "firm_hq_country": "FR",
         "asset_classes": [
           "Derivatives"
         ],
@@ -193,12 +203,17 @@
         "title": "Quantitative Strategist - Intern",
         "location_text": "Rabat, Morocco",
         "country": "MA",
-        "start": "2021-06",
-        "end": "2021-08",
+        "start": [
+          "2021-06"
+        ],
+        "end": [
+          "2021-08"
+        ],
         "is_current": false,
         "employment_type": "internship",
         "relevance": "core",
         "firm_type": "Sell-side bank",
+        "firm_hq_country": "FR",
         "asset_classes": [
           "Fixed Income"
         ],
@@ -213,11 +228,11 @@
       }
     ],
     "investment_approach": {
-      "label": "Systematic",
+      "label": "Unclear",
       "evidence": {
         "quote": "Development and back testing of momentum-based trading strategies"
       }
     },
-    "search_summary": "Mid systematic quantitative developer (4.4y relevant). Works across fixed income and derivatives. Currently Quantitative Developer at BNP Paribas CIB (sell-side bank), in the R&D front office fixed income team. Standout work includes introducing a one factor Gaussian copula model, implementing a local spread option exotic payoff, and building C++ pricing library features such as scenario analysis and Greeks computation; an earlier internship involved back testing momentum-based trading strategies. Highest degree is a Diplôme d'Ingénieur in Financial Engineering from INSA Lyon; no certifications listed."
+    "search_summary": "Mid-level quantitative developer with unclear investment approach (4.4y relevant). Asset classes are fixed income and derivatives. Currently at BNP Paribas CIB (sell-side bank) as Quantitative Developer. At BNP Paribas CIB, introduced a one factor Gaussian copula model, implemented a local spread option exotic payoff and built scenario analysis and Greeks computation features for trading desks in a C++ pricing library. Skills include Python, R, SQL and Monte Carlo. Holds a Diplôme d'Ingénieur in Financial Engineering from INSA Lyon."
   }
 }
