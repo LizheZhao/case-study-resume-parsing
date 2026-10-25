@@ -9,8 +9,9 @@ skills:
   c++: {canonical: cpp, category: programming}
   cpp: {canonical: cpp, category: programming}
   c#: {canonical: csharp, category: programming}
-  c# / .net: {canonical: csharp, category: programming}
-  .net: {canonical: csharp, category: programming}
+  .net: {canonical: dotnet, category: programming}
+  dotnet: {canonical: dotnet, category: programming}
+  asp.net: {canonical: dotnet, category: programming}
   java: {canonical: java, category: programming}
   matlab: {canonical: matlab, category: programming}
   vba: {canonical: vba, category: programming}

@@ -30,10 +30,22 @@ def normalize_skill(raw: str, tax: Taxonomy) -> str:
     return key
 
 
+_COMPOUND = re.compile(r"\s*/\s*")
+
+
+def split_compound(raw: str, tax: Taxonomy) -> list[str]:
+    """"C# / .NET" names two skills; split only when every part is a known variant,
+    so a single skill whose name contains a slash (e.g. "long/short") stays whole."""
+    parts = _COMPOUND.split(raw.strip())
+    if len(parts) > 1 and all(p.lower() in tax.skill_canonical for p in parts):
+        return parts
+    return [raw]
+
+
 def skills_normalized(parsed: ParsedResume, tax: Taxonomy) -> list[str]:
     s = parsed.skills
-    raw = [*s.programming, *s.tools, *s.domain]
-    return sorted({n for r in raw if r.strip() and (n := normalize_skill(r, tax))})
+    raw = [p for r in [*s.programming, *s.tools, *s.domain] if r.strip() for p in split_compound(r, tax)]
+    return sorted({n for r in raw if (n := normalize_skill(r, tax))})
 
 
 def cfa_status(certifications: list[str]) -> tuple[bool, str | None]:

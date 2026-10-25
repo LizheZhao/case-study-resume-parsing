@@ -153,3 +153,12 @@ def test_highest_degree_order():
     assert out.highest_degree == "MBA"
     assert d(resume(education=[edu("Other")])).highest_degree == "Other"
     assert d(resume(education=[])).highest_degree is None
+
+
+def test_compound_skill_splits_into_both_tokens():
+    from resume_search.derive.skills import split_compound
+    from resume_search.taxonomy import load_taxonomy_data
+
+    tax = load_taxonomy_data()
+    assert split_compound("C# / .NET", tax) == ["C#", ".NET"]
+    assert split_compound("long/short", tax) == ["long/short"]
