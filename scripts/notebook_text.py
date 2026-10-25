@@ -19,7 +19,7 @@ Order of play:
 5. Two demos that do call the Anthropic API. Off by default; set `RUN_LLM=1` to run them.
 6. Results, scalability and additional features, repository layout, how to run everything.
 
-**Streamlit app:** `uv run streamlit run app/Home.py` locally; public URL: _to be added at submission_
+**Streamlit app:** [https://lizhezhao.github.io/case-study-resume-parsing](https://lizhezhao.github.io/case-study-resume-parsing), hosted on Streamlit Community Cloud. Locally: `uv run streamlit run app/Home.py`.
 
 **Exports:** `exports/candidates.json` has the full records, `exports/candidates.csv` the `candidates` table plus facet columns. Both get rewritten at the end of every ingest.
 

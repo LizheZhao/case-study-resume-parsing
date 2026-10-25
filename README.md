@@ -2,6 +2,10 @@
 
 Resumes in, ranked shortlist out. Claude reads each DOCX or PDF into a structured record, SQLite stores it, and a requisition ranks candidates with a rule score, BM25, and embedding similarity. A Streamlit app sits on top: search, candidate detail, charts, ingest, eval results. Built for the Millennium BD data science case study, against the 10 sample resumes in `data/`.
 
+**Live app:** [https://lizhezhao.github.io/case-study-resume-parsing](https://lizhezhao.github.io/case-study-resume-parsing)
+
+**Notebook:** [open on GitHub](https://github.com/LizheZhao/case-study-resume-parsing/blob/main/2025_ds_case_study_resume_platform.ipynb) or [in nbviewer](https://nbviewer.org/github/LizheZhao/case-study-resume-parsing/blob/main/2025_ds_case_study_resume_platform.ipynb) if GitHub's preview times out on the size.
+
 The submission notebook, `2025_ds_case_study_resume_platform.ipynb`, writes out every source file, runs the demos that need no API key, and talks through scale. If you want the reasoning behind a design choice, it is in [`docs/design.md`](docs/design.md).
 
 ## Quick start
@@ -153,4 +157,3 @@ uv run ruff check src tests app scripts
 - **Rate limiter and queue.** A token bucket in front of the API client, and a real work queue where the 4-thread pool is now.
 - **Other file formats.** Readers for txt, md, and html, plus a LibreOffice route for doc, rtf, and odt. DOCX and PDF work today, with the vision path covering image-only PDFs.
 - **PII redaction at read time.** A per-role switch that masks the three contact columns. They are already out of the keyword index and the embeddings.
-- **Deployment.** A hosted Streamlit URL, added at submission.
