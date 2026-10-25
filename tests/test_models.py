@@ -185,3 +185,9 @@ def test_assessment_rejects_unknown_approach_label():
     bad = record()["investment_approach"] | {"label": "Quant"}
     with pytest.raises(ValidationError, match="investment_approach label"):
         Assessment.model_validate({"investment_approach": bad, "search_summary": SUMMARY})
+
+
+def test_extracurricular_is_a_valid_employment_type():
+    from resume_search.parse.models import EmploymentType
+
+    assert EmploymentType("extracurricular") is EmploymentType.extracurricular

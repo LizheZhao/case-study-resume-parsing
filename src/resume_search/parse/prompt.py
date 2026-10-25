@@ -5,7 +5,7 @@ from html import escape
 from resume_search import taxonomy
 from resume_search.extract.types import ExtractedText
 
-PROMPT_VERSION = "v3"
+PROMPT_VERSION = "v4"
 
 _COMMON = """\
 You extract structured data from a single candidate resume for a hedge fund
@@ -72,7 +72,9 @@ Task: the work history, one entry per role, in the resume's order.
   consulting, corporate finance, data or software work outside finance;
   unrelated = everything else (teaching, clubs, retail).
 - employment_type: internship when the title or text says intern, summer
-  analyst, or the role is under 6 months while studying.
+  analyst, or the role is under 6 months while studying; extracurricular for
+  student societies, clubs, volunteer and leadership posts (never part_time);
+  academic for research assistant or teaching posts at a university.
 - firm_type: {{{firm_types}}}. Use your knowledge of the firm when the resume
   does not say.
 - asset_classes: {{{asset_classes}}}, only those the role worked on.

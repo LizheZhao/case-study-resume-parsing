@@ -107,6 +107,7 @@ class Relevance(str, Enum):
 
 class EmploymentType(str, Enum):
     full_time = "full_time"; internship = "internship"; part_time = "part_time"; academic = "academic"
+    extracurricular = "extracurricular"   # societies, clubs, volunteer posts; counts in no bucket
 
 class FirmType(str, Enum):      # from taxonomy/firm_types.yaml
     hedge_fund = "Hedge fund"; asset_manager = "Asset manager"; sell_side_bank = "Sell-side bank"
@@ -297,7 +298,9 @@ Rules
    consulting, corporate finance, data or software work outside finance;
    unrelated = everything else (teaching, clubs, retail).
 7. employment_type: internship when the title or text says intern, summer
-   analyst, or the role is under 6 months while studying.
+   analyst, or the role is under 6 months while studying; extracurricular for
+   student societies, clubs, volunteer and leadership posts (never part_time);
+   academic for research assistant or teaching posts at a university.
 8. firm_type: {Hedge fund, Asset manager, Sell-side bank, Sell-side broker,
    PE/VC, Consulting, Corporate, Academic, Other}. Use your knowledge of
    the firm when the resume does not say.

@@ -22,6 +22,7 @@ class EmploymentType(str, Enum):
     internship = "internship"
     part_time = "part_time"
     academic = "academic"
+    extracurricular = "extracurricular"
 
 
 class FirmType(str, Enum):
