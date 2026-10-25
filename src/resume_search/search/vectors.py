@@ -84,6 +84,16 @@ class VectorIndex:
         )
         return cls(keys, matrix)
 
+    def scores(self, query_vec: np.ndarray) -> dict[str, float]:
+        """Cosine (vectors are normalized, so a dot product), best vector per candidate."""
+        if not self.keys:
+            return {}
+        sims = self.matrix @ np.asarray(query_vec, dtype=np.float32)
+        best: dict[str, float] = {}
+        for (cid, _, _), score in zip(self.keys, sims, strict=True):
+            best[cid] = max(best.get(cid, -1.0), float(score))
+        return best
+
     def search(self, query_vec: np.ndarray, top_k: int = 10) -> list[VectorHit]:
         """Cosine (vectors are normalized, so a dot product), best vector per candidate."""
         if not self.keys:

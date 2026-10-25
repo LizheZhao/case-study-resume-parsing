@@ -13,6 +13,15 @@ from resume_search.extract import ExtractedText, extract
 from resume_search.ingest.pipeline import attempt_cost, build_meta, ingest, rederive
 from resume_search.parse import ParseOk, parse_resume
 from resume_search.parse.client import ParseResult
+from resume_search.search import (
+    Criterion,
+    Requisition,
+    Weights,
+    parse_requisition,
+    rerank_llm,
+    search,
+)
+from resume_search.search.rank import SearchResult
 from resume_search.store.db import connect, list_candidates
 
 SUPPORTED = {".docx", ".pdf"}
@@ -142,6 +151,92 @@ def _cmd_show(args: argparse.Namespace) -> int:
     return 0
 
 
+def _years(text: str) -> tuple[float | None, float | None]:
+    lo, sep, hi = text.partition("-") if "-" in text else (text.rstrip("+"), "", "")
+    if not sep and not text.endswith("+"):
+        return float(lo), float(lo)
+    return (float(lo) if lo else None), (float(hi) if hi else None)
+
+
+def _build_requisition(args: argparse.Namespace, attempts: list) -> Requisition:
+    jd = Path(args.jd_file).read_text(encoding="utf-8") if args.jd_file else args.jd
+    req = parse_requisition(jd, attempts=attempts) if jd else Requisition()
+    if jd:
+        print("Parsed requisition:", file=sys.stderr if args.json else sys.stdout)
+        print(req.model_dump_json(indent=2, exclude_none=True), file=sys.stderr if args.json else sys.stdout)
+    update: dict = {}
+    if args.location:
+        update["location"] = Criterion[str](value=args.location)
+    if args.scope:
+        update["location_scope"] = args.scope
+    if args.approach:
+        update["approach"] = Criterion[str](value=args.approach)
+    if args.sector:
+        update["sectors"] = Criterion[list[str]](value=args.sector)
+    if args.years:
+        update["years_min"], update["years_max"] = _years(args.years)
+        update["years_mode"] = "must"
+    if args.skill:
+        update["skills_preferred"] = [*req.skills_preferred, *args.skill]
+    if args.must_skill:
+        update["skills_required"] = [*req.skills_required, *args.must_skill]
+    if args.cfa:
+        update["certifications"] = Criterion[list[str]](value=["CFA"], mode="must")
+    if jd and not update:
+        return req
+    return Requisition.model_validate({**req.model_dump(), **{k: v for k, v in update.items()}})
+
+
+def _row(rank: int, r: SearchResult) -> str:
+    b = r.breakdown
+    return (
+        f"{rank:>2}  {r.name:<24} final={b.final:.3f} rule={b.rule:.3f} kw={b.keyword:.3f} "
+        f"emb={b.embedding:.3f}  {r.seniority_band or '-':<9} {r.current_country or '-'}"
+    )
+
+
+def _chips_line(r: SearchResult) -> str:
+    chips = "  ".join(
+        f"{'✓' if c.status == 'matched' else '✗'} {c.label}" + (f" [{c.detail}]" if c.detail else "")
+        for c in r.chips
+    )
+    return f"    {chips}" + (f"\n    kw: {', '.join(r.keywords)}" if r.keywords else "")
+
+
+def _cmd_search(args: argparse.Namespace) -> int:
+    attempts: list = []
+    try:
+        req = _build_requisition(args, attempts)
+    except ValueError as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        return 2
+    results = search(connect(args.db), req, Weights.load(), top_k=args.top)
+    reasons: dict[str, str] = {}
+    if args.rerank and results:
+        order = rerank_llm(req, results[:10], attempts=attempts)
+        reasons = dict(order)
+        by_id = {r.candidate_id: r for r in results}
+        results = [by_id[i] for i, _ in order] + results[10:]
+    if attempts:
+        cost = sum(attempt_cost(a) for a in attempts)
+        tokens = sum(a.input_tokens + a.output_tokens for a in attempts)
+        print(f"api calls={len(attempts)} tokens={tokens} cost=${cost:.4f}", file=sys.stderr)
+    if args.json:
+        print(json.dumps(
+            [{**asdict(r), "reason": reasons.get(r.candidate_id)} for r in results],
+            indent=2, ensure_ascii=False, default=str,
+        ))
+        return 0
+    if not results:
+        print("no candidates match")
+    for i, r in enumerate(results, 1):
+        print(_row(i, r))
+        print(_chips_line(r))
+        if r.candidate_id in reasons:
+            print(f"    reason: {reasons[r.candidate_id]}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> None:
     load_dotenv()
     parser = argparse.ArgumentParser(prog="resume-search")
@@ -169,5 +264,21 @@ def main(argv: list[str] | None = None) -> None:
     p_show.add_argument("candidate", help="candidate_id prefix or name substring")
     p_show.add_argument("--db", default=DEFAULT_DB)
     p_show.set_defaults(func=_cmd_show)
+    p_s = sub.add_parser("search", help="rank ingested candidates against a requisition")
+    p_s.add_argument("--jd")
+    p_s.add_argument("--jd-file")
+    p_s.add_argument("--location")
+    p_s.add_argument("--scope", choices=["current", "worked", "either"])
+    p_s.add_argument("--approach")
+    p_s.add_argument("--sector", action="append")
+    p_s.add_argument("--years", help="MIN-MAX, MIN+ or a single number; always a must filter")
+    p_s.add_argument("--skill", action="append", help="preferred skill")
+    p_s.add_argument("--must-skill", action="append")
+    p_s.add_argument("--cfa", action="store_true", help="require the CFA")
+    p_s.add_argument("--top", type=int, default=20)
+    p_s.add_argument("--rerank", action="store_true")
+    p_s.add_argument("--db", default=DEFAULT_DB)
+    p_s.add_argument("--json", action="store_true")
+    p_s.set_defaults(func=_cmd_search)
     args = parser.parse_args(argv)
     sys.exit(args.func(args))
