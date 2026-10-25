@@ -7,5 +7,4 @@ __pycache__/
 .ruff_cache/
 *.sqlite
 *.sqlite-journal
-evals/results/
 .claude/worktrees/

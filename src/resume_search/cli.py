@@ -237,6 +237,40 @@ def _cmd_search(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_eval_run(args: argparse.Namespace) -> int:
+    from resume_search.eval.parsing_eval import run_parsing_eval
+    from resume_search.eval.ranking_eval import run_ranking_eval
+    from resume_search.eval.report import FORMATTERS
+
+    only = [x for x in args.only.split(",") if x] if args.only else None
+    suites = ["parsing", "ranking"] if args.suite == "all" else [args.suite]
+    total = 0.0
+    for suite in suites:
+        if suite == "parsing":
+            path, body = run_parsing_eval(args.db, args.out, only=only)
+        else:
+            path, body = run_ranking_eval(args.db, args.out)
+        total += body["cost_usd"]
+        print(FORMATTERS[suite](body))
+        print(f"wrote {path}\n")
+    print(f"total judge cost ${total:.4f}")
+    return 0
+
+
+def _cmd_eval_show(args: argparse.Namespace) -> int:
+    from resume_search.eval.report import FORMATTERS
+    from resume_search.eval.results import SUITES, latest_result
+
+    shown = 0
+    for suite in [args.suite] if args.suite else SUITES:
+        if found := latest_result(args.out, suite):
+            print(f"{found[0]}\n{FORMATTERS[suite](found[1])}\n")
+            shown += 1
+    if not shown:
+        print(f"no eval results in {args.out}", file=sys.stderr)
+    return 0 if shown else 1
+
+
 def main(argv: list[str] | None = None) -> None:
     load_dotenv()
     parser = argparse.ArgumentParser(prog="resume-search")
@@ -280,5 +314,17 @@ def main(argv: list[str] | None = None) -> None:
     p_s.add_argument("--db", default=DEFAULT_DB)
     p_s.add_argument("--json", action="store_true")
     p_s.set_defaults(func=_cmd_search)
+    p_ev = sub.add_parser("eval", help="LLM-judged parsing and ranking evals")
+    ev = p_ev.add_subparsers(dest="eval_cmd", required=True)
+    p_er = ev.add_parser("run", help="run a suite and write evals/results/<suite>-<timestamp>.json")
+    p_er.add_argument("--suite", choices=["parsing", "ranking", "all"], default="all")
+    p_er.add_argument("--db", default=DEFAULT_DB)
+    p_er.add_argument("--out", default="evals/results")
+    p_er.add_argument("--only", help="comma-separated candidate_ids (parsing suite)")
+    p_er.set_defaults(func=_cmd_eval_run)
+    p_es = ev.add_parser("show", help="print the latest metrics table per suite")
+    p_es.add_argument("--suite", choices=["parsing", "ranking"])
+    p_es.add_argument("--out", default="evals/results")
+    p_es.set_defaults(func=_cmd_eval_show)
     args = parser.parse_args(argv)
     sys.exit(args.func(args))

@@ -1,10 +1,10 @@
-import json
 import sys
 from pathlib import Path
 
 import pytest
 import streamlit as st
 from streamlit.testing.v1 import AppTest
+from test_eval_runs import JudgeClient, _gold, _reqs
 from test_search import FakeEmbedder, _people
 
 APP = Path(__file__).resolve().parents[1] / "app"
@@ -12,6 +12,8 @@ sys.path.insert(0, str(APP))
 
 import common
 
+from resume_search.eval.parsing_eval import run_parsing_eval
+from resume_search.eval.ranking_eval import run_ranking_eval
 from resume_search.ingest import pipeline
 from resume_search.search import Criterion, Requisition
 from resume_search.search.vectors import candidate_vectors
@@ -139,14 +141,25 @@ def test_evals_empty_then_populated(app_env):
     assert len(at.dataframe) == 1
 
     results = app_env / "evals" / "results"
-    results.mkdir(parents=True)
-    (results / "ranking-1.json").write_text(
-        json.dumps({"metrics": {"ndcg5": 0.8}, "items": [{"req": "r1", "ndcg5": 0.8}]})
+    client = JudgeClient(grade_of=lambda cid: 2 if cid == ALICE else 0)
+    run_parsing_eval(
+        app_env / "t.sqlite", results, client, gold_path=_gold(app_env), text_dir=app_env / "none"
+    )
+    run_ranking_eval(
+        app_env / "t.sqlite", results, client, _reqs(app_env), embedder=FakeEmbedder()
     )
     at = open_page("5_Evals.py")
     no_errors(at)
     assert not any("No eval results yet" in i.value for i in at.info)
-    assert len(at.dataframe) == 3
+    assert [s.value for s in at.subheader] == ["Parsing", "Ranking"]
+    metrics = {m.label: m.value for m in at.metric}
+    assert metrics["Candidates"] == "4" and metrics["Hallucinated / missing"] == "0 / 0"
+    assert any("Judge versus human" in m.value and "draft" in m.value for m in at.markdown)
+    labels = [e.label for e in at.expander]
+    assert any(lbl.startswith("Alice Adams:") for lbl in labels)
+    assert any(lbl.startswith("Healthcare: pool 4") for lbl in labels)
+    ranking = next(df for df in at.dataframe if "Full blend nDCG@5" in df.value.columns)
+    assert ranking.value["requisition"].tolist() == ["Healthcare", "Tech in HK", "Mean"]
 
 
 def test_requisition_widget_round_trip(app_env):
