@@ -5,23 +5,89 @@
     "file_sha256": "198398458280dae94af473c292c966e71fd3df2a4f8d46a091a5ec63182e302f",
     "file_bytes": 20184,
     "page_count": 1,
-    "parsed_at": "2026-10-24T21:36:55+00:00",
+    "parsed_at": "2026-10-25T13:03:44+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v1",
+    "prompt_version": "v2",
     "schema_version": 1,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 24604,
+        "latency_ms": 10107,
         "input_tokens": 1419,
-        "output_tokens": 4534,
+        "output_tokens": 276,
         "error": null,
-        "cache_read_tokens": 2934,
-        "cache_creation_tokens": 0
+        "cache_read_tokens": 2383,
+        "cache_creation_tokens": 0,
+        "call": "profile"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 19991,
+        "input_tokens": 1389,
+        "output_tokens": 1775,
+        "error": null,
+        "cache_read_tokens": 2851,
+        "cache_creation_tokens": 0,
+        "call": "experience"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 3981,
+        "input_tokens": 1783,
+        "output_tokens": 454,
+        "error": null,
+        "cache_read_tokens": 1236,
+        "cache_creation_tokens": 0,
+        "call": "regen:skills"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 8848,
+        "input_tokens": 3551,
+        "output_tokens": 1434,
+        "error": null,
+        "cache_read_tokens": 1453,
+        "cache_creation_tokens": 0,
+        "call": "assessment"
       }
     ],
+    "verification": {
+      "checks_run": 18,
+      "disagreements": 1,
+      "regenerated": 1,
+      "unresolved": [],
+      "details": [
+        {
+          "field": "skills",
+          "llm_value": {
+            "programming": [],
+            "tools": [
+              "Bloomberg",
+              "FactSet",
+              "Microsoft Office"
+            ],
+            "domain": [
+              "Financial Modeling",
+              "DCF",
+              "comparable company analysis",
+              "sum-of-the-parts valuation"
+            ]
+          },
+          "text_value": [
+            "alternative-data",
+            "bloomberg",
+            "dcf",
+            "due-diligence",
+            "equity-research",
+            "factset",
+            "financial-modeling",
+            "valuation"
+          ]
+        }
+      ]
+    },
     "text_quality": {
       "unknown_ratio_before": 0.0044742729306487695,
       "unknown_ratio_after": 0.0044742729306487695,
@@ -35,24 +101,53 @@
     "contact": {
       "email": "Vshah@gmail.com",
       "phone": "267-328-0909",
-      "location_text": null,
-      "linkedin": null
+      "location_text": null
     },
-    "summary_text": null,
     "education": [
       {
         "institution": "Northwestern University - Kellogg School of Management",
         "degree": "Bachelor of Science in Business Administration",
-        "degree_level": "Bachelor",
+        "degree_level": "Bachelors",
         "field": "Business Administration",
         "start": null,
         "end": "2014-05",
-        "gpa": "3.44/4.00",
-        "honors": [
-          "Dean's Honor List (Fall 2012 - Spring 2014)",
-          "Greek Award of Distinction (2011, 2012)"
-        ],
         "country": "US"
+      }
+    ],
+    "skills": {
+      "programming": [],
+      "tools": [
+        "Bloomberg",
+        "FactSet",
+        "Microsoft Office"
+      ],
+      "domain": [
+        "Financial Modeling",
+        "DCF",
+        "comparable company analysis",
+        "sum-of-the-parts valuation",
+        "fundamental research",
+        "fundamental analysis",
+        "financial KPI analysis",
+        "alternative data tracking",
+        "macroeconomic trend analysis",
+        "valuation analysis",
+        "IPO due diligence",
+        "equity research",
+        "long/short equity"
+      ]
+    },
+    "certifications": [
+      "CFA Charterholder"
+    ],
+    "languages": [
+      {
+        "name": "Mandarin",
+        "level": "fluent"
+      },
+      {
+        "name": "Cantonese",
+        "level": "conversational"
       }
     ],
     "experience": [
@@ -74,7 +169,7 @@
           {
             "label": "Technology",
             "evidence": {
-              "quote": "~75 Technology/Media stocks under coverage (with primary focus on cloud computing and digital advertising sectors)"
+              "quote": "across ~75 Technology/Media stocks under coverage (with primary focus on cloud computing and digital advertising sectors)"
             }
           }
         ],
@@ -84,6 +179,7 @@
           "Digital Advertising"
         ],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Work directly with portfolio managers to deploy long/short equity strategy across ~75 Technology/Media stocks under coverage (with primary focus on cloud computing and digital advertising sectors)",
           "Source investment ideas through fundamental research, financial KPI analysis, alternative data tracking, and macroeconomic trend analysis across covered sectors",
@@ -110,7 +206,7 @@
           {
             "label": "Technology",
             "evidence": {
-              "quote": "Supporting coverage of technology and media sectors for Institutional Investor ranked equity analyst team"
+              "quote": "Supporting coverage of technology and media sectors"
             }
           }
         ],
@@ -120,6 +216,7 @@
           "Interactive Entertainment"
         ],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Supporting coverage of technology and media sectors for Institutional Investor ranked equity analyst team covering 40+ stocks with over $4.5 trillion in combined market capitalization",
           "Built comprehensive financial models and conducted fundamental analysis to generate investment recommendations using DCF, comparable company, and sum-of-the-parts valuation methodologies",
@@ -136,7 +233,7 @@
         "end": "2019-02",
         "is_current": false,
         "employment_type": "full_time",
-        "relevance": "adjacent",
+        "relevance": "core",
         "firm_type": "Asset manager",
         "asset_classes": [
           "Equities"
@@ -144,6 +241,7 @@
         "sectors": [],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Coordinated research vendor relationships for 120+ Portfolio Managers and Research Analysts across 180+ external research providers, implementing process improvements following regulatory changes",
           "Analyzed assets under management and capital flows with Chief Investment Officers to determine optimal capacity targets and strategic positioning across 50+ active investment strategies",
@@ -165,6 +263,7 @@
         "sectors": [],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Analyzed the firm’s expense drivers (such as strategic investments, headcount growth, and location presence) and partnered with business lines to forecast a three year budget that aligned with the CFO’s key priorities"
         ]
@@ -184,42 +283,18 @@
         "sectors": [],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Developed comprehensive financial models (P&L, balance sheet, cash flow projections) supporting origination of complex client engagements and strategic transaction advisory services"
         ]
       }
     ],
-    "skills": {
-      "programming": [],
-      "tools": [
-        "Bloomberg",
-        "FactSet",
-        "Microsoft Office"
-      ],
-      "domain": [
-        "Financial Modeling"
-      ]
-    },
-    "certifications": [
-      "CFA® Charterholder, CFA Institute: Issued March 2019"
-    ],
-    "languages": [
-      {
-        "name": "Mandarin",
-        "level": "fluent"
-      },
-      {
-        "name": "Cantonese",
-        "level": "conversational"
-      }
-    ],
-    "awards": [],
     "investment_approach": {
       "label": "Fundamental",
       "evidence": {
-        "quote": "Source investment ideas through fundamental research, financial KPI analysis, alternative data tracking"
+        "quote": "Source investment ideas through fundamental research, financial KPI analysis, alternative data tracking, and macroeconomic trend analysis across covered sectors"
       }
     },
-    "search_summary": "Mid-level fundamental equity analyst with experience in sell-side research (2019-2021) and buy-side long/short investing (2021-present). Equities; Technology and Media, focused on cloud computing and digital advertising. Most recent employer Cinctive Capital Management (hedge fund), Investment Analyst covering ~75 Technology/Media stocks. Built DCF, comparable company and sum-of-the-parts models at Goldman Sachs; supported eight IPO due diligence transactions; developed earnings-event trading strategies. BS in Business Administration, Northwestern University (Kellogg); CFA charterholder."
+    "search_summary": "Principal fundamental equity analyst (12.2y relevant). Focus on equities in technology and media, with emphasis on cloud computing and digital advertising. Currently Investment Analyst at Cinctive Capital Management (hedge fund). Standout skills: long/short equity coverage of ~75 Technology/Media stocks, DCF, comparable company and sum-of-the-parts valuation, and support of IPO due diligence for eight transactions at Goldman Sachs. Holds a Bachelor of Science in Business Administration from Northwestern University - Kellogg School of Management; CFA Charterholder."
   }
 }

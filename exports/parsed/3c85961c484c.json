@@ -5,23 +5,51 @@
     "file_sha256": "3c85961c484c061e734be36e83e2969b6b9e8437150a81211831c4ddbe38995a",
     "file_bytes": 23476,
     "page_count": 1,
-    "parsed_at": "2026-10-24T21:36:24+00:00",
+    "parsed_at": "2026-10-25T13:02:37+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v1",
+    "prompt_version": "v2",
     "schema_version": 1,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 29639,
+        "latency_ms": 2613,
         "input_tokens": 1306,
-        "output_tokens": 5119,
+        "output_tokens": 265,
         "error": null,
-        "cache_read_tokens": 2934,
-        "cache_creation_tokens": 0
+        "cache_read_tokens": 2383,
+        "cache_creation_tokens": 0,
+        "call": "profile"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 8665,
+        "input_tokens": 1266,
+        "output_tokens": 1745,
+        "error": null,
+        "cache_read_tokens": 2851,
+        "cache_creation_tokens": 0,
+        "call": "experience"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 10467,
+        "input_tokens": 3319,
+        "output_tokens": 1590,
+        "error": null,
+        "cache_read_tokens": 1453,
+        "cache_creation_tokens": 0,
+        "call": "assessment"
       }
     ],
+    "verification": {
+      "checks_run": 16,
+      "disagreements": 0,
+      "regenerated": 0,
+      "unresolved": [],
+      "details": []
+    },
     "text_quality": {
       "unknown_ratio_before": 0.010256410256410256,
       "unknown_ratio_after": 0.010256410256410256,
@@ -35,36 +63,43 @@
     "contact": {
       "email": "rchen@hotmail",
       "phone": "(745) 156-1879",
-      "location_text": null,
-      "linkedin": null
+      "location_text": null
     },
-    "summary_text": null,
     "education": [
       {
         "institution": "Harvard University",
-        "degree": "Bachelor of Arts in Economics, Secondary in Molecular Biology",
-        "degree_level": "Bachelor",
+        "degree": "Bachelor of Arts in Economics",
+        "degree_level": "Bachelors",
         "field": "Economics",
         "start": null,
         "end": "2013",
-        "gpa": null,
-        "honors": [
-          "Magna Cum Laude"
-        ],
         "country": "US"
-      },
-      {
-        "institution": "Stanford University",
-        "degree": "Summer Program",
-        "degree_level": null,
-        "field": "Healthcare Innovation, Biotechnology Commercialization",
-        "start": null,
-        "end": null,
-        "gpa": null,
-        "honors": [],
-        "country": null
       }
     ],
+    "skills": {
+      "programming": [],
+      "tools": [],
+      "domain": [
+        "Financial modeling & analysis",
+        "healthcare industry domain expertise",
+        "public equities",
+        "private transactions",
+        "financial modeling",
+        "investment analyses",
+        "due diligence",
+        "underwriting",
+        "asset management",
+        "corporate valuation",
+        "M&A",
+        "IPOs",
+        "follow-on offerings",
+        "structured credit",
+        "growth equity",
+        "royalty financings"
+      ]
+    },
+    "certifications": [],
+    "languages": [],
     "experience": [
       {
         "employer": "Coatue Management",
@@ -84,19 +119,19 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "Provided comprehensive sector coverage across Life Sciences Tools & Diagnostics, MedTech, Therapeutics & Services"
+              "quote": "Managed public (long/short) and private (growth/venture) healthcare investment portfolio at $40B multi-strategy platform"
             }
           }
         ],
         "other_sector_tags": [
           "Life Sciences Tools & Diagnostics",
           "MedTech",
-          "Therapeutics",
-          "Healthcare Services",
+          "Therapeutics & Services",
           "Digital Health",
           "AI-enabled diagnostics"
         ],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Managed public (long/short) and private (growth/venture) healthcare investment portfolio at $40B multi-strategy platform",
           "Provided comprehensive sector coverage across Life Sciences Tools & Diagnostics, MedTech, Therapeutics & Services with primary specialization in Digital Health & AI-enabled diagnostics (60% time allocation)",
@@ -115,7 +150,7 @@
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
-        "firm_type": "Asset manager",
+        "firm_type": "Sell-side bank",
         "asset_classes": [
           "Credit",
           "Equities"
@@ -130,6 +165,7 @@
         ],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Responsible for investment diligence, underwriting & asset management for $18B platform's $4.2B strategy focused on structured credit, growth equity and royalty financings in public and private companies",
           "Created comprehensive financial models, investment analyses and board presentations while collaborating with third-party consultants, medical experts, and regulatory advisors",
@@ -147,15 +183,28 @@
         "is_current": false,
         "employment_type": "full_time",
         "relevance": "core",
-        "firm_type": "Asset manager",
+        "firm_type": "Sell-side bank",
         "asset_classes": [
           "Credit",
           "Equities"
         ],
-        "sectors": [],
+        "sectors": [
+          {
+            "label": "Healthcare",
+            "evidence": {
+              "quote": "Generated 280bps of outperformance versus healthcare benchmarks across 9 active investments during tenure"
+            }
+          }
+        ],
         "other_sector_tags": [],
         "markets_covered": [],
-        "bullets": []
+        "duration_months": null,
+        "bullets": [
+          "Responsible for investment diligence, underwriting & asset management for $18B platform's $4.2B strategy focused on structured credit, growth equity and royalty financings in public and private companies",
+          "Created comprehensive financial models, investment analyses and board presentations while collaborating with third-party consultants, medical experts, and regulatory advisors",
+          "Presented investment recommendations to senior investment committee, portfolio managers and limited partner advisory boards",
+          "Generated 280bps of outperformance versus healthcare benchmarks across 9 active investments during tenure"
+        ]
       },
       {
         "employer": "Credit Suisse",
@@ -175,7 +224,7 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "Provided client coverage in therapeutics, medical devices and healthcare services for acquisitions and financings across mid-cap and large-cap healthcare companies"
+              "quote": "Analyst, Healthcare Investment Banking Group"
             }
           }
         ],
@@ -185,6 +234,7 @@
           "Healthcare Services"
         ],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Provided client coverage in therapeutics, medical devices and healthcare services for acquisitions and financings across mid-cap and large-cap healthcare companies",
           "Responsible for financial modeling and creating presentations on corporate valuation, transaction implications and industry dynamics for colleagues, management teams, investors, rating agencies and internal committees",
@@ -193,29 +243,12 @@
         ]
       }
     ],
-    "skills": {
-      "programming": [],
-      "tools": [],
-      "domain": [
-        "Financial modeling & analysis",
-        "healthcare industry domain expertise",
-        "public equities",
-        "private transactions"
-      ]
-    },
-    "certifications": [],
-    "languages": [],
-    "awards": [
-      "NCAA Division I All-American 2011 and 2013",
-      "Conference Champion 2013",
-      "National Junior Champion (2010)"
-    ],
     "investment_approach": {
       "label": "Fundamental",
       "evidence": {
         "quote": "Led due diligence on 12 potential investments with total transaction value of $2.1B across public and private healthcare opportunities"
       }
     },
-    "search_summary": "Senior fundamental healthcare analyst with investment-team roles since 2017 and investment banking experience from 2013. Public long/short equities, private growth and venture, structured credit and royalty financings; sectors: Healthcare (Life Sciences Tools, Diagnostics, MedTech, Therapeutics, Digital Health). Most recent employer Coatue Management (Hedge fund), Healthcare Analyst. Generated 340bps outperformance versus sector benchmarks with 85% hit rate on long recommendations; led diligence on 12 investments worth $2.1B; co-led $150M Series B; Board Observer at two portfolio companies. Bachelor of Arts in Economics, Harvard University; no certifications."
+    "search_summary": "Principal fundamental healthcare analyst (11.4y relevant). Covers equities and credit in healthcare, including Life Sciences Tools & Diagnostics, MedTech, Therapeutics & Services, Digital Health and AI-enabled diagnostics. Currently Healthcare Analyst, Investment Team at Coatue Management (hedge fund). Generated 340bps of outperformance versus healthcare benchmarks with 85% hit rate on long recommendations; led due diligence on 12 investments totaling $2.1B; executed 8 transactions worth $12B+ at Credit Suisse. Holds a Bachelor of Arts in Economics from Harvard University; no certifications listed."
   }
 }

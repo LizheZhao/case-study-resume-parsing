@@ -5,23 +5,89 @@
     "file_sha256": "60494a76873965c1a27d06a593b1239344766c9d156595a3cec220858401ea41",
     "file_bytes": 93149,
     "page_count": 2,
-    "parsed_at": "2026-10-24T21:37:02+00:00",
+    "parsed_at": "2026-10-25T13:03:40+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v1",
+    "prompt_version": "v2",
     "schema_version": 1,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 38428,
+        "latency_ms": 10016,
         "input_tokens": 1900,
-        "output_tokens": 6882,
+        "output_tokens": 272,
         "error": null,
-        "cache_read_tokens": 2934,
-        "cache_creation_tokens": 0
+        "cache_read_tokens": 2383,
+        "cache_creation_tokens": 0,
+        "call": "profile"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 10918,
+        "input_tokens": 1864,
+        "output_tokens": 2295,
+        "error": null,
+        "cache_read_tokens": 2851,
+        "cache_creation_tokens": 0,
+        "call": "experience"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 11381,
+        "input_tokens": 2247,
+        "output_tokens": 399,
+        "error": null,
+        "cache_read_tokens": 1236,
+        "cache_creation_tokens": 0,
+        "call": "regen:skills"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 13968,
+        "input_tokens": 4478,
+        "output_tokens": 1703,
+        "error": null,
+        "cache_read_tokens": 1453,
+        "cache_creation_tokens": 0,
+        "call": "assessment"
       }
     ],
+    "verification": {
+      "checks_run": 20,
+      "disagreements": 1,
+      "regenerated": 1,
+      "unresolved": [],
+      "details": [
+        {
+          "field": "skills",
+          "llm_value": {
+            "programming": [],
+            "tools": [],
+            "domain": [
+              "DCF",
+              "comparable companies",
+              "LBO",
+              "precedent transactions",
+              "operating model",
+              "financial modeling",
+              "factor attribution",
+              "M&A",
+              "due diligence",
+              "position sizing",
+              "hedging"
+            ]
+          },
+          "text_value": [
+            "dcf",
+            "due-diligence",
+            "financial-modeling",
+            "lbo",
+            "valuation"
+          ]
+        }
+      ]
+    },
     "text_quality": {
       "unknown_ratio_before": 0.0017331022530329288,
       "unknown_ratio_after": 0.0017331022530329288,
@@ -35,27 +101,39 @@
     "contact": {
       "email": "ryan.patel0403@gmail.com",
       "phone": "+1 (516) 523-3113",
-      "location_text": "342 Atlantic Avenue, Apartment 4B, Brooklyn, NY 11201",
-      "linkedin": null
+      "location_text": "342 Atlantic Avenue, Apartment 4B, Brooklyn, NY 11201"
     },
-    "summary_text": null,
     "education": [
       {
         "institution": "Columbia Business School, Columbia University",
         "degree": "Bachelor of Science in Business",
-        "degree_level": "Bachelor",
-        "field": "Finance and International Business (Minor in Statistics)",
+        "degree_level": "Bachelors",
+        "field": "Finance and International Business",
         "start": "2013-09",
         "end": "2017-05",
-        "gpa": "3.61/4.00",
-        "honors": [
-          "Dean's Merit Scholarship (awarded for all four years)",
-          "Student Leadership Excellence Award (awarded to top 3 graduating seniors)",
-          "Academic Achievement Recognition"
-        ],
         "country": "US"
       }
     ],
+    "skills": {
+      "programming": [],
+      "tools": [],
+      "domain": [
+        "DCF",
+        "comparable companies",
+        "LBO",
+        "precedent transactions",
+        "operating model",
+        "financial modeling",
+        "factor attribution",
+        "M&A",
+        "due diligence",
+        "valuation",
+        "position sizing",
+        "hedging"
+      ]
+    },
+    "certifications": [],
+    "languages": [],
     "experience": [
       {
         "employer": "Meridian Capital Partners",
@@ -74,6 +152,7 @@
         "sectors": [],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Primary investor responsible for managing the only long short fundamental equity portfolio at Meridian Capital Partners",
           "Lead investment decisions for the portfolio including sizing of positions based on conviction level/idiosyncratic volatility, hedging of positions using public peers and/or appropriate sector ETFs/market indices, and timing of position initiation and monetization",
@@ -99,13 +178,13 @@
           {
             "label": "Consumer",
             "evidence": {
-              "quote": "managing the Consumer and Technology portfolio"
+              "quote": "Principal analyst responsible for managing the Consumer and Technology portfolio"
             }
           },
           {
             "label": "Technology",
             "evidence": {
-              "quote": "managing the Consumer and Technology portfolio"
+              "quote": "Principal analyst responsible for managing the Consumer and Technology portfolio"
             }
           }
         ],
@@ -113,6 +192,7 @@
           "TMT"
         ],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Principal analyst responsible for managing the Consumer and Technology portfolio within the $4.2bn gross portfolio for Vertex Capital",
           "Co-managed the risk exposures of the Consumer and Technology portfolio with the Senior Portfolio Manager including discretion over position sizing (idiosyncratic volatility/conviction), alpha/factor exposures (hedges), and timing of position entry/exit",
@@ -136,13 +216,13 @@
           {
             "label": "Consumer",
             "evidence": {
-              "quote": "Business & Technology Services, Consumer, and Healthcare"
+              "quote": "across the Business & Technology Services, Consumer, and Healthcare"
             }
           },
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "Business & Technology Services, Consumer, and Healthcare"
+              "quote": "across the Business & Technology Services, Consumer, and Healthcare"
             }
           }
         ],
@@ -150,6 +230,7 @@
           "Business & Technology Services"
         ],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Evaluated and executed private equity investments across the Business & Technology Services, Consumer, and Healthcare industries",
           "Performed due diligence on businesses to determine competitive advantages, key growth drivers, addressable markets, and risks",
@@ -168,7 +249,10 @@
         "employment_type": "full_time",
         "relevance": "adjacent",
         "firm_type": "Sell-side bank",
-        "asset_classes": [],
+        "asset_classes": [
+          "Equities",
+          "Fixed Income"
+        ],
         "sectors": [
           {
             "label": "Healthcare",
@@ -179,36 +263,13 @@
         ],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Ranked top tier of analyst class in two years at J.P. Morgan; winner of Firmwide Summer Analyst Financial Modeling Competition",
           "Participated in all aspects of M&A, equity, and debt transactions including idea generation, due diligence, and valuation",
           "Exclusive financial advisor – BioPharm Corp's $8.5bn acquisition of Oncology Therapeutics Inc",
           "Exclusive financial advisor and lead-left arranger of financing – Blackstone Life Sciences' acquisition of Clinical Research Partners"
         ]
-      },
-      {
-        "employer": "J.P.Mogan",
-        "title": "Analyst – Healthcare Investment Banking",
-        "location_text": "New York, NY",
-        "country": "US",
-        "start": "2016",
-        "end": "2016",
-        "is_current": false,
-        "employment_type": "internship",
-        "relevance": "adjacent",
-        "firm_type": "Sell-side bank",
-        "asset_classes": [],
-        "sectors": [
-          {
-            "label": "Healthcare",
-            "evidence": {
-              "quote": "Analyst – Healthcare Investment Banking"
-            }
-          }
-        ],
-        "other_sector_tags": [],
-        "markets_covered": [],
-        "bullets": []
       },
       {
         "employer": "Global Education Alliance",
@@ -225,6 +286,7 @@
         "sectors": [],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Created a non-profit organization dedicated to providing educational resources, technology access, and vocational training to underserved communities",
           "65+ students have completed certification programs and secured employment in technology and manufacturing sectors throughout the Maharashtra region"
@@ -245,31 +307,19 @@
         "sectors": [],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Led 140+ members and organized signature events across Columbia Business School, earning Outstanding Organization Award among 30+ student groups",
           "Managed relationships with 400+ active alumni and coordinated 3 professional networking events per semester, increasing alumni engagement by 65%"
         ]
       }
     ],
-    "skills": {
-      "programming": [],
-      "tools": [],
-      "domain": []
-    },
-    "certifications": [],
-    "languages": [],
-    "awards": [
-      "Winner of Firmwide Summer Analyst Financial Modeling Competition",
-      "Outstanding Organization Award",
-      "Finalist in Goldman Sachs Investment Banking Case Competition",
-      "Winner of Morgan Stanley Financial Markets Challenge"
-    ],
     "investment_approach": {
       "label": "Fundamental",
       "evidence": {
-        "quote": "the only long short fundamental equity portfolio at Meridian Capital Partners"
+        "quote": "Primary investor responsible for managing the only long short fundamental equity portfolio at Meridian Capital Partners"
       }
     },
-    "search_summary": "Mid-level fundamental investor with hedge fund long/short equity experience since 2021 plus 2 years in private equity. Equities across Consumer, Technology and Healthcare, currently as generalist. Most recent employer Meridian Capital Partners (Hedge fund), Investment Professional, Generalist, managing the firm's only long/short fundamental equity portfolio, including position sizing, hedging and timing. Previously principal analyst for Consumer and Technology within a $4.2bn gross portfolio at Millennium Management; built operating, DCF, comps and LBO models. Apollo private equity associate. B.S. in Business, Columbia Business School."
+    "search_summary": "Senior fundamental equity investor (8.6y relevant). Covers equities and fixed income across consumer, technology, healthcare, and business and technology services. Currently Investment Professional, Generalist at Meridian Capital Partners (hedge fund), managing its only long/short fundamental equity portfolio. Standouts include position sizing and hedging decisions, a Consumer and Technology portfolio within a $4.2bn gross portfolio at Millennium Management, and advising on an $8.5bn acquisition. Holds a Bachelor of Science in Business from Columbia Business School, Columbia University; no certifications."
   }
 }

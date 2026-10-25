@@ -5,23 +5,87 @@
     "file_sha256": "be94ffebe2e1076bc32f5b8e6415588309266fbd9690e766ee438de0281522a9",
     "file_bytes": 18400,
     "page_count": 1,
-    "parsed_at": "2026-10-24T21:36:15+00:00",
+    "parsed_at": "2026-10-25T13:02:45+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v1",
+    "prompt_version": "v2",
     "schema_version": 1,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 21357,
+        "latency_ms": 3810,
         "input_tokens": 1244,
-        "output_tokens": 3676,
+        "output_tokens": 322,
         "error": null,
-        "cache_read_tokens": 2934,
-        "cache_creation_tokens": 0
+        "cache_read_tokens": 2383,
+        "cache_creation_tokens": 0,
+        "call": "profile"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 7833,
+        "input_tokens": 1209,
+        "output_tokens": 1560,
+        "error": null,
+        "cache_read_tokens": 2851,
+        "cache_creation_tokens": 0,
+        "call": "experience"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 11036,
+        "input_tokens": 1537,
+        "output_tokens": 450,
+        "error": null,
+        "cache_read_tokens": 1236,
+        "cache_creation_tokens": 0,
+        "call": "regen:skills"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 8616,
+        "input_tokens": 3138,
+        "output_tokens": 1006,
+        "error": null,
+        "cache_read_tokens": 1453,
+        "cache_creation_tokens": 0,
+        "call": "assessment"
       }
     ],
+    "verification": {
+      "checks_run": 15,
+      "disagreements": 1,
+      "regenerated": 1,
+      "unresolved": [],
+      "details": [
+        {
+          "field": "skills",
+          "llm_value": {
+            "programming": [
+              "Python",
+              "R",
+              "VBA"
+            ],
+            "tools": [
+              "Excel"
+            ],
+            "domain": [
+              "financial modeling",
+              "fundamental research"
+            ]
+          },
+          "text_value": [
+            "equity-research",
+            "excel",
+            "financial-modeling",
+            "python",
+            "r",
+            "vba"
+          ]
+        }
+      ]
+    },
     "text_quality": {
       "unknown_ratio_before": 0.0024813895781637717,
       "unknown_ratio_after": 0.0024813895781637717,
@@ -35,32 +99,56 @@
     "contact": {
       "email": "marina.costa.finance@gmail.com",
       "phone": "+44 (785) 429-1673",
-      "location_text": null,
-      "linkedin": null
+      "location_text": null
     },
-    "summary_text": null,
     "education": [
       {
         "institution": "MIT Sloan School of Management",
         "degree": "Master of business administration (MBA)",
-        "degree_level": "Master",
+        "degree_level": "MBA",
         "field": null,
         "start": "2019-08",
         "end": "2021-05",
-        "gpa": null,
-        "honors": [],
         "country": "US"
       },
       {
         "institution": "Fundacao Getulio Vargas",
         "degree": "BS in Economics",
-        "degree_level": "Bachelor",
+        "degree_level": "Bachelors",
         "field": "Economics",
         "start": "2013",
         "end": "2016",
-        "gpa": null,
-        "honors": [],
         "country": "BR"
+      }
+    ],
+    "skills": {
+      "programming": [
+        "Python",
+        "R",
+        "VBA"
+      ],
+      "tools": [
+        "Excel"
+      ],
+      "domain": [
+        "financial modeling",
+        "fundamental research",
+        "equity research"
+      ]
+    },
+    "certifications": [],
+    "languages": [
+      {
+        "name": "Portuguese",
+        "level": "fluent"
+      },
+      {
+        "name": "English",
+        "level": "fluent"
+      },
+      {
+        "name": "Spanish",
+        "level": "conversational"
       }
     ],
     "experience": [
@@ -68,7 +156,7 @@
         "employer": "Vanguard Group",
         "title": "Equity Research Analyst",
         "location_text": "Boston, USA / London, United Kingdom",
-        "country": "US",
+        "country": "GB",
         "start": "2021-08",
         "end": null,
         "is_current": true,
@@ -82,19 +170,19 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "focused on healthcare, consumer discretionary an telecom companies"
+              "quote": "focused on healthcare, consumer discretionary an telecom companies operating primarily in emerging Latam and EMEA"
             }
           },
           {
             "label": "Consumer",
             "evidence": {
-              "quote": "consumer discretionary an telecom companies"
+              "quote": "focused on healthcare, consumer discretionary an telecom companies operating primarily in emerging Latam and EMEA"
             }
           },
           {
-            "label": "Other",
+            "label": "Technology",
             "evidence": {
-              "quote": "telecom companies operating primarily in emerging Latam and EMEA"
+              "quote": "focused on healthcare, consumer discretionary an telecom companies operating primarily in emerging Latam and EMEA"
             }
           }
         ],
@@ -104,18 +192,19 @@
         ],
         "markets_covered": [
           {
-            "label": "Latin America",
+            "label": "LatAm",
             "evidence": {
-              "quote": "operating primarily in emerging Latam and EMEA"
+              "quote": "companies operating primarily in emerging Latam and EMEA"
             }
           },
           {
             "label": "EMEA",
             "evidence": {
-              "quote": "operating primarily in emerging Latam and EMEA"
+              "quote": "companies operating primarily in emerging Latam and EMEA"
             }
           }
         ],
+        "duration_months": null,
         "bullets": [
           "Develops investment recommendations on publicly traded companies through fundamental research including financial modeling and proprietary studies, focused on healthcare, consumer discretionary an telecom companies operating primarily in emerging Latam and EMEA."
         ]
@@ -124,7 +213,7 @@
         "employer": "Vanguard Group",
         "title": "Equity Research Summer Analyst",
         "location_text": "Boston, USA / London, United Kingdom",
-        "country": "US",
+        "country": "GB",
         "start": "2020-06",
         "end": "2020-08",
         "is_current": false,
@@ -136,7 +225,7 @@
         ],
         "sectors": [
           {
-            "label": "Other",
+            "label": "Industrials",
             "evidence": {
               "quote": "water technology publicly traded companies"
             }
@@ -146,6 +235,7 @@
           "Water Technology"
         ],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Developed investment recommendations on water technology publicly traded companies through fundamental research including financial modeling and proprietary studies"
         ]
@@ -165,13 +255,16 @@
         "sectors": [],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
+          "Consumer",
           "Analyzed growth potential of e-commerce sales at major electronics retailer by proposing and estimating the impact of digital transformation initiatives such as omnichannel strategy, enhanced product recommendations and optimized logistics network",
           "Examined market and consumer trends affecting retail technology company for next 8 years, by consulting industry expert networks and identifying best practices; strategic framework was published in internal knowledge repository",
           "Built a dynamic pricing tool for a major consumer electronics company, to recommend price adjustments for each of the 35 main product categories, across 4 distribution channels and 180+ regional markets",
           "Redesigned customer service processes for major retail chain, creating standardized protocols, optimizing staffing levels, and developing workforce scheduling tool; during pilot implementation, coached store managers to ensure successful change management",
           "Implemented strategic sourcing transformation at major grocery chain, leading cross-functional teams of 3-4 client members in each product category to deliver ~4 percentage points of gross margin improvement",
           "Supervised progress of initiatives in supply chain optimization engagement for retail client, and in digital transformation program for logistics provider, managing junior client teams and ensuring execution excellence",
+          "Strategy & Operations – excluding consumer",
           "Developed a recommendation for a major infrastructure player regarding entrance in a new segment, by mapping main players, margins, current and potential market size, capabilities required, and investment needed",
           "Investigated structure and functioning of more than 15 loyalty programs, by interviewing colleagues from all over the world, and reaching out to market experts, to redesign loyalty program of a banking client",
           "Managed progress of 200+ initiatives in a large-scale lean manufacturing engagement for an aerospace player, by coordinating work of directors and managers of the company",
@@ -179,42 +272,12 @@
         ]
       }
     ],
-    "skills": {
-      "programming": [
-        "Python",
-        "R",
-        "VBA"
-      ],
-      "tools": [
-        "Excel"
-      ],
-      "domain": [
-        "Financial modeling",
-        "Fundamental research"
-      ]
-    },
-    "certifications": [],
-    "languages": [
-      {
-        "name": "Portuguese",
-        "level": "fluent"
-      },
-      {
-        "name": "English",
-        "level": "fluent"
-      },
-      {
-        "name": "Spanish",
-        "level": "conversational"
-      }
-    ],
-    "awards": [],
     "investment_approach": {
       "label": "Fundamental",
       "evidence": {
-        "quote": "through fundamental research including financial modeling and proprietary studies"
+        "quote": "Develops investment recommendations on publicly traded companies through fundamental research including financial modeling and proprietary studies"
       }
     },
-    "search_summary": "Early-career fundamental equity research analyst, in role since 2021 after a 2020 summer analyst internship. Equities across healthcare, consumer discretionary and telecom, covering emerging Latin America and EMEA. Most recent employer Vanguard Group (Asset manager), Equity Research Analyst. Builds financial models and proprietary studies; previously a Bain & Company business analyst for three years, built a dynamic pricing tool spanning 35 product categories and 180+ regional markets; Python, R, Excel/VBA. MBA, MIT Sloan; BS Economics, Fundacao Getulio Vargas; GMAT 740."
+    "search_summary": "Senior fundamental equity research analyst (8.2y relevant). Covers equities in healthcare, consumer, technology and telecom, plus water technology during an earlier internship. Markets covered: LatAm and EMEA. Currently Equity Research Analyst at Vanguard Group (asset manager). Skills include financial modeling, proprietary studies, and Python, R and VBA; built a dynamic pricing tool across 35 product categories and 180+ regional markets at Bain. Holds an MBA from MIT Sloan School of Management; no certifications listed."
   }
 }

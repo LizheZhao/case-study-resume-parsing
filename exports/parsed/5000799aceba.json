@@ -5,23 +5,89 @@
     "file_sha256": "5000799acebafbe1edfe25ff4b0641a6ec3b0b2f2a2a79615b647de8f1ca26b2",
     "file_bytes": 22357,
     "page_count": 1,
-    "parsed_at": "2026-10-24T21:37:35+00:00",
+    "parsed_at": "2026-10-25T13:04:25+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v1",
+    "prompt_version": "v2",
     "schema_version": 1,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 40096,
+        "latency_ms": 10079,
         "input_tokens": 1451,
-        "output_tokens": 7076,
+        "output_tokens": 429,
         "error": null,
-        "cache_read_tokens": 2934,
-        "cache_creation_tokens": 0
+        "cache_read_tokens": 2383,
+        "cache_creation_tokens": 0,
+        "call": "profile"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 26490,
+        "input_tokens": 1418,
+        "output_tokens": 3306,
+        "error": null,
+        "cache_read_tokens": 2851,
+        "cache_creation_tokens": 0,
+        "call": "experience"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 3380,
+        "input_tokens": 1816,
+        "output_tokens": 317,
+        "error": null,
+        "cache_read_tokens": 1236,
+        "cache_creation_tokens": 0,
+        "call": "regen:skills"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 10813,
+        "input_tokens": 3739,
+        "output_tokens": 1347,
+        "error": null,
+        "cache_read_tokens": 1453,
+        "cache_creation_tokens": 0,
+        "call": "assessment"
       }
     ],
+    "verification": {
+      "checks_run": 23,
+      "disagreements": 1,
+      "regenerated": 1,
+      "unresolved": [],
+      "details": [
+        {
+          "field": "skills",
+          "llm_value": {
+            "programming": [],
+            "tools": [
+              "MS Office",
+              "Bloomberg",
+              "Factset",
+              "Reuters",
+              "FDA",
+              "MedPAC",
+              "CMS",
+              "WHO",
+              "German DRG",
+              "USRDS",
+              "PubMed"
+            ],
+            "domain": [
+              "MDS (Perceptual Mapping)"
+            ]
+          },
+          "text_value": [
+            "bloomberg",
+            "equity-research",
+            "factset"
+          ]
+        }
+      ]
+    },
     "text_quality": {
       "unknown_ratio_before": 0.010309278350515464,
       "unknown_ratio_after": 0.010309278350515464,
@@ -31,64 +97,72 @@
     }
   },
   "extracted": {
-    "name": "Dr. Zara Al-Rashid",
+    "name": "Zara Al-Rashid",
     "contact": {
       "email": null,
       "phone": null,
-      "location_text": null,
-      "linkedin": null
+      "location_text": null
     },
-    "summary_text": null,
     "education": [
       {
         "institution": "Indian School of Business Management (ISBM), Pune",
         "degree": "PGDM (Finance)",
-        "degree_level": null,
+        "degree_level": "Masters",
         "field": "Finance",
         "start": null,
         "end": "2012",
-        "gpa": "7.2/10 (Finance)",
-        "honors": [],
         "country": "IN"
       },
       {
         "institution": "K.J. Somaiya Medical College, Mumbai",
         "degree": "M.B.B.S",
-        "degree_level": null,
+        "degree_level": "Other",
         "field": null,
         "start": null,
         "end": "2010",
-        "gpa": "63.87%",
-        "honors": [],
         "country": "IN"
       },
       {
         "institution": "Mithibai College, Mumbai",
         "degree": "XII Std.(PCMB)",
-        "degree_level": null,
+        "degree_level": "Other",
         "field": "PCMB",
         "start": null,
         "end": "2004",
-        "gpa": "89.00%",
-        "honors": [
-          "Top 0.2% Maharashtra state board"
-        ],
         "country": "IN"
       },
       {
         "institution": "St. Xavier's High School, Mumbai",
         "degree": "X Std.",
-        "degree_level": null,
+        "degree_level": "Other",
         "field": null,
         "start": null,
         "end": "2002",
-        "gpa": "90.43%",
-        "honors": [
-          "Top 5% Maharashtra state board"
-        ],
         "country": "IN"
       }
     ],
+    "skills": {
+      "programming": [],
+      "tools": [
+        "MS Office",
+        "Bloomberg",
+        "Factset",
+        "Reuters",
+        "FDA",
+        "MedPAC",
+        "CMS",
+        "WHO",
+        "German DRG",
+        "USRDS",
+        "PubMed"
+      ],
+      "domain": [
+        "equity research",
+        "MDS (Perceptual Mapping)"
+      ]
+    },
+    "certifications": [],
+    "languages": [],
     "experience": [
       {
         "employer": "Meridian Research Partners",
@@ -100,7 +174,7 @@
         "is_current": true,
         "employment_type": "full_time",
         "relevance": "core",
-        "firm_type": "Other",
+        "firm_type": "Sell-side broker",
         "asset_classes": [
           "Equities"
         ],
@@ -119,10 +193,11 @@
           {
             "label": "IN",
             "evidence": {
-              "quote": "Generate investment ideas and publish equity research ratings with price targets on Indian healthcare sector companies across 28 stocks under coverage"
+              "quote": "Indian healthcare sector companies across 28 stocks under coverage"
             }
           }
         ],
+        "duration_months": null,
         "bullets": [
           "Generate investment ideas and publish equity research ratings with price targets on Indian healthcare sector companies across 28 stocks under coverage"
         ]
@@ -153,6 +228,7 @@
           "Pharmaceuticals"
         ],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Voted by top domestic institutional investors: Axis Mutual Fund, SBI Mutual Fund, Nippon Life Asset Management, ICICI Prudential MF, Aditya Birla Sun Life MF, Reliance MF, LIC MF, Mirae Asset MF, Invesco MF, and Sundaram MF",
           "Investment recommendation adopted by major institutional client resulting in 35% increase in brokerage commission revenue"
@@ -183,21 +259,15 @@
         "other_sector_tags": [
           "Pharmaceuticals"
         ],
-        "markets_covered": [
-          {
-            "label": "IN",
-            "evidence": {
-              "quote": "Published sector thematic reports on Indian generics expansion, digital health initiatives, respiratory drug market, and healthcare policy reforms"
-            }
-          }
-        ],
+        "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Published sector thematic reports on Indian generics expansion, digital health initiatives, respiratory drug market, and healthcare policy reforms",
           "Hosted Organized healthcare policy conference in Mumbai covering regulatory changes, generic drug policies, and government health initiatives with key policymakers"
         ]
       },
       {
-        "employer": "DataFlow Research India Pvt. Limited, Noida",
+        "employer": "DataFlow Research India Pvt. Limited",
         "title": "Manager – Equity Research",
         "location_text": "Noida",
         "country": "IN",
@@ -229,20 +299,21 @@
             }
           }
         ],
+        "duration_months": null,
         "bullets": [
           "Member, U.S. Healthcare Services ER team (Institutional Investor (II) Runner up) at Leerink Partners",
           "Awarded \"Excellence in Research\" recognition for superior analytical work and report quality (2015)"
         ]
       },
       {
-        "employer": "J.P. Morgan Securities, London",
+        "employer": "J.P. Morgan Securities",
         "title": "Equity Research Associate",
         "location_text": "London",
         "country": "GB",
         "start": "2013-09",
         "end": "2014-11",
         "is_current": false,
-        "employment_type": "part_time",
+        "employment_type": "full_time",
         "relevance": "core",
         "firm_type": "Sell-side bank",
         "asset_classes": [
@@ -251,6 +322,7 @@
         "sectors": [],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Assist in team transition during replacement of a research associate and to work closely with the team",
           "Attended meetings & calls with company IRs, institutional investors, & industry experts",
@@ -258,7 +330,7 @@
         ]
       },
       {
-        "employer": "Cipla Pharmaceuticals, Mumbai",
+        "employer": "Cipla Pharmaceuticals",
         "title": "Summer Intern",
         "location_text": "Mumbai",
         "country": "IN",
@@ -272,37 +344,12 @@
         "sectors": [],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Competitive Positioning strategy for newly launched generic Calpol T using MDS (Perceptual Mapping)",
-          "Formulated competitive positioning strategy & communication tactics as a result of which Calpol T Key achievements had overtaken more than 90 brands in same category and is currently holding the 2nd rank"
+          "Formulated competitive positioning strategy & communication tactics as a result of which Calpol T had overtaken more than 90 brands in same category and is currently holding the 2nd rank"
         ]
       }
-    ],
-    "skills": {
-      "programming": [],
-      "tools": [
-        "MS Office",
-        "Bloomberg",
-        "Factset",
-        "Reuters"
-      ],
-      "domain": [
-        "FDA",
-        "MedPAC",
-        "CMS",
-        "WHO",
-        "German DRG",
-        "USRDS",
-        "PubMed"
-      ]
-    },
-    "certifications": [],
-    "languages": [],
-    "awards": [
-      "Awarded \"Excellence in Research\" recognition for superior analytical work and report quality (2015)",
-      "Scored 99.92 percentile in Quantitative Aptitude in CAT-2009",
-      "Winner, Pinnacle Cup-2010 and 2011, Mumbai Institute of Management Table Tennis championship",
-      "Winner, Champions Trophy-2010 Table Tennis tournament"
     ],
     "investment_approach": {
       "label": "Fundamental",
@@ -310,6 +357,6 @@
         "quote": "Generate investment ideas and publish equity research ratings with price targets on Indian healthcare sector companies across 28 stocks under coverage"
       }
     },
-    "search_summary": "Lead-level fundamental equity research analyst, with equity research experience since 2013. Equities in pharmaceuticals and healthcare. Covers Indian healthcare companies, 28 stocks under coverage. Most recent employer: Meridian Research Partners (Other), Lead Analyst – Pharmaceuticals and Healthcare. Skills: published ratings and price targets; recommendation adopted by major institutional client driving 35% increase in brokerage commission revenue; Bloomberg, Factset. PGDM (Finance), Indian School of Business Management, Pune; MBBS, K.J. Somaiya Medical College; no certifications listed."
+    "search_summary": "Principal fundamental equity research analyst (11.9y relevant). Covers equities in healthcare, pharmaceuticals and healthcare services. Markets covered are India and the US. Currently Lead Analyst – Pharmaceuticals and Healthcare at Meridian Research Partners (sell-side broker). Publishes ratings with price targets across 28 stocks under coverage; an investment recommendation adopted by an institutional client produced a 35% increase in brokerage commission revenue; uses Bloomberg and Factset. Holds a PGDM (Finance) from Indian School of Business Management (ISBM), Pune."
   }
 }

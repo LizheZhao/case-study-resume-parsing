@@ -5,23 +5,103 @@
     "file_sha256": "187e832c155d333d4c8c41c7e42812e30400b502f5edfde457a8d0b0c1ef44f2",
     "file_bytes": 20605,
     "page_count": 1,
-    "parsed_at": "2026-10-24T21:37:02+00:00",
+    "parsed_at": "2026-10-25T13:03:51+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v1",
+    "prompt_version": "v2",
     "schema_version": 1,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 38506,
+        "latency_ms": 7258,
         "input_tokens": 1874,
-        "output_tokens": 7140,
+        "output_tokens": 1076,
         "error": null,
-        "cache_read_tokens": 2934,
-        "cache_creation_tokens": 0
+        "cache_read_tokens": 2383,
+        "cache_creation_tokens": 0,
+        "call": "profile"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 31046,
+        "input_tokens": 1829,
+        "output_tokens": 4524,
+        "error": null,
+        "cache_read_tokens": 2851,
+        "cache_creation_tokens": 0,
+        "call": "experience"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 8943,
+        "input_tokens": 2209,
+        "output_tokens": 564,
+        "error": null,
+        "cache_read_tokens": 1236,
+        "cache_creation_tokens": 0,
+        "call": "regen:skills"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 15388,
+        "input_tokens": 5032,
+        "output_tokens": 1233,
+        "error": null,
+        "cache_read_tokens": 1453,
+        "cache_creation_tokens": 0,
+        "call": "assessment"
       }
     ],
+    "verification": {
+      "checks_run": 24,
+      "disagreements": 1,
+      "regenerated": 1,
+      "unresolved": [
+        {
+          "field": "skills",
+          "llm_value": {
+            "programming": [],
+            "tools": [],
+            "domain": [
+              "financial modeling",
+              "value investing",
+              "ratio analysis",
+              "competitive analysis",
+              "competitive positioning analysis",
+              "patent cliff assessments",
+              "Required Business Performance (RBP) probability"
+            ]
+          },
+          "text_value": [
+            "equity-research",
+            "financial-modeling"
+          ]
+        }
+      ],
+      "details": [
+        {
+          "field": "skills",
+          "llm_value": {
+            "programming": [],
+            "tools": [],
+            "domain": [
+              "financial modeling",
+              "value investing",
+              "ratio analysis",
+              "competitive analysis",
+              "competitive positioning analysis",
+              "patent cliff assessments",
+              "Required Business Performance (RBP) probability"
+            ]
+          },
+          "text_value": [
+            "equity-research",
+            "financial-modeling"
+          ]
+        }
+      ]
+    },
     "text_quality": {
       "unknown_ratio_before": 0.01779935275080906,
       "unknown_ratio_after": 0.01779935275080906,
@@ -35,67 +115,70 @@
     "contact": {
       "email": null,
       "phone": null,
-      "location_text": null,
-      "linkedin": null
+      "location_text": null
     },
-    "summary_text": "I have been covering the healthcare sector for 9years, currently employed with ICICI Securities. Coverage includes 25 healthcare stocks spread across different sub segments of healthcare / pharmaceutical value chain.",
     "education": [
       {
         "institution": "Mumbai Institute of Management Studies (MIMS)",
         "degree": "MBA",
-        "degree_level": "Master",
+        "degree_level": "MBA",
         "field": "Finance",
         "start": "2011",
         "end": "2013",
-        "gpa": null,
-        "honors": [],
         "country": "IN"
       },
       {
         "institution": "University of Pune",
         "degree": "MCOM",
-        "degree_level": "Master",
+        "degree_level": "Masters",
         "field": null,
         "start": null,
         "end": "2013",
-        "gpa": null,
-        "honors": [],
         "country": "IN"
       },
       {
         "institution": "Thakur College of Commerce",
         "degree": "B.M.S",
-        "degree_level": "Bachelor",
+        "degree_level": "Bachelors",
         "field": null,
         "start": null,
         "end": "2007",
-        "gpa": null,
-        "honors": [],
         "country": null
       },
       {
         "institution": "Jai Hind College",
         "degree": "HSC",
-        "degree_level": "High School",
+        "degree_level": "Other",
         "field": null,
         "start": null,
         "end": "2004",
-        "gpa": null,
-        "honors": [],
         "country": null
       },
       {
         "institution": "Modern High School and Junior College",
         "degree": "SSC",
-        "degree_level": "Secondary School",
+        "degree_level": "Other",
         "field": null,
         "start": null,
         "end": "2002",
-        "gpa": null,
-        "honors": [],
         "country": null
       }
     ],
+    "skills": {
+      "programming": [],
+      "tools": [],
+      "domain": [
+        "financial modeling",
+        "value investing",
+        "ratio analysis",
+        "competitive analysis",
+        "competitive positioning analysis",
+        "patent cliff assessments",
+        "Required Business Performance (RBP) probability"
+      ]
+    },
+    "certifications": [],
+    "languages": [],
     "experience": [
       {
         "employer": "ICICI Securities",
@@ -115,7 +198,7 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "Extensive coverage of 32 companies spread across all segments (pharma, hospital, diagnostics and medical devices) of the listed Indian healthcare universe."
+              "quote": "Lead Healthcare Analyst"
             }
           }
         ],
@@ -129,10 +212,11 @@
           {
             "label": "IN",
             "evidence": {
-              "quote": "listed Indian healthcare universe"
+              "quote": "the listed Indian healthcare universe"
             }
           }
         ],
+        "duration_months": null,
         "bullets": [
           "Extensive coverage of 32 companies spread across all segments (pharma, hospital, diagnostics and medical devices) of the listed Indian healthcare universe.",
           "Actively managed primary fund raise for Jupiter Hospital, Innova Captab, Entero Healthcare and AKUMS.",
@@ -163,6 +247,7 @@
         ],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Formal coverage includes 22 companies across the healthcare value chain.",
           "Periodical meetings with industry experts to get a perspective of industry and key functioning areas of a company.",
@@ -187,7 +272,7 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "17 pharma companies under direct coverage"
+              "quote": "Lead Pharma Analyst"
             }
           }
         ],
@@ -195,6 +280,7 @@
           "Pharma"
         ],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Started my journey as a Lead Analyst at Anand Rathi with 17 pharma companies under direct coverage. Portfolio consisted of a blend of large and mid-cap companies..",
           "Periodically update clients on corporate actions, news flow related to companies and events/updates pertaining to Healthcare sector globally",
@@ -224,9 +310,10 @@
           }
         ],
         "other_sector_tags": [
-          "Pharmaceuticals"
+          "Pharma"
         ],
         "markets_covered": [],
+        "duration_months": null,
         "bullets": [
           "Focused approach towards analyzing and recommending differentiated and undervalued investment opportunities to institutional clients. Developed comprehensive sectoral themes and provided regular updates on regulatory, competitive, and market dynamics to help clients make informed investment decisions.",
           "Built extensive domain expertise in the pharmaceutical sector and consistently published high-quality research including initiation reports, sector outlook pieces, quarterly earnings analysis, and thematic investment reports.",
@@ -253,28 +340,29 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space."
+              "quote": "Indian pharmaceutical and speciality chemical space"
             }
           },
           {
             "label": "Other",
             "evidence": {
-              "quote": "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space."
+              "quote": "speciality chemical space"
             }
           }
         ],
         "other_sector_tags": [
-          "Pharmaceuticals",
+          "Pharma",
           "Specialty Chemicals"
         ],
         "markets_covered": [
           {
             "label": "IN",
             "evidence": {
-              "quote": "Indian pharmaceutical and speciality chemical space"
+              "quote": "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space"
             }
           }
         ],
+        "duration_months": null,
         "bullets": [
           "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space. Build up financial models by getting details from interaction with company management and in depth analysis of various ratios and other financial parameters.",
           "Screen various companies, try to study them on various parameters of value investing and sensibly highlight them in the report prepared for initiating coverage and IPOs, so that clients can take informed decisions.",
@@ -300,12 +388,12 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "25 US and European large-cap pharmaceutical companies like Gilead Sciences, Zimmer Biomet Holding, Hospital Corporation of America, GSK and Meda AB"
+              "quote": "large-cap pharmaceutical companies"
             }
           }
         ],
         "other_sector_tags": [
-          "Pharmaceuticals"
+          "Pharma"
         ],
         "markets_covered": [
           {
@@ -321,6 +409,7 @@
             }
           }
         ],
+        "duration_months": null,
         "bullets": [
           "Analysed companies by reading financials & press release published by company, thoroughly understand the dynamics of the sector covered and understand the key drivers affecting a particular company for building better quality models. Taking into account macro-economic factors for building the model by reading and having team discussions and build model whose final outcome is Required Business Performance (RBP) probability.",
           "Write earnings report for a company based on the outcome of the models build. Tracking companies in the portfolio on a daily basis for related news & events and making adjustments to the models if some fundamental changes occur which affect the company’s key drivers of earnings and make adjustments for corporate actions completed by company in the portfolio.",
@@ -328,22 +417,12 @@
         ]
       }
     ],
-    "skills": {
-      "programming": [],
-      "tools": [],
-      "domain": [
-        "Financial modeling"
-      ]
-    },
-    "certifications": [],
-    "languages": [],
-    "awards": [],
     "investment_approach": {
       "label": "Fundamental",
       "evidence": {
-        "quote": "Screen various companies, try to study them on various parameters of value investing"
+        "quote": "try to study them on various parameters of value investing"
       }
     },
-    "search_summary": "Lead-level fundamental equity research analyst in healthcare, with experience since 2013 (profile states 9 years of coverage). Equities; healthcare including pharma, hospitals, diagnostics, medical devices, plus speciality chemicals earlier. Covers the listed Indian healthcare universe; earlier covered US and European large-cap pharma. Most recent employer ICICI Securities (sell-side broker), Lead Healthcare Analyst, covering 32 companies. Managed primary fund raises for Jupiter Hospital, Innova Captab, Entero Healthcare and AKUMS; built financial models and initiation reports. MBA Finance, Mumbai Institute of Management Studies. No certifications listed."
+    "search_summary": "Principal fundamental equity research analyst (12.8y relevant) covering equities in healthcare, pharma, hospitals, diagnostics, medical devices and specialty chemicals. Markets: India, US and Europe. Currently Lead Healthcare Analyst at ICICI Securities (sell-side broker). Standout work: coverage of 32 Indian healthcare companies, primary fund raises for Jupiter Hospital, Innova Captab, Entero Healthcare and AKUMS, and a 25-stock US and European large-cap pharma portfolio. MBA in Finance, Mumbai Institute of Management Studies (MIMS); no certifications listed."
   }
 }

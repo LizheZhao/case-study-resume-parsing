@@ -5,23 +5,77 @@
     "file_sha256": "595961ed436ed4c9fe7b6ba4de0323e812a0eac0add421671f449b8235bd22ec",
     "file_bytes": 26003,
     "page_count": 1,
-    "parsed_at": "2026-10-24T21:37:25+00:00",
+    "parsed_at": "2026-10-25T13:04:22+00:00",
     "extraction_path": "text",
     "llm_model": "claude-sonnet-5-5",
-    "prompt_version": "v1",
+    "prompt_version": "v2",
     "schema_version": 1,
     "parse_status": "ok",
     "attempts": [
       {
         "model": "claude-sonnet-5-5",
-        "latency_ms": 48257,
+        "latency_ms": 3460,
         "input_tokens": 1257,
-        "output_tokens": 8485,
+        "output_tokens": 406,
         "error": null,
-        "cache_read_tokens": 2934,
-        "cache_creation_tokens": 0
+        "cache_read_tokens": 2383,
+        "cache_creation_tokens": 0,
+        "call": "profile"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 26588,
+        "input_tokens": 1226,
+        "output_tokens": 4310,
+        "error": null,
+        "cache_read_tokens": 2851,
+        "cache_creation_tokens": 0,
+        "call": "experience"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 3685,
+        "input_tokens": 1522,
+        "output_tokens": 314,
+        "error": null,
+        "cache_read_tokens": 1236,
+        "cache_creation_tokens": 0,
+        "call": "regen:skills"
+      },
+      {
+        "model": "claude-sonnet-5-5",
+        "latency_ms": 10948,
+        "input_tokens": 3701,
+        "output_tokens": 1143,
+        "error": null,
+        "cache_read_tokens": 1453,
+        "cache_creation_tokens": 0,
+        "call": "assessment"
       }
     ],
+    "verification": {
+      "checks_run": 32,
+      "disagreements": 1,
+      "regenerated": 1,
+      "unresolved": [],
+      "details": [
+        {
+          "field": "skills",
+          "llm_value": {
+            "programming": [],
+            "tools": [],
+            "domain": [
+              "equity analysis",
+              "sector-agnostic investment approach",
+              "strategic market analysis"
+            ]
+          },
+          "text_value": [
+            "machine-learning"
+          ]
+        }
+      ]
+    },
     "text_quality": {
       "unknown_ratio_before": 0.011730205278592375,
       "unknown_ratio_after": 0.011730205278592375,
@@ -35,59 +89,63 @@
     "contact": {
       "email": null,
       "phone": null,
-      "location_text": null,
-      "linkedin": null
+      "location_text": null
     },
-    "summary_text": null,
     "education": [
       {
         "institution": "Mumbai Institute of Management Studies and Research",
         "degree": "PGDM",
-        "degree_level": "Postgraduate diploma",
+        "degree_level": "Masters",
         "field": null,
         "start": null,
         "end": "2015",
-        "gpa": "2.5/4",
-        "honors": [],
         "country": "IN"
       },
       {
-        "institution": "Padmashree Dr.D.Y.Patil Institute of Biotechnology and Bioinformatics, Navi Mumbai",
+        "institution": "Padmashree Dr.D.Y.Patil Institute of Biotechnology and Bioinformatics",
         "degree": "M.Tech(Integrated)",
-        "degree_level": "Integrated Master's",
+        "degree_level": "Masters",
         "field": null,
         "start": null,
         "end": "2010",
-        "gpa": "68%",
-        "honors": [],
         "country": "IN"
       },
       {
-        "institution": "Bharti Vidyapeeth junior college, Navi Mumbai",
+        "institution": "Bharti Vidyapeeth junior college",
         "degree": "HSC",
-        "degree_level": "Higher secondary",
+        "degree_level": "Other",
         "field": null,
         "start": null,
         "end": "2006",
-        "gpa": "72%",
-        "honors": [],
         "country": "IN"
       },
       {
-        "institution": "Don Bosco High School, Navi Mumbai",
+        "institution": "Don Bosco High School",
         "degree": "SSC",
-        "degree_level": "Secondary",
+        "degree_level": "Other",
         "field": null,
         "start": null,
         "end": "2004",
-        "gpa": "73%",
-        "honors": [],
         "country": "IN"
       }
     ],
+    "skills": {
+      "programming": [],
+      "tools": [],
+      "domain": [
+        "equity analysis",
+        "sector-agnostic investment approach",
+        "strategic market analysis",
+        "machine learning"
+      ]
+    },
+    "certifications": [
+      "Chartered Financial Analyst Level 3 (CFA, USA)"
+    ],
+    "languages": [],
     "experience": [
       {
-        "employer": "Axis Mutual Fund",
+        "employer": "Axis Mutual Fund (US$1.2 billion+)",
         "title": "Research Analyst",
         "location_text": null,
         "country": null,
@@ -104,13 +162,13 @@
           {
             "label": "Healthcare",
             "evidence": {
-              "quote": "Tracked 38 companies within the healthcare fund portfolio"
+              "quote": "Pharmaceuticals and Specialty Chemicals"
             }
           },
           {
             "label": "Other",
             "evidence": {
-              "quote": "Covering Pharmaceuticals and Specialty Chemicals"
+              "quote": "Pharmaceuticals and Specialty Chemicals"
             }
           }
         ],
@@ -119,6 +177,7 @@
           "Specialty Chemicals"
         ],
         "markets_covered": [],
+        "duration_months": 2,
         "bullets": [
           "Tracked 38 companies within the healthcare fund portfolio and conducted meetings with various stakeholders (management teams, buy-side analysts) to provide strategic inputs to senior fund managers."
         ]
@@ -141,13 +200,13 @@
           {
             "label": "Energy",
             "evidence": {
-              "quote": "Completed comprehensive sector report on renewable energy (~120 pages)"
+              "quote": "sector report on renewable energy"
             }
           },
           {
             "label": "Industrials",
             "evidence": {
-              "quote": "Also published detailed analysis on Indian infrastructure sector"
+              "quote": "Indian infrastructure sector"
             }
           }
         ],
@@ -159,14 +218,13 @@
           {
             "label": "IN",
             "evidence": {
-              "quote": "Also published detailed analysis on Indian infrastructure sector"
+              "quote": "Indian infrastructure sector"
             }
           }
         ],
+        "duration_months": 10,
         "bullets": [
-          "Completed comprehensive sector report on renewable energy (~120 pages) within 3 months of joining and began receiving institutional votes within first quarter.",
-          "Also published detailed analysis on Indian infrastructure sector",
-          "Applied sector-agnostic investment approach focusing on company fundamentals regardless of market capitalization constraints"
+          "Completed comprehensive sector report on renewable energy (~120 pages) within 3 months of joining and began receiving institutional votes within first quarter. Also published detailed analysis on Indian infrastructure sector Applied sector-agnostic investment approach focusing on company fundamentals regardless of market capitalization constraints"
         ]
       },
       {
@@ -210,18 +268,14 @@
           }
         ],
         "other_sector_tags": [
-          "Oil&Gas",
+          "Oil & Gas",
           "Logistics",
-          "Alcobev",
-          "Digital Health",
-          "Renewable Energy"
+          "Alcobev"
         ],
         "markets_covered": [],
+        "duration_months": 106,
         "bullets": [
-          "Maintained active coverage of 42 stocks across multiple sectors.",
-          "Advanced from research associate to lead analyst within 3 years.",
-          "Consistently received top performance ratings throughout tenure",
-          "Initiated coverage reports on digital health platforms and renewable energy companies, generating superior returns for institutional clients over time"
+          "Maintained active coverage of 42 stocks across multiple sectors. Advanced from research associate to lead analyst within 3 years. Consistently received top performance ratings throughout tenure Initiated coverage reports on digital health platforms and renewable energy companies, generating superior returns for institutional clients over time"
         ]
       },
       {
@@ -239,6 +293,7 @@
         "sectors": [],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": 7,
         "bullets": [
           "Contributing member of team developing AI-based drug target identification system for precision medicine applications"
         ]
@@ -246,20 +301,20 @@
       {
         "employer": "Mumbai Cancer Research Institute (MCRI)",
         "title": "Research Associate",
-        "location_text": null,
+        "location_text": "Mumbai",
         "country": "IN",
         "start": null,
         "end": null,
         "is_current": false,
-        "employment_type": "academic",
+        "employment_type": "full_time",
         "relevance": "unrelated",
-        "firm_type": "Academic",
+        "firm_type": "Other",
         "asset_classes": [],
         "sectors": [],
         "other_sector_tags": [],
         "markets_covered": [],
+        "duration_months": 8,
         "bullets": [
-          "8 months of research experience at Mumbai Cancer Research Institute (MCRI) as a Research Associate",
           "Co-author in research paper entitled \"Machine Learning Applications in Biomarker Discovery for Targeted Cancer Therapy\" published in Journal of Computational Biology and Bioinformatics (ISSN:2456-7891)"
         ]
       },
@@ -281,7 +336,7 @@
           {
             "label": "Technology",
             "evidence": {
-              "quote": "Comprehensive equity analysis of Indian Technology Sector"
+              "quote": "Indian Technology Sector"
             }
           }
         ],
@@ -290,10 +345,11 @@
           {
             "label": "IN",
             "evidence": {
-              "quote": "Comprehensive equity analysis of Indian Technology Sector"
+              "quote": "Indian Technology Sector"
             }
           }
         ],
+        "duration_months": 3,
         "bullets": [
           "Comprehensive equity analysis of Indian Technology Sector"
         ]
@@ -314,7 +370,7 @@
           {
             "label": "Energy",
             "evidence": {
-              "quote": "Strategic market analysis of Indian Renewable Energy Companies."
+              "quote": "Indian Renewable Energy Companies"
             }
           }
         ],
@@ -325,31 +381,22 @@
           {
             "label": "IN",
             "evidence": {
-              "quote": "Strategic market analysis of Indian Renewable Energy Companies."
+              "quote": "Indian Renewable Energy Companies"
             }
           }
         ],
+        "duration_months": 2,
         "bullets": [
           "Strategic market analysis of Indian Renewable Energy Companies."
         ]
       }
     ],
-    "skills": {
-      "programming": [],
-      "tools": [],
-      "domain": []
-    },
-    "certifications": [
-      "Chartered Financial Analyst Level 3 (CFA, USA)"
-    ],
-    "languages": [],
-    "awards": [],
     "investment_approach": {
       "label": "Fundamental",
       "evidence": {
-        "quote": "focusing on company fundamentals regardless of market capitalization constraints"
+        "quote": "Applied sector-agnostic investment approach focusing on company fundamentals regardless of market capitalization constraints"
       }
     },
-    "search_summary": "Senior fundamental equity research analyst with roughly 10 years of relevant experience. Equities across Healthcare, Pharmaceuticals, Specialty Chemicals, Oil & Gas, Logistics, Alcobev, Renewable Energy and Infrastructure. Indian markets covered (infrastructure, technology). Latest listed employer: Axis Mutual Fund (Asset manager), Research Analyst. Covered 42 stocks at ICICI Securities, rose from research associate to lead analyst within 3 years, tracked 38 healthcare portfolio companies, wrote a ~120-page renewable energy report. PGDM, Mumbai Institute of Management Studies and Research; CFA Level 3 completed."
+    "search_summary": "Principal fundamental equity analyst (10.4y relevant). Covers equities in healthcare, pharmaceuticals, specialty chemicals, renewable energy, oil and gas, logistics, alcobev and infrastructure. Markets covered: India. Most recent employer is Axis Mutual Fund (asset manager), title Research Analyst. Maintained coverage of 42 stocks at ICICI Securities, tracked 38 healthcare portfolio companies at Axis, and wrote a ~120-page renewable energy sector report within 3 months. Holds a PGDM from Mumbai Institute of Management Studies and Research; Chartered Financial Analyst Level 3 (CFA, USA)."
   }
 }
