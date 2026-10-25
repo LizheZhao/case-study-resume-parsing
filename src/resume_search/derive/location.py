@@ -4,14 +4,24 @@ import re
 from datetime import date
 
 from resume_search.derive.experience import total_months
-from resume_search.parse.models import Contact, EmploymentType, ParsedResume, month_index
+from resume_search.parse.models import (
+    Education,
+    EmploymentType,
+    Experience,
+    ParsedResume,
+    month_index,
+)
 from resume_search.taxonomy import Taxonomy
+
+
+_POSTCODE = re.compile(r"\s+\d[\d\s-]*$")
 
 
 def _gazetteer(text: str, tax: Taxonomy) -> str | None:
     """Match comma-separated parts of a free-text location against country names and aliases,
-    last part first ('Mumbai, India' hits the country before the city)."""
-    parts = [p.strip().lower() for p in reversed(text.split(",")) if p.strip()]
+    last part first ('Mumbai, India' hits the country before the city). A trailing postcode is
+    dropped, so 'Boston, MA 01125' matches on 'MA'."""
+    parts = [_POSTCODE.sub("", p.strip()).lower() for p in reversed(text.split(",")) if p.strip()]
     for part in parts:
         for iso, names in tax.country_names.items():
             if part in (n.lower() for n in names):
@@ -30,36 +40,39 @@ def _from_phone(phone: str, tax: Taxonomy) -> str | None:
     return None
 
 
-def _contact_country(contact: Contact, tax: Taxonomy) -> str | None:
-    if contact.location_text and (iso := _gazetteer(contact.location_text, tax)):
-        return iso
-    if contact.phone:
-        return _from_phone(contact.phone, tax)
-    return None
+_NOW = 10**9  # sorts a current role after every dated end
+
+
+def _recency(end: str | None, *, current: bool = False, start: str | None = None) -> tuple[int, int]:
+    """Sort key, latest first: current entries by start, then dated entries by end; undated -1."""
+    if current:
+        return _NOW, month_index(start) if start else -1
+    return (month_index(end), 0) if end else (-1, 0)
 
 
 def current_country(parsed: ParsedResume, tax: Taxonomy) -> str | None:
-    """Country of the current role with the latest start, else of the latest role by start
-    (first listed when nothing is dated). Roles with no stated country are skipped, then the
-    contact block decides, then the school with the latest end date, then the head office of
-    the latest role's firm."""
-    roles = parsed.experience
-
-    def start_key(i: int) -> int:
-        s = roles[i].start
-        return month_index(s[-1]) if s else -1
-
-    order = sorted(range(len(roles)), key=lambda i: (start_key(i), -i), reverse=True)
-    current = [i for i in order if roles[i].is_current]
-    for i in current + order:
-        if roles[i].country:
-            return roles[i].country
-    if iso := _contact_country(parsed.contact, tax):
+    """Where the candidate is now. A location stated in the contact block wins. Otherwise the
+    most recent work or education entry with a stated country (current roles first, then by
+    end date; extracurricular posts skipped). Then the head office of the latest role's firm,
+    then the phone prefix."""
+    contact = parsed.contact
+    if contact.location_text and (iso := _gazetteer(contact.location_text, tax)):
         return iso
-    schools = sorted((e for e in parsed.education if e.country), key=lambda e: e.end or "", reverse=True)
-    if schools:
-        return schools[0].country
-    return next((roles[i].firm_hq_country for i in current + order if roles[i].firm_hq_country), None)
+    roles = [e for e in parsed.experience if e.employment_type is not EmploymentType.extracurricular]
+    dated: list[tuple[tuple[int, int], int, Experience | Education]] = []
+    for i, e in enumerate(roles):
+        key = _recency(e.end[-1] if e.end else None, current=e.is_current,
+                       start=e.start[-1] if e.start else None)
+        dated.append((key, -i, e))
+    for i, e in enumerate(parsed.education):
+        dated.append((_recency(e.end or e.start), -len(roles) - i, e))
+    dated.sort(key=lambda t: t[:2], reverse=True)
+    if iso := next((e.country for *_, e in dated if e.country), None):
+        return iso
+    latest_roles = [e for *_, e in dated if isinstance(e, Experience)]
+    if iso := next((e.firm_hq_country for e in latest_roles if e.firm_hq_country), None):
+        return iso
+    return _from_phone(contact.phone, tax) if contact.phone else None
 
 
 def countries_worked(parsed: ParsedResume, today: date) -> list[tuple[str, int]]:

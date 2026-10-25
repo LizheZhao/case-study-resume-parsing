@@ -44,6 +44,10 @@ def format_parsing(body: dict) -> str:
         for n, a in ag["per_candidate"].items():
             for d in a["disagreements"]:
                 out.append(f"  {n} {d['field']}: human {d['human']}, judge {d['judge']}")
+    if loc := m.get("location"):
+        out.append(f"\nLocation vs gold, {loc['n']} candidates: {loc['correct']} match ({_pct(loc['accuracy'])})")
+        for d in loc["mismatches"]:
+            out.append(f"  {d['name']}: derived {d['derived']}, gold {d['gold']}")
     return "\n".join(out)
 
 

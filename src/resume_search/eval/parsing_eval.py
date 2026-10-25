@@ -17,6 +17,7 @@ from resume_search.parse.client import Attempt, default_client
 from resume_search.store.db import connect, get_candidate
 
 DEFAULT_GOLD = "evals/gold/parsing_human.jsonl"
+DEFAULT_LOCATION_GOLD = "evals/gold/location_human.jsonl"
 
 
 def load_gold(path: str | Path) -> dict[str, dict]:
@@ -39,6 +40,17 @@ def load_text(conn, text_dir: Path, candidate_id: str, source_file: str | None) 
     return (row["body"] if row else ""), "fts_body"
 
 
+def location_check(records: dict[str, tuple[str, str | None]], gold: dict[str, dict]) -> dict | None:
+    """Exact match of derived current_country against the location gold; no judge involved.
+    records maps candidate_id to (name, derived current_country)."""
+    rows = [(cid, *records[cid], g["current_country"]) for cid, g in gold.items() if cid in records]
+    if not rows:
+        return None
+    misses = [{"name": n, "derived": got, "gold": want} for _, n, got, want in rows if got != want]
+    return {"n": len(rows), "correct": len(rows) - len(misses),
+            "accuracy": round(1 - len(misses) / len(rows), 4), "mismatches": misses}
+
+
 def _summary(grades: list[dict]) -> dict:
     acc = field_accuracy(grades)["overall"]
     return {
@@ -53,6 +65,7 @@ def run_parsing_eval(
     client=None,
     only: list[str] | None = None,
     gold_path: str | Path = DEFAULT_GOLD,
+    location_gold_path: str | Path = DEFAULT_LOCATION_GOLD,
     text_dir: str | Path | None = None,
     workers: int = 4,
 ) -> tuple[Path, dict]:
@@ -66,10 +79,12 @@ def run_parsing_eval(
     gold = load_gold(gold_path)
 
     inputs = []
+    countries: dict[str, tuple[str, str | None]] = {}
     for r in rows:
         record = get_candidate(conn, r["candidate_id"])
         text, source = load_text(conn, text_dir, r["candidate_id"], r["source_file"])
         inputs.append((r["candidate_id"], r["name"], record.extracted, text, source))
+        countries[r["candidate_id"]] = (r["name"], record.derived.current_country)
 
     def one(args) -> tuple[dict, list[Attempt]]:
         cid, name, parsed, text, source = args
@@ -112,6 +127,7 @@ def run_parsing_eval(
             "overall": overall,
             "per_candidate": {i["name"]: i["human_agreement"] for i in gold_items},
         },
+        "location": location_check(countries, load_gold(location_gold_path)),
     }
     body = {
         "task_model": "claude-sonnet-5-5", "judge_model": JUDGE_MODEL,
