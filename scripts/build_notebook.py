@@ -513,6 +513,12 @@ def execute(files: dict[str, list[Path]]) -> None:
     ]
     if errors:
         sys.exit(f"cells with errors: {errors}")
+    # Library warnings on stderr (tqdm, torch, HF Hub) name the local machine and say nothing
+    # about the case study, so they do not ship in the notebook.
+    for c in nb.cells:
+        if c.cell_type == "code":
+            c.outputs = [o for o in c.outputs if not (o.output_type == "stream" and o.name == "stderr")]
+    nbformat.write(nb, NOTEBOOK)
     print(f"executed {sum(c.cell_type == 'code' for c in nb.cells)} code cells without error")
 
 

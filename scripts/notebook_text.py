@@ -23,6 +23,10 @@ Order of play:
 
 **Exports:** `exports/candidates.json` has the full records, `exports/candidates.csv` the `candidates` table plus facet columns. Both get rewritten at the end of every ingest.
 
+**Parsing code:** `src/resume_search/`. `extract/` turns DOCX and PDF into text, `parse/` holds the Pydantic models, the prompt, the LLM client and the cross-verification checks, `derive/` computes experience, location and skills, `store/` is the SQLite schema and exports, `search/` is the ranking, `ingest/` the pipeline, `eval/` the judged suites.
+
+**Streamlit code:** `app/`. `Home.py` is the entry point, `common.py` the shared loaders, and `pages/1_Search.py` to `pages/5_Evals.py` the five pages.
+
 **Requirements.** Python 3.12 and [uv](https://docs.astral.sh/uv/). Parsing, JD parsing, and the evals call the Anthropic API and read `ANTHROPIC_API_KEY` from the environment or a `.env` file. Nothing in the demos below needs a key.
 """
 
@@ -56,7 +60,7 @@ src/resume_search/
   taxonomy.py cli.py
 app/           Home.py common.py pages/1_Search.py 2_Candidate.py 3_Insights.py 4_Ingest.py 5_Evals.py
 evals/         requisitions.jsonl (6 requisitions), gold/ (hand grades), results/ (judge runs)
-exports/       candidates.json candidates.csv parsed/ text/   (candidates.sqlite is git-ignored)
+exports/       candidates.sqlite candidates.json candidates.csv parsed/ text/
 scripts/       build_notebook.py notebook_text.py build_review_sheet.py
 tests/         pytest suite
 ```
@@ -354,7 +358,7 @@ This cell installs the package the cells above just wrote out. By default it onl
 DEMO_INTRO = """\
 ## Demos
 
-Everything below works off the sample resumes in `data/`, the stored parse results in `exports/parsed/`, and the SQLite database at `exports/candidates.sqlite`. No API calls. If the database file is missing (it is git-ignored), the first cell rebuilds it from `exports/candidates.json` and the resume files with local code and the local embedding model.
+Everything below works off the sample resumes in `data/`, the stored parse results in `exports/parsed/`, and the SQLite database at `exports/candidates.sqlite`. No API calls. If the database file is missing, the first cell rebuilds it from `exports/candidates.json` and the resume files with local code and the local embedding model.
 """
 
 LLM_INTRO = """\
