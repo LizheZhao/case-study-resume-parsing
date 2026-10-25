@@ -1,10 +1,11 @@
-"""Shared Streamlit helpers: cached resources, the requisition <-> widget mapping, chip rendering."""
+"""Shared Streamlit helpers: cached resources, the requisition <-> widget mapping, display labels
+and chip rendering."""
 
 from __future__ import annotations
 
+import html
 import json
 import os
-from dataclasses import replace
 from pathlib import Path
 
 import streamlit as st
@@ -22,17 +23,14 @@ load_dotenv()
 DEFAULT_DB = "exports/candidates.sqlite"
 ANY = "(any)"
 YEARS_MAX = 25
-# Criteria that carry a must/preferred mode on the Requisition.
+# Criteria that carry a must/preferred mode on the Requisition, keyed to their toggle.
 MODE_FIELDS = (
     "location", "approach", "sectors", "markets_covered", "seniority_bands", "degree_min",
     "certifications", "languages", "asset_classes",
 )
-MODE_LABELS = {
-    "location": "Location", "approach": "Approach", "sectors": "Sectors",
-    "markets_covered": "Markets covered", "seniority_bands": "Seniority",
-    "degree_min": "Degree", "certifications": "Certifications", "languages": "Languages",
-    "asset_classes": "Asset classes",
-}
+# ISO codes shown differently from the taxonomy key.
+DISPLAY_CODE = {"GB": "UK"}
+UNKNOWN = "Unknown"
 
 
 def db_path() -> str:
@@ -73,27 +71,47 @@ def get_weights() -> Weights:
 @st.cache_resource
 def get_taxonomy() -> dict:
     countries = tx.countries()
+    skills = tx.skill_variants().values()
     return {
         "regions": list(tx._load("countries")["regions"]),
         "countries": {iso: c["name"] for iso, c in countries.items()},
+        "region_of": {iso: c["region"] for iso, c in countries.items()},
         "sectors": tx.sectors(),
         "asset_classes": tx.asset_classes(),
+        "firm_types": tx.firm_types(),
         "markets": sorted(tx.market_labels() | tx.iso2_codes()),
+        "skills": sorted({s["canonical"] for s in skills if s["category"] != "cert"}),
+        "certs": sorted({s["canonical"].upper() for s in skills if s["category"] == "cert"}),
     }
 
 
-def weights_to_dict(w: Weights) -> dict:
-    return {**{f: getattr(w, f) for f in Weights.__dataclass_fields__ if f != "rule"}, "rule": dict(w.rule)}
+def _distinct(path: str, sql: str) -> list[str]:
+    return [r[0] for r in get_conn(path).execute(sql) if r[0]]
 
 
-def weights_from_dict(d: dict) -> Weights:
-    return replace(get_weights(), **{**d, "rule": dict(d["rule"])})
+@st.cache_data
+def picker_options(path: str) -> dict[str, list[str]]:
+    """Taxonomy values plus what the stored candidates already carry, deduplicated ignoring case.
+    The pickers still accept a typed value that is in neither."""
+    t = get_taxonomy()
+
+    def merge(*lists: list[str]) -> list[str]:
+        seen: dict[str, str] = {}
+        for v in (v for vs in lists for v in vs):
+            seen.setdefault(v.casefold(), v)
+        return sorted(seen.values(), key=str.casefold)
+
+    return {
+        "skills": merge(t["skills"], _distinct(path, "SELECT DISTINCT skill FROM candidate_skills")),
+        "certs": merge(t["certs"], _distinct(path, "SELECT DISTINCT cert FROM candidate_certs")),
+        "languages": merge(_distinct(path, "SELECT DISTINCT language FROM candidate_languages")),
+    }
 
 
 @st.cache_data(show_spinner="Searching")
-def run_search(req_json: str, weights: dict, path: str, top_k: int = 20) -> list[SearchResult]:
+def run_search(req_json: str, path: str, top_k: int) -> list[SearchResult]:
     return run_ranked_search(
-        get_conn(path), Requisition.model_validate_json(req_json), weights_from_dict(weights),
+        get_conn(path), Requisition.model_validate_json(req_json), get_weights(),
         embedder=get_embedder(), index=get_index(path), top_k=top_k,
     )
 
@@ -105,27 +123,39 @@ def clear_caches() -> None:
     st.cache_data.clear()
 
 
+# Display labels ---------------------------------------------------------------------------------
+
+
+def country_code(iso: str | None) -> str:
+    return DISPLAY_CODE.get(iso, iso) if iso else UNKNOWN
+
+
+def country_option(iso: str) -> str:
+    return f"{country_code(iso)} – {get_taxonomy()['countries'][iso]}"
+
+
+def location_label(country: str | None, region: str | None) -> str:
+    """'APAC – HK', 'Europe – UK'; one name when region and country coincide ('US')."""
+    if not country:
+        return region or UNKNOWN
+    code = country_code(country)
+    return code if not region or region == country else f"{region} – {code}"
+
+
+def profile_line(band: str | None, country: str | None, region: str | None) -> str:
+    return f"Seniority: {band or UNKNOWN} · Location: {location_label(country, region)}"
+
+
 # Requisition <-> widget state -------------------------------------------------------------------
-
-
-def location_options() -> dict[str, str]:
-    t = get_taxonomy()
-    out = {ANY: ""}
-    out.update({f"Region: {r}": r for r in t["regions"]})
-    out.update({f"{name} ({iso})": iso for iso, name in sorted(t["countries"].items(), key=lambda kv: kv[1])})
-    return out
-
-
-def _csv(text: str) -> list[str]:
-    return [p.strip() for p in (text or "").split(",") if p.strip()]
 
 
 def default_state() -> dict:
     return {
-        "f_location": ANY, "f_scope": "either", "f_approach": ANY, "f_sectors": [],
-        "f_markets": [], "f_years": (0, YEARS_MAX), "f_years_hard": True, "f_bands": [],
-        "f_degree": ANY, "f_cfa": False, "f_certs": "", "f_skills_req": "", "f_skills_pref": "",
-        "f_languages": "", "f_assets": [], "f_must": [], "jd_text": "",
+        "f_regions": [], "f_countries": [], "f_scope": "either", "f_approach": ANY,
+        "f_sectors": [], "f_markets": [], "f_years": (0, YEARS_MAX), "f_bands": [],
+        "f_degree": ANY, "f_certs": [], "f_skills_req": [], "f_skills_pref": [],
+        "f_languages": [], "f_assets": [], "jd_text": "",
+        **{f"m_{f}": False for f in MODE_FIELDS}, "m_years": True,
     }
 
 
@@ -134,73 +164,70 @@ def init_state() -> None:
         st.session_state.setdefault(k, v)
 
 
+def country_choices(regions: list[str]) -> list[str]:
+    """ISO codes for the country picker: the selected regions' countries, or all of them."""
+    t = get_taxonomy()
+    isos = [i for i in t["countries"] if not regions or t["region_of"][i] in regions]
+    return sorted(isos, key=country_option)
+
+
+def places(regions: list[str], countries: list[str]) -> list[str]:
+    """The location values the widgets mean: each picked country, plus each picked region that
+    has no picked country inside it."""
+    region_of = get_taxonomy()["region_of"]
+    narrowed = {region_of[c] for c in countries}
+    return list(countries) + [r for r in regions if r not in narrowed]
+
+
 def state_from_requisition(req: Requisition) -> dict:
-    """Widget values that reproduce `req`. Values outside a widget's options are dropped."""
+    """Widget values that reproduce `req`."""
     s = default_state()
     s["jd_text"] = req.free_text or ""
     if req.location:
-        place = resolve_location(req.location.value)
-        s["f_location"] = next((k for k, v in location_options().items() if v == place.code), ANY)
+        for v in req.location.value:
+            place = resolve_location(v)
+            region = place.code if place.kind == "region" else get_taxonomy()["region_of"][place.code]
+            if place.kind == "country":
+                s["f_countries"].append(place.code)
+            if region not in s["f_regions"]:
+                s["f_regions"].append(region)
     s["f_scope"] = req.location_scope
     if req.approach:
         s["f_approach"] = req.approach.value
-    if req.sectors:
-        s["f_sectors"] = list(req.sectors.value)
-    if req.markets_covered:
-        s["f_markets"] = [m for m in req.markets_covered.value if m in get_taxonomy()["markets"]]
+    for field, key in (
+        ("sectors", "f_sectors"), ("markets_covered", "f_markets"), ("seniority_bands", "f_bands"),
+        ("certifications", "f_certs"), ("languages", "f_languages"), ("asset_classes", "f_assets"),
+    ):
+        if (c := getattr(req, field)) is not None:
+            s[key] = list(c.value)
     lo, hi = req.years_min, req.years_max
     s["f_years"] = (int(lo or 0), int(min(hi, YEARS_MAX)) if hi is not None else YEARS_MAX)
-    s["f_years_hard"] = req.years_mode == "must"
-    if req.seniority_bands:
-        s["f_bands"] = list(req.seniority_bands.value)
+    s["m_years"] = req.years_mode == "must"
     if req.degree_min:
         s["f_degree"] = req.degree_min.value
-    certs = list(req.certifications.value) if req.certifications else []
-    s["f_cfa"] = any(c.upper() == "CFA" for c in certs)
-    s["f_certs"] = ", ".join(c for c in certs if c.upper() != "CFA")
-    s["f_skills_req"] = ", ".join(req.skills_required)
-    s["f_skills_pref"] = ", ".join(req.skills_preferred)
-    if req.languages:
-        s["f_languages"] = ", ".join(req.languages.value)
-    if req.asset_classes:
-        s["f_assets"] = list(req.asset_classes.value)
-    s["f_must"] = [f for f in MODE_FIELDS if (c := getattr(req, f)) is not None and c.mode == "must"]
+    s["f_skills_req"] = list(req.skills_required)
+    s["f_skills_pref"] = list(req.skills_preferred)
+    for f in MODE_FIELDS:
+        s[f"m_{f}"] = (c := getattr(req, f)) is not None and c.mode == "must"
     return s
 
 
-def set_criteria(s: dict) -> list[str]:
-    """The mode-carrying criteria the widget state sets, in MODE_FIELDS order."""
-    present = {
-        "location": s["f_location"] != ANY, "approach": s["f_approach"] != ANY,
-        "sectors": bool(s["f_sectors"]), "markets_covered": bool(s["f_markets"]),
-        "seniority_bands": bool(s["f_bands"]), "degree_min": s["f_degree"] != ANY,
-        "certifications": bool(s["f_cfa"] or _csv(s["f_certs"])),
-        "languages": bool(_csv(s["f_languages"])), "asset_classes": bool(s["f_assets"]),
-    }
-    return [f for f in MODE_FIELDS if present[f]]
-
-
 def requisition_from_state(s: dict) -> Requisition:
-    must = set(s["f_must"])
-
     def crit(field: str, value):
-        mode = "must" if field in must else "preferred"
-        return Criterion(value=value, mode=mode)
+        return Criterion(value=value, mode="must" if s[f"m_{field}"] else "preferred")
 
     lo, hi = s["f_years"]
-    certs = (["CFA"] if s["f_cfa"] else []) + _csv(s["f_certs"])
     kw: dict = {}
-    if s["f_location"] != ANY:
-        kw["location"] = crit("location", location_options()[s["f_location"]])
+    if loc := places(s["f_regions"], s["f_countries"]):
+        kw["location"] = crit("location", loc)
     if s["f_approach"] != ANY:
         kw["approach"] = crit("approach", s["f_approach"])
-    for field, key, vals in (
-        ("sectors", "f_sectors", s["f_sectors"]), ("markets_covered", "f_markets", s["f_markets"]),
-        ("seniority_bands", "f_bands", s["f_bands"]), ("certifications", None, certs),
-        ("languages", None, _csv(s["f_languages"])), ("asset_classes", "f_assets", s["f_assets"]),
+    for field, key in (
+        ("sectors", "f_sectors"), ("markets_covered", "f_markets"), ("seniority_bands", "f_bands"),
+        ("certifications", "f_certs"), ("languages", "f_languages"), ("asset_classes", "f_assets"),
     ):
-        if vals:
-            kw[field] = crit(field, list(vals))
+        if s[key]:
+            kw[field] = crit(field, list(s[key]))
     if s["f_degree"] != ANY:
         kw["degree_min"] = crit("degree_min", s["f_degree"])
     return Requisition(
@@ -208,52 +235,37 @@ def requisition_from_state(s: dict) -> Requisition:
         location_scope=s["f_scope"],
         years_min=float(lo) if lo > 0 else None,
         years_max=float(hi) if hi < YEARS_MAX else None,
-        years_mode="must" if s["f_years_hard"] else "preferred",
-        skills_required=_csv(s["f_skills_req"]), skills_preferred=_csv(s["f_skills_pref"]), **kw,
+        years_mode="must" if s["m_years"] else "preferred",
+        skills_required=list(s["f_skills_req"]), skills_preferred=list(s["f_skills_pref"]), **kw,
     )
-
-
-def requisition_rows(req: Requisition) -> list[dict]:
-    rows = []
-    for f in MODE_FIELDS:
-        c = getattr(req, f)
-        if c is not None:
-            v = c.value if isinstance(c.value, str) else ", ".join(c.value)
-            rows.append({"criterion": MODE_LABELS[f], "value": v, "mode": c.mode})
-    if req.location:
-        rows.append({"criterion": "Location scope", "value": req.location_scope, "mode": ""})
-    if req.years_min is not None or req.years_max is not None:
-        rows.append({"criterion": "Years", "value": f"{req.years_min or 0} to {req.years_max or 'any'}",
-                     "mode": req.years_mode})
-    rows += [{"criterion": "Skill", "value": s, "mode": "must"} for s in req.skills_required]
-    rows += [{"criterion": "Skill", "value": s, "mode": "preferred"} for s in req.skills_preferred]
-    return rows
 
 
 # Chips ------------------------------------------------------------------------------------------
 
+CHIP_CSS = """<style>
+.rs-chip{display:inline-block;font-size:.8rem;line-height:1.5;padding:.05rem .55rem;margin:0 .3rem .3rem 0;
+  border-radius:.4rem;cursor:help}
+.rs-ok{background:rgba(33,195,84,.14);color:#177233}
+.rs-no{background:rgba(255,164,33,.18);color:#8a4b00}
+@media (prefers-color-scheme: dark){.rs-ok{color:#7ee2a0}.rs-no{color:#ffc56e}}
+</style>"""
 
-def chip_markdown(chip: Chip) -> str:
-    label = chip.label.replace("[", "(").replace("]", ")")
-    detail = f" ({chip.detail})" if chip.detail else ""
-    if chip.status == ChipStatus.matched:
-        return f":green-badge[{label}{detail}]"
-    return f":orange-badge[{label}{detail}]"
+
+def chip_tooltip(chip: Chip) -> str:
+    verdict = "Meets filter" if chip.status == ChipStatus.matched else "Misses filter"
+    return f"{verdict}: {chip.label}" + (f" ({chip.detail})" if chip.detail else "")
+
+
+def chip_html(chip: Chip) -> str:
+    cls = "rs-ok" if chip.status == ChipStatus.matched else "rs-no"
+    return (f'<span class="rs-chip {cls}" title="{html.escape(chip_tooltip(chip))}">'
+            f"{html.escape(chip.label)}</span>")
 
 
 def chips(result: SearchResult) -> None:
-    if not result.chips:
-        return
-    try:
-        st.markdown(" ".join(chip_markdown(c) for c in result.chips))
-    except Exception:  # noqa: BLE001  badge syntax unavailable in an older Streamlit
-        st.markdown("  ".join(
-            f"{'✓' if c.status == ChipStatus.matched else '✗'} {c.label}"
-            + (f" ({c.detail})" if c.detail else "")
-            for c in result.chips
-        ))
+    if result.chips:
+        st.markdown(CHIP_CSS + "".join(chip_html(c) for c in result.chips), unsafe_allow_html=True)
 
 
 def req_cache_key(req: Requisition) -> str:
     return json.dumps(json.loads(req.model_dump_json()), sort_keys=True)
-

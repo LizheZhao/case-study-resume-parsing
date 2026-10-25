@@ -36,6 +36,11 @@ def app_env(tmp_path, monkeypatch):
     conn.close()
     monkeypatch.setenv("RESUME_DB", str(db))
     monkeypatch.setattr(common, "get_embedder", lambda: FakeEmbedder())
+
+    def no_rerank(req, results):
+        raise RuntimeError("no API in tests")
+
+    monkeypatch.setattr("resume_search.search.rerank_llm", no_rerank)
     monkeypatch.chdir(tmp_path)
     st.cache_resource.clear()
     st.cache_data.clear()
@@ -55,22 +60,35 @@ def no_errors(at: AppTest) -> None:
 def test_home_counts(app_env):
     at = AppTest.from_file(str(APP / "Home.py"), default_timeout=60).run()
     no_errors(at)
-    assert [m.value for m in at.metric] == ["4", "0"]
+    assert [m.value for m in at.metric] == ["4"]
+    assert len(at.get("page_link")) == 5
 
 
 def test_search_filters_and_results(app_env):
     at = open_page("1_Search.py")
     no_errors(at)
-    assert at.sidebar.selectbox(key="f_location") and at.text_area(key="jd_text")
-    assert [b.label for b in at.button] == ["Parse requisition", "Search"]
-    at.sidebar.multiselect(key="f_sectors").set_value(["Healthcare"])
-    at.sidebar.text_input(key="f_skills_pref").set_value("python").run()
-    at.sidebar.multiselect(key="f_must").set_value(["sectors"])
+    assert not at.sidebar.multiselect and at.text_area(key="jd_text")
+    assert [b.label for b in at.button] == ["Fill filters from description", "Search"]
+    at.multiselect(key="f_sectors").set_value(["Healthcare"])
+    at.multiselect(key="f_skills_pref").set_value(["python"])
+    at.toggle(key="m_sectors").set_value(True).run()
     at.button[1].click().run()
     no_errors(at)
-    assert at.subheader[0].value == "1 candidates"
+    assert at.subheader[0].value == "1 candidate"
     assert any("Alice Adams" in str(p.proto.label) for p in at.get("page_link"))
-    assert any(":green-badge[" in m.value for m in at.markdown)
+    assert any('class="rs-chip rs-ok" title="Meets filter: ' in m.value for m in at.markdown)
+
+
+def test_search_region_narrows_countries(app_env):
+    at = open_page("1_Search.py")
+    at.multiselect(key="f_regions").set_value(["APAC"]).run()
+    countries = at.multiselect(key="f_countries")
+    assert "HK – Hong Kong" in countries.options
+    assert not any(o.startswith("UK") for o in countries.options)
+    countries.set_value(["HK"]).run()
+    at.multiselect(key="f_regions").set_value(["Europe"]).run()
+    no_errors(at)
+    assert at.multiselect(key="f_countries").value == []
 
 
 def test_search_parse_requisition_prefills_sidebar(app_env, monkeypatch):
@@ -84,13 +102,13 @@ def test_search_parse_requisition_prefills_sidebar(app_env, monkeypatch):
     at.text_area(key="jd_text").set_value("tech").run()
     at.button[0].click().run()
     no_errors(at)
-    assert at.sidebar.multiselect(key="f_sectors").value == ["Technology"]
-    assert at.sidebar.multiselect(key="f_must").value == ["sectors"]
-    assert at.sidebar.text_input(key="f_skills_pref").value == "python"
-    assert at.dataframe
+    assert at.multiselect(key="f_sectors").value == ["Technology"]
+    assert at.toggle(key="m_sectors").value is True
+    assert at.multiselect(key="f_skills_pref").value == ["python"]
+    assert any("Filters filled" in c.value for c in at.caption)
 
 
-def test_search_rerank_toggle_shows_reasons(app_env, monkeypatch):
+def test_search_reranks_and_shows_reasons(app_env, monkeypatch):
     def fake_rerank(req, results):
         return [(r.candidate_id, f"reason for {r.name}") for r in reversed(results)]
 
@@ -98,9 +116,8 @@ def test_search_rerank_toggle_shows_reasons(app_env, monkeypatch):
     at = open_page("1_Search.py")
     at.text_area(key="jd_text").set_value("technology semiconductors")
     at.button[1].click().run()
-    at.toggle[0].set_value(True).run()
     no_errors(at)
-    assert any(m.value.startswith("**Rerank reason.**") for m in at.markdown)
+    assert any(m.value.startswith("**Why ranked here.**") for m in at.markdown)
 
 
 def test_candidate_page_for_query_param(app_env):
@@ -118,7 +135,8 @@ def test_candidate_page_for_query_param(app_env):
 def test_insights_charts(app_env):
     at = open_page("3_Insights.py")
     no_errors(at)
-    assert len(at.get("plotly_chart")) == 9
+    assert [t.label for t in at.tabs] == ["Profile", "Location", "Expertise"]
+    assert len(at.get("plotly_chart")) == 10
 
 
 def test_ingest_page_and_rederive(app_env, monkeypatch):
@@ -126,7 +144,7 @@ def test_ingest_page_and_rederive(app_env, monkeypatch):
     at = open_page("4_Ingest.py")
     no_errors(at)
     labels = {b.label: b for b in at.button}
-    assert {"Ingest", "Re-run failed", "Rederive all (no API)", "Refresh"} <= set(labels)
+    assert {"Ingest", "Re-run failed", "Rederive all (no API)"} <= set(labels)
     assert labels["Ingest"].disabled and labels["Re-run failed"].disabled
     labels["Rederive all (no API)"].click()
     at.run()
@@ -175,3 +193,10 @@ def test_requisition_widget_round_trip(app_env):
     )
     state = common.state_from_requisition(req)
     assert common.requisition_from_state(state) == req
+
+
+def test_location_widgets_round_trip_several_places(app_env):
+    req = Requisition(location=Criterion[list[str]](value=["HK", "SG", "Europe"], mode="must"))
+    state = common.state_from_requisition(req)
+    assert state["f_regions"] == ["APAC", "Europe"] and state["f_countries"] == ["HK", "SG"]
+    assert common.requisition_from_state(state).location == req.location
