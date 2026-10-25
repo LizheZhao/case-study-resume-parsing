@@ -21,8 +21,7 @@ VARIANTS = {
 def run_caption(path: Path, doc: dict) -> str:
     return (
         f"{path.name}. Run {doc.get('run_at')}. Task model {doc.get('task_model')}, judge "
-        f"{doc.get('judge_model')}, judge prompt {doc.get('prompt_version')}. Cost "
-        f"${doc.get('cost_usd', 0):.4f}, tokens {doc.get('tokens')}."
+        f"{doc.get('judge_model')}, judge prompt {doc.get('prompt_version')}."
     )
 
 

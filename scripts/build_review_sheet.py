@@ -70,10 +70,12 @@ def main() -> None:
     out = [
         f"# Gold review sheet ({len(gold)} calibration resumes, parse {'/'.join(versions)})",
         "",
-        "Grades: correct / partial / wrong / hallucinated / missing. The **Human** column is the "
-        "gold in `parsing_human.jsonl`; edit that file, then rerun "
-        "`python scripts/build_review_sheet.py`. The Judge column is from "
-        f"`{run.name}`; ⚠ marks a disagreement.",
+        (
+            "Grades: correct / partial / wrong / hallucinated / missing. The **Human** column is "
+            "the gold in `parsing_human.jsonl`; edit that file, then rerun "
+            "`python scripts/build_review_sheet.py`. The Judge column is from "
+            f"`{run.name}`; ⚠ marks a disagreement."
+        ),
     ]
     for cid, g in gold.items():
         x = get_candidate(conn, cid).extracted.model_dump(mode="json")

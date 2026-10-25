@@ -133,6 +133,12 @@ def test_prune_location_current_worked_either(conn):
     assert _ids(conn, _loc("Europe", "worked")) == {"Alice", "Bob"}
 
 
+def test_prune_location_matches_any_listed_place(conn):
+    req = Requisition(location=Criterion[list[str]](value=["US", "APAC"], mode="must"),
+                      location_scope="current")
+    assert _ids(conn, req) == {"Bob", "Carol", "Carl"}
+
+
 def test_prune_preferred_criteria_do_not_filter(conn):
     assert _ids(conn, _loc("GB", "current", mode="preferred")) == {"Alice", "Bob", "Carol", "Carl"}
 
@@ -319,7 +325,7 @@ def test_parse_requisition_copies_input_and_retries_once():
     req = parse_requisition("Need a Python quant in NYC", client, attempts)
     assert req.free_text == "Need a Python quant in NYC"
     assert req.sectors.value == ["Healthcare"]
-    assert req.location.value == "US" and req.skills_required == ["python"]
+    assert req.location.value == ["US"] and req.skills_required == ["python"]
     assert len(client.calls) == 2
     assert "validation_errors" in client.calls[1]["messages"][0]["content"]
     assert [a.error is None for a in attempts] == [False, True]
@@ -338,7 +344,7 @@ def test_requisition_validation_and_is_empty():
     assert not Requisition(years_max=3).is_empty()
     with pytest.raises(ValueError):
         Requisition(approach=Criterion[str](value="Astrology"))
-    assert Requisition(location=Criterion[str](value="united kingdom")).location.value == "united kingdom"
+    assert Requisition(location=Criterion[str](value="united kingdom")).location.value == ["united kingdom"]
 
 
 def test_rerank_llm_reorders_and_retries_on_bad_ids(conn):

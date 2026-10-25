@@ -7,7 +7,6 @@ import pandas as pd
 import streamlit as st
 
 from resume_search.ingest import pipeline
-from resume_search.ingest.jobs import JobStatus
 
 st.set_page_config(page_title="Ingest", layout="wide")
 st.title("Ingest")
@@ -15,12 +14,11 @@ st.title("Ingest")
 db_path = common.db_path()
 ss = st.session_state
 
-st.markdown(
-    "Job states: `queued` -> `extracting` -> `parsing` -> `deriving` -> `indexing` -> `ok`. "
-    "Any running state can end in `failed`. A `queued` job ends as `skipped` when the same file "
-    "and prompt version already parsed ok."
+STATUS_HELP = (
+    "queued → extracting → parsing → deriving → indexing → ok. Any running step can end in "
+    "failed. skipped means the same file and prompt version already parsed ok."
 )
-st.caption("States: " + ", ".join(s.value for s in JobStatus))
+STATUS_COLUMN = {"status": st.column_config.TextColumn("status", help=STATUS_HELP)}
 
 
 def _run(holder: dict, paths: list[str], force: bool, workers: int) -> None:
@@ -31,7 +29,8 @@ def _run(holder: dict, paths: list[str], force: bool, workers: int) -> None:
 
 
 def start(paths: list[str], force: bool, workers: int) -> None:
-    holder: dict = {"results": None, "error": None}
+    last_id = common.conn().execute("SELECT COALESCE(MAX(job_id), 0) FROM parse_jobs").fetchone()[0]
+    holder: dict = {"results": None, "error": None, "after": last_id, "files": [Path(p).name for p in paths]}
     holder["thread"] = threading.Thread(
         target=_run, args=(holder, paths, force, workers), daemon=True
     )
@@ -43,20 +42,10 @@ holder = ss.get("_ingest")
 running = holder is not None and holder["thread"].is_alive()
 
 uploads = st.file_uploader("Resumes", type=["docx", "pdf"], accept_multiple_files=True)
-c1, c2 = st.columns(2)
-force = c1.checkbox("Force re-parse (ignore the file hash skip)")
-workers = c2.slider("Workers", 1, 8, 4)
-if st.button("Ingest", type="primary", disabled=running or not uploads):
-    folder = common.uploads_dir()
-    folder.mkdir(parents=True, exist_ok=True)
-    paths = []
-    for f in uploads:
-        p = folder / Path(f.name).name
-        p.write_bytes(f.getvalue())
-        paths.append(str(p))
-    start(paths, force, workers)
-    st.rerun()
-
+with st.expander("Advanced"):
+    c1, c2 = st.columns(2)
+    force = c1.checkbox("Force re-parse (ignore the file hash skip)")
+    workers = c2.slider("Workers", 1, 8, 4)
 
 def failed_files() -> list[str]:
     rows = common.conn().execute(
@@ -72,12 +61,22 @@ def failed_files() -> list[str]:
     return found
 
 
-c1, c2 = st.columns(2)
+actions = st.container(horizontal=True)
 retry = failed_files()
-if c1.button("Re-run failed", disabled=running or not retry, help=f"{len(retry)} files found on disk"):
+if actions.button("Ingest", type="primary", disabled=running or not uploads):
+    folder = common.uploads_dir()
+    folder.mkdir(parents=True, exist_ok=True)
+    paths = []
+    for f in uploads:
+        p = folder / Path(f.name).name
+        p.write_bytes(f.getvalue())
+        paths.append(str(p))
+    start(paths, force, workers)
+    st.rerun()
+if actions.button("Re-run failed", disabled=running or not retry, help=f"{len(retry)} files found on disk"):
     start(retry, True, workers)
     st.rerun()
-if c2.button("Rederive all (no API)", disabled=running):
+if actions.button("Rederive all (no API)", disabled=running):
     with st.spinner("Rederiving"):
         n = pipeline.rederive(db_path)
     common.clear_caches()
@@ -109,16 +108,35 @@ def metrics(df: pd.DataFrame) -> None:
         st.caption(f"Mean latency per resume: {ok['latency_ms'].mean() / 1000:.1f}s")
 
 
+def this_run(df: pd.DataFrame) -> None:
+    """One row per file in the latest run from this page, its job's current state."""
+    if holder is None:
+        return
+    jobs = df[df["job_id"] > holder["after"]].drop_duplicates("source_file")
+    rows = pd.DataFrame({"source_file": holder["files"]}).merge(jobs, on="source_file", how="left")
+    rows["status"] = rows["status"].fillna("waiting")
+    rows["seconds"] = (rows["latency_ms"] / 1000).round(1)
+    st.subheader("This run")
+    st.dataframe(rows[["source_file", "status", "seconds", "error"]], hide_index=True,
+                 column_config=STATUS_COLUMN)
+
+
+def history(df: pd.DataFrame) -> None:
+    with st.expander(f"Job history ({len(df)} jobs)"):
+        everything = st.toggle("Show every job", help="Off shows the latest job per file.")
+        shown = df if everything else df.drop_duplicates("source_file")
+        st.dataframe(shown, hide_index=True, column_config=STATUS_COLUMN)
+
+
 def panel() -> None:
     df = jobs_frame()
+    this_run(df)
     metrics(df)
     st.caption(f"Updated {datetime.now():%H:%M:%S}")
-    st.dataframe(df, hide_index=True)
     if holder is not None and not holder["thread"].is_alive():
         st.rerun()
 
 
-st.button("Refresh")
 if running:
     st.info("Ingest running. The table refreshes every 2 seconds.")
     st.fragment(run_every=2)(panel)()
@@ -128,10 +146,8 @@ else:
         common.clear_caches()
     if holder is not None and holder["error"]:
         st.error(holder["error"])
-    elif holder is not None and holder["results"] is not None:
-        st.success(
-            "Last run: " + ", ".join(f"{j.source_file} {j.status.value}" for j in holder["results"])
-        )
     df = jobs_frame()
+    this_run(df)
+    st.subheader("Totals")
     metrics(df)
-    st.dataframe(df, hide_index=True)
+    history(df)

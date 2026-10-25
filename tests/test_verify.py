@@ -10,11 +10,11 @@ from resume_search.extract.types import (
 )
 from resume_search.parse.client import Verification, _State, _verify_and_repair, _verify_approach
 from resume_search.parse.models import (
+    ApproachLabel,
     Assessment,
     CertificationsOnly,
     Evidence,
     ExperienceList,
-    Labeled,
     Profile,
 )
 from resume_search.parse.verify import (
@@ -218,7 +218,7 @@ def _approach_fields(label: str, quote: str) -> set[str]:
              start=["2019-06"], end=["2019-08"], bullets=["Built momentum strategies"]),
         _exp(employer="Beta Capital", bullets=["Covered healthcare stocks"]),
     ]
-    approach = Labeled(label=label, evidence=Evidence(quote=quote))
+    approach = ApproachLabel(label=label, evidence=Evidence(quote=quote))
     report = verify(Profile.model_validate(PROFILE), ExperienceList.model_validate({"experience": exps}),
                     APPROACH_TEXT, "Jane Doe.docx", only=frozenset({"investment_approach"}),
                     approach=approach)
@@ -244,9 +244,9 @@ def test_approach_regenerates_once_then_is_unresolved():
     state = _State(Profile.model_validate(PROFILE),
                    ExperienceList.model_validate({"experience": exps}).experience)
     summary = "x" * 250
-    bad = Assessment(investment_approach=Labeled(label="Systematic",
+    bad = Assessment(investment_approach=ApproachLabel(label="Systematic",
                      evidence=Evidence(quote="Built momentum strategies")), search_summary=summary)
-    fixed = Assessment(investment_approach=Labeled(label="Unclear",
+    fixed = Assessment(investment_approach=ApproachLabel(label="Unclear",
                        evidence=Evidence(quote="Built momentum strategies")), search_summary=summary)
     client = _FakeClient(lambda model: fixed)
     out, verification, attempts = _verify_approach(

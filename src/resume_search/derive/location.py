@@ -13,7 +13,6 @@ from resume_search.parse.models import (
 )
 from resume_search.taxonomy import Taxonomy
 
-
 _POSTCODE = re.compile(r"\s+\d[\d\s-]*$")
 
 

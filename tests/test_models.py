@@ -130,7 +130,7 @@ def test_a_repeated_single_month_stint_overlaps():
 
 
 def test_bad_country_fails():
-    with pytest.raises(ValidationError, match="ISO-2"):
+    with pytest.raises(ValidationError, match="experience.0.country"):
         ParsedResume.model_validate(record(country="XX"))
 
 
@@ -183,7 +183,7 @@ def test_dropped_display_fields_are_not_in_the_schema():
 
 def test_assessment_rejects_unknown_approach_label():
     bad = record()["investment_approach"] | {"label": "Quant"}
-    with pytest.raises(ValidationError, match="investment_approach label"):
+    with pytest.raises(ValidationError, match="investment_approach.label"):
         Assessment.model_validate({"investment_approach": bad, "search_summary": SUMMARY})
 
 

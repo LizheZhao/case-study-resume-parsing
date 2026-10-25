@@ -5,6 +5,8 @@ from builders import TODAY_META, resume, role
 
 from resume_search.derive import derive
 from resume_search.derive.experience import seniority_band
+from resume_search.derive.skills import tidy_skills
+from resume_search.parse.models import Skills
 from resume_search.taxonomy import load_taxonomy_data
 
 TAX = load_taxonomy_data()
@@ -90,6 +92,53 @@ def test_current_country_falls_back_to_contact_when_roles_have_none():
     assert d(r).current_country == "IN"
 
 
+def _school(country: str, end: str | None) -> dict:
+    return {"institution": "U", "degree": None, "degree_level": None, "field": None,
+            "start": None, "end": end, "country": country}
+
+
+def test_current_country_falls_back_to_education_when_roles_have_none():
+    r = resume([role(country=None, start=None, end=None)], education=[_school("IN", "2015")])
+    assert (d(r).current_country, d(r).current_region) == ("IN", "APAC")
+
+
+@pytest.mark.parametrize(("role_end", "school_end", "want"), [
+    ("2019-01", "2020", "US"),
+    ("2023-01", "2020", "GB"),
+])
+def test_current_country_takes_the_later_of_last_role_and_education(role_end, school_end, want):
+    r = resume(
+        [role(country="GB", start="2016-01", end=role_end)],
+        education=[_school("US", school_end)],
+    )
+    assert d(r).current_country == want
+
+
+def test_current_country_contact_location_beats_roles():
+    r = resume(
+        [role(country="GB", start="2024-01", end=None, is_current=True)],
+        contact={"email": None, "phone": None, "location_text": "600 Congress St. Boston, MA 01125"},
+    )
+    assert d(r).current_country == "US"
+
+
+def test_current_country_skips_extracurricular_posts():
+    r = resume([
+        role(country="US", start="2023-03", end="2024-01"),
+        role(country="IN", start="2017-01", end=None, is_current=True,
+             employment_type="extracurricular", relevance="unrelated"),
+    ])
+    assert d(r).current_country == "US"
+
+
+def test_current_country_falls_back_to_firm_head_office_before_phone():
+    r = resume([role(country=None, firm_hq_country="IN")])
+    assert d(r).current_country == "IN"
+    phone_only = resume([role(country=None)], contact={"email": None, "phone": "+44 20 7946 0000",
+                                                         "location_text": None})
+    assert d(phone_only).current_country == "GB"
+
+
 def test_countries_worked_counts_full_time_only():
     r = resume([
         role(country="GB", start="2021-01", end="2022-01"),
@@ -118,7 +167,7 @@ def test_tag_promotes_to_core_sector():
     by_label = {s.label: s.evidence for s in out.sectors}
     assert by_label["Technology"] == "software"
     assert by_label["Healthcare"] == "biotech"
-    assert by_label["Industrials"] == "specialty chemicals"
+    assert by_label["Materials"] == "specialty chemicals"
     assert out.other_sector_tags == ["biotech", "specialty chemicals"]
 
 
@@ -129,6 +178,24 @@ def test_skills_normalized_synonyms_fuzzy_and_dedupe():
         "domain": [],
     })
     assert d(r).skills_normalized == ["bloomberg", "cpp", "obscure tool", "python"]
+
+
+def test_tidy_skills_rebuckets_dedupes_and_drops_suite():
+    s = Skills(
+        programming=["Python", "MongoDB", "C# / .NET"],
+        tools=["Microsoft Office Suite", "Excel", "Word", "Bloomberg Terminal", "Bloomberg"],
+        domain=["DCF", "Obscure Method"],
+    )
+    assert tidy_skills(s, TAX) == Skills(
+        programming=["Python", "C#", ".NET"],
+        tools=["MongoDB", "Excel", "Word", "Bloomberg Terminal"],
+        domain=["DCF", "Obscure Method"],
+    )
+
+
+def test_suite_stays_when_no_member_is_listed():
+    s = Skills(tools=["MS Office", "Bloomberg"])
+    assert tidy_skills(s, TAX).tools == ["MS Office", "Bloomberg"]
 
 
 @pytest.mark.parametrize(

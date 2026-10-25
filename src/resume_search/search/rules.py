@@ -103,7 +103,8 @@ def prune_sql(req: Requisition) -> tuple[str, list]:
         params.extend(p)
 
     if req.location and req.location.mode == "must":
-        add(*_location_clause(resolve_location(req.location.value), req.location_scope))
+        clauses = [_location_clause(resolve_location(v), req.location_scope) for v in req.location.value]
+        add("(" + " OR ".join(c for c, _ in clauses) + ")", [p for _, ps in clauses for p in ps])
     if req.approach and req.approach.mode == "must":
         add("(c.investment_approach = ? OR c.investment_approach = 'Both')", [req.approach.value])
     if req.sectors and req.sectors.mode == "must":
@@ -283,9 +284,10 @@ def _terms(req: Requisition, cand: Candidate, w: Weights) -> list[_Term]:
         return _values(c), (c.mode if c else "preferred")
 
     if req.location:
-        place = resolve_location(req.location.value)
-        frac, detail = _location(cand, place, req.location_scope, w)
-        label = f"Location {place.code}" + ("" if req.location_scope == "either" else f" ({req.location_scope})")
+        places = [resolve_location(v) for v in req.location.value]
+        frac, detail = max((_location(cand, p, req.location_scope, w) for p in places), key=lambda t: t[0])
+        codes = ", ".join(p.code for p in places)
+        label = f"Location {codes}" + ("" if req.location_scope == "either" else f" ({req.location_scope})")
         out.append(_term("location", req.location.mode, w.weight("location"), frac, label,
                          detail or "No match"))
 

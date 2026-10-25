@@ -19,7 +19,12 @@ names = {r["candidate_id"]: r["name"] for r in rows}
 ids = list(names)
 wanted = st.query_params.get("candidate_id")
 index = ids.index(wanted) if wanted in names else 0
-cid = st.selectbox("Candidate", ids, index=index, format_func=lambda i: f"{names[i]} ({i})")
+# The id disambiguates only names that repeat.
+repeated = {n for n in names.values() if list(names.values()).count(n) > 1}
+cid = st.selectbox(
+    "Candidate", ids, index=index,
+    format_func=lambda i: f"{names[i]} ({i})" if names[i] in repeated else names[i],
+)
 st.query_params["candidate_id"] = cid
 
 rec = get_candidate(db, cid)
@@ -28,12 +33,14 @@ ex, d, meta = rec.extracted, rec.derived, rec.meta
 st.header(ex.name)
 st.write(d.search_summary)
 c = st.columns(4)
-c[0].metric("Country / region", f"{d.current_country or '?'} / {d.current_region or '?'}")
-c[1].metric("Seniority", d.seniority_band)
-c[2].metric("Relevant years", f"{d.months_full_time_relevant / 12:.1f}")
+c[0].metric("Location", common.location_label(d.current_country, d.current_region))
+c[1].metric("Seniority", d.seniority_band or common.UNKNOWN)
+c[2].metric("Relevant years", f"{d.months_full_time_relevant / 12:.1f}",
+            help="Full-time roles in investing or a closely related function. Drives seniority.")
 c[3].metric("Internship years", f"{d.months_internship / 12:.1f}")
 c = st.columns(4)
-c[0].metric("Core years", f"{d.months_full_time_core / 12:.1f}")
+c[0].metric("Core years", f"{d.months_full_time_core / 12:.1f}",
+            help="Full-time roles in investing itself, a subset of relevant years.")
 c[1].metric("Approach", d.investment_approach)
 c[2].metric("Highest degree", d.highest_degree or "n/a")
 c[3].metric("CFA", (d.cfa_level or "yes") if d.has_cfa else "no")
@@ -41,15 +48,13 @@ st.caption(f"Approach evidence: {d.approach_evidence}")
 
 st.subheader("Experience")
 exp = pd.read_sql(
-    "SELECT idx, employer, title, employment_type AS type, relevance, firm_type, start, end, "
-    "is_current, months AS duration_months, "
-    "json_array_length(json_extract(stints_json, '$.start')) AS stints, country FROM experience WHERE candidate_id = ? "
-    "ORDER BY idx",
+    "SELECT employer, title, employment_type AS type, relevance, firm_type, start, end, "
+    "is_current, months, country FROM experience WHERE candidate_id = ? ORDER BY idx",
     db, params=(cid,),
 )
 sectors_by_role = [", ".join(s.label for s in e.sectors) for e in ex.experience]
 exp["sectors"] = sectors_by_role[: len(exp)]
-st.dataframe(exp.drop(columns=["idx"]), hide_index=True)
+st.dataframe(exp, hide_index=True)
 
 
 def _date(v: str | None, end: bool = False) -> pd.Timestamp | None:

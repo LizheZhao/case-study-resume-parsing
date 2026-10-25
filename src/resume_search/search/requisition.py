@@ -58,7 +58,7 @@ def _values(c: Criterion | None) -> list[str]:
 
 class Requisition(BaseModel):
     free_text: str | None = None
-    location: Criterion[str] | None = None
+    location: Criterion[list[str]] | None = None
     location_scope: Literal["current", "worked", "either"] = "either"
     approach: Criterion[str] | None = None
     sectors: Criterion[list[str]] | None = None
@@ -74,11 +74,22 @@ class Requisition(BaseModel):
     languages: Criterion[list[str]] | None = None
     asset_classes: Criterion[list[str]] | None = None
 
+    @field_validator("location", mode="before")
+    @classmethod
+    def _location_list(cls, c):
+        """A single place, as older requisitions and the CLI give it, is a one-item list."""
+        if isinstance(c, Criterion) and isinstance(c.value, str):
+            return {"value": [c.value], "mode": c.mode}
+        if isinstance(c, dict) and isinstance(c.get("value"), str):
+            return {**c, "value": [c["value"]]}
+        return c
+
     @field_validator("location")
     @classmethod
     def _location(cls, c):
         if c is not None:
-            resolve_location(c.value)
+            for v in c.value:
+                resolve_location(v)
         return c
 
     @field_validator("approach")
@@ -125,7 +136,7 @@ Field = Literal[
     "location", "approach", "sectors", "markets_covered", "seniority_bands", "degree_min",
     "certifications", "languages", "asset_classes",
 ]
-_SINGLE = ("location", "approach", "degree_min")
+_SINGLE = ("approach", "degree_min")
 
 
 class DraftCriterion(BaseModel):
@@ -174,10 +185,11 @@ Rules
   must-have (put those in skills_required) and an explicit years-of-experience range or
   minimum, which gets years_mode "must". A years figure hedged as "ideally" or "about" is
   "preferred". Skills described as a plus, nice to have, or preferred go in skills_preferred.
-- criteria holds one entry per filled criterion: field, values, mode. location, approach and
+- criteria holds one entry per filled criterion: field, values, mode. approach and
   degree_min take exactly one value; the other fields take a list. Omit a field the text does
   not mention.
-- location: an ISO-2 code or a region name. Codes: {iso2}. Regions: {regions}.
+- location: ISO-2 codes or region names, any of which satisfies the role. Codes: {iso2}.
+  Regions: {regions}.
   location_scope is "current" when the text says based in, located in, or must be in a
   place, otherwise "either". "worked" only when it asks for work history in a place.
 - approach: one of {approaches}.
