@@ -39,8 +39,9 @@ def _contact_country(contact: Contact, tax: Taxonomy) -> str | None:
 
 
 def current_country(parsed: ParsedResume, tax: Taxonomy) -> str | None:
-    """Country of the current role with the latest start, else of the latest role by start
-    (first listed when nothing is dated). Roles with no stated country are skipped, then the
+    """Country of the current role with the latest start. Otherwise the latest of: the latest
+    role with a country (by start, first listed when nothing is dated) and the latest education
+    with a country (by end, else start); a role wins a tie or when neither is dated. Then the
     contact block decides."""
     roles = parsed.experience
 
@@ -49,10 +50,21 @@ def current_country(parsed: ParsedResume, tax: Taxonomy) -> str | None:
         return month_index(s[-1]) if s else -1
 
     order = sorted(range(len(roles)), key=lambda i: (start_key(i), -i), reverse=True)
-    current = [i for i in order if roles[i].is_current]
-    for i in current + order:
-        if roles[i].country:
+    for i in order:
+        if roles[i].is_current and roles[i].country:
             return roles[i].country
+    role = next((roles[i] for i in order if roles[i].country), None)
+
+    def edu_key(e) -> int:
+        d = e.end or e.start
+        return month_index(d) if d else -1
+
+    schools = [e for e in parsed.education if e.country]
+    school = max(schools, key=edu_key, default=None)
+    if role and (school is None or start_key(roles.index(role)) >= edu_key(school)):
+        return role.country
+    if school:
+        return school.country
     return _contact_country(parsed.contact, tax)
 
 

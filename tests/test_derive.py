@@ -90,6 +90,28 @@ def test_current_country_falls_back_to_contact_when_roles_have_none():
     assert d(r).current_country == "IN"
 
 
+def _school(country: str, end: str | None) -> dict:
+    return {"institution": "U", "degree": None, "degree_level": None, "field": None,
+            "start": None, "end": end, "country": country}
+
+
+def test_current_country_falls_back_to_education_when_roles_have_none():
+    r = resume([role(country=None, start=None, end=None)], education=[_school("IN", "2015")])
+    assert (d(r).current_country, d(r).current_region) == ("IN", "APAC")
+
+
+@pytest.mark.parametrize(("role_start", "school_end", "want"), [
+    ("2016-01", "2020", "US"),
+    ("2021-01", "2020", "GB"),
+])
+def test_current_country_takes_the_later_of_last_role_and_education(role_start, school_end, want):
+    r = resume(
+        [role(country="GB", start=role_start, end="2023-01")],
+        education=[_school("US", school_end)],
+    )
+    assert d(r).current_country == want
+
+
 def test_countries_worked_counts_full_time_only():
     r = resume([
         role(country="GB", start="2021-01", end="2022-01"),
