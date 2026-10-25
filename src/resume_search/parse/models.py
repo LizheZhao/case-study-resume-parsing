@@ -102,7 +102,6 @@ class Contact(BaseModel):
     email: str | None
     phone: str | None
     location_text: str | None
-    linkedin: str | None
 
 
 class Education(BaseModel):
@@ -112,8 +111,6 @@ class Education(BaseModel):
     field: str | None
     start: str | None
     end: str | None
-    gpa: str | None
-    honors: list[str] = []
     country: str | None
 
     _dates = field_validator("start", "end")(_check_date)
@@ -140,6 +137,7 @@ class Experience(BaseModel):
     sectors: list[Labeled] = []
     other_sector_tags: list[str] = []
     markets_covered: list[Labeled] = []
+    duration_months: int | None
     bullets: list[str]
 
     _dates = field_validator("start", "end")(_check_date)
@@ -174,16 +172,20 @@ class Language(BaseModel):
     level: str | None
 
 
-class ParsedResume(BaseModel):
+class Profile(BaseModel):
     name: str
     contact: Contact
-    summary_text: str | None
     education: list[Education]
-    experience: list[Experience]
     skills: Skills
     certifications: list[str] = []
     languages: list[Language] = []
-    awards: list[str] = []
+
+
+class ExperienceList(BaseModel):
+    experience: list[Experience]
+
+
+class Assessment(BaseModel):
     investment_approach: Labeled
     search_summary: str = Field(min_length=200, max_length=700)
 
@@ -195,19 +197,45 @@ class ParsedResume(BaseModel):
         return v
 
     @model_validator(mode="after")
-    def _approach_label(self) -> ParsedResume:
+    def _approach_label(self) -> Assessment:
         valid = {a.value for a in Approach}
         if self.investment_approach.label not in valid:
             raise ValueError(f"investment_approach label must be one of {sorted(valid)}")
         return self
 
 
+class ParsedResume(Assessment, ExperienceList, Profile):
+    """The stored record. Bases are ordered so fields dump as profile, experience, assessment."""
+
+
+# Smallest output models for targeted regeneration (design 5.5).
+class NameOnly(BaseModel):
+    name: str
+
+
+class ContactOnly(BaseModel):
+    contact: Contact
+
+
+class CertificationsOnly(BaseModel):
+    certifications: list[str]
+
+
+class SkillsOnly(BaseModel):
+    skills: Skills
+
+
+ExperienceItem = Experience
+EducationItem = Education
+
+
 def _norm(s: str) -> str:
     return _WS.sub(" ", s.translate(_QUOTE_FOLD)).strip()
 
 
-def check_evidence(parsed: ParsedResume, text: str) -> list[str]:
-    """Every Evidence.quote must be a substring of the resume after whitespace folding."""
+def _evidence_errors(
+    text: str, approach: Labeled | None, experiences: list[Experience]
+) -> list[str]:
     haystack = _norm(text)
     errors: list[str] = []
 
@@ -216,10 +244,20 @@ def check_evidence(parsed: ParsedResume, text: str) -> list[str]:
             errors.append(f"{path}.evidence.quote not found verbatim in resume: "
                           f"'{labeled.evidence.quote}'")
 
-    check("investment_approach", parsed.investment_approach)
-    for i, exp in enumerate(parsed.experience):
+    if approach is not None:
+        check("investment_approach", approach)
+    for i, exp in enumerate(experiences):
         for j, s in enumerate(exp.sectors):
             check(f"experience[{i}].sectors[{j}]", s)
         for j, m in enumerate(exp.markets_covered):
             check(f"experience[{i}].markets_covered[{j}]", m)
     return errors
+
+
+def check_evidence(parsed: ParsedResume, text: str) -> list[str]:
+    """Every Evidence.quote must be a substring of the resume after whitespace folding."""
+    return _evidence_errors(text, parsed.investment_approach, parsed.experience)
+
+
+def check_experience_evidence(experiences: list[Experience], text: str) -> list[str]:
+    return _evidence_errors(text, None, experiences)

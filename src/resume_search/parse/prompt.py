@@ -1,92 +1,166 @@
 from __future__ import annotations
 
-import json
 from html import escape
 
 from resume_search import taxonomy
 from resume_search.extract.types import ExtractedText
 
-PROMPT_VERSION = "v1"
+PROMPT_VERSION = "v2"
 
-_RULES = """\
+_COMMON = """\
 You extract structured data from a single candidate resume for a hedge fund
-business-development team. Return only the JSON object matching the schema.
+business-development team. The reply is constrained to the output schema.
 
-Rules
-1. Copy facts; never infer. If a value is not stated, use null or an empty list.
-2. Dates: YYYY-MM when the month is given, YYYY otherwise. "Present", "till
-   now", "since X" mean is_current=true and end=null. Fix obvious typos in
-   month names.
-3. Country: ISO-2 code of where the role or school was based, from the
-   location on that line or the contact block. Do not output regions.
-   Allowed codes: {iso2}.
-4. markets_covered: fill ONLY when the resume states what markets or
-   geographies the person covered (e.g. "Indian healthcare", "Greater China
-   markets"). Do not infer from employer location. Give the quote. The label
-   is an ISO-2 code or one of: {market_labels}.
-5. Sectors: choose from {{{sectors}}}; put narrower names
-   ("Specialty Chemicals", "MedTech") in other_sector_tags. Give a quote for
-   each sector label.
-6. relevance: core = investment research, trading, portfolio management,
-   quant research/development, risk, at a financial firm; adjacent =
-   consulting, corporate finance, data or software work outside finance;
-   unrelated = everything else (teaching, clubs, retail).
-7. employment_type: internship when the title or text says intern, summer
-   analyst, or the role is under 6 months while studying.
-8. firm_type: {{{firm_types}}}. Use your knowledge of
-   the firm when the resume does not say.
-9. investment_approach: Systematic when the work is model-, factor-, or
-   code-driven trading or research; Fundamental when it is company analysis,
-   valuation, coverage; Both when clearly both; Unclear otherwise. Quote the
-   deciding span. The label is one of {{{approaches}}}.
-10. Every evidence quote must be a verbatim span of the resume text, at most
-    200 characters.
-11. search_summary: 60-90 words, slots in this order: (1) seniority band and
-    approach with relevant years, (2) asset classes and sectors, (3) markets
-    covered if stated, (4) most recent employer with firm type in
-    parentheses and title, (5) two or three concrete skills, tools or
-    achievements with numbers, (6) highest degree and institution,
-    certifications. No contact details, no adjectives like "passionate".
-12. Keep bullets verbatim, one string each, bullet characters removed.
+Common rules
+- Copy facts; never infer. If a value is not stated, use null or an empty list.
+- Dates: YYYY-MM when the month is given, YYYY otherwise. "Present", "till
+  now", "since X" mean is_current=true and end=null. Fix obvious typos in
+  month names.
+- Country: ISO-2 code of where the role or school was based, from the
+  location on that line or the contact block. Do not output regions.
+  Allowed codes: {iso2}.
+- Every evidence quote must be a verbatim span of the resume text, at most
+  200 characters.
+"""
+
+_PROFILE = """\
+
+Task: the candidate profile (name, contact, education, skills, certifications,
+languages). Ignore work history.
+- The user message starts with a <source filename="..."/> tag. The filename
+  corroborates name, certifications and sector hints; it is never the sole
+  source for anything except the name.
+- name: the candidate's full name, without suffixes such as CFA.
+- contact: email, phone as written, and location_text as written.
+- education: one entry per degree or school programme. degree_level is one of
+  Bachelors, Masters, MBA, PhD, Other, exactly as spelled. MBA is MBA. PGDM, an
+  integrated M.Tech and a French "Diplôme d'Ingénieur" are Masters. MBBS,
+  diplomas, high school and board exams are Other.
+- skills: programming languages, tools and software, and domain methods
+  ("DCF", "factor models", "options pricing") as the resume names them. Include
+  every one named anywhere in the resume, in experience bullets and coursework as
+  well as in a skills section.
+- certifications: professional credentials such as CFA, FRM, CAIA, CPA, ACCA,
+  with a level or "candidate" status when stated ("CFA Level II candidate").
+  A competition or event run by an institute is not a certification.
+- languages: spoken languages with level when stated.
+"""
+
+_EXPERIENCE = """\
+
+Task: the work history, one entry per role, in the resume's order.
+- markets_covered: fill ONLY when the resume states what markets or
+  geographies the person covered (e.g. "Indian healthcare", "Greater China
+  markets"). Do not infer from employer location. Give the quote. The label
+  is an ISO-2 code or one of: {market_labels}.
+- Sectors: choose from {{{sectors}}}; put narrower names
+  ("Specialty Chemicals", "MedTech") in other_sector_tags. Give a quote for
+  each sector label.
+- relevance: core = investment research, trading, portfolio management,
+  quant research/development, risk, at a financial firm; adjacent =
+  consulting, corporate finance, data or software work outside finance;
+  unrelated = everything else (teaching, clubs, retail).
+- employment_type: internship when the title or text says intern, summer
+  analyst, or the role is under 6 months while studying.
+- firm_type: {{{firm_types}}}. Use your knowledge of the firm when the resume
+  does not say.
+- asset_classes: {{{asset_classes}}}, only those the role worked on.
+- duration_months: whole months, filled only when the resume states a
+  duration for the role in words. Years times 12 plus months; weeks divided
+  by 4, rounded down. Examples: "8 years 10 months" is 106, "3 Months" is 3,
+  "8 weeks" is 2. Null when the resume gives no duration text, even if
+  dates let you compute one.
+- Keep bullets verbatim, one string each, bullet characters removed.
+"""
+
+_ASSESSMENT = """\
+
+Task: the investment approach and the search summary, written from the
+verified profile and experience JSON in the user message. The resume text is
+there only so approach evidence can be quoted from it.
+- investment_approach: label is one of {{{approaches}}}. Systematic when the
+  work is model-, factor-, or code-driven trading or research; Fundamental
+  when it is company analysis, valuation, coverage; Both when clearly both;
+  Unclear otherwise. The evidence quote is the deciding span, copied verbatim
+  from the resume text.
+- search_summary: 60-90 words, slots in this fixed order, as flowing
+  sentences with no slot numbers.
+  1. Seniority band and approach, with relevant years in parentheses, for
+     example "Junior systematic equity analyst (2.3y relevant)". Relevant
+     years are the full-time roles with relevance core or adjacent, overlapping
+     ranges merged, using duration_months where a role has no dates, and "today"
+     from the user message as the end of a current role. Bands: Intern/Student
+     under 6 months, Junior 6 to 24, Mid 24 to 60, Senior 60 to 120, Principal
+     over 120 months.
+  2. Asset classes and sectors.
+  3. Markets covered, only if stated in the JSON.
+  4. Current or most recent employer, firm type in parentheses, and title.
+  5. Two or three standout skills, tools or achievements, with numbers when
+     present.
+  6. Highest degree and institution, then certifications.
+  No contact details. No evaluative adjectives such as "passionate" or
+  "strong". Use only facts in the JSON.
 """
 
 
-def _strip_titles(node):
-    if isinstance(node, dict):
-        return {k: _strip_titles(v) for k, v in node.items() if k != "title"}
-    if isinstance(node, list):
-        return [_strip_titles(v) for v in node]
-    return node
+def _common() -> str:
+    return _COMMON.format(iso2=", ".join(sorted(taxonomy.iso2_codes())))
 
 
-def _render() -> str:
-    from resume_search.parse.models import Approach, ParsedResume
+def _render_profile() -> str:
+    return _common() + _PROFILE
 
-    # The API rejects this schema as a constrained-decoding grammar (too large), so the
-    # model gets it as text and the client validates the reply with Pydantic.
-    schema = json.dumps(_strip_titles(ParsedResume.model_json_schema()), separators=(",", ":"))
-    rules = _RULES.format(
-        iso2=", ".join(sorted(taxonomy.iso2_codes())),
+
+def _render_experience() -> str:
+    return _common() + _EXPERIENCE.format(
         market_labels=", ".join(sorted(taxonomy.market_labels())),
         sectors=", ".join(taxonomy.sectors()),
         firm_types=", ".join(taxonomy.firm_types()),
-        approaches=", ".join(a.value for a in Approach),
-    )
-    return (
-        f"{rules}\nOutput\nReply with one JSON object that validates against this JSON Schema, "
-        f"with no prose and no code fences. Include every property; use null or [] when "
-        f"a value is absent.\n<schema>\n{schema}\n</schema>\n"
+        asset_classes=", ".join(taxonomy.asset_classes()),
     )
 
 
-SYSTEM_PROMPT = _render()
+def _render_assessment() -> str:
+    from resume_search.parse.models import Approach
+
+    return _common() + _ASSESSMENT.format(approaches=", ".join(a.value for a in Approach))
 
 
-def user_message(extracted: ExtractedText) -> str:
+PROFILE_PROMPT = _render_profile()
+EXPERIENCE_PROMPT = _render_experience()
+ASSESSMENT_PROMPT = _render_assessment()
+
+# Regeneration reuses the call's own system prompt, so it shares the prompt cache.
+SYSTEM_PROMPTS = {"profile": PROFILE_PROMPT, "experience": EXPERIENCE_PROMPT}
+
+
+def source_tag(extracted: ExtractedText) -> str:
     return (
         f'<source filename="{escape(extracted.source_file, quote=True)}" '
-        f'pages="{extracted.page_count}" extraction="{extracted.extraction_path.value}"/>\n'
-        f"<resume>\n{extracted.text}\n</resume>"
+        f'pages="{extracted.page_count}" extraction="{extracted.extraction_path.value}"/>'
+    )
+
+
+def resume_block(extracted: ExtractedText) -> str:
+    return f"<resume>\n{extracted.text}\n</resume>"
+
+
+def profile_message(extracted: ExtractedText) -> str:
+    return f"{source_tag(extracted)}\n{resume_block(extracted)}"
+
+
+def experience_message(extracted: ExtractedText) -> str:
+    return resume_block(extracted)
+
+
+def assessment_message(
+    extracted: ExtractedText, profile_json: str, experience_json: str, today: str
+) -> str:
+    return (
+        f"<today>{today}</today>\n"
+        f"<verified_profile>\n{profile_json}\n</verified_profile>\n"
+        f"<verified_experience>\n{experience_json}\n</verified_experience>\n"
+        f"{resume_block(extracted)}"
     )
 
 
@@ -95,5 +169,17 @@ def retry_suffix(errors: list[str]) -> str:
         "\n<validation_errors>\n"
         + "\n".join(errors)
         + "\n</validation_errors>\n"
-        + "Fix only these and return the full JSON object again."
+        + "Fix only these and return the full object again."
+    )
+
+
+def regen_suffix(previous_json: str, findings: list[str]) -> str:
+    return (
+        f"\n<previous_value>\n{previous_json}\n</previous_value>\n"
+        "<verification_findings>\n"
+        + "\n".join(findings)
+        + "\n</verification_findings>\n"
+        "A deterministic check of the resume text disagrees with the previous value. "
+        "Re-read the resume, correct the value if the finding is right, and keep it if the "
+        "resume supports it. Return only the requested object."
     )

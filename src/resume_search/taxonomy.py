@@ -66,3 +66,19 @@ def taxonomy_terms() -> frozenset[str]:
     phrases += _load("asset_classes")["synonyms"]
     phrases += _load("countries")["market_labels"]
     return frozenset(t.lower() for p in phrases for t in tokenize(str(p)))
+
+
+@cache
+def skill_variants() -> dict[str, dict]:
+    """variant (lowercase) -> {canonical, category} from skills.yaml."""
+    return {str(k).lower(): v for k, v in _load("skills")["skills"].items()}
+
+
+@cache
+def phone_prefixes() -> dict[str, list[str]]:
+    """Calling prefix ('+852') -> ISO-2 codes that share it, from countries.yaml."""
+    out: dict[str, list[str]] = {}
+    for iso, c in countries().items():
+        for prefix in c.get("phone", []):
+            out.setdefault(prefix, []).append(iso)
+    return out

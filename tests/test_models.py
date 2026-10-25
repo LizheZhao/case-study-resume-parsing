@@ -1,7 +1,13 @@
 import pytest
 from pydantic import ValidationError
 
-from resume_search.parse.models import ParsedResume, check_evidence
+from resume_search.parse.models import (
+    Assessment,
+    ExperienceList,
+    ParsedResume,
+    Profile,
+    check_evidence,
+)
 
 TEXT = (
     "Jane Doe\nInvestment Analyst, Acme Capital, London, 2020-03 to Present\n"
@@ -32,17 +38,17 @@ def record(**exp_overrides) -> dict:
         "markets_covered": [
             {"label": "Europe", "evidence": {"quote": "European healthcare equities"}}
         ],
+        "duration_months": None,
         "bullets": ["Covered European healthcare equities with a factor model."],
     } | exp_overrides
     return {
         "name": "Jane Doe",
-        "contact": {"email": None, "phone": None, "location_text": "London", "linkedin": None},
-        "summary_text": None,
+        "contact": {"email": None, "phone": None, "location_text": "London"},
         "education": [
             {
                 "institution": "University of London", "degree": "BSc",
                 "degree_level": "Bachelors", "field": "Economics", "start": "2015",
-                "end": "2018", "gpa": None, "honors": [], "country": "GB",
+                "end": "2018", "country": "GB",
             }
         ],
         "experience": [exp],
@@ -98,3 +104,30 @@ def test_check_evidence_ignores_whitespace_differences():
     data = record()
     data["investment_approach"]["evidence"]["quote"] = "a   factor\nmodel"
     assert check_evidence(ParsedResume.model_validate(data), TEXT) == []
+
+
+def test_record_splits_into_the_three_call_models():
+    data = record(duration_months=14)
+    parsed = ParsedResume.model_validate(data)
+    assert parsed.experience[0].duration_months == 14
+    profile = Profile.model_validate({k: data[k] for k in Profile.model_fields if k in data})
+    exps = ExperienceList.model_validate({"experience": data["experience"]})
+    assessment = Assessment.model_validate(
+        {k: data[k] for k in ("investment_approach", "search_summary")}
+    )
+    assert parsed.model_dump() == {
+        **profile.model_dump(), **exps.model_dump(), **assessment.model_dump()
+    }
+
+
+def test_dropped_display_fields_are_not_in_the_schema():
+    fields = set(ParsedResume.model_fields)
+    assert not fields & {"summary_text", "awards"}
+    assert "linkedin" not in str(ParsedResume.model_json_schema())
+    assert list(ParsedResume.model_fields)[:2] == ["name", "contact"]
+
+
+def test_assessment_rejects_unknown_approach_label():
+    bad = record()["investment_approach"] | {"label": "Quant"}
+    with pytest.raises(ValidationError, match="investment_approach label"):
+        Assessment.model_validate({"investment_approach": bad, "search_summary": SUMMARY})
