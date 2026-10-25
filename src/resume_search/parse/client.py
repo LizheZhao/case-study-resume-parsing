@@ -6,7 +6,7 @@ import os
 import time
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 from datetime import date
 from typing import ClassVar
 
@@ -378,7 +378,62 @@ def parse_resume(
     attempts += assess_attempts
     if assessment is None:
         return ParseFailed(attempts, f"assessment call: {attempts[-1].error or 'unknown error'}")
+    assessment, verification, approach_attempts = _verify_approach(
+        client, extracted, state, assessment, message, verification, validate
+    )
+    attempts += approach_attempts
     return ParseOk(_assemble(state, assessment), attempts, verification)
+
+
+def _approach_report(state: _State, assessment: Assessment, extracted: ExtractedText):
+    return verify.verify(
+        state.profile, state.experience, extracted.text, extracted.source_file,
+        only=frozenset({"investment_approach"}), approach=assessment.investment_approach,
+    )
+
+
+def _verify_approach(
+    client,
+    extracted: ExtractedText,
+    state: _State,
+    assessment: Assessment,
+    message: str,
+    verification: Verification,
+    validate: Callable[[Assessment], list[str]],
+) -> tuple[Assessment, Verification, list[Attempt]]:
+    """The approach row needs the assessment, so it runs after that call: one regeneration of the
+    assessment on disagreement, then unresolved as usual."""
+    report = _approach_report(state, assessment, extracted)
+    verification = replace(verification, checks_run=verification.checks_run + report.checks_run)
+    if not report.disagreements:
+        return assessment, verification, []
+    group = report.disagreements
+    regen_message = message + prompt.regen_suffix(
+        assessment.model_dump_json(include={"investment_approach"}), [_finding(d) for d in group]
+    )
+    candidate, attempts = _run_ladder(
+        client, "regen:assessment", prompt.ASSESSMENT_PROMPT, extracted, regen_message,
+        Assessment, validate, ladder=LADDER[:1],
+    )
+    remaining = group
+    if candidate is not None:
+        recheck = _approach_report(state, candidate, extracted)
+        if len(recheck.disagreements) < len(group):
+            assessment, remaining = candidate, recheck.disagreements
+    verification = replace(
+        verification,
+        disagreements=verification.disagreements + len(group),
+        regenerated=verification.regenerated + 1,
+        unresolved=verification.unresolved + [
+            {"field": d.field, "llm_value": d.llm_value, "text_value": d.text_value}
+            for d in remaining
+        ],
+        details=verification.details + [
+            {"field": d.field, "llm_value": d.llm_value, "text_value": d.text_value}
+            for d in group
+        ],
+    )
+    return assessment, verification, attempts
 
 
 def verification_dict(v: Verification) -> dict:

@@ -42,7 +42,8 @@ st.caption(f"Approach evidence: {d.approach_evidence}")
 st.subheader("Experience")
 exp = pd.read_sql(
     "SELECT idx, employer, title, employment_type AS type, relevance, firm_type, start, end, "
-    "is_current, months AS duration_months, country FROM experience WHERE candidate_id = ? "
+    "is_current, months AS duration_months, "
+    "json_array_length(json_extract(stints_json, '$.start')) AS stints, country FROM experience WHERE candidate_id = ? "
     "ORDER BY idx",
     db, params=(cid,),
 )
@@ -64,13 +65,12 @@ def _date(v: str | None, end: bool = False) -> pd.Timestamp | None:
 
 
 gantt = []
-for _, r in exp.iterrows():
-    start = _date(r["start"])
-    finish = pd.Timestamp(date.today()) if r["is_current"] else _date(r["end"], end=True)
-    if start is not None and finish is not None:
+for role in ex.experience:
+    for start, end in zip(role.start, role.end, strict=True):
+        finish = pd.Timestamp(date.today()) if end is None else _date(end, end=True)
         gantt.append({
-            "role": f"{r['title']} @ {r['employer']}", "start": start, "end": finish,
-            "relevance": r["relevance"], "type": r["type"],
+            "role": f"{role.title} @ {role.employer}", "start": _date(start), "end": finish,
+            "relevance": role.relevance.value, "type": role.employment_type.value,
         })
 if gantt:
     fig = px.timeline(
@@ -80,7 +80,7 @@ if gantt:
     fig.update_yaxes(autorange="reversed", title=None)
     st.plotly_chart(fig)
 else:
-    st.caption("No role has both a start and an end date.")
+    st.caption("No role has dates.")
 
 st.subheader("Education")
 edu = pd.read_sql(

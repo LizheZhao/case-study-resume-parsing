@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+from datetime import date
 from enum import Enum
 
 from pydantic import BaseModel, Field, field_validator, model_validator
@@ -82,6 +83,18 @@ def _check_country(v: str | None) -> str | None:
     return v
 
 
+def month_index(value: str) -> int:
+    """YYYY-MM -> months since year 0; a bare YYYY means June."""
+    month = int(value[5:7]) if len(value) >= 7 else 6
+    return int(value[:4]) * 12 + month - 1
+
+
+def stint_span(start: str, end: str) -> tuple[int, int]:
+    """Half-open month range of one stint. A stint whose start equals its end is one month."""
+    s = month_index(start)
+    return s, max(month_index(end), s + 1)
+
+
 def _check_order(start: str | None, end: str | None) -> None:
     if start and end:
         n = min(len(start), len(end))  # compare at the coarser precision
@@ -127,8 +140,8 @@ class Experience(BaseModel):
     title: str
     location_text: str | None
     country: str | None
-    start: str | None
-    end: str | None
+    start: list[str]
+    end: list[str | None]
     is_current: bool
     employment_type: EmploymentType
     relevance: Relevance
@@ -140,16 +153,61 @@ class Experience(BaseModel):
     duration_months: int | None
     bullets: list[str]
 
-    _dates = field_validator("start", "end")(_check_date)
     _country = field_validator("country")(_check_country)
+
+    @field_validator("start", "end")
+    @classmethod
+    def _dates(cls, v: list[str | None]) -> list[str | None]:
+        for d in v:
+            _check_date(d)
+        return v
+
+    @property
+    def first_start(self) -> str | None:
+        return self.start[0] if self.start else None
+
+    @property
+    def last_end(self) -> str | None:
+        return self.end[-1] if self.end else None
+
+    def spans(self, today: date) -> list[tuple[int, int]]:
+        """Half-open month range per stint; the open end of a current role is today's month."""
+        now = today.year * 12 + today.month - 1
+        out = []
+        for start, end in zip(self.start, self.end, strict=True):
+            if end is None:
+                s = month_index(start)
+                out.append((s, max(now, s + 1)))
+            else:
+                out.append(stint_span(start, end))
+        return out
+
+    def months(self, today: date) -> int:
+        """Sum over stints; duration_months is the fallback when the resume gives no dates."""
+        spans = self.spans(today)
+        return sum(t - s for s, t in spans) if spans else (self.duration_months or 0)
 
     @model_validator(mode="after")
     def _consistent(self) -> Experience:
-        # end may be null for a finished role whose dates the resume omits (duration-only
-        # entries), so the rule is one-directional: current implies no end.
-        if self.is_current and self.end is not None:
-            raise ValueError("end must be null when is_current is true")
-        _check_order(self.start, self.end)
+        if len(self.start) != len(self.end):
+            raise ValueError(
+                f"start has {len(self.start)} entries and end has {len(self.end)}; "
+                "they are parallel lists, one entry per stint"
+            )
+        last = len(self.start) - 1
+        for i, (s, e) in enumerate(zip(self.start, self.end, strict=True)):
+            if e is None:
+                if not (self.is_current and i == last):
+                    raise ValueError(f"end[{i}] is null; only the last end of a current role may be")
+            else:
+                if self.is_current and i == last:
+                    raise ValueError("the last end must be null when is_current is true")
+                _check_order(s, e)
+        prev_end = None
+        for i, (s, e) in enumerate(zip(self.start, self.end, strict=True)):
+            if prev_end is not None and month_index(s) < prev_end:
+                raise ValueError(f"stint {i} ({s}) overlaps or precedes stint {i - 1}")
+            prev_end = stint_span(s, e)[1] if e else month_index(s) + 1
         sector_names = {s.value for s in Sector}
         for s in self.sectors:
             if s.label not in sector_names:

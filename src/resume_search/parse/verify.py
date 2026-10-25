@@ -2,7 +2,8 @@
 
 The registry CHECKS is data: adding a check is adding a row. A row whose `field` contains
 `[i]` runs once per list item; `anchor_key` names the sibling key (employer, institution) whose
-value lets `extract` find that item in the text.
+value lets `extract` find that item in the text. `anchor_key="$"` hands the extractor the whole
+doc instead.
 """
 
 from __future__ import annotations
@@ -11,6 +12,7 @@ import re
 import unicodedata
 from collections.abc import Callable
 from dataclasses import dataclass, field
+from datetime import date
 from functools import cache
 from pathlib import Path
 from typing import Any
@@ -18,7 +20,12 @@ from typing import Any
 from rapidfuzz import fuzz
 
 from resume_search import taxonomy
-from resume_search.parse.models import ExperienceList, Profile
+from resume_search.parse.models import (
+    ExperienceList,
+    Labeled,
+    Profile,
+    _norm,
+)
 
 _WS = re.compile(r"\s+")
 
@@ -289,12 +296,11 @@ def _extract_dates(text: str, filename: str, anchor: str | None = None) -> Found
     return Found({"months": sorted(months), "years": sorted(years)}, "")
 
 
-def _compare_date(llm: str | None, grounded: dict) -> bool:
-    if llm is None:
-        return True
-    if len(llm) == 7:
-        return llm in grounded["months"]
-    return llm in grounded["years"]
+def _compare_date(llm: list[str | None], grounded: dict) -> bool:
+    """Every stint date must be grounded; a null end is a current role and has nothing to ground."""
+    return all(
+        d is None or d in grounded["months" if len(d) == 7 else "years"] for d in llm
+    )
 
 
 # duration -----------------------------------------------------------------------------------
@@ -350,6 +356,11 @@ def _compare_duration(llm: int | None, text_months: int | None) -> bool:
     if text_months is None:
         return True
     return llm is not None and abs(llm - text_months) <= 1
+
+
+def _extract_stint_months(text: str, filename: str, anchor: int | None = None) -> Found:
+    """The role's months from its stint dates, computed by code and handed over as the anchor."""
+    return Found(anchor)
 
 
 # role coverage on duration-only resumes -----------------------------------------------------
@@ -467,6 +478,31 @@ def _compare_country(llm: str | None, iso: list[str]) -> bool:
     return not iso or llm is None or llm in iso
 
 
+# investment approach ------------------------------------------------------------------------
+
+
+def _extract_approach_role(text: str, filename: str, doc: dict | None = None) -> Found:
+    """Which roles' title, employer or bullets contain the approach quote, after the same
+    whitespace and quote folding check_evidence uses."""
+    quote = _norm(doc["investment_approach"]["evidence"]["quote"])
+    roles = [
+        {"employer": e["employer"], "title": e["title"],
+         "employment_type": e["employment_type"], "relevance": e["relevance"]}
+        for e in doc["experience"]
+        if quote and quote in _norm(" ".join([e["title"], e["employer"], *e["bullets"]]))
+    ]
+    snippet = "; ".join(f"{r['title']} at {r['employer']}" for r in roles)
+    return Found(roles, snippet)
+
+
+def _compare_approach(llm: dict, roles: list[dict]) -> bool:
+    """Fundamental, Systematic or Both needs a quote from a full-time core or adjacent role."""
+    return llm["label"] == "Unclear" or any(
+        r["employment_type"] == "full_time" and r["relevance"] in ("core", "adjacent")
+        for r in roles
+    )
+
+
 # registry -----------------------------------------------------------------------------------
 
 CHECKS: tuple[Check, ...] = (
@@ -482,7 +518,12 @@ CHECKS: tuple[Check, ...] = (
         "experience_item", anchor_key="employer",
         # With start dates the derive layer ignores duration, and a duration near the employer
         # name may be a career total ("covering healthcare for 9 years").
-        applies=lambda e: e["start"] is None or e["duration_months"] is not None,
+        applies=lambda e: not e["start"] or e["duration_months"] is not None,
+    ),
+    Check(
+        "experience[i].duration_months", _extract_stint_months, _compare_duration,
+        "experience_item", anchor_key="stint_months",
+        applies=lambda e: bool(e["start"]) and e["duration_months"] is not None,
     ),
     Check("experience", _extract_header_durations, _compare_role_coverage, "experience"),
     Check(
@@ -492,6 +533,10 @@ CHECKS: tuple[Check, ...] = (
     Check(
         "derived.current_country", _extract_phone_country, _compare_country, "experience_item"
     ),
+    Check(
+        "investment_approach", _extract_approach_role, _compare_approach, "assessment",
+        anchor_key="$", applies=lambda doc: "investment_approach" in doc,
+    ),
 )
 
 
@@ -500,10 +545,13 @@ def current_role_index(experiences: list[dict]) -> int | None:
     if not experiences:
         return None
     current = [i for i, e in enumerate(experiences) if e["is_current"]]
+    def latest_start(i: int) -> str:
+        return experiences[i]["start"][-1] if experiences[i]["start"] else ""
+
     if current:
-        return max(current, key=lambda i: experiences[i]["start"] or "")
+        return max(current, key=latest_start)
     return max(range(len(experiences)), key=lambda i: (
-        experiences[i]["end"] or experiences[i]["start"] or ""))
+        (experiences[i]["end"] or experiences[i]["start"] or [""])[-1] or ""))
 
 
 def _walk(doc: Any, path: str) -> Any:
@@ -512,10 +560,20 @@ def _walk(doc: Any, path: str) -> Any:
     return doc
 
 
-def build_doc(profile: Profile, experiences: ExperienceList | list) -> dict:
+def build_doc(
+    profile: Profile,
+    experiences: ExperienceList | list,
+    approach: Labeled | None = None,
+    today: date | None = None,
+) -> dict:
     exps = experiences.experience if isinstance(experiences, ExperienceList) else experiences
+    today = today or date.today()
     doc = profile.model_dump(mode="json")
     doc["experience"] = [e.model_dump(mode="json") for e in exps]
+    for item, e in zip(doc["experience"], exps, strict=True):
+        item["stint_months"] = e.months(today) if e.start else None
+    if approach is not None:
+        doc["investment_approach"] = approach.model_dump(mode="json")
     idx = current_role_index(doc["experience"])
     doc["derived"] = {"current_country": doc["experience"][idx]["country"] if idx is not None else None}
     return doc
@@ -527,10 +585,12 @@ def verify(
     text: str,
     filename: str,
     only: frozenset[str] | None = None,
+    approach: Labeled | None = None,
 ) -> VerificationReport:
     """Run every registry row. `only` restricts to concrete field paths such as
-    'experience[2].start', for re-checking one regenerated group."""
-    doc = build_doc(profile, experiences)
+    'experience[2].start', for re-checking one regenerated group. The approach row runs only
+    when `approach` is given."""
+    doc = build_doc(profile, experiences, approach)
     cur = current_role_index(doc["experience"])
     run = 0
     found: list[Disagreement] = []
@@ -544,8 +604,10 @@ def verify(
                 anchor = item[check.anchor_key] if check.anchor_key else None
                 targets.append((check.field.replace("[i]", f"[{i}]"), i, anchor))
         else:
+            if check.applies and not check.applies(doc):
+                continue
             index = cur if check.regen_target == "experience_item" else None
-            targets = [(check.field, index, None)]
+            targets = [(check.field, index, doc if check.anchor_key == "$" else None)]
         for path, index, anchor in targets:
             if only is not None and path not in only:
                 continue

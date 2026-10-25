@@ -149,8 +149,8 @@ class Experience(BaseModel):
     title: str
     location_text: str | None
     country: str | None           # ISO-2 where the role was based
-    start: str | None             # YYYY-MM or YYYY
-    end: str | None               # YYYY-MM, YYYY, or null when is_current
+    start: list[str]              # one YYYY-MM or YYYY per stint; [] when the resume gives no dates
+    end: list[str | None]         # parallel to start; last entry null iff is_current
     is_current: bool
     employment_type: EmploymentType
     relevance: Relevance
@@ -183,7 +183,13 @@ class ParsedResume(BaseModel):
 ```
 
 Validators (Pydantic, run before accepting a response):
-- dates match `^\d{4}(-\d{2})?$`; `end` null iff `is_current`; `start ≤ end`.
+- dates match `^\d{4}(-\d{2})?$`. `Experience.start` and `.end` are parallel lists, one entry
+  per stint of the role; a normal role has one-element lists. Equal length; both empty when
+  the resume gives no dates (duration-only roles), otherwise at least one stint. With
+  `is_current` the last `end` is null; every other `end` is non-null. Each `start ≤` its
+  `end`; stints are chronological with no overlap between stints of one role. A one-month
+  stint written as a single month ("Sep-'13") is `start = end = 2013-09` and counts as one
+  month. Zara Al-Rashid's J.P. Morgan line "Sep-'13, Dec-'13 & Nov-'14" is three such stints.
 - `country` values in the ISO-2 set from `taxonomy/countries.yaml`.
 - `sectors[].label` in Sector enum; `markets_covered[].label` in ISO-2 ∪ region names.
 - `search_summary` contains no `@` and no 7+ digit run (contact leak check).
@@ -199,11 +205,11 @@ Validators (Pydantic, run before accepting a response):
 | `countries_worked` | ordered unique list of `(country, months)` over full-time roles |
 | `regions_worked` | mapped from above |
 | `markets_covered` | union over roles |
-| `months_full_time_relevant` | full_time roles with relevance ∈ {core, adjacent}; ranges merged before summing; open-ended ranges end at parse date; `YYYY`-only dates use June |
+| `months_full_time_relevant` | full_time roles with relevance ∈ {core, adjacent}; a role's months are the sum over its stints of (end or parse date) − start, a stint with start = end counting one month; the ranges of all stints of all roles are merged before summing; `YYYY`-only dates use June; roles with empty date lists use `duration_months` |
 | `months_full_time_core` | same, core only |
 | `months_internship` | internship roles, any relevance, kept separate, never added to the above |
 | `seniority_band` | from `months_full_time_relevant`: Intern/Student (<6), Junior (6–24), Mid (24–60), Senior (60–120), Principal (>120) |
-| `investment_approach` | from LLM `Labeled` |
+| `investment_approach` | from LLM `Labeled`, as parsed (the full-time-relevant-role rule is enforced in the assessment prompt and the verify registry, section 5.5) |
 | `sectors` | union of role sector labels, with the first evidence quote each |
 | `other_sector_tags` | union, lowercased, deduped |
 | `asset_classes` | union |
@@ -271,8 +277,12 @@ business-development team. Return only the JSON object matching the schema.
 Rules
 1. Copy facts; never infer. If a value is not stated, use null or an empty list.
 2. Dates: YYYY-MM when the month is given, YYYY otherwise. "Present", "till
-   now", "since X" mean is_current=true and end=null. Fix obvious typos in
-   month names.
+   now", "since X" mean is_current=true and the last end is null. start and
+   end are parallel lists, one entry per stint. Separate periods under one
+   role are separate stints: "Sep-'13, Dec-'13 & Nov-'14" is start
+   [2013-09, 2013-12, 2014-11], end [2013-09, 2013-12, 2014-11]. A single
+   month ("Sep-'13") is one stint with start = end = 2013-09. Fix obvious
+   typos in month names.
 3. Country: ISO-2 code of where the role or school was based, from the
    location on that line or the contact block. Do not output regions.
 4. markets_covered: fill ONLY when the resume states what markets or
@@ -294,7 +304,10 @@ Rules
 9. investment_approach: Systematic when the work is model-, factor-, or
    code-driven trading or research; Fundamental when it is company analysis,
    valuation, coverage; Both when clearly both; Unclear otherwise. Quote the
-   deciding span.
+   deciding span. Fundamental, Systematic or Both only when the quote comes
+   from a full_time role with relevance core or adjacent; internships,
+   part-time, academic and unrelated roles do not count, and the label is then
+   Unclear (the quote still points at the best available span).
 10. Every evidence quote must be a verbatim span of the resume text, at most
     200 characters.
 11. search_summary: 60–90 words, slots in this order: (1) seniority band and
@@ -368,11 +381,12 @@ row.
 | `contact.phone` | phone regex (`+` and 7+ digits with separators) | digits-only equality | `contact` |
 | `certifications` | regex for CFA, FRM, CAIA, CPA, ACCA (text + filename), "Level I/II/III candidate" | set equality on canonical cert tokens | `certifications` |
 | `skills` | taxonomy term matcher over text (`skills.yaml` variants, word-boundary, case-insensitive) | every matched taxonomy term must appear in the LLM list after normalization; LLM extras are allowed | `skills` |
-| `experience[i].start/end` | every `YYYY-MM` or `YYYY` the LLM emits must correspond to a month-year or year token in the text (month names, `'22`, `Sept.2017`, etc.) | grounded or not | that role's dates |
-| `experience[i].duration_months` | duration regex (`N years M months`, `N months`, `N weeks`) near the role's employer line | equality within 1 month | that role |
+| `experience[i].start/end` | every `YYYY-MM` or `YYYY` the LLM emits, for every stint, must correspond to a month-year or year token in the text (month names, `'22`, `Sept.2017`, etc.) | all stint dates grounded or not | that role's dates |
+| `experience[i].duration_months` | duration regex (`N years M months`, `N months`, `N weeks`) near the role's employer line; and, when the role has stints, the stint sum computed in code | equality within 1 month | that role |
 | `experience` count | number of distinct employer lines matched from `known_firms` plus title-line patterns | LLM must have ≥ that many roles | `experience` (whole list) |
 | `education[i].degree_level` | degree keyword regex (MBA, MSc/MS/Master, BSc/BA/BBA/Bachelor, PhD, PGDM, Diplôme d'Ingénieur → Masters) | mapped level equals LLM level | that education entry |
 | `contact` country / current role country | phone-prefix lookup and location-alias gazetteer from `countries.yaml` | equality | `contact` or that role |
+| `investment_approach` | which role's title, employer or bullets contain the evidence quote, after the same whitespace and quote folding as `check_evidence` | label is `Unclear`, or the located role is full_time with relevance core or adjacent | the assessment call (runs after it) |
 
 Policy:
 
@@ -386,6 +400,9 @@ Policy:
    count it. The Evals page lists unresolved items per resume.
 4. The assessment call receives the verified profile and experience JSON, not
    the raw LLM output, so the summary is written from checked facts.
+
+The `investment_approach` row needs the assessment, so it runs after that call,
+with one regeneration of the assessment and then `quality.unresolved` as usual.
 
 `meta` gains `verification: {checks_run, disagreements, regenerated,
 unresolved: [...]}`.
@@ -407,8 +424,12 @@ CREATE TABLE candidates (
 );
 CREATE TABLE experience (
   candidate_id TEXT REFERENCES candidates, idx INTEGER,
-  employer TEXT, title TEXT, country TEXT, start TEXT, end TEXT, is_current INTEGER,
-  employment_type TEXT, relevance TEXT, firm_type TEXT, months INTEGER,
+  employer TEXT, title TEXT, country TEXT,
+  start TEXT, end TEXT,                  -- first stint start, last stint end (ordering, display)
+  is_current INTEGER,
+  employment_type TEXT, relevance TEXT, firm_type TEXT,
+  months INTEGER,                        -- sum over stints, or duration_months when undated
+  stints_json TEXT,                      -- {"start": [...], "end": [...]}
   PRIMARY KEY (candidate_id, idx)
 );
 CREATE TABLE education (candidate_id TEXT, idx INTEGER, institution TEXT, degree TEXT,

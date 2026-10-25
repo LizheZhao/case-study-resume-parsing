@@ -162,3 +162,16 @@ def test_compound_skill_splits_into_both_tokens():
     tax = load_taxonomy_data()
     assert split_compound("C# / .NET", tax) == ["C#", ".NET"]
     assert split_compound("long/short", tax) == ["long/short"]
+
+
+def test_stints_across_roles_still_merge_overlaps():
+    r = resume([
+        role(start=["2013-09", "2014-01"], end=["2013-12", "2014-06"]),
+        role(start="2013-11", end="2014-03"),
+    ])
+    assert d(r).months_full_time_relevant == 9
+
+
+def test_three_one_month_stints_count_three_months():
+    r = resume([role(start=["2013-09", "2013-12", "2014-11"], end=["2013-09", "2013-12", "2014-11"])])
+    assert d(r).months_full_time_relevant == 3

@@ -3,8 +3,8 @@ from __future__ import annotations
 import re
 from datetime import date
 
-from resume_search.derive.experience import month_index, total_months
-from resume_search.parse.models import Contact, EmploymentType, ParsedResume
+from resume_search.derive.experience import total_months
+from resume_search.parse.models import Contact, EmploymentType, ParsedResume, month_index
 from resume_search.taxonomy import Taxonomy
 
 
@@ -46,7 +46,7 @@ def current_country(parsed: ParsedResume, tax: Taxonomy) -> str | None:
 
     def start_key(i: int) -> int:
         s = roles[i].start
-        return month_index(s) if s else -1
+        return month_index(s[-1]) if s else -1
 
     order = sorted(range(len(roles)), key=lambda i: (start_key(i), -i), reverse=True)
     current = [i for i in order if roles[i].is_current]

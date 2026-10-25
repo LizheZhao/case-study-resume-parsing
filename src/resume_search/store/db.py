@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sqlite3
 from pathlib import Path
 
@@ -8,7 +9,6 @@ import yaml
 
 from resume_search import taxonomy as tx
 from resume_search.derive import _today
-from resume_search.derive.experience import role_months
 from resume_search.derive.models import CandidateRecord
 from resume_search.search.vectors import MODEL_NAME, to_blob
 
@@ -27,6 +27,8 @@ def connect(path: str | Path, *, check_same_thread: bool = True) -> sqlite3.Conn
     conn = sqlite3.connect(path, check_same_thread=check_same_thread)
     conn.row_factory = sqlite3.Row
     conn.executescript(SCHEMA)
+    if not any(r["name"] == "stints_json" for r in conn.execute("PRAGMA table_info(experience)")):
+        conn.execute("ALTER TABLE experience ADD COLUMN stints_json TEXT")
     return conn
 
 
@@ -90,11 +92,12 @@ def upsert_candidate(
             ),
         )
         conn.executemany(
-            "INSERT INTO experience VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO experience VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
             [
-                (cid, i, e.employer, e.title, e.country, e.start, e.end, int(e.is_current),
-                 e.employment_type.value, e.relevance.value, e.firm_type.value,
-                 role_months(e, today))
+                (cid, i, e.employer, e.title, e.country, e.first_start, e.last_end,
+                 int(e.is_current), e.employment_type.value, e.relevance.value,
+                 e.firm_type.value, e.months(today),
+                 json.dumps({"start": e.start, "end": e.end}))
                 for i, e in enumerate(ex.experience)
             ],
         )

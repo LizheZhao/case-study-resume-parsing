@@ -1,3 +1,5 @@
+from datetime import date
+
 import pytest
 from pydantic import ValidationError
 
@@ -26,8 +28,8 @@ def record(**exp_overrides) -> dict:
         "title": "Investment Analyst",
         "location_text": "London",
         "country": "GB",
-        "start": "2020-03",
-        "end": None,
+        "start": ["2020-03"],
+        "end": [None],
         "is_current": True,
         "employment_type": "full_time",
         "relevance": "core",
@@ -64,15 +66,67 @@ def test_valid_record_validates_and_evidence_passes():
 
 
 def test_end_set_while_current_fails():
-    with pytest.raises(ValidationError, match="end must be null"):
-        ParsedResume.model_validate(record(end="2022-01"))
+    with pytest.raises(ValidationError, match="last end must be null"):
+        ParsedResume.model_validate(record(end=["2022-01"]))
+
+
+def test_current_role_last_end_is_null():
+    parsed = ParsedResume.model_validate(record())
+    assert parsed.experience[0].end == [None]
+    assert parsed.experience[0].last_end is None
+
+
+def test_finished_role_with_null_end_fails():
+    with pytest.raises(ValidationError, match=r"end\[0\] is null"):
+        ParsedResume.model_validate(record(end=[None], is_current=False))
 
 
 def test_finished_role_without_dates_is_allowed():
     parsed = ParsedResume.model_validate(
-        record(start=None, end=None, is_current=False)
+        record(start=[], end=[], is_current=False)
     )
-    assert parsed.experience[0].end is None
+    assert parsed.experience[0].end == []
+    assert parsed.experience[0].first_start is None
+
+
+def test_unequal_start_and_end_lists_fail():
+    with pytest.raises(ValidationError, match="parallel lists"):
+        ParsedResume.model_validate(record(start=["2020-03", "2021-01"], end=[None]))
+
+
+STINTS = {"start": ["2013-09", "2013-12", "2014-11"], "end": ["2013-09", "2013-12", "2014-11"],
+          "is_current": False}
+
+
+def test_discrete_single_month_stints_validate():
+    exp = ParsedResume.model_validate(record(**STINTS)).experience[0]
+    assert (exp.first_start, exp.last_end) == ("2013-09", "2014-11")
+
+
+def test_three_one_month_stints_sum_to_three_months():
+    exp = ParsedResume.model_validate(record(**STINTS)).experience[0]
+    assert exp.months(date(2026, 10, 25)) == 3
+
+
+def test_overlapping_stints_in_one_role_fail():
+    with pytest.raises(ValidationError, match="overlaps"):
+        ParsedResume.model_validate(
+            record(start=["2013-09", "2013-11"], end=["2013-12", "2014-02"], is_current=False)
+        )
+
+
+def test_out_of_order_stints_fail():
+    with pytest.raises(ValidationError, match="overlaps or precedes"):
+        ParsedResume.model_validate(
+            record(start=["2014-11", "2013-09"], end=["2014-11", "2013-09"], is_current=False)
+        )
+
+
+def test_a_repeated_single_month_stint_overlaps():
+    with pytest.raises(ValidationError, match="overlaps"):
+        ParsedResume.model_validate(
+            record(start=["2013-09", "2013-09"], end=["2013-09", "2013-09"], is_current=False)
+        )
 
 
 def test_bad_country_fails():
@@ -82,7 +136,7 @@ def test_bad_country_fails():
 
 def test_start_after_end_fails():
     with pytest.raises(ValidationError, match="after end"):
-        ParsedResume.model_validate(record(start="2022-05", end="2021-01", is_current=False))
+        ParsedResume.model_validate(record(start=["2022-05"], end=["2021-01"], is_current=False))
 
 
 def test_contact_leak_in_summary_fails():

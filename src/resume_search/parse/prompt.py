@@ -5,7 +5,7 @@ from html import escape
 from resume_search import taxonomy
 from resume_search.extract.types import ExtractedText
 
-PROMPT_VERSION = "v2"
+PROMPT_VERSION = "v3"
 
 _COMMON = """\
 You extract structured data from a single candidate resume for a hedge fund
@@ -49,6 +49,17 @@ languages). Ignore work history.
 _EXPERIENCE = """\
 
 Task: the work history, one entry per role, in the resume's order.
+- Dates: start and end are parallel lists with one entry per stint of the
+  role, each YYYY-MM or YYYY. A normal role is one stint: start ["2020-03"],
+  end ["2022-06"]. When the resume lists several separate periods for one
+  role, emit one stint per period and do not merge them into one span.
+  Example: "J.P. Morgan, Sep-'13, Dec-'13 & Nov-'14" is three one-month
+  stints: start ["2013-09", "2013-12", "2014-11"], end ["2013-09", "2013-12",
+  "2014-11"]. A single month written alone ("Sep-'13") is one stint with
+  start and end both "2013-09". Stints are in chronological order and never
+  overlap. For a current role the last end is null and is_current is true;
+  every other end is a date. When the resume gives no dates for the role, both
+  lists are empty.
 - markets_covered: fill ONLY when the resume states what markets or
   geographies the person covered (e.g. "Indian healthcare", "Greater China
   markets"). Do not infer from employer location. Give the quote. The label
@@ -83,12 +94,18 @@ there only so approach evidence can be quoted from it.
   when it is company analysis, valuation, coverage; Both when clearly both;
   Unclear otherwise. The evidence quote is the deciding span, copied verbatim
   from the resume text.
+- Approach counts only from relevant full-time work. Fundamental, Systematic
+  or Both requires the evidence quote to come from a role in the verified
+  experience JSON with employment_type full_time and relevance core or
+  adjacent. Internships, part-time work, academic roles and unrelated roles do
+  not count. If the only support is from such a role, the label is Unclear,
+  and the quote is still the best available span.
 - search_summary: 60-90 words, slots in this fixed order, as flowing
   sentences with no slot numbers.
   1. Seniority band and approach, with relevant years in parentheses, for
      example "Junior systematic equity analyst (2.3y relevant)". Relevant
-     years are the full-time roles with relevance core or adjacent, overlapping
-     ranges merged, using duration_months where a role has no dates, and "today"
+     years are the full-time roles with relevance core or adjacent, summing
+     each role's stints, overlapping ranges merged, using duration_months where a role has no dates, and "today"
      from the user message as the end of a current role. Bands: Intern/Student
      under 6 months, Junior 6 to 24, Mid 24 to 60, Senior 60 to 120, Principal
      over 120 months.

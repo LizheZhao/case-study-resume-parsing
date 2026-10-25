@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS candidates (
 CREATE TABLE IF NOT EXISTS experience (
   candidate_id TEXT REFERENCES candidates, idx INTEGER,
   employer TEXT, title TEXT, country TEXT, start TEXT, end TEXT, is_current INTEGER,
-  employment_type TEXT, relevance TEXT, firm_type TEXT, months INTEGER,
+  employment_type TEXT, relevance TEXT, firm_type TEXT, months INTEGER, stints_json TEXT,
   PRIMARY KEY (candidate_id, idx)
 );
 CREATE TABLE IF NOT EXISTS education (candidate_id TEXT, idx INTEGER, institution TEXT, degree TEXT,

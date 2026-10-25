@@ -17,7 +17,7 @@ from resume_search.parse.client import OPUS, Attempt
 from resume_search.parse.models import ParsedResume
 from resume_search.search.llm import structured_call
 
-PARSING_PROMPT_VERSION = "pj2"
+PARSING_PROMPT_VERSION = "pj3"
 RANKING_PROMPT_VERSION = "rj1"
 JUDGE_MODEL = OPUS
 JUDGE_MAX_TOKENS = 12000
@@ -74,7 +74,10 @@ Fields to grade, each exactly once, with the field name spelled as given
 
 Checks you must do
 - Every date: compare each start and end in education and experience to the text, month and
-  year. Check is_current against "present", "till now" or "since".
+  year. In experience, start and end are parallel lists with one entry per stint of the role
+  (a role listed as "Sep-'13, Dec-'13 & Nov-'14" has three one-month stints). Check that every
+  stint is present, none is merged into a span, and an empty pair of lists is right only when
+  the text gives the role no dates. Check is_current against "present", "till now" or "since".
 - Every evidence quote: investment_approach.evidence.quote and every sectors and
   markets_covered evidence quote must appear in the text and must support the label it is
   attached to. A quote that does not support its label makes that role or the approach

@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from resume_search.parse.models import ParsedResume
 
 # Bump when derive() output changes; `rederive` then rebuilds every candidate without API calls.
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 
 
 class CountryMonths(BaseModel):
