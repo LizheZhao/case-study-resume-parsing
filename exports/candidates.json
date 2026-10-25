@@ -6,50 +6,50 @@
       "file_sha256": "e89dc25ec72226b57e354e25e4800fdf6eabe2843a95cb8258a354d93e3812fe",
       "file_bytes": 20104,
       "page_count": 1,
-      "parsed_at": "2026-10-25T20:30:48+00:00",
+      "parsed_at": "2026-10-25T20:58:24+00:00",
       "extraction_path": "text",
       "llm_model": "claude-sonnet-5-5",
-      "prompt_version": "v6",
+      "prompt_version": "v7",
       "schema_version": 2,
       "parse_status": "ok",
       "attempts": [
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 3373,
+          "latency_ms": 5993,
           "input_tokens": 1581,
           "output_tokens": 408,
           "error": null,
           "cache_read_tokens": 0,
-          "cache_creation_tokens": 2436,
+          "cache_creation_tokens": 2906,
           "call": "profile"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 10393,
+          "latency_ms": 14505,
           "input_tokens": 1549,
-          "output_tokens": 2048,
+          "output_tokens": 2244,
           "error": null,
           "cache_read_tokens": 0,
-          "cache_creation_tokens": 3206,
+          "cache_creation_tokens": 4578,
           "call": "experience"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 5040,
+          "latency_ms": 4545,
           "input_tokens": 2093,
-          "output_tokens": 668,
+          "output_tokens": 585,
           "error": null,
-          "cache_read_tokens": 1289,
+          "cache_read_tokens": 1379,
           "cache_creation_tokens": 0,
           "call": "regen:skills"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 11730,
-          "input_tokens": 4058,
-          "output_tokens": 1761,
+          "latency_ms": 9332,
+          "input_tokens": 4272,
+          "output_tokens": 1493,
           "error": null,
-          "cache_read_tokens": 1833,
+          "cache_read_tokens": 1884,
           "cache_creation_tokens": 0,
           "call": "assessment"
         }
@@ -129,6 +129,7 @@
           "degree": "Master of Science in Financial Technology",
           "degree_level": "Masters",
           "field": "Financial Technology",
+          "minor_fields": [],
           "start": "2021-09",
           "end": "2023-07",
           "country": "HK"
@@ -138,6 +139,7 @@
           "degree": "Bachelor of Business Administration (Finance)",
           "degree_level": "Bachelors",
           "field": "Finance",
+          "minor_fields": [],
           "start": "2017-09",
           "end": "2021-07",
           "country": "HK"
@@ -202,6 +204,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "CN",
           "asset_classes": [
             "Equities"
           ],
@@ -219,6 +222,12 @@
               "label": "Greater China",
               "evidence": {
                 "quote": "multi-factor quantitative model focusing on Greater China technology equities"
+              }
+            },
+            {
+              "label": "Asia",
+              "evidence": {
+                "quote": "quantitative analysis on large-scale Asian equity datasets"
               }
             }
           ],
@@ -245,6 +254,7 @@
           "employment_type": "internship",
           "relevance": "core",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "CN",
           "asset_classes": [
             "Equities"
           ],
@@ -252,13 +262,13 @@
             {
               "label": "Technology",
               "evidence": {
-                "quote": "Performed comprehensive research on Asian technology and healthcare sectors"
+                "quote": "research on Asian technology and healthcare sectors"
               }
             },
             {
               "label": "Healthcare",
               "evidence": {
-                "quote": "Performed comprehensive research on Asian technology and healthcare sectors"
+                "quote": "research on Asian technology and healthcare sectors"
               }
             }
           ],
@@ -267,7 +277,13 @@
             {
               "label": "Greater China",
               "evidence": {
-                "quote": "covering 15+ sub-industries and 35+ companies across Greater China markets"
+                "quote": "35+ companies across Greater China markets"
+              }
+            },
+            {
+              "label": "Asia",
+              "evidence": {
+                "quote": "research on Asian technology and healthcare sectors"
               }
             }
           ],
@@ -290,12 +306,20 @@
           ],
           "is_current": false,
           "employment_type": "academic",
-          "relevance": "unrelated",
+          "relevance": "adjacent",
           "firm_type": "Academic",
+          "firm_hq_country": "HK",
           "asset_classes": [],
           "sectors": [],
           "other_sector_tags": [],
-          "markets_covered": [],
+          "markets_covered": [
+            {
+              "label": "Asia",
+              "evidence": {
+                "quote": "200,000 historical Asian market firm-level data points"
+              }
+            }
+          ],
           "duration_months": null,
           "bullets": [
             "Efficiently processed and analyzed over 200,000 historical Asian market firm-level data points using Python and R, conducting comprehensive statistical analysis for academic research. Implemented advanced data processing techniques resulting in 25x improvement in research team computational efficiency.",
@@ -317,13 +341,21 @@
           "employment_type": "internship",
           "relevance": "core",
           "firm_type": "Other",
+          "firm_hq_country": null,
           "asset_classes": [
             "Equities",
             "Fixed Income"
           ],
           "sectors": [],
           "other_sector_tags": [],
-          "markets_covered": [],
+          "markets_covered": [
+            {
+              "label": "CN",
+              "evidence": {
+                "quote": "Intern (Chinese Bond and Equity Market)"
+              }
+            }
+          ],
           "duration_months": null,
           "bullets": [
             "Conducted thorough investigation and analysis of equity information, resulting in the preparation of two comprehensive Equity Pledge Business Investigation Reports.",
@@ -345,6 +377,7 @@
           "employment_type": "extracurricular",
           "relevance": "unrelated",
           "firm_type": "Other",
+          "firm_hq_country": null,
           "asset_classes": [],
           "sectors": [],
           "other_sector_tags": [],
@@ -370,6 +403,7 @@
           "employment_type": "extracurricular",
           "relevance": "unrelated",
           "firm_type": "Other",
+          "firm_hq_country": null,
           "asset_classes": [],
           "sectors": [],
           "other_sector_tags": [],
@@ -384,10 +418,10 @@
       "investment_approach": {
         "label": "Systematic",
         "evidence": {
-          "quote": "Independently developed, constructed and actively managed a multi-factor quantitative model focusing on Greater China technology equities"
+          "quote": "multi-factor quantitative model focusing on Greater China technology equities"
         }
       },
-      "search_summary": "Mid systematic equity analyst (2.3y relevant). Coverage spans equities in the technology sector. Markets covered are Greater China. Most recent employer: Bank of China (sell-side bank), Investment Analyst. At Bank of China, built a multi-factor quantitative model on Greater China technology equities with a Sharpe ratio of 1.8+ over 12 months, and ran backtesting and performance attribution on systematic strategies. Skills include Python, R and SQL. Highest degree is a Master of Science in Financial Technology from the University of Hong Kong; no certifications are listed."
+      "search_summary": "Mid-level systematic equity analyst (2.3y relevant). Covers equities in the technology sector. Markets covered are Greater China and Asia. Most recent employer is Bank of China (sell-side bank), titled Investment Analyst. At Bank of China, built a multi-factor quantitative model for Greater China technology equities with a Sharpe ratio of 1.8+ over 12 months, and ran backtesting and performance attribution. Skills include Python, R and SQL. Holds a Master of Science in Financial Technology from University of Hong Kong; no certifications listed."
     },
     "derived": {
       "current_country": "HK",
@@ -403,6 +437,7 @@
       ],
       "markets_covered": [
         "APAC",
+        "Asia",
         "CN",
         "Greater China",
         "HK",
@@ -413,7 +448,7 @@
       "months_internship": 18,
       "seniority_band": "Mid",
       "investment_approach": "Systematic",
-      "approach_evidence": "Independently developed, constructed and actively managed a multi-factor quantitative model focusing on Greater China technology equities",
+      "approach_evidence": "multi-factor quantitative model focusing on Greater China technology equities",
       "sectors": [
         {
           "label": "Technology",
@@ -421,7 +456,7 @@
         },
         {
           "label": "Healthcare",
-          "evidence": "Performed comprehensive research on Asian technology and healthcare sectors"
+          "evidence": "research on Asian technology and healthcare sectors"
         }
       ],
       "other_sector_tags": [],
@@ -463,7 +498,7 @@
       ],
       "has_cfa": false,
       "cfa_level": null,
-      "search_summary": "Mid systematic equity analyst (2.3y relevant). Coverage spans equities in the technology sector. Markets covered are Greater China. Most recent employer: Bank of China (sell-side bank), Investment Analyst. At Bank of China, built a multi-factor quantitative model on Greater China technology equities with a Sharpe ratio of 1.8+ over 12 months, and ran backtesting and performance attribution on systematic strategies. Skills include Python, R and SQL. Highest degree is a Master of Science in Financial Technology from the University of Hong Kong; no certifications are listed.",
+      "search_summary": "Mid-level systematic equity analyst (2.3y relevant). Covers equities in the technology sector. Markets covered are Greater China and Asia. Most recent employer is Bank of China (sell-side bank), titled Investment Analyst. At Bank of China, built a multi-factor quantitative model for Greater China technology equities with a Sharpe ratio of 1.8+ over 12 months, and ran backtesting and performance attribution. Skills include Python, R and SQL. Holds a Master of Science in Financial Technology from University of Hong Kong; no certifications listed.",
       "quality": {
         "text_quality": {
           "unknown_ratio_before": 0.001976284584980237,
@@ -484,51 +519,51 @@
       "file_sha256": "3c85961c484c061e734be36e83e2969b6b9e8437150a81211831c4ddbe38995a",
       "file_bytes": 23476,
       "page_count": 1,
-      "parsed_at": "2026-10-25T20:30:48+00:00",
+      "parsed_at": "2026-10-25T20:58:24+00:00",
       "extraction_path": "text",
       "llm_model": "claude-sonnet-5-5",
-      "prompt_version": "v6",
+      "prompt_version": "v7",
       "schema_version": 2,
       "parse_status": "ok",
       "attempts": [
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 2835,
+          "latency_ms": 6311,
           "input_tokens": 1306,
-          "output_tokens": 293,
+          "output_tokens": 304,
           "error": null,
           "cache_read_tokens": 0,
-          "cache_creation_tokens": 2436,
+          "cache_creation_tokens": 2906,
           "call": "profile"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 8193,
+          "latency_ms": 12875,
           "input_tokens": 1266,
-          "output_tokens": 1572,
+          "output_tokens": 1820,
           "error": null,
           "cache_read_tokens": 0,
-          "cache_creation_tokens": 3206,
+          "cache_creation_tokens": 4578,
           "call": "experience"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 3920,
+          "latency_ms": 3097,
           "input_tokens": 1590,
-          "output_tokens": 417,
+          "output_tokens": 364,
           "error": null,
-          "cache_read_tokens": 0,
-          "cache_creation_tokens": 1289,
+          "cache_read_tokens": 1379,
+          "cache_creation_tokens": 0,
           "call": "regen:skills"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 12420,
-          "input_tokens": 3191,
-          "output_tokens": 1934,
+          "latency_ms": 10604,
+          "input_tokens": 3459,
+          "output_tokens": 1558,
           "error": null,
           "cache_read_tokens": 0,
-          "cache_creation_tokens": 1833,
+          "cache_creation_tokens": 1884,
           "call": "assessment"
         }
       ],
@@ -576,9 +611,12 @@
       "education": [
         {
           "institution": "Harvard University",
-          "degree": "Bachelor of Arts in Economics",
+          "degree": "Bachelor of Arts",
           "degree_level": "Bachelors",
           "field": "Economics",
+          "minor_fields": [
+            "Molecular Biology"
+          ],
           "start": null,
           "end": "2013",
           "country": "US"
@@ -588,9 +626,10 @@
           "degree": "Summer Program: Healthcare Innovation, Biotechnology Commercialization",
           "degree_level": "Other",
           "field": "Healthcare Innovation, Biotechnology Commercialization",
+          "minor_fields": [],
           "start": null,
           "end": null,
-          "country": "US"
+          "country": null
         }
       ],
       "skills": {
@@ -624,6 +663,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Hedge fund",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -631,7 +671,7 @@
             {
               "label": "Healthcare",
               "evidence": {
-                "quote": "Managed public (long/short) and private (growth/venture) healthcare investment portfolio"
+                "quote": "Managed public (long/short) and private (growth/venture) healthcare investment portfolio at $40B multi-strategy platform"
               }
             }
           ],
@@ -639,8 +679,7 @@
             "Life Sciences Tools & Diagnostics",
             "MedTech",
             "Therapeutics & Services",
-            "Digital Health",
-            "AI-enabled diagnostics"
+            "Digital Health & AI-enabled diagnostics"
           ],
           "markets_covered": [],
           "duration_months": null,
@@ -667,6 +706,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Credit",
             "Equities"
@@ -704,6 +744,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Credit",
             "Equities"
@@ -719,7 +760,12 @@
           "other_sector_tags": [],
           "markets_covered": [],
           "duration_months": null,
-          "bullets": []
+          "bullets": [
+            "Responsible for investment diligence, underwriting & asset management for $18B platform's $4.2B strategy focused on structured credit, growth equity and royalty financings in public and private companies",
+            "Created comprehensive financial models, investment analyses and board presentations while collaborating with third-party consultants, medical experts, and regulatory advisors",
+            "Presented investment recommendations to senior investment committee, portfolio managers and limited partner advisory boards",
+            "Generated 280bps of outperformance versus healthcare benchmarks across 9 active investments during tenure"
+          ]
         },
         {
           "employer": "Credit Suisse",
@@ -736,6 +782,7 @@
           "employment_type": "full_time",
           "relevance": "adjacent",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "CH",
           "asset_classes": [
             "Equities"
           ],
@@ -743,7 +790,7 @@
             {
               "label": "Healthcare",
               "evidence": {
-                "quote": "Analyst, Healthcare Investment Banking Group"
+                "quote": "Provided client coverage in therapeutics, medical devices and healthcare services for acquisitions and financings"
               }
             }
           ],
@@ -768,7 +815,7 @@
           "quote": "Led due diligence on 12 potential investments with total transaction value of $2.1B across public and private healthcare opportunities"
         }
       },
-      "search_summary": "Principal fundamental analyst (11.1y relevant). Covers equities and credit in healthcare, including life sciences tools and diagnostics, MedTech, therapeutics and digital health. Currently at Coatue Management (hedge fund) as Healthcare Analyst, Investment Team. At Coatue Management, generated 340bps of outperformance versus healthcare sector benchmarks with an 85% hit rate on long recommendations, and led due diligence on 12 potential investments worth $2.1B. Skills include financial modeling, corporate valuation and underwriting. Holds a Bachelor of Arts in Economics from Harvard University."
+      "search_summary": "Principal fundamental healthcare analyst (11.1y relevant). Covers equities and credit across healthcare, including Life Sciences Tools & Diagnostics, MedTech, Therapeutics & Services and Digital Health. Current employer is Coatue Management (hedge fund), title Healthcare Analyst, Investment Team. At Coatue, generated 340bps of outperformance versus healthcare sector benchmarks with an 85% hit rate on long recommendations and led due diligence on 12 potential investments totaling $2.1B. Skills include financial modeling and analysis, corporate valuation and underwriting. Holds a Bachelor of Arts in Economics from Harvard University."
     },
     "derived": {
       "current_country": "US",
@@ -792,12 +839,11 @@
       "sectors": [
         {
           "label": "Healthcare",
-          "evidence": "Managed public (long/short) and private (growth/venture) healthcare investment portfolio"
+          "evidence": "Managed public (long/short) and private (growth/venture) healthcare investment portfolio at $40B multi-strategy platform"
         }
       ],
       "other_sector_tags": [
-        "ai-enabled diagnostics",
-        "digital health",
+        "digital health & ai-enabled diagnostics",
         "healthcare services",
         "life sciences tools & diagnostics",
         "medical devices",
@@ -816,6 +862,7 @@
       "highest_degree": "Bachelors",
       "degree_fields": [
         "Economics",
+        "Molecular Biology",
         "Healthcare Innovation, Biotechnology Commercialization"
       ],
       "skills_normalized": [
@@ -829,7 +876,7 @@
       ],
       "has_cfa": false,
       "cfa_level": null,
-      "search_summary": "Principal fundamental analyst (11.1y relevant). Covers equities and credit in healthcare, including life sciences tools and diagnostics, MedTech, therapeutics and digital health. Currently at Coatue Management (hedge fund) as Healthcare Analyst, Investment Team. At Coatue Management, generated 340bps of outperformance versus healthcare sector benchmarks with an 85% hit rate on long recommendations, and led due diligence on 12 potential investments worth $2.1B. Skills include financial modeling, corporate valuation and underwriting. Holds a Bachelor of Arts in Economics from Harvard University.",
+      "search_summary": "Principal fundamental healthcare analyst (11.1y relevant). Covers equities and credit across healthcare, including Life Sciences Tools & Diagnostics, MedTech, Therapeutics & Services and Digital Health. Current employer is Coatue Management (hedge fund), title Healthcare Analyst, Investment Team. At Coatue, generated 340bps of outperformance versus healthcare sector benchmarks with an 85% hit rate on long recommendations and led due diligence on 12 potential investments totaling $2.1B. Skills include financial modeling and analysis, corporate valuation and underwriting. Holds a Bachelor of Arts in Economics from Harvard University.",
       "quality": {
         "text_quality": {
           "unknown_ratio_before": 0.010256410256410256,
@@ -850,51 +897,51 @@
       "file_sha256": "be94ffebe2e1076bc32f5b8e6415588309266fbd9690e766ee438de0281522a9",
       "file_bytes": 18400,
       "page_count": 1,
-      "parsed_at": "2026-10-25T20:30:42+00:00",
+      "parsed_at": "2026-10-25T20:58:19+00:00",
       "extraction_path": "text",
       "llm_model": "claude-sonnet-5-5",
-      "prompt_version": "v6",
+      "prompt_version": "v7",
       "schema_version": 2,
       "parse_status": "ok",
       "attempts": [
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 2883,
+          "latency_ms": 5181,
           "input_tokens": 1244,
-          "output_tokens": 330,
+          "output_tokens": 322,
           "error": null,
           "cache_read_tokens": 0,
-          "cache_creation_tokens": 2436,
+          "cache_creation_tokens": 2906,
           "call": "profile"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 7715,
+          "latency_ms": 11447,
           "input_tokens": 1209,
-          "output_tokens": 1486,
+          "output_tokens": 1642,
           "error": null,
           "cache_read_tokens": 0,
-          "cache_creation_tokens": 3206,
+          "cache_creation_tokens": 4578,
           "call": "experience"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 4756,
-          "input_tokens": 1554,
-          "output_tokens": 502,
+          "latency_ms": 4018,
+          "input_tokens": 1537,
+          "output_tokens": 462,
           "error": null,
           "cache_read_tokens": 0,
-          "cache_creation_tokens": 1289,
+          "cache_creation_tokens": 1379,
           "call": "regen:skills"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 9122,
-          "input_tokens": 3064,
-          "output_tokens": 1462,
+          "latency_ms": 9095,
+          "input_tokens": 3238,
+          "output_tokens": 1213,
           "error": null,
           "cache_read_tokens": 0,
-          "cache_creation_tokens": 1833,
+          "cache_creation_tokens": 1884,
           "call": "assessment"
         }
       ],
@@ -917,8 +964,7 @@
               ],
               "domain": [
                 "financial modeling",
-                "fundamental research",
-                "dynamic pricing"
+                "fundamental research"
               ]
             },
             "text_value": [
@@ -953,6 +999,7 @@
           "degree": "Master of business administration (MBA)",
           "degree_level": "MBA",
           "field": null,
+          "minor_fields": [],
           "start": "2019-08",
           "end": "2021-05",
           "country": "US"
@@ -962,6 +1009,7 @@
           "degree": "BS in Economics",
           "degree_level": "Bachelors",
           "field": "Economics",
+          "minor_fields": [],
           "start": "2013",
           "end": "2016",
           "country": "BR"
@@ -977,9 +1025,9 @@
           "Excel"
         ],
         "domain": [
-          "equity research",
           "financial modeling",
-          "fundamental research"
+          "fundamental research",
+          "equity research"
         ]
       },
       "certifications": [],
@@ -1002,7 +1050,7 @@
           "employer": "Vanguard Group",
           "title": "Equity Research Analyst",
           "location_text": "Boston, USA / London, United Kingdom",
-          "country": "GB",
+          "country": null,
           "start": [
             "2021-08"
           ],
@@ -1013,6 +1061,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Asset manager",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -1028,6 +1077,12 @@
               "evidence": {
                 "quote": "focused on healthcare, consumer discretionary an telecom companies operating primarily in emerging Latam and EMEA"
               }
+            },
+            {
+              "label": "Technology",
+              "evidence": {
+                "quote": "focused on healthcare, consumer discretionary an telecom companies operating primarily in emerging Latam and EMEA"
+              }
             }
           ],
           "other_sector_tags": [
@@ -1036,15 +1091,15 @@
           ],
           "markets_covered": [
             {
-              "label": "Latin America",
+              "label": "LatAm",
               "evidence": {
-                "quote": "operating primarily in emerging Latam and EMEA"
+                "quote": "companies operating primarily in emerging Latam and EMEA"
               }
             },
             {
               "label": "EMEA",
               "evidence": {
-                "quote": "operating primarily in emerging Latam and EMEA"
+                "quote": "companies operating primarily in emerging Latam and EMEA"
               }
             }
           ],
@@ -1057,7 +1112,7 @@
           "employer": "Vanguard Group",
           "title": "Equity Research Summer Analyst",
           "location_text": "Boston, USA / London, United Kingdom",
-          "country": "GB",
+          "country": null,
           "start": [
             "2020-06"
           ],
@@ -1068,6 +1123,7 @@
           "employment_type": "internship",
           "relevance": "core",
           "firm_type": "Asset manager",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -1103,9 +1159,20 @@
           "employment_type": "full_time",
           "relevance": "adjacent",
           "firm_type": "Consulting",
+          "firm_hq_country": "US",
           "asset_classes": [],
-          "sectors": [],
-          "other_sector_tags": [],
+          "sectors": [
+            {
+              "label": "Consumer",
+              "evidence": {
+                "quote": "Analyzed growth potential of e-commerce sales at major electronics retailer"
+              }
+            }
+          ],
+          "other_sector_tags": [
+            "Retail",
+            "Consumer Electronics"
+          ],
           "markets_covered": [],
           "duration_months": null,
           "bullets": [
@@ -1128,29 +1195,24 @@
           "quote": "Develops investment recommendations on publicly traded companies through fundamental research including financial modeling and proprietary studies"
         }
       },
-      "search_summary": "Senior fundamental equity analyst (8.2y relevant). Covers equities across healthcare, consumer discretionary and telecom sectors. Markets covered are Latin America and EMEA. Current employer is Vanguard Group (asset manager), Equity Research Analyst. At Vanguard Group, work includes financial modeling and proprietary studies. At Bain & Company, built a dynamic pricing tool covering 35 product categories, 4 distribution channels and 180+ regional markets. Skills include Python, R, VBA and Excel. Holds an MBA from MIT Sloan School of Management."
+      "search_summary": "Senior fundamental equity research analyst (8.2y relevant). Covers equities in healthcare, consumer discretionary and telecom. Markets covered are LatAm and EMEA. Currently an Equity Research Analyst at Vanguard Group (asset manager). At Vanguard Group, work includes financial modeling and proprietary studies. At Bain & Company, built a dynamic pricing tool spanning 35 product categories, 4 distribution channels and 180+ regional markets. Skills include Python, R, VBA and Excel. Holds an MBA from MIT Sloan School of Management."
     },
     "derived": {
-      "current_country": "GB",
-      "current_region": "Europe",
+      "current_country": "BR",
+      "current_region": "Other",
       "countries_worked": [
-        {
-          "country": "GB",
-          "months": 62
-        },
         {
           "country": "BR",
           "months": 36
         }
       ],
       "regions_worked": [
-        "Europe",
         "Other"
       ],
       "markets_covered": [
         "EMEA",
         "Europe",
-        "Latin America",
+        "LatAm",
         "Other"
       ],
       "months_full_time_relevant": 98,
@@ -1169,16 +1231,18 @@
           "evidence": "focused on healthcare, consumer discretionary an telecom companies operating primarily in emerging Latam and EMEA"
         },
         {
-          "label": "Industrials",
-          "evidence": "water technology publicly traded companies"
+          "label": "Technology",
+          "evidence": "focused on healthcare, consumer discretionary an telecom companies operating primarily in emerging Latam and EMEA"
         },
         {
-          "label": "Technology",
-          "evidence": "telecom"
+          "label": "Industrials",
+          "evidence": "water technology publicly traded companies"
         }
       ],
       "other_sector_tags": [
         "consumer discretionary",
+        "consumer electronics",
+        "retail",
         "telecom",
         "water technology"
       ],
@@ -1204,7 +1268,7 @@
       ],
       "has_cfa": false,
       "cfa_level": null,
-      "search_summary": "Senior fundamental equity analyst (8.2y relevant). Covers equities across healthcare, consumer discretionary and telecom sectors. Markets covered are Latin America and EMEA. Current employer is Vanguard Group (asset manager), Equity Research Analyst. At Vanguard Group, work includes financial modeling and proprietary studies. At Bain & Company, built a dynamic pricing tool covering 35 product categories, 4 distribution channels and 180+ regional markets. Skills include Python, R, VBA and Excel. Holds an MBA from MIT Sloan School of Management.",
+      "search_summary": "Senior fundamental equity research analyst (8.2y relevant). Covers equities in healthcare, consumer discretionary and telecom. Markets covered are LatAm and EMEA. Currently an Equity Research Analyst at Vanguard Group (asset manager). At Vanguard Group, work includes financial modeling and proprietary studies. At Bain & Company, built a dynamic pricing tool spanning 35 product categories, 4 distribution channels and 180+ regional markets. Skills include Python, R, VBA and Excel. Holds an MBA from MIT Sloan School of Management.",
       "quality": {
         "text_quality": {
           "unknown_ratio_before": 0.0024813895781637717,
@@ -1225,50 +1289,50 @@
       "file_sha256": "3263f3e4fe14cb114411c3c91ae8dd08408a7638c6d1771b6e4871d8d0e97ba0",
       "file_bytes": 29922,
       "page_count": 1,
-      "parsed_at": "2026-10-25T20:30:49+00:00",
+      "parsed_at": "2026-10-25T20:58:24+00:00",
       "extraction_path": "text",
       "llm_model": "claude-sonnet-5-5",
-      "prompt_version": "v6",
+      "prompt_version": "v7",
       "schema_version": 2,
       "parse_status": "ok",
       "attempts": [
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 2917,
+          "latency_ms": 5687,
           "input_tokens": 1396,
-          "output_tokens": 348,
+          "output_tokens": 357,
           "error": null,
           "cache_read_tokens": 0,
-          "cache_creation_tokens": 2436,
+          "cache_creation_tokens": 2906,
           "call": "profile"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 10372,
+          "latency_ms": 13012,
           "input_tokens": 1360,
-          "output_tokens": 2001,
+          "output_tokens": 2120,
           "error": null,
           "cache_read_tokens": 0,
-          "cache_creation_tokens": 3206,
+          "cache_creation_tokens": 4578,
           "call": "experience"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 6430,
+          "latency_ms": 5793,
           "input_tokens": 1909,
-          "output_tokens": 857,
+          "output_tokens": 817,
           "error": null,
-          "cache_read_tokens": 1289,
+          "cache_read_tokens": 1379,
           "cache_creation_tokens": 0,
           "call": "regen:skills"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 12051,
-          "input_tokens": 3752,
-          "output_tokens": 1935,
+          "latency_ms": 10957,
+          "input_tokens": 3880,
+          "output_tokens": 1782,
           "error": null,
-          "cache_read_tokens": 1833,
+          "cache_read_tokens": 1884,
           "cache_creation_tokens": 0,
           "call": "assessment"
         }
@@ -1298,8 +1362,8 @@
                 "Statistical Analysis",
                 "Hypothesis Testing",
                 "three-statement valuation models",
-                "valuation analysis",
                 "IPO syndicate models",
+                "valuation analysis",
                 "MBS forward contracts"
               ]
             },
@@ -1337,8 +1401,8 @@
                 "Statistical Analysis",
                 "Hypothesis Testing",
                 "three-statement valuation models",
-                "valuation analysis",
                 "IPO syndicate models",
+                "valuation analysis",
                 "MBS forward contracts"
               ]
             },
@@ -1377,6 +1441,7 @@
           "degree": "Bachelor of Science in Business",
           "degree_level": "Bachelors",
           "field": "Finance",
+          "minor_fields": [],
           "start": null,
           "end": "2017-05",
           "country": "US"
@@ -1400,8 +1465,8 @@
           "Statistical Analysis",
           "Hypothesis Testing",
           "three-statement valuation models",
-          "valuation analysis",
           "IPO syndicate models",
+          "valuation analysis",
           "MBS forward contracts"
         ]
       },
@@ -1428,6 +1493,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Asset manager",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -1435,7 +1501,7 @@
             {
               "label": "Technology",
               "evidence": {
-                "quote": "Initiated on 20+ names across TMT sector through diligence on public filings, industry experts and valuation analysis"
+                "quote": "Initiated on 20+ names across TMT sector through diligence on public filings"
               }
             },
             {
@@ -1473,6 +1539,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side broker",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -1481,6 +1548,12 @@
               "label": "Technology",
               "evidence": {
                 "quote": "Covered 20+ names across TMT sector providing quarterly earnings estimates and research reports"
+              }
+            },
+            {
+              "label": "Consumer",
+              "evidence": {
+                "quote": "built IPO syndicate models from scratch on 10+ consumer internet companies"
               }
             }
           ],
@@ -1513,6 +1586,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side broker",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Fixed Income",
             "Credit"
@@ -1525,7 +1599,10 @@
               }
             }
           ],
-          "other_sector_tags": [],
+          "other_sector_tags": [
+            "High Yield",
+            "Investment Grade"
+          ],
           "markets_covered": [],
           "duration_months": null,
           "bullets": [
@@ -1549,6 +1626,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Other",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Fixed Income",
             "Derivatives"
@@ -1578,6 +1656,7 @@
           "employment_type": "internship",
           "relevance": "core",
           "firm_type": "Hedge fund",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Fixed Income",
             "Credit"
@@ -1594,7 +1673,7 @@
         },
         {
           "employer": "Ross Investment Banking Club",
-          "title": "Member",
+          "title": "",
           "location_text": null,
           "country": null,
           "start": [
@@ -1607,6 +1686,7 @@
           "employment_type": "extracurricular",
           "relevance": "unrelated",
           "firm_type": "Other",
+          "firm_hq_country": null,
           "asset_classes": [],
           "sectors": [],
           "other_sector_tags": [],
@@ -1618,7 +1698,7 @@
         },
         {
           "employer": "Campus Tutoring Service",
-          "title": "Tutor",
+          "title": "",
           "location_text": "Ann Arbor, MI",
           "country": "US",
           "start": [
@@ -1631,6 +1711,7 @@
           "employment_type": "extracurricular",
           "relevance": "unrelated",
           "firm_type": "Other",
+          "firm_hq_country": null,
           "asset_classes": [],
           "sectors": [],
           "other_sector_tags": [],
@@ -1647,7 +1728,7 @@
           "quote": "Initiated on 20+ names across TMT sector through diligence on public filings, industry experts and valuation analysis"
         }
       },
-      "search_summary": "Senior fundamental equity analyst (8.8y relevant). Experience covers equities, fixed income, credit and derivatives across technology, consumer and credit sectors. Current employer is Fidelity Asset Management (asset manager), title Analyst, Consumer Internet & Software. At Fidelity, initiated on 20+ names across TMT sector. At William Blair, built IPO syndicate models from scratch on 10+ consumer internet companies. Skills include FactSet, S&P Capital IQ and SQL. Holds a Bachelor of Science in Business from University of Michigan, Ross School of Business; CFA Charterholder, FINRA Series 7, 63 and 87."
+      "search_summary": "Senior fundamental equity analyst (8.8y relevant). Covers equities, fixed income, credit and derivatives across technology, consumer internet, software and TMT. Currently at Fidelity Asset Management (asset manager) as Analyst, Consumer Internet & Software. Initiated on 20+ names across TMT sector at Fidelity; at William Blair, published a 70+ page 3D printing industry report covering 29 competitors. Skills include Bloomberg Terminal, FactSet and S&P Capital IQ. Bachelor of Science in Business, University of Michigan, Ross School of Business; CFA Charterholder, FINRA Series 7, 63, 87."
     },
     "derived": {
       "current_country": "US",
@@ -1671,7 +1752,7 @@
       "sectors": [
         {
           "label": "Technology",
-          "evidence": "Initiated on 20+ names across TMT sector through diligence on public filings, industry experts and valuation analysis"
+          "evidence": "Initiated on 20+ names across TMT sector through diligence on public filings"
         },
         {
           "label": "Consumer",
@@ -1685,6 +1766,8 @@
       "other_sector_tags": [
         "3d printing",
         "consumer internet",
+        "high yield",
+        "investment grade",
         "mortgage",
         "residential mortgage",
         "software",
@@ -1724,7 +1807,7 @@
       ],
       "has_cfa": true,
       "cfa_level": null,
-      "search_summary": "Senior fundamental equity analyst (8.8y relevant). Experience covers equities, fixed income, credit and derivatives across technology, consumer and credit sectors. Current employer is Fidelity Asset Management (asset manager), title Analyst, Consumer Internet & Software. At Fidelity, initiated on 20+ names across TMT sector. At William Blair, built IPO syndicate models from scratch on 10+ consumer internet companies. Skills include FactSet, S&P Capital IQ and SQL. Holds a Bachelor of Science in Business from University of Michigan, Ross School of Business; CFA Charterholder, FINRA Series 7, 63 and 87.",
+      "search_summary": "Senior fundamental equity analyst (8.8y relevant). Covers equities, fixed income, credit and derivatives across technology, consumer internet, software and TMT. Currently at Fidelity Asset Management (asset manager) as Analyst, Consumer Internet & Software. Initiated on 20+ names across TMT sector at Fidelity; at William Blair, published a 70+ page 3D printing industry report covering 29 competitors. Skills include Bloomberg Terminal, FactSet and S&P Capital IQ. Bachelor of Science in Business, University of Michigan, Ross School of Business; CFA Charterholder, FINRA Series 7, 63, 87.",
       "quality": {
         "text_quality": {
           "unknown_ratio_before": 0.004640371229698376,
@@ -1745,40 +1828,40 @@
       "file_sha256": "05c2a9b47e801013b8f27a8261200d5c9b8df4272f7e9b1825555b3ca9a7e79b",
       "file_bytes": 146198,
       "page_count": 1,
-      "parsed_at": "2026-10-25T20:31:40+00:00",
+      "parsed_at": "2026-10-25T20:58:59+00:00",
       "extraction_path": "text",
       "llm_model": "claude-sonnet-5-5",
-      "prompt_version": "v6",
+      "prompt_version": "v7",
       "schema_version": 2,
       "parse_status": "ok",
       "attempts": [
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 5973,
+          "latency_ms": 6140,
           "input_tokens": 704,
-          "output_tokens": 1011,
+          "output_tokens": 1015,
           "error": null,
-          "cache_read_tokens": 2436,
+          "cache_read_tokens": 2906,
           "cache_creation_tokens": 0,
           "call": "profile"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 10565,
+          "latency_ms": 4128,
           "input_tokens": 668,
-          "output_tokens": 1613,
+          "output_tokens": 704,
           "error": null,
-          "cache_read_tokens": 3206,
+          "cache_read_tokens": 4578,
           "cache_creation_tokens": 0,
           "call": "experience"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 10315,
-          "input_tokens": 1849,
-          "output_tokens": 1556,
+          "latency_ms": 9770,
+          "input_tokens": 1917,
+          "output_tokens": 1410,
           "error": null,
-          "cache_read_tokens": 1833,
+          "cache_read_tokens": 1884,
           "cache_creation_tokens": 0,
           "call": "assessment"
         }
@@ -1811,6 +1894,7 @@
           "degree": "Diplôme d'Ingénieur",
           "degree_level": "Masters",
           "field": "Financial Engineering",
+          "minor_fields": [],
           "start": "2019-09",
           "end": "2022-09",
           "country": "FR"
@@ -1820,6 +1904,7 @@
           "degree": "Master's degree",
           "degree_level": "Masters",
           "field": "Quantitative Finance",
+          "minor_fields": [],
           "start": "2021-09",
           "end": "2022-09",
           "country": "FR"
@@ -1829,6 +1914,7 @@
           "degree": "Preparatory Classes",
           "degree_level": "Other",
           "field": "Mathematics and Physics",
+          "minor_fields": [],
           "start": "2017-09",
           "end": "2019-07",
           "country": "MA"
@@ -1841,11 +1927,11 @@
           "Python",
           "Java",
           "R",
-          "SQL"
+          "SQL",
+          "MongoDB"
         ],
         "tools": [
           ".NET",
-          "MongoDB",
           "Excel"
         ],
         "domain": [
@@ -1853,10 +1939,11 @@
           "Stochastic calculus",
           "Probability theory",
           "Statistics",
-          "Monte Carlo",
           "one factor Gaussian copula model",
+          "local spread option",
           "Scenario analysis",
           "Greeks computation",
+          "Monte Carlo",
           "momentum-based trading strategies",
           "back testing",
           "yield curve construction",
@@ -1891,6 +1978,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "FR",
           "asset_classes": [
             "Fixed Income",
             "Derivatives"
@@ -1921,6 +2009,7 @@
           "employment_type": "internship",
           "relevance": "core",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "FR",
           "asset_classes": [
             "Derivatives"
           ],
@@ -1947,6 +2036,7 @@
           "employment_type": "internship",
           "relevance": "core",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "FR",
           "asset_classes": [
             "Fixed Income"
           ],
@@ -1963,10 +2053,10 @@
       "investment_approach": {
         "label": "Unclear",
         "evidence": {
-          "quote": "Introduction of a new model (one factor Gaussian copula model)"
+          "quote": "Development and back testing of momentum-based trading strategies"
         }
       },
-      "search_summary": "Mid quantitative developer, approach unclear (4.5y relevant). Asset classes are fixed income and derivatives. Currently at BNP Paribas CIB (sell-side bank) as Quantitative Developer. At BNP Paribas CIB, introduced a one factor Gaussian copula model and implemented a local spread option payoff in the C++ pricing library. Skills include Python, R and SQL. Holds a Diplôme d'Ingénieur in Financial Engineering from INSA Lyon; no certifications listed."
+      "search_summary": "Mid-level quantitative developer with unclear investment approach (4.4y relevant). Asset classes are fixed income and derivatives. Currently at BNP Paribas CIB (sell-side bank) as Quantitative Developer. At BNP Paribas CIB, introduced a one factor Gaussian copula model, implemented a local spread option exotic payoff and built scenario analysis and Greeks computation features for trading desks in a C++ pricing library. Skills include Python, R, SQL and Monte Carlo. Holds a Diplôme d'Ingénieur in Financial Engineering from INSA Lyon."
     },
     "derived": {
       "current_country": "FR",
@@ -1986,7 +2076,7 @@
       "months_internship": 6,
       "seniority_band": "Mid",
       "investment_approach": "Unclear",
-      "approach_evidence": "Introduction of a new model (one factor Gaussian copula model)",
+      "approach_evidence": "Development and back testing of momentum-based trading strategies",
       "sectors": [],
       "other_sector_tags": [],
       "asset_classes": [
@@ -2011,6 +2101,7 @@
         "gradient descent",
         "greeks computation",
         "java",
+        "local spread option",
         "machine-learning",
         "momentum-based trading strategies",
         "mongodb",
@@ -2028,7 +2119,7 @@
       ],
       "has_cfa": false,
       "cfa_level": null,
-      "search_summary": "Mid quantitative developer, approach unclear (4.5y relevant). Asset classes are fixed income and derivatives. Currently at BNP Paribas CIB (sell-side bank) as Quantitative Developer. At BNP Paribas CIB, introduced a one factor Gaussian copula model and implemented a local spread option payoff in the C++ pricing library. Skills include Python, R and SQL. Holds a Diplôme d'Ingénieur in Financial Engineering from INSA Lyon; no certifications listed.",
+      "search_summary": "Mid-level quantitative developer with unclear investment approach (4.4y relevant). Asset classes are fixed income and derivatives. Currently at BNP Paribas CIB (sell-side bank) as Quantitative Developer. At BNP Paribas CIB, introduced a one factor Gaussian copula model, implemented a local spread option exotic payoff and built scenario analysis and Greeks computation features for trading desks in a C++ pricing library. Skills include Python, R, SQL and Monte Carlo. Holds a Diplôme d'Ingénieur in Financial Engineering from INSA Lyon.",
       "quality": {
         "text_quality": {
           "unknown_ratio_before": 0.17801047120418848,
@@ -2049,50 +2140,50 @@
       "file_sha256": "187e832c155d333d4c8c41c7e42812e30400b502f5edfde457a8d0b0c1ef44f2",
       "file_bytes": 20605,
       "page_count": 1,
-      "parsed_at": "2026-10-25T20:31:21+00:00",
+      "parsed_at": "2026-10-25T20:58:50+00:00",
       "extraction_path": "text",
       "llm_model": "claude-sonnet-5-5",
-      "prompt_version": "v6",
+      "prompt_version": "v7",
       "schema_version": 2,
       "parse_status": "ok",
       "attempts": [
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 2537,
+          "latency_ms": 2881,
           "input_tokens": 1874,
-          "output_tokens": 394,
+          "output_tokens": 401,
           "error": null,
-          "cache_read_tokens": 2436,
+          "cache_read_tokens": 2906,
           "cache_creation_tokens": 0,
           "call": "profile"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 23058,
+          "latency_ms": 13858,
           "input_tokens": 1829,
-          "output_tokens": 4193,
+          "output_tokens": 2944,
           "error": null,
-          "cache_read_tokens": 3206,
+          "cache_read_tokens": 4578,
           "cache_creation_tokens": 0,
           "call": "experience"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 5165,
-          "input_tokens": 2151,
-          "output_tokens": 599,
+          "latency_ms": 5219,
+          "input_tokens": 2166,
+          "output_tokens": 543,
           "error": null,
-          "cache_read_tokens": 1289,
+          "cache_read_tokens": 1379,
           "cache_creation_tokens": 0,
           "call": "regen:skills"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 11366,
-          "input_tokens": 5126,
-          "output_tokens": 1903,
+          "latency_ms": 12058,
+          "input_tokens": 5259,
+          "output_tokens": 1885,
           "error": null,
-          "cache_read_tokens": 1833,
+          "cache_read_tokens": 1884,
           "cache_creation_tokens": 0,
           "call": "assessment"
         }
@@ -2110,10 +2201,11 @@
               "tools": [],
               "domain": [
                 "financial modeling",
+                "competitive analysis",
                 "value investing",
-                "initiation reports",
                 "earnings analysis",
-                "competitive analysis"
+                "initiation reports",
+                "IPO coverage"
               ]
             },
             "text_value": [
@@ -2144,6 +2236,7 @@
           "degree": "MBA",
           "degree_level": "MBA",
           "field": "Finance",
+          "minor_fields": [],
           "start": "2011",
           "end": "2013",
           "country": null
@@ -2153,6 +2246,7 @@
           "degree": "MCOM",
           "degree_level": "Masters",
           "field": null,
+          "minor_fields": [],
           "start": null,
           "end": "2013",
           "country": null
@@ -2162,6 +2256,7 @@
           "degree": "B.M.S",
           "degree_level": "Bachelors",
           "field": null,
+          "minor_fields": [],
           "start": null,
           "end": "2007",
           "country": null
@@ -2171,6 +2266,7 @@
           "degree": "HSC",
           "degree_level": "Other",
           "field": null,
+          "minor_fields": [],
           "start": null,
           "end": "2004",
           "country": null
@@ -2180,6 +2276,7 @@
           "degree": "SSC",
           "degree_level": "Other",
           "field": null,
+          "minor_fields": [],
           "start": null,
           "end": "2002",
           "country": null
@@ -2191,10 +2288,10 @@
         "domain": [
           "equity research",
           "financial modeling",
+          "competitive analysis",
           "value investing",
-          "initiation reports",
           "earnings analysis",
-          "competitive analysis"
+          "initiation reports"
         ]
       },
       "certifications": [],
@@ -2215,6 +2312,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side broker",
+          "firm_hq_country": "IN",
           "asset_classes": [
             "Equities"
           ],
@@ -2222,7 +2320,7 @@
             {
               "label": "Healthcare",
               "evidence": {
-                "quote": "spread across all segments (pharma, hospital, diagnostics and medical devices) of the listed Indian healthcare universe"
+                "quote": "Extensive coverage of 32 companies spread across all segments (pharma, hospital, diagnostics and medical devices)"
               }
             }
           ],
@@ -2262,6 +2360,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -2297,6 +2396,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Other",
+          "firm_hq_country": "GB",
           "asset_classes": [
             "Equities"
           ],
@@ -2304,7 +2404,7 @@
             {
               "label": "Healthcare",
               "evidence": {
-                "quote": "with 17 pharma companies under direct coverage"
+                "quote": "Lead Analyst at Anand Rathi with 17 pharma companies under direct coverage"
               }
             }
           ],
@@ -2334,6 +2434,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side broker",
+          "firm_hq_country": "IN",
           "asset_classes": [
             "Equities"
           ],
@@ -2373,6 +2474,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -2384,7 +2486,7 @@
               }
             },
             {
-              "label": "Other",
+              "label": "Materials",
               "evidence": {
                 "quote": "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space."
               }
@@ -2425,6 +2527,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Asset manager",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -2432,7 +2535,7 @@
             {
               "label": "Healthcare",
               "evidence": {
-                "quote": "25 US and European large-cap pharmaceutical companies like Gilead Sciences"
+                "quote": "My portfolio consisted of 25 US and European large-cap pharmaceutical companies"
               }
             }
           ],
@@ -2443,13 +2546,13 @@
             {
               "label": "US",
               "evidence": {
-                "quote": "25 US and European large-cap pharmaceutical companies like Gilead Sciences"
+                "quote": "My portfolio consisted of 25 US and European large-cap pharmaceutical companies"
               }
             },
             {
               "label": "Europe",
               "evidence": {
-                "quote": "25 US and European large-cap pharmaceutical companies like Gilead Sciences"
+                "quote": "My portfolio consisted of 25 US and European large-cap pharmaceutical companies"
               }
             }
           ],
@@ -2464,14 +2567,14 @@
       "investment_approach": {
         "label": "Fundamental",
         "evidence": {
-          "quote": "Focused approach towards analyzing and recommending differentiated and undervalued investment opportunities to institutional clients."
+          "quote": "Screen various companies, try to study them on various parameters of value investing and sensibly highlight them in the report prepared for initiating coverage and IPOs"
         }
       },
-      "search_summary": "Principal fundamental equity analyst (12.8y relevant). Covers equities in healthcare, including pharma, hospitals, diagnostics, medical devices and specialty chemicals. Markets covered are India, US and Europe. Currently Lead Healthcare Analyst at ICICI Securities (sell-side broker). At ICICI Securities, covers 32 companies and managed primary fund raises for Jupiter Hospital, Innova Captab, Entero Healthcare and AKUMS. At Morgan Stanley, built financial models and screened companies on value investing parameters. Holds an MBA in Finance from Mumbai Institute of Management Studies (MIMS)."
+      "search_summary": "Principal fundamental equity research analyst (12.9y relevant). Covers equities across healthcare, including pharma, hospitals, diagnostics, medical devices and specialty chemicals. Markets covered are India, the US and Europe. Current employer is ICICI Securities (sell-side broker), Lead Healthcare Analyst. At ICICI Securities, covers 32 companies and managed primary fund raise for Jupiter Hospital, Innova Captab, Entero Healthcare and AKUMS; at Transparent Value, covered 25 US and European large-cap pharma companies. Skills include financial modeling and value investing. MBA in Finance from Mumbai Institute of Management Studies (MIMS)."
     },
     "derived": {
-      "current_country": null,
-      "current_region": null,
+      "current_country": "IN",
+      "current_region": "APAC",
       "countries_worked": [],
       "regions_worked": [],
       "markets_covered": [
@@ -2485,19 +2588,15 @@
       "months_internship": 0,
       "seniority_band": "Principal",
       "investment_approach": "Fundamental",
-      "approach_evidence": "Focused approach towards analyzing and recommending differentiated and undervalued investment opportunities to institutional clients.",
+      "approach_evidence": "Screen various companies, try to study them on various parameters of value investing and sensibly highlight them in the report prepared for initiating coverage and IPOs",
       "sectors": [
         {
           "label": "Healthcare",
-          "evidence": "spread across all segments (pharma, hospital, diagnostics and medical devices) of the listed Indian healthcare universe"
+          "evidence": "Extensive coverage of 32 companies spread across all segments (pharma, hospital, diagnostics and medical devices)"
         },
         {
-          "label": "Other",
+          "label": "Materials",
           "evidence": "Covered mid and small cap companies in the Indian pharmaceutical and speciality chemical space."
-        },
-        {
-          "label": "Industrials",
-          "evidence": "specialty chemicals"
         }
       ],
       "other_sector_tags": [
@@ -2530,7 +2629,7 @@
       ],
       "has_cfa": false,
       "cfa_level": null,
-      "search_summary": "Principal fundamental equity analyst (12.8y relevant). Covers equities in healthcare, including pharma, hospitals, diagnostics, medical devices and specialty chemicals. Markets covered are India, US and Europe. Currently Lead Healthcare Analyst at ICICI Securities (sell-side broker). At ICICI Securities, covers 32 companies and managed primary fund raises for Jupiter Hospital, Innova Captab, Entero Healthcare and AKUMS. At Morgan Stanley, built financial models and screened companies on value investing parameters. Holds an MBA in Finance from Mumbai Institute of Management Studies (MIMS).",
+      "search_summary": "Principal fundamental equity research analyst (12.9y relevant). Covers equities across healthcare, including pharma, hospitals, diagnostics, medical devices and specialty chemicals. Markets covered are India, the US and Europe. Current employer is ICICI Securities (sell-side broker), Lead Healthcare Analyst. At ICICI Securities, covers 32 companies and managed primary fund raise for Jupiter Hospital, Innova Captab, Entero Healthcare and AKUMS; at Transparent Value, covered 25 US and European large-cap pharma companies. Skills include financial modeling and value investing. MBA in Finance from Mumbai Institute of Management Studies (MIMS).",
       "quality": {
         "text_quality": {
           "unknown_ratio_before": 0.01779935275080906,
@@ -2551,60 +2650,97 @@
       "file_sha256": "60494a76873965c1a27d06a593b1239344766c9d156595a3cec220858401ea41",
       "file_bytes": 93149,
       "page_count": 2,
-      "parsed_at": "2026-10-25T20:31:50+00:00",
+      "parsed_at": "2026-10-25T20:59:31+00:00",
       "extraction_path": "text",
       "llm_model": "claude-sonnet-5-5",
-      "prompt_version": "v6",
+      "prompt_version": "v7",
       "schema_version": 2,
       "parse_status": "ok",
       "attempts": [
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 2027,
+          "latency_ms": 2283,
           "input_tokens": 1900,
-          "output_tokens": 266,
+          "output_tokens": 294,
           "error": null,
-          "cache_read_tokens": 2436,
+          "cache_read_tokens": 2906,
           "cache_creation_tokens": 0,
           "call": "profile"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 10760,
+          "latency_ms": 12084,
           "input_tokens": 1864,
-          "output_tokens": 2362,
+          "output_tokens": 2435,
           "error": null,
-          "cache_read_tokens": 3206,
+          "cache_read_tokens": 4578,
           "cache_creation_tokens": 0,
           "call": "experience"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 6497,
-          "input_tokens": 2644,
-          "output_tokens": 717,
+          "latency_ms": 4705,
+          "input_tokens": 2247,
+          "output_tokens": 543,
+          "error": null,
+          "cache_read_tokens": 1379,
+          "cache_creation_tokens": 0,
+          "call": "regen:skills"
+        },
+        {
+          "model": "claude-sonnet-5-5",
+          "latency_ms": 12027,
+          "input_tokens": 2660,
+          "output_tokens": 1002,
           "error": null,
           "cache_read_tokens": 0,
-          "cache_creation_tokens": 3081,
+          "cache_creation_tokens": 4453,
           "call": "regen:experience_item"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 13752,
-          "input_tokens": 4531,
-          "output_tokens": 2129,
+          "latency_ms": 13594,
+          "input_tokens": 4635,
+          "output_tokens": 2115,
           "error": null,
-          "cache_read_tokens": 1833,
+          "cache_read_tokens": 1884,
           "cache_creation_tokens": 0,
           "call": "assessment"
         }
       ],
       "verification": {
         "checks_run": 21,
-        "disagreements": 2,
-        "regenerated": 1,
+        "disagreements": 3,
+        "regenerated": 2,
         "unresolved": [],
         "details": [
+          {
+            "field": "skills",
+            "llm_value": {
+              "programming": [],
+              "tools": [],
+              "domain": [
+                "operating model",
+                "DCF",
+                "comparable companies",
+                "LBO",
+                "precedent transactions",
+                "factor attribution",
+                "position sizing",
+                "hedging",
+                "financial modeling",
+                "due diligence",
+                "M&A"
+              ]
+            },
+            "text_value": [
+              "dcf",
+              "due-diligence",
+              "financial-modeling",
+              "lbo",
+              "valuation"
+            ]
+          },
           {
             "field": "experience[3].start",
             "llm_value": [
@@ -2691,7 +2827,10 @@
           "institution": "Columbia Business School, Columbia University",
           "degree": "Bachelor of Science in Business",
           "degree_level": "Bachelors",
-          "field": "Finance and International Business",
+          "field": "Business: Concentration in Finance and International Business",
+          "minor_fields": [
+            "Statistics"
+          ],
           "start": "2013-09",
           "end": "2017-05",
           "country": "US"
@@ -2701,15 +2840,17 @@
         "programming": [],
         "tools": [],
         "domain": [
+          "operating model",
           "DCF",
           "comparable companies",
           "LBO",
           "precedent transactions",
-          "operating model",
-          "financial modeling",
           "factor attribution",
+          "position sizing",
+          "hedging",
+          "financial modeling",
           "due diligence",
-          "M&A valuation"
+          "valuation"
         ]
       },
       "certifications": [],
@@ -2730,6 +2871,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Hedge fund",
+          "firm_hq_country": null,
           "asset_classes": [
             "Equities"
           ],
@@ -2759,6 +2901,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Hedge fund",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -2766,7 +2909,7 @@
             {
               "label": "Consumer",
               "evidence": {
-                "quote": "Investment Analyst, Consumer & TMT – North53 Capital"
+                "quote": "Principal analyst responsible for managing the Consumer and Technology portfolio"
               }
             },
             {
@@ -2803,6 +2946,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "PE/VC",
+          "firm_hq_country": "US",
           "asset_classes": [],
           "sectors": [
             {
@@ -2853,7 +2997,11 @@
           "employment_type": "full_time",
           "relevance": "adjacent",
           "firm_type": "Sell-side bank",
-          "asset_classes": [],
+          "firm_hq_country": "US",
+          "asset_classes": [
+            "Equities",
+            "Credit"
+          ],
           "sectors": [
             {
               "label": "Healthcare",
@@ -2887,6 +3035,7 @@
           "employment_type": "extracurricular",
           "relevance": "unrelated",
           "firm_type": "Other",
+          "firm_hq_country": null,
           "asset_classes": [],
           "sectors": [],
           "other_sector_tags": [],
@@ -2912,6 +3061,7 @@
           "employment_type": "extracurricular",
           "relevance": "unrelated",
           "firm_type": "Other",
+          "firm_hq_country": null,
           "asset_classes": [],
           "sectors": [],
           "other_sector_tags": [],
@@ -2929,7 +3079,7 @@
           "quote": "Primary investor responsible for managing the only long short fundamental equity portfolio at Meridian Capital Partners"
         }
       },
-      "search_summary": "Senior fundamental equity investor (8.6y relevant). Asset class is equities, with sectors including Consumer, Technology, Healthcare and Business & Technology Services. Current employer is Meridian Capital Partners (hedge fund), title Investment Professional, Generalist – Soft Catalyst & Fundamental Long/Short. At Millennium Management, managed the Consumer and Technology portfolio within a $4.2bn gross portfolio and built DCF, comparable companies, LBO and precedent transaction models. At J.P.Mogan, advised on BioPharm Corp's $8.5bn acquisition. Bachelor of Science in Business, Columbia Business School, Columbia University; no certifications listed."
+      "search_summary": "Senior fundamental equity investor (8.6y relevant). Coverage spans equities and credit across consumer, technology, healthcare, TMT and business and technology services. Currently at Meridian Capital Partners (hedge fund) as Investment Professional, Generalist – Soft Catalyst & Fundamental Long/Short. At Millennium Management, managed the Consumer and Technology portfolio within a $4.2bn gross portfolio and built DCF and LBO models. At J.P.Mogan, advised on BioPharm Corp's $8.5bn acquisition of Oncology Therapeutics Inc. Holds a Bachelor of Science in Business from Columbia Business School, Columbia University."
     },
     "derived": {
       "current_country": "US",
@@ -2953,7 +3103,7 @@
       "sectors": [
         {
           "label": "Consumer",
-          "evidence": "Investment Analyst, Consumer & TMT – North53 Capital"
+          "evidence": "Principal analyst responsible for managing the Consumer and Technology portfolio"
         },
         {
           "label": "Technology",
@@ -2969,7 +3119,8 @@
         "tmt"
       ],
       "asset_classes": [
-        "Equities"
+        "Equities",
+        "Credit"
       ],
       "firm_types": [
         "Hedge fund",
@@ -2979,7 +3130,8 @@
       ],
       "highest_degree": "Bachelors",
       "degree_fields": [
-        "Finance and International Business"
+        "Business: Concentration in Finance and International Business",
+        "Statistics"
       ],
       "skills_normalized": [
         "comparable companies",
@@ -2987,14 +3139,16 @@
         "due-diligence",
         "factor attribution",
         "financial-modeling",
+        "hedging",
         "lbo",
-        "m&a valuation",
         "operating model",
-        "precedent transactions"
+        "position sizing",
+        "precedent transactions",
+        "valuation"
       ],
       "has_cfa": false,
       "cfa_level": null,
-      "search_summary": "Senior fundamental equity investor (8.6y relevant). Asset class is equities, with sectors including Consumer, Technology, Healthcare and Business & Technology Services. Current employer is Meridian Capital Partners (hedge fund), title Investment Professional, Generalist – Soft Catalyst & Fundamental Long/Short. At Millennium Management, managed the Consumer and Technology portfolio within a $4.2bn gross portfolio and built DCF, comparable companies, LBO and precedent transaction models. At J.P.Mogan, advised on BioPharm Corp's $8.5bn acquisition. Bachelor of Science in Business, Columbia Business School, Columbia University; no certifications listed.",
+      "search_summary": "Senior fundamental equity investor (8.6y relevant). Coverage spans equities and credit across consumer, technology, healthcare, TMT and business and technology services. Currently at Meridian Capital Partners (hedge fund) as Investment Professional, Generalist – Soft Catalyst & Fundamental Long/Short. At Millennium Management, managed the Consumer and Technology portfolio within a $4.2bn gross portfolio and built DCF and LBO models. At J.P.Mogan, advised on BioPharm Corp's $8.5bn acquisition of Oncology Therapeutics Inc. Holds a Bachelor of Science in Business from Columbia Business School, Columbia University.",
       "quality": {
         "text_quality": {
           "unknown_ratio_before": 0.0017331022530329288,
@@ -3015,50 +3169,50 @@
       "file_sha256": "198398458280dae94af473c292c966e71fd3df2a4f8d46a091a5ec63182e302f",
       "file_bytes": 20184,
       "page_count": 1,
-      "parsed_at": "2026-10-25T20:31:19+00:00",
+      "parsed_at": "2026-10-25T20:58:43+00:00",
       "extraction_path": "text",
       "llm_model": "claude-sonnet-5-5",
-      "prompt_version": "v6",
+      "prompt_version": "v7",
       "schema_version": 2,
       "parse_status": "ok",
       "attempts": [
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 2564,
+          "latency_ms": 2180,
           "input_tokens": 1419,
-          "output_tokens": 292,
+          "output_tokens": 276,
           "error": null,
-          "cache_read_tokens": 2436,
+          "cache_read_tokens": 2906,
           "cache_creation_tokens": 0,
           "call": "profile"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 8638,
+          "latency_ms": 9302,
           "input_tokens": 1389,
-          "output_tokens": 1811,
+          "output_tokens": 1870,
           "error": null,
-          "cache_read_tokens": 3206,
+          "cache_read_tokens": 4578,
           "cache_creation_tokens": 0,
           "call": "experience"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 14423,
-          "input_tokens": 1817,
-          "output_tokens": 531,
+          "latency_ms": 3974,
+          "input_tokens": 1783,
+          "output_tokens": 518,
           "error": null,
-          "cache_read_tokens": 1289,
+          "cache_read_tokens": 1379,
           "cache_creation_tokens": 0,
           "call": "regen:skills"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 10726,
-          "input_tokens": 3572,
-          "output_tokens": 1854,
+          "latency_ms": 8947,
+          "input_tokens": 3635,
+          "output_tokens": 1462,
           "error": null,
-          "cache_read_tokens": 1833,
+          "cache_read_tokens": 1884,
           "cache_creation_tokens": 0,
           "call": "assessment"
         }
@@ -3082,9 +3236,7 @@
                 "Financial Modeling",
                 "DCF",
                 "comparable company analysis",
-                "sum-of-the-parts valuation",
-                "fundamental analysis",
-                "alternative data tracking"
+                "sum-of-the-parts valuation"
               ]
             },
             "text_value": [
@@ -3121,6 +3273,7 @@
           "degree": "Bachelor of Science in Business Administration",
           "degree_level": "Bachelors",
           "field": "Business Administration",
+          "minor_fields": [],
           "start": null,
           "end": "2014-05",
           "country": "US"
@@ -3136,15 +3289,15 @@
         "domain": [
           "Financial Modeling",
           "DCF",
-          "comparable company analysis",
-          "sum-of-the-parts valuation",
-          "fundamental analysis",
-          "alternative data tracking",
-          "valuation analysis",
-          "due diligence",
-          "equity research",
+          "comparable company",
+          "sum-of-the-parts",
+          "fundamental research",
           "financial KPI analysis",
-          "macroeconomic trend analysis"
+          "alternative data tracking",
+          "macroeconomic trend analysis",
+          "valuation analysis",
+          "IPO due diligence",
+          "equity research"
         ]
       },
       "certifications": [
@@ -3176,6 +3329,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Hedge fund",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -3217,6 +3371,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -3255,8 +3410,9 @@
           ],
           "is_current": false,
           "employment_type": "full_time",
-          "relevance": "core",
+          "relevance": "adjacent",
           "firm_type": "Asset manager",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -3285,6 +3441,7 @@
           "employment_type": "full_time",
           "relevance": "adjacent",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "US",
           "asset_classes": [],
           "sectors": [],
           "other_sector_tags": [],
@@ -3309,6 +3466,7 @@
           "employment_type": "full_time",
           "relevance": "adjacent",
           "firm_type": "Consulting",
+          "firm_hq_country": "GB",
           "asset_classes": [],
           "sectors": [],
           "other_sector_tags": [],
@@ -3325,7 +3483,7 @@
           "quote": "Source investment ideas through fundamental research, financial KPI analysis, alternative data tracking, and macroeconomic trend analysis"
         }
       },
-      "search_summary": "Principal fundamental equity analyst (12.2y relevant), covering equities in technology and media, including cloud computing and digital advertising. Currently Investment Analyst at Cinctive Capital Management (hedge fund). At Cinctive Capital Management, deploys a long/short equity strategy across ~75 Technology/Media stocks. At Goldman Sachs, built DCF, comparable company and sum-of-the-parts models and supported IPO due diligence for eight transactions. Skills include Bloomberg, FactSet and financial modeling. Holds a Bachelor of Science in Business Administration from Northwestern University - Kellogg School of Management and is a CFA Charterholder."
+      "search_summary": "Principal fundamental equity analyst (12.2y relevant). Covers equities in technology and media, including cloud computing and digital advertising. Current employer is Cinctive Capital Management (hedge fund), title Investment Analyst. At Cinctive, deploys a long/short equity strategy across ~75 Technology/Media stocks with portfolio managers; at Goldman Sachs, supported IPO due diligence for eight investment banking transactions. Skills include Bloomberg, FactSet, DCF and comparable company valuation. Holds a Bachelor of Science in Business Administration from Northwestern University - Kellogg School of Management, and is a CFA Charterholder."
     },
     "derived": {
       "current_country": "US",
@@ -3341,7 +3499,7 @@
       ],
       "markets_covered": [],
       "months_full_time_relevant": 146,
-      "months_full_time_core": 111,
+      "months_full_time_core": 92,
       "months_internship": 0,
       "seniority_band": "Principal",
       "investment_approach": "Fundamental",
@@ -3375,22 +3533,22 @@
       "skills_normalized": [
         "alternative data tracking",
         "bloomberg",
-        "comparable company analysis",
+        "comparable company",
         "dcf",
-        "due-diligence",
         "equity-research",
         "factset",
         "financial kpi analysis",
         "financial-modeling",
-        "fundamental analysis",
+        "fundamental research",
+        "ipo due diligence",
         "macroeconomic trend analysis",
         "microsoft office",
-        "sum-of-the-parts valuation",
+        "sum-of-the-parts",
         "valuation analysis"
       ],
       "has_cfa": true,
       "cfa_level": null,
-      "search_summary": "Principal fundamental equity analyst (12.2y relevant), covering equities in technology and media, including cloud computing and digital advertising. Currently Investment Analyst at Cinctive Capital Management (hedge fund). At Cinctive Capital Management, deploys a long/short equity strategy across ~75 Technology/Media stocks. At Goldman Sachs, built DCF, comparable company and sum-of-the-parts models and supported IPO due diligence for eight transactions. Skills include Bloomberg, FactSet and financial modeling. Holds a Bachelor of Science in Business Administration from Northwestern University - Kellogg School of Management and is a CFA Charterholder.",
+      "search_summary": "Principal fundamental equity analyst (12.2y relevant). Covers equities in technology and media, including cloud computing and digital advertising. Current employer is Cinctive Capital Management (hedge fund), title Investment Analyst. At Cinctive, deploys a long/short equity strategy across ~75 Technology/Media stocks with portfolio managers; at Goldman Sachs, supported IPO due diligence for eight investment banking transactions. Skills include Bloomberg, FactSet, DCF and comparable company valuation. Holds a Bachelor of Science in Business Administration from Northwestern University - Kellogg School of Management, and is a CFA Charterholder.",
       "quality": {
         "text_quality": {
           "unknown_ratio_before": 0.0044742729306487695,
@@ -3411,60 +3569,60 @@
       "file_sha256": "595961ed436ed4c9fe7b6ba4de0323e812a0eac0add421671f449b8235bd22ec",
       "file_bytes": 26003,
       "page_count": 1,
-      "parsed_at": "2026-10-25T20:31:23+00:00",
+      "parsed_at": "2026-10-25T20:59:00+00:00",
       "extraction_path": "text",
       "llm_model": "claude-sonnet-5-5",
-      "prompt_version": "v6",
+      "prompt_version": "v7",
       "schema_version": 2,
       "parse_status": "ok",
       "attempts": [
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 2799,
+          "latency_ms": 3228,
           "input_tokens": 1257,
-          "output_tokens": 425,
+          "output_tokens": 407,
           "error": null,
-          "cache_read_tokens": 2436,
+          "cache_read_tokens": 2906,
           "cache_creation_tokens": 0,
           "call": "profile"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 9061,
+          "latency_ms": 9914,
           "input_tokens": 1226,
-          "output_tokens": 1854,
+          "output_tokens": 2055,
           "error": null,
-          "cache_read_tokens": 3206,
+          "cache_read_tokens": 4578,
           "cache_creation_tokens": 0,
           "call": "experience"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 3922,
-          "input_tokens": 1531,
-          "output_tokens": 444,
+          "latency_ms": 3026,
+          "input_tokens": 1466,
+          "output_tokens": 341,
           "error": null,
-          "cache_read_tokens": 1289,
+          "cache_read_tokens": 1379,
           "cache_creation_tokens": 0,
           "call": "regen:skills"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 12812,
-          "input_tokens": 3377,
-          "output_tokens": 2504,
+          "latency_ms": 14168,
+          "input_tokens": 3589,
+          "output_tokens": 2727,
           "error": null,
-          "cache_read_tokens": 3206,
+          "cache_read_tokens": 4578,
           "cache_creation_tokens": 0,
           "call": "regen:experience"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 10247,
-          "input_tokens": 3661,
-          "output_tokens": 1712,
+          "latency_ms": 10184,
+          "input_tokens": 3892,
+          "output_tokens": 1629,
           "error": null,
-          "cache_read_tokens": 1833,
+          "cache_read_tokens": 1884,
           "cache_creation_tokens": 0,
           "call": "assessment"
         }
@@ -3480,12 +3638,7 @@
             "llm_value": {
               "programming": [],
               "tools": [],
-              "domain": [
-                "equity research",
-                "sector analysis",
-                "company fundamentals analysis",
-                "AI-based drug target identification"
-              ]
+              "domain": []
             },
             "text_value": [
               "machine-learning"
@@ -3495,7 +3648,7 @@
             "field": "experience",
             "llm_value": [
               [
-                "Axis Mutual Fund",
+                "Axis Mutual Fund (US$1.2 billion+)",
                 2
               ],
               [
@@ -3552,6 +3705,7 @@
           "degree": "PGDM",
           "degree_level": "Masters",
           "field": null,
+          "minor_fields": [],
           "start": null,
           "end": "2015",
           "country": "IN"
@@ -3561,6 +3715,7 @@
           "degree": "M.Tech(Integrated)",
           "degree_level": "Masters",
           "field": null,
+          "minor_fields": [],
           "start": null,
           "end": "2010",
           "country": "IN"
@@ -3570,6 +3725,7 @@
           "degree": "HSC",
           "degree_level": "Other",
           "field": null,
+          "minor_fields": [],
           "start": null,
           "end": "2006",
           "country": "IN"
@@ -3579,6 +3735,7 @@
           "degree": "SSC",
           "degree_level": "Other",
           "field": null,
+          "minor_fields": [],
           "start": null,
           "end": "2004",
           "country": "IN"
@@ -3588,20 +3745,16 @@
         "programming": [],
         "tools": [],
         "domain": [
-          "equity analysis",
-          "sector reports",
-          "company fundamentals analysis",
-          "AI-based drug target identification",
-          "machine learning"
+          "Machine Learning"
         ]
       },
       "certifications": [
-        "CFA Level 3 (completed)"
+        "Chartered Financial Analyst Level 3 (CFA, USA)"
       ],
       "languages": [],
       "experience": [
         {
-          "employer": "Axis Mutual Fund",
+          "employer": "Axis Mutual Fund (US$1.2 billion+)",
           "title": "Research Analyst",
           "location_text": null,
           "country": null,
@@ -3611,6 +3764,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Asset manager",
+          "firm_hq_country": "IN",
           "asset_classes": [
             "Equities"
           ],
@@ -3622,7 +3776,7 @@
               }
             },
             {
-              "label": "Industrials",
+              "label": "Materials",
               "evidence": {
                 "quote": "Covering Pharmaceuticals and Specialty Chemicals"
               }
@@ -3648,7 +3802,8 @@
           "is_current": false,
           "employment_type": "full_time",
           "relevance": "core",
-          "firm_type": "Sell-side broker",
+          "firm_type": "Other",
+          "firm_hq_country": null,
           "asset_classes": [
             "Equities"
           ],
@@ -3670,7 +3825,14 @@
             "Renewable Energy",
             "Infrastructure"
           ],
-          "markets_covered": [],
+          "markets_covered": [
+            {
+              "label": "IN",
+              "evidence": {
+                "quote": "published detailed analysis on Indian infrastructure sector"
+              }
+            }
+          ],
           "duration_months": 10,
           "bullets": [
             "Completed comprehensive sector report on renewable energy (~120 pages) within 3 months of joining and began receiving institutional votes within first quarter. Also published detailed analysis on Indian infrastructure sector Applied sector-agnostic investment approach focusing on company fundamentals regardless of market capitalization constraints"
@@ -3687,6 +3849,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side broker",
+          "firm_hq_country": "IN",
           "asset_classes": [
             "Equities"
           ],
@@ -3735,9 +3898,10 @@
           "start": [],
           "end": [],
           "is_current": false,
-          "employment_type": "full_time",
+          "employment_type": "internship",
           "relevance": "unrelated",
-          "firm_type": "Other",
+          "firm_type": "Corporate",
+          "firm_hq_country": "IN",
           "asset_classes": [],
           "sectors": [],
           "other_sector_tags": [],
@@ -3758,6 +3922,7 @@
           "employment_type": "full_time",
           "relevance": "unrelated",
           "firm_type": "Other",
+          "firm_hq_country": null,
           "asset_classes": [],
           "sectors": [],
           "other_sector_tags": [],
@@ -3778,6 +3943,7 @@
           "employment_type": "internship",
           "relevance": "core",
           "firm_type": "Asset manager",
+          "firm_hq_country": "IN",
           "asset_classes": [
             "Equities"
           ],
@@ -3790,7 +3956,14 @@
             }
           ],
           "other_sector_tags": [],
-          "markets_covered": [],
+          "markets_covered": [
+            {
+              "label": "IN",
+              "evidence": {
+                "quote": "Comprehensive equity analysis of Indian Technology Sector"
+              }
+            }
+          ],
           "duration_months": 3,
           "bullets": [
             "Comprehensive equity analysis of Indian Technology Sector"
@@ -3807,6 +3980,7 @@
           "employment_type": "internship",
           "relevance": "adjacent",
           "firm_type": "Corporate",
+          "firm_hq_country": "IN",
           "asset_classes": [],
           "sectors": [
             {
@@ -3819,7 +3993,14 @@
           "other_sector_tags": [
             "Renewable Energy"
           ],
-          "markets_covered": [],
+          "markets_covered": [
+            {
+              "label": "IN",
+              "evidence": {
+                "quote": "Strategic market analysis of Indian Renewable Energy Companies."
+              }
+            }
+          ],
           "duration_months": 2,
           "bullets": [
             "Strategic market analysis of Indian Renewable Energy Companies."
@@ -3832,17 +4013,20 @@
           "quote": "Applied sector-agnostic investment approach focusing on company fundamentals regardless of market capitalization constraints"
         }
       },
-      "search_summary": "Senior fundamental equity research analyst (9.8y relevant). Covers equities across healthcare, pharmaceuticals, specialty chemicals, energy, oil and gas, renewable energy, infrastructure, logistics and consumer. Most recent employer is Axis Mutual Fund (asset manager), title Research Analyst. At Axis Mutual Fund, tracked 38 companies in the healthcare fund portfolio; at ICICI Securities Limited, maintained coverage of 42 stocks; at Meridian Capital, completed a ~120-page renewable energy sector report. Holds a PGDM from Mumbai Institute of Management Studies and Research and CFA Level 3 (completed)."
+      "search_summary": "Senior fundamental equity analyst (9.8y relevant). Covers equities across healthcare, materials, energy, industrials and consumer sectors. Markets covered include India. Most recent listed employer is Axis Mutual Fund (asset manager), title Research Analyst. At ICICI Securities Limited, maintained coverage of 42 stocks and advanced from research associate to lead analyst within 3 years; at Axis Mutual Fund, tracked 38 healthcare fund portfolio companies. Skills include Machine Learning. Holds a PGDM from Mumbai Institute of Management Studies and Research; completed Chartered Financial Analyst Level 3 (CFA, USA)."
     },
     "derived": {
-      "current_country": null,
-      "current_region": null,
+      "current_country": "IN",
+      "current_region": "APAC",
       "countries_worked": [],
       "regions_worked": [],
-      "markets_covered": [],
+      "markets_covered": [
+        "APAC",
+        "IN"
+      ],
       "months_full_time_relevant": 118,
       "months_full_time_core": 118,
-      "months_internship": 5,
+      "months_internship": 12,
       "seniority_band": "Senior",
       "investment_approach": "Fundamental",
       "approach_evidence": "Applied sector-agnostic investment approach focusing on company fundamentals regardless of market capitalization constraints",
@@ -3852,12 +4036,16 @@
           "evidence": "Covering Pharmaceuticals and Specialty Chemicals"
         },
         {
-          "label": "Industrials",
+          "label": "Materials",
           "evidence": "Covering Pharmaceuticals and Specialty Chemicals"
         },
         {
           "label": "Energy",
           "evidence": "Completed comprehensive sector report on renewable energy (~120 pages)"
+        },
+        {
+          "label": "Industrials",
+          "evidence": "published detailed analysis on Indian infrastructure sector"
         },
         {
           "label": "Consumer",
@@ -3882,22 +4070,18 @@
       ],
       "firm_types": [
         "Asset manager",
-        "Sell-side broker",
         "Other",
+        "Sell-side broker",
         "Corporate"
       ],
       "highest_degree": "Masters",
       "degree_fields": [],
       "skills_normalized": [
-        "ai-based drug target identification",
-        "company fundamentals analysis",
-        "equity analysis",
-        "machine-learning",
-        "sector reports"
+        "machine-learning"
       ],
       "has_cfa": false,
       "cfa_level": "III",
-      "search_summary": "Senior fundamental equity research analyst (9.8y relevant). Covers equities across healthcare, pharmaceuticals, specialty chemicals, energy, oil and gas, renewable energy, infrastructure, logistics and consumer. Most recent employer is Axis Mutual Fund (asset manager), title Research Analyst. At Axis Mutual Fund, tracked 38 companies in the healthcare fund portfolio; at ICICI Securities Limited, maintained coverage of 42 stocks; at Meridian Capital, completed a ~120-page renewable energy sector report. Holds a PGDM from Mumbai Institute of Management Studies and Research and CFA Level 3 (completed).",
+      "search_summary": "Senior fundamental equity analyst (9.8y relevant). Covers equities across healthcare, materials, energy, industrials and consumer sectors. Markets covered include India. Most recent listed employer is Axis Mutual Fund (asset manager), title Research Analyst. At ICICI Securities Limited, maintained coverage of 42 stocks and advanced from research associate to lead analyst within 3 years; at Axis Mutual Fund, tracked 38 healthcare fund portfolio companies. Skills include Machine Learning. Holds a PGDM from Mumbai Institute of Management Studies and Research; completed Chartered Financial Analyst Level 3 (CFA, USA).",
       "quality": {
         "text_quality": {
           "unknown_ratio_before": 0.011730205278592375,
@@ -3918,50 +4102,50 @@
       "file_sha256": "5000799acebafbe1edfe25ff4b0641a6ec3b0b2f2a2a79615b647de8f1ca26b2",
       "file_bytes": 22357,
       "page_count": 1,
-      "parsed_at": "2026-10-25T20:31:19+00:00",
+      "parsed_at": "2026-10-25T20:58:48+00:00",
       "extraction_path": "text",
       "llm_model": "claude-sonnet-5-5",
-      "prompt_version": "v6",
+      "prompt_version": "v7",
       "schema_version": 2,
       "parse_status": "ok",
       "attempts": [
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 2962,
+          "latency_ms": 2748,
           "input_tokens": 1451,
           "output_tokens": 426,
           "error": null,
-          "cache_read_tokens": 2436,
+          "cache_read_tokens": 2906,
           "cache_creation_tokens": 0,
           "call": "profile"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 12674,
+          "latency_ms": 9503,
           "input_tokens": 1418,
-          "output_tokens": 1764,
+          "output_tokens": 2023,
           "error": null,
-          "cache_read_tokens": 3206,
+          "cache_read_tokens": 4578,
           "cache_creation_tokens": 0,
           "call": "experience"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 3438,
-          "input_tokens": 1816,
-          "output_tokens": 284,
+          "latency_ms": 3356,
+          "input_tokens": 1815,
+          "output_tokens": 381,
           "error": null,
-          "cache_read_tokens": 1289,
+          "cache_read_tokens": 1379,
           "cache_creation_tokens": 0,
           "call": "regen:skills"
         },
         {
           "model": "claude-sonnet-5-5",
-          "latency_ms": 13458,
-          "input_tokens": 3655,
-          "output_tokens": 2032,
+          "latency_ms": 11530,
+          "input_tokens": 3951,
+          "output_tokens": 1893,
           "error": null,
-          "cache_read_tokens": 1833,
+          "cache_read_tokens": 1884,
           "cache_creation_tokens": 0,
           "call": "assessment"
         }
@@ -3990,7 +4174,8 @@
                 "PubMed"
               ],
               "domain": [
-                "MDS (Perceptual Mapping)"
+                "Perceptual Mapping",
+                "MDS"
               ]
             },
             "text_value": [
@@ -4019,9 +4204,10 @@
       "education": [
         {
           "institution": "Indian School of Business Management (ISBM), Pune",
-          "degree": "PGDM (Finance)",
+          "degree": "PGDM",
           "degree_level": "Masters",
           "field": "Finance",
+          "minor_fields": [],
           "start": null,
           "end": "2012",
           "country": "IN"
@@ -4029,8 +4215,9 @@
         {
           "institution": "K.J. Somaiya Medical College, Mumbai",
           "degree": "M.B.B.S",
-          "degree_level": "Other",
-          "field": null,
+          "degree_level": "Bachelors",
+          "field": "Medicine",
+          "minor_fields": [],
           "start": null,
           "end": "2010",
           "country": "IN"
@@ -4040,6 +4227,7 @@
           "degree": "XII Std.(PCMB)",
           "degree_level": "Other",
           "field": null,
+          "minor_fields": [],
           "start": null,
           "end": "2004",
           "country": "IN"
@@ -4049,6 +4237,7 @@
           "degree": "X Std.",
           "degree_level": "Other",
           "field": null,
+          "minor_fields": [],
           "start": null,
           "end": "2002",
           "country": "IN"
@@ -4070,8 +4259,9 @@
           "PubMed"
         ],
         "domain": [
-          "equity research",
-          "MDS (Perceptual Mapping)"
+          "Equity research",
+          "Perceptual Mapping",
+          "MDS"
         ]
       },
       "certifications": [],
@@ -4091,7 +4281,8 @@
           "is_current": true,
           "employment_type": "full_time",
           "relevance": "core",
-          "firm_type": "Sell-side broker",
+          "firm_type": "Other",
+          "firm_hq_country": null,
           "asset_classes": [
             "Equities"
           ],
@@ -4099,7 +4290,7 @@
             {
               "label": "Healthcare",
               "evidence": {
-                "quote": "Lead Analyst – Pharmaceuticals and Healthcare"
+                "quote": "publish equity research ratings with price targets on Indian healthcare sector companies"
               }
             }
           ],
@@ -4134,6 +4325,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side broker",
+          "firm_hq_country": null,
           "asset_classes": [
             "Equities"
           ],
@@ -4170,6 +4362,7 @@
           "employment_type": "full_time",
           "relevance": "core",
           "firm_type": "Sell-side broker",
+          "firm_hq_country": "IN",
           "asset_classes": [
             "Equities"
           ],
@@ -4184,7 +4377,14 @@
           "other_sector_tags": [
             "Pharmaceuticals"
           ],
-          "markets_covered": [],
+          "markets_covered": [
+            {
+              "label": "IN",
+              "evidence": {
+                "quote": "Published sector thematic reports on Indian generics expansion"
+              }
+            }
+          ],
           "duration_months": null,
           "bullets": [
             "Published sector thematic reports on Indian generics expansion, digital health initiatives, respiratory drug market, and healthcare policy reforms",
@@ -4205,13 +4405,30 @@
           "is_current": false,
           "employment_type": "full_time",
           "relevance": "core",
-          "firm_type": "Sell-side broker",
+          "firm_type": "Other",
+          "firm_hq_country": null,
           "asset_classes": [
             "Equities"
           ],
-          "sectors": [],
-          "other_sector_tags": [],
-          "markets_covered": [],
+          "sectors": [
+            {
+              "label": "Healthcare",
+              "evidence": {
+                "quote": "Member, U.S. Healthcare Services ER team (Institutional Investor (II) Runner up) at Leerink Partners"
+              }
+            }
+          ],
+          "other_sector_tags": [
+            "Healthcare Services"
+          ],
+          "markets_covered": [
+            {
+              "label": "US",
+              "evidence": {
+                "quote": "Member, U.S. Healthcare Services ER team"
+              }
+            }
+          ],
           "duration_months": null,
           "bullets": [
             "Member, U.S. Healthcare Services ER team (Institutional Investor (II) Runner up) at Leerink Partners",
@@ -4234,9 +4451,10 @@
             "2014-11"
           ],
           "is_current": false,
-          "employment_type": "full_time",
+          "employment_type": "internship",
           "relevance": "core",
           "firm_type": "Sell-side bank",
+          "firm_hq_country": "US",
           "asset_classes": [
             "Equities"
           ],
@@ -4265,24 +4483,34 @@
           "employment_type": "internship",
           "relevance": "adjacent",
           "firm_type": "Corporate",
+          "firm_hq_country": "IN",
           "asset_classes": [],
-          "sectors": [],
-          "other_sector_tags": [],
+          "sectors": [
+            {
+              "label": "Healthcare",
+              "evidence": {
+                "quote": "Competitive Positioning strategy for newly launched generic Calpol T"
+              }
+            }
+          ],
+          "other_sector_tags": [
+            "Pharmaceuticals"
+          ],
           "markets_covered": [],
           "duration_months": null,
           "bullets": [
             "Competitive Positioning strategy for newly launched generic Calpol T using MDS (Perceptual Mapping)",
-            "Formulated competitive positioning strategy & communication tactics as a result of which Calpol T Key achievements had overtaken more than 90 brands in same category and is currently holding the 2nd rank"
+            "Formulated competitive positioning strategy & communication tactics as a result of which Calpol T had overtaken more than 90 brands in same category and is currently holding the 2nd rank"
           ]
         }
       ],
       "investment_approach": {
         "label": "Fundamental",
         "evidence": {
-          "quote": "Generate investment ideas and publish equity research ratings with price targets on Indian healthcare sector companies across 28 stocks under coverage"
+          "quote": "publish equity research ratings with price targets on Indian healthcare sector companies across 28 stocks under coverage"
         }
       },
-      "search_summary": "Principal fundamental equity research analyst (11.0y relevant). Covers equities in healthcare and pharmaceuticals. Markets covered: India. Current employer is Meridian Research Partners (sell-side broker), Lead Analyst – Pharmaceuticals and Healthcare. At Meridian Research Partners, publishes ratings with price targets across 28 stocks under coverage; at Prism Financial Services, an investment recommendation adopted by a major institutional client led to a 35% increase in brokerage commission revenue. Skills include Bloomberg, Factset and Reuters. Highest degree is a PGDM (Finance) from Indian School of Business Management (ISBM), Pune."
+      "search_summary": "Principal fundamental equity research analyst (10.8y relevant). Covers equities in healthcare, pharmaceuticals and healthcare services. Markets covered: India and US. Current employer is Meridian Research Partners (other), as Lead Analyst – Pharmaceuticals and Healthcare. At Meridian Research Partners, publishes ratings with price targets across 28 stocks under coverage; at Prism Financial Services, an investment recommendation adopted by an institutional client led to a 35% increase in brokerage commission revenue. Skills include Bloomberg, Factset and Reuters. Holds a PGDM in Finance from Indian School of Business Management (ISBM), Pune."
     },
     "derived": {
       "current_country": "IN",
@@ -4291,46 +4519,45 @@
         {
           "country": "IN",
           "months": 34
-        },
-        {
-          "country": "GB",
-          "months": 3
         }
       ],
       "regions_worked": [
-        "APAC",
-        "Europe"
+        "APAC"
       ],
       "markets_covered": [
         "APAC",
-        "IN"
+        "IN",
+        "US"
       ],
-      "months_full_time_relevant": 132,
-      "months_full_time_core": 132,
-      "months_internship": 1,
+      "months_full_time_relevant": 129,
+      "months_full_time_core": 129,
+      "months_internship": 4,
       "seniority_band": "Principal",
       "investment_approach": "Fundamental",
-      "approach_evidence": "Generate investment ideas and publish equity research ratings with price targets on Indian healthcare sector companies across 28 stocks under coverage",
+      "approach_evidence": "publish equity research ratings with price targets on Indian healthcare sector companies across 28 stocks under coverage",
       "sectors": [
         {
           "label": "Healthcare",
-          "evidence": "Lead Analyst – Pharmaceuticals and Healthcare"
+          "evidence": "publish equity research ratings with price targets on Indian healthcare sector companies"
         }
       ],
       "other_sector_tags": [
+        "healthcare services",
         "pharmaceuticals"
       ],
       "asset_classes": [
         "Equities"
       ],
       "firm_types": [
+        "Other",
         "Sell-side broker",
         "Sell-side bank",
         "Corporate"
       ],
       "highest_degree": "Masters",
       "degree_fields": [
-        "Finance"
+        "Finance",
+        "Medicine"
       ],
       "skills_normalized": [
         "bloomberg",
@@ -4339,9 +4566,10 @@
         "factset",
         "fda",
         "german drg",
-        "mds (perceptual mapping)",
+        "mds",
         "medpac",
         "ms office",
+        "perceptual mapping",
         "pubmed",
         "reuters",
         "usrds",
@@ -4349,7 +4577,7 @@
       ],
       "has_cfa": false,
       "cfa_level": null,
-      "search_summary": "Principal fundamental equity research analyst (11.0y relevant). Covers equities in healthcare and pharmaceuticals. Markets covered: India. Current employer is Meridian Research Partners (sell-side broker), Lead Analyst – Pharmaceuticals and Healthcare. At Meridian Research Partners, publishes ratings with price targets across 28 stocks under coverage; at Prism Financial Services, an investment recommendation adopted by a major institutional client led to a 35% increase in brokerage commission revenue. Skills include Bloomberg, Factset and Reuters. Highest degree is a PGDM (Finance) from Indian School of Business Management (ISBM), Pune.",
+      "search_summary": "Principal fundamental equity research analyst (10.8y relevant). Covers equities in healthcare, pharmaceuticals and healthcare services. Markets covered: India and US. Current employer is Meridian Research Partners (other), as Lead Analyst – Pharmaceuticals and Healthcare. At Meridian Research Partners, publishes ratings with price targets across 28 stocks under coverage; at Prism Financial Services, an investment recommendation adopted by an institutional client led to a 35% increase in brokerage commission revenue. Skills include Bloomberg, Factset and Reuters. Holds a PGDM in Finance from Indian School of Business Management (ISBM), Pune.",
       "quality": {
         "text_quality": {
           "unknown_ratio_before": 0.010309278350515464,

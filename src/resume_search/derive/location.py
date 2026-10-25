@@ -41,7 +41,8 @@ def _contact_country(contact: Contact, tax: Taxonomy) -> str | None:
 def current_country(parsed: ParsedResume, tax: Taxonomy) -> str | None:
     """Country of the current role with the latest start, else of the latest role by start
     (first listed when nothing is dated). Roles with no stated country are skipped, then the
-    contact block decides."""
+    contact block decides, then the school with the latest end date, then the head office of
+    the latest role's firm."""
     roles = parsed.experience
 
     def start_key(i: int) -> int:
@@ -53,7 +54,12 @@ def current_country(parsed: ParsedResume, tax: Taxonomy) -> str | None:
     for i in current + order:
         if roles[i].country:
             return roles[i].country
-    return _contact_country(parsed.contact, tax)
+    if iso := _contact_country(parsed.contact, tax):
+        return iso
+    schools = sorted((e for e in parsed.education if e.country), key=lambda e: e.end or "", reverse=True)
+    if schools:
+        return schools[0].country
+    return next((roles[i].firm_hq_country for i in current + order if roles[i].firm_hq_country), None)
 
 
 def countries_worked(parsed: ParsedResume, today: date) -> list[tuple[str, int]]:

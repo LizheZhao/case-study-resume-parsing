@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 from datetime import date
 from enum import Enum
+from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
@@ -53,6 +54,7 @@ class Sector(str, Enum):
     financials = "Financials"
     energy = "Energy"
     industrials = "Industrials"
+    materials = "Materials"
     consumer = "Consumer"
     credit = "Credit"
     macro = "Macro"
@@ -66,6 +68,14 @@ class Approach(str, Enum):
     unclear = "Unclear"
 
 
+# Closed value sets as Literals so the output schema lists them and values stay plain str.
+DegreeLevel = Literal["Bachelors", "Masters", "MBA", "PhD", "Other"]
+Country = Literal[tuple(sorted(iso2_codes()))]
+MarketName = Literal[tuple(sorted(iso2_codes() | market_labels()))]
+SectorName = Literal[tuple(s.value for s in Sector)]
+ApproachName = Literal[tuple(a.value for a in Approach)]
+
+
 _DATE = re.compile(r"^\d{4}(-(0[1-9]|1[0-2]))?$")
 _LONG_DIGITS = re.compile(r"\d{7,}")
 _WS = re.compile(r"\s+")
@@ -75,12 +85,6 @@ _QUOTE_FOLD = str.maketrans({"‘": "'", "’": "'", "“": '"', "”": '"', "�
 def _check_date(v: str | None) -> str | None:
     if v is not None and not _DATE.match(v):
         raise ValueError(f"date '{v}' must be YYYY or YYYY-MM")
-    return v
-
-
-def _check_country(v: str | None) -> str | None:
-    if v is not None and v not in iso2_codes():
-        raise ValueError(f"country '{v}' is not an ISO-2 code in taxonomy/countries.yaml")
     return v
 
 
@@ -112,6 +116,18 @@ class Labeled(BaseModel):
     evidence: Evidence
 
 
+class SectorLabel(Labeled):
+    label: SectorName
+
+
+class MarketLabel(Labeled):
+    label: MarketName
+
+
+class ApproachLabel(Labeled):
+    label: ApproachName
+
+
 class Contact(BaseModel):
     email: str | None
     phone: str | None
@@ -121,14 +137,14 @@ class Contact(BaseModel):
 class Education(BaseModel):
     institution: str
     degree: str | None
-    degree_level: str | None
+    degree_level: DegreeLevel | None
     field: str | None
+    minor_fields: list[str] = []
     start: str | None
     end: str | None
-    country: str | None
+    country: Country | None
 
     _dates = field_validator("start", "end")(_check_date)
-    _country = field_validator("country")(_check_country)
 
     @model_validator(mode="after")
     def _order(self) -> Education:
@@ -140,21 +156,20 @@ class Experience(BaseModel):
     employer: str
     title: str
     location_text: str | None
-    country: str | None
+    country: Country | None
     start: list[str]
     end: list[str | None]
     is_current: bool
     employment_type: EmploymentType
     relevance: Relevance
     firm_type: FirmType
+    firm_hq_country: Country | None = None
     asset_classes: list[AssetClass] = []
-    sectors: list[Labeled] = []
+    sectors: list[SectorLabel] = []
     other_sector_tags: list[str] = []
-    markets_covered: list[Labeled] = []
+    markets_covered: list[MarketLabel] = []
     duration_months: int | None
     bullets: list[str]
-
-    _country = field_validator("country")(_check_country)
 
     @field_validator("start", "end")
     @classmethod
@@ -209,14 +224,6 @@ class Experience(BaseModel):
             if prev_end is not None and month_index(s) < prev_end:
                 raise ValueError(f"stint {i} ({s}) overlaps or precedes stint {i - 1}")
             prev_end = stint_span(s, e)[1] if e else month_index(s) + 1
-        sector_names = {s.value for s in Sector}
-        for s in self.sectors:
-            if s.label not in sector_names:
-                raise ValueError(f"sector label '{s.label}' is not one of {sorted(sector_names)}")
-        allowed = iso2_codes() | market_labels()
-        for m in self.markets_covered:
-            if m.label not in allowed:
-                raise ValueError(f"markets_covered label '{m.label}' is not an ISO-2 code or market label")
         return self
 
 
@@ -245,7 +252,7 @@ class ExperienceList(BaseModel):
 
 
 class Assessment(BaseModel):
-    investment_approach: Labeled
+    investment_approach: ApproachLabel
     search_summary: str = Field(min_length=200, max_length=700)
 
     @field_validator("search_summary")
@@ -254,13 +261,6 @@ class Assessment(BaseModel):
         if "@" in v or _LONG_DIGITS.search(v):
             raise ValueError("search_summary must not contain '@' or a run of 7+ digits")
         return v
-
-    @model_validator(mode="after")
-    def _approach_label(self) -> Assessment:
-        valid = {a.value for a in Approach}
-        if self.investment_approach.label not in valid:
-            raise ValueError(f"investment_approach label must be one of {sorted(valid)}")
-        return self
 
 
 class ParsedResume(Assessment, ExperienceList, Profile):

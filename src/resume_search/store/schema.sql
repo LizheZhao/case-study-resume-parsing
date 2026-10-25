@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS experience (
   PRIMARY KEY (candidate_id, idx)
 );
 CREATE TABLE IF NOT EXISTS education (candidate_id TEXT, idx INTEGER, institution TEXT, degree TEXT,
-  degree_level TEXT, field TEXT, start TEXT, end TEXT, country TEXT, PRIMARY KEY (candidate_id, idx));
+  degree_level TEXT, field TEXT, start TEXT, end TEXT, country TEXT, minor_fields TEXT,
+  PRIMARY KEY (candidate_id, idx));
 CREATE TABLE IF NOT EXISTS candidate_sectors   (candidate_id TEXT, sector TEXT, evidence TEXT);
 CREATE TABLE IF NOT EXISTS candidate_tags      (candidate_id TEXT, tag TEXT);
 CREATE TABLE IF NOT EXISTS candidate_assets    (candidate_id TEXT, asset_class TEXT);

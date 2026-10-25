@@ -5,7 +5,7 @@ from html import escape
 from resume_search import taxonomy
 from resume_search.extract.types import ExtractedText
 
-PROMPT_VERSION = "v6"
+PROMPT_VERSION = "v7"
 
 _COMMON = """\
 You extract structured data from a single candidate resume for a hedge fund
@@ -34,8 +34,12 @@ languages). Ignore work history.
 - contact: email, phone as written, and location_text as written.
 - education: one entry per degree or school programme. degree_level is one of
   Bachelors, Masters, MBA, PhD, Other, exactly as spelled. MBA is MBA. PGDM, an
-  integrated M.Tech and a French "Diplôme d'Ingénieur" are Masters. MBBS,
-  diplomas, high school and board exams are Other.
+  integrated M.Tech and a French "Diplôme d'Ingénieur" are Masters. MBBS is
+  Bachelors with field "Medicine". Diplomas, high school and board exams are
+  Other.
+- field is the main subject (major, concentration). minor_fields lists a
+  minor, a Harvard "secondary field" or a second subject named as a minor;
+  a joint or double major goes in field ("Economics and Mathematics").
 - skills: programming languages, tools and software, and domain methods
   ("DCF", "factor models", "options pricing") as the resume names them. Include
   every one named in a skills section or in experience and project bullets.
@@ -71,14 +75,21 @@ Task: the work history, one entry per role, in the resume's order.
   each sector label.
 - relevance: core = investment research, trading, portfolio management,
   quant research/development, risk, at a financial firm; adjacent =
-  consulting, corporate finance, data or software work outside finance;
-  unrelated = everything else (teaching, clubs, retail).
+  consulting, corporate finance, data or software work outside finance,
+  academic research that analyses market or firm data, and non-investment
+  roles at a financial firm (business management, operations, vendor or
+  client management); unrelated = everything else (teaching, clubs, retail).
+- title: as written. When the resume gives no title for the role, title is
+  an empty string; do not invent "Member" or similar.
 - employment_type: internship when the title or text says intern, summer
   analyst, or the role is under 6 months while studying; extracurricular for
   student societies, clubs, volunteer and leadership posts (never part_time);
   academic for research assistant or teaching posts at a university.
 - firm_type: {{{firm_types}}}. Use your knowledge of the firm when the resume
   does not say.
+- firm_hq_country: ISO-2 code of the firm's head office, from your knowledge
+  of the firm. Null when you do not know the firm. This is separate from
+  country, which stays null unless the resume states where the role was.
 - asset_classes: {{{asset_classes}}}, only those the role worked on.
 - duration_months: whole months, filled only when the resume states a
   duration for the role in words. Years times 12 plus months; weeks divided

@@ -76,7 +76,9 @@ def derive(
         asset_classes=_dedupe(a.value for e in roles for a in e.asset_classes),
         firm_types=_dedupe(e.firm_type.value for e in roles),
         highest_degree=_highest_degree(parsed),
-        degree_fields=_dedupe(e.field for e in parsed.education if e.field),
+        degree_fields=_dedupe(
+            f for e in parsed.education for f in ([e.field] if e.field else []) + e.minor_fields
+        ),
         skills_normalized=skills.skills_normalized(parsed, taxonomy),
         has_cfa=has_cfa,
         cfa_level=cfa_level,

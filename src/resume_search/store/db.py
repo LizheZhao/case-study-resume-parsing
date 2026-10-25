@@ -29,6 +29,8 @@ def connect(path: str | Path, *, check_same_thread: bool = True) -> sqlite3.Conn
     conn.executescript(SCHEMA)
     if not any(r["name"] == "stints_json" for r in conn.execute("PRAGMA table_info(experience)")):
         conn.execute("ALTER TABLE experience ADD COLUMN stints_json TEXT")
+    if not any(r["name"] == "minor_fields" for r in conn.execute("PRAGMA table_info(education)")):
+        conn.execute("ALTER TABLE education ADD COLUMN minor_fields TEXT")
     return conn
 
 
@@ -102,9 +104,10 @@ def upsert_candidate(
             ],
         )
         conn.executemany(
-            "INSERT INTO education VALUES (?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO education VALUES (?,?,?,?,?,?,?,?,?,?)",
             [
-                (cid, i, e.institution, e.degree, e.degree_level, e.field, e.start, e.end, e.country)
+                (cid, i, e.institution, e.degree, e.degree_level, e.field, e.start, e.end, e.country,
+                 ", ".join(e.minor_fields) or None)
                 for i, e in enumerate(ex.education)
             ],
         )

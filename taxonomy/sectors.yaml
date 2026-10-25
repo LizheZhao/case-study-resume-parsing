@@ -1,6 +1,6 @@
 # Core sector enum from the brief. other_sector_tags holds narrower names; this map
 # lets a tag be promoted into a core sector without a re-parse.
-core: [Technology, Healthcare, Financials, Energy, Industrials, Consumer, Credit, Macro, Other]
+core: [Technology, Healthcare, Financials, Energy, Industrials, Materials, Consumer, Credit, Macro, Other]
 tag_to_core:
   tmt: Technology
   technology media telecom: Technology
@@ -32,8 +32,19 @@ tag_to_core:
   renewables: Energy
   renewable energy: Energy
   utilities: Energy
-  specialty chemicals: Industrials
-  chemicals: Industrials
+  specialty chemicals: Materials
+  speciality chemicals: Materials
+  chemicals: Materials
+  agrochemicals: Materials
+  fertilizers: Materials
+  metals: Materials
+  metals and mining: Materials
+  metals & mining: Materials
+  mining: Materials
+  steel: Materials
+  construction materials: Materials
+  cement: Materials
+  paper and packaging: Materials
   infrastructure: Industrials
   transportation: Industrials
   aerospace: Industrials

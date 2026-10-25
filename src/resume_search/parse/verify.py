@@ -413,7 +413,7 @@ def _compare_role_coverage(roles: list[dict], header_months: list[int]) -> bool:
 _A = r"(?<![\w.])"  # acronyms must not sit inside a longer dotted form such as 'B.M.S'
 _NOT_STATE = r"(?<!,\s)"  # 'Cambridge, MA' is a state, not a Master of Arts
 _DEGREE_RULES: tuple[tuple[re.Pattern, str], ...] = (
-    (re.compile(rf"{_A}M\.?B\.?B\.?S\b"), "Other"),
+    (re.compile(rf"{_A}M\.?B\.?B\.?S\b"), "Bachelors"),
     (re.compile(rf"{_A}MBA\b|Master of Business Administration"), "MBA"),
     (
         re.compile(

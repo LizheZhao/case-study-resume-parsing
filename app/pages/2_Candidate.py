@@ -84,7 +84,7 @@ else:
 
 st.subheader("Education")
 edu = pd.read_sql(
-    "SELECT institution, degree, degree_level, field, start, end, country FROM education "
+    "SELECT institution, degree, degree_level, field, minor_fields, start, end, country FROM education "
     "WHERE candidate_id = ? ORDER BY idx", db, params=(cid,),
 )
 st.dataframe(edu, hide_index=True)
