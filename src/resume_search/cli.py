@@ -328,3 +328,7 @@ def main(argv: list[str] | None = None) -> None:
     p_es.set_defaults(func=_cmd_eval_show)
     args = parser.parse_args(argv)
     sys.exit(args.func(args))
+
+
+if __name__ == "__main__":
+    main()

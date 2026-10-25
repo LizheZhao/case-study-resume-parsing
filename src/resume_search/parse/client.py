@@ -13,6 +13,7 @@ from typing import ClassVar
 import anthropic
 import pydantic
 
+from resume_search.derive.skills import tidy_skills
 from resume_search.extract.types import ExtractedText, ExtractionPath
 from resume_search.parse import prompt, verify
 from resume_search.parse.models import (
@@ -30,6 +31,7 @@ from resume_search.parse.models import (
     check_evidence,
     check_experience_evidence,
 )
+from resume_search.taxonomy import load_taxonomy_data
 
 SONNET = "claude-sonnet-5-5"
 OPUS = "claude-opus-5-5"
@@ -361,6 +363,8 @@ def parse_resume(
         client, extracted, _State(profile, exp_list.experience)
     )
     attempts += regen_attempts
+    skills = tidy_skills(state.profile.skills, load_taxonomy_data())
+    state = replace(state, profile=state.profile.model_copy(update={"skills": skills}))
 
     message = prompt.assessment_message(
         extracted,

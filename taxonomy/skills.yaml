@@ -90,3 +90,10 @@ skills:
   frm: {canonical: frm, category: cert}
   caia: {canonical: caia, category: cert}
   cpa: {canonical: cpa, category: cert}
+
+# A suite listed next to its own members is a repeat: "Microsoft Office Suite (Excel,
+# PowerPoint, Word)" keeps the members. Kept out of skills: above so the resume-text check
+# never demands "word". Names and members are lowercase normalized skill keys.
+umbrellas:
+  - names: [microsoft office, microsoft office suite, ms office, office suite, office]
+    members: [excel, powerpoint, word, outlook, access, microsoft word, ms word]

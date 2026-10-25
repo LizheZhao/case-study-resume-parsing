@@ -1,0 +1,1067 @@
+{
+  "suite": "parsing",
+  "run_at": "2026-10-25T21:14:57+00:00",
+  "task_model": "claude-sonnet-5-5",
+  "judge_model": "claude-opus-5-5",
+  "prompt_version": "pj3",
+  "metrics": {
+    "candidates": 10,
+    "accuracy": 0.979,
+    "soft_accuracy": 0.9895,
+    "fields": 143,
+    "hallucinated": 0,
+    "missing": 0,
+    "per_field": {
+      "name": {
+        "correct": 10,
+        "partial": 0,
+        "wrong": 0,
+        "hallucinated": 0,
+        "missing": 0,
+        "total": 10,
+        "accuracy": 1.0,
+        "soft_accuracy": 1.0
+      },
+      "overall": {
+        "correct": 140,
+        "partial": 3,
+        "wrong": 0,
+        "hallucinated": 0,
+        "missing": 0,
+        "total": 143,
+        "accuracy": 0.979,
+        "soft_accuracy": 0.9895
+      },
+      "contact": {
+        "correct": 10,
+        "partial": 0,
+        "wrong": 0,
+        "hallucinated": 0,
+        "missing": 0,
+        "total": 10,
+        "accuracy": 1.0,
+        "soft_accuracy": 1.0
+      },
+      "education": {
+        "correct": 10,
+        "partial": 0,
+        "wrong": 0,
+        "hallucinated": 0,
+        "missing": 0,
+        "total": 10,
+        "accuracy": 1.0,
+        "soft_accuracy": 1.0
+      },
+      "experience": {
+        "correct": 10,
+        "partial": 0,
+        "wrong": 0,
+        "hallucinated": 0,
+        "missing": 0,
+        "total": 10,
+        "accuracy": 1.0,
+        "soft_accuracy": 1.0
+      },
+      "skills": {
+        "correct": 9,
+        "partial": 1,
+        "wrong": 0,
+        "hallucinated": 0,
+        "missing": 0,
+        "total": 10,
+        "accuracy": 0.9,
+        "soft_accuracy": 0.95
+      },
+      "certifications": {
+        "correct": 10,
+        "partial": 0,
+        "wrong": 0,
+        "hallucinated": 0,
+        "missing": 0,
+        "total": 10,
+        "accuracy": 1.0,
+        "soft_accuracy": 1.0
+      },
+      "languages": {
+        "correct": 10,
+        "partial": 0,
+        "wrong": 0,
+        "hallucinated": 0,
+        "missing": 0,
+        "total": 10,
+        "accuracy": 1.0,
+        "soft_accuracy": 1.0
+      },
+      "investment_approach": {
+        "correct": 10,
+        "partial": 0,
+        "wrong": 0,
+        "hallucinated": 0,
+        "missing": 0,
+        "total": 10,
+        "accuracy": 1.0,
+        "soft_accuracy": 1.0
+      },
+      "search_summary": {
+        "correct": 10,
+        "partial": 0,
+        "wrong": 0,
+        "hallucinated": 0,
+        "missing": 0,
+        "total": 10,
+        "accuracy": 1.0,
+        "soft_accuracy": 1.0
+      },
+      "experience_role": {
+        "correct": 51,
+        "partial": 2,
+        "wrong": 0,
+        "hallucinated": 0,
+        "missing": 0,
+        "total": 53,
+        "accuracy": 0.9623,
+        "soft_accuracy": 0.9811
+      }
+    },
+    "agreement": {
+      "gold_status": [
+        "reviewed"
+      ],
+      "candidates": [
+        "Chen Li",
+        "Omar El-Hassan",
+        "Zara Al-Rashid"
+      ],
+      "overall": {
+        "exact": 0.9523809523809523,
+        "within_one_level": 1.0,
+        "n": 42,
+        "disagreements": [
+          {
+            "field": "e89dc25ec722:skills",
+            "human": "partial",
+            "judge": "correct"
+          },
+          {
+            "field": "05c2a9b47e80:skills",
+            "human": "partial",
+            "judge": "correct"
+          }
+        ]
+      },
+      "per_candidate": {
+        "Chen Li": {
+          "exact": 0.9333333333333333,
+          "within_one_level": 1.0,
+          "n": 15,
+          "disagreements": [
+            {
+              "field": "skills",
+              "human": "partial",
+              "judge": "correct"
+            }
+          ]
+        },
+        "Omar El-Hassan": {
+          "exact": 0.9166666666666666,
+          "within_one_level": 1.0,
+          "n": 12,
+          "disagreements": [
+            {
+              "field": "skills",
+              "human": "partial",
+              "judge": "correct"
+            }
+          ]
+        },
+        "Zara Al-Rashid": {
+          "exact": 1.0,
+          "within_one_level": 1.0,
+          "n": 15,
+          "disagreements": []
+        }
+      }
+    },
+    "location": {
+      "n": 10,
+      "correct": 10,
+      "accuracy": 1.0,
+      "mismatches": []
+    }
+  },
+  "items": [
+    {
+      "candidate_id": "e89dc25ec722",
+      "name": "Chen Li",
+      "text_source": "text_file",
+      "accuracy": 1.0,
+      "soft_accuracy": 1.0,
+      "fields": 15,
+      "hallucinated": 0,
+      "missing": 0,
+      "grades": [
+        {
+          "field": "name",
+          "grade": "correct",
+          "reason": "The parsed name \"Chen Li\" matches the header \"Chen Li (Alex)\"; only the parenthetical nickname is left out."
+        },
+        {
+          "field": "contact",
+          "grade": "correct",
+          "reason": "Email Alex_chen2024@gmail.com and phone +852 65478923 match the text, and location_text is null because the resume gives no personal location."
+        },
+        {
+          "field": "education",
+          "grade": "correct",
+          "reason": "Both HKU entries match the text: MSc Financial Technology Sept.2021–Jul.2023 (2021-09 to 2023-07) and BBA (Finance) Sept.2017–Jul.2021 (2017-09 to 2021-07), with the correct levels and fields."
+        },
+        {
+          "field": "experience",
+          "grade": "correct",
+          "reason": "All six roles are present in order with none invented: two Bank of China roles split correctly, CUHK RA, Meridian intern, and two leadership roles tagged extracurricular."
+        },
+        {
+          "field": "skills",
+          "grade": "correct",
+          "reason": "Python, R, SQL, VBA, the Office tools, Bloomberg Terminal and WIND come from Computer Skills, GIS mapping tools comes from the RA role, and the domain items (DCF, backtesting, etc.) are clearly used in bullets."
+        },
+        {
+          "field": "certifications",
+          "grade": "correct",
+          "reason": "The resume lists no certifications and the JSON list is empty."
+        },
+        {
+          "field": "languages",
+          "grade": "correct",
+          "reason": "English fluent, Mandarin native and Cantonese fluent match the Languages line exactly."
+        },
+        {
+          "field": "investment_approach",
+          "grade": "correct",
+          "reason": "The label Systematic is supported by the quote \"multi-factor quantitative model focusing on Greater China technology equities\", which appears verbatim in the text."
+        },
+        {
+          "field": "search_summary",
+          "grade": "correct",
+          "reason": "Every claim is in the text: Bank of China Investment Analyst, Greater China tech multi-factor model, Sharpe 1.8+ over 12 months, backtesting and performance attribution, Python/R/SQL, HKU MSc FinTech, no certifications; the 2.3y figure rests on the correct Jun 2021–Sep 2023 dates."
+        },
+        {
+          "field": "experience[0]",
+          "grade": "correct",
+          "reason": "Bank of China Investment Analyst June.2021–Sep.2023 matches start 2021-06 and end 2023-09, is_current false and full_time, and the technology, Greater China and Asia quotes appear in the text."
+        },
+        {
+          "field": "experience[1]",
+          "grade": "correct",
+          "reason": "Bank of China Investment Intern Dec.2019–May.2021 matches 2019-12 to 2021-05 as an internship, and the technology/healthcare and Greater China/Asia quotes are verbatim from the bullet."
+        },
+        {
+          "field": "experience[2]",
+          "grade": "correct",
+          "reason": "CUHK Research Assistant (Economics Area) Mar.2019–Mar.2021 matches 2019-03 to 2021-03, tagged academic/adjacent, and the Asia quote about 200,000 data points is in the text."
+        },
+        {
+          "field": "experience[3]",
+          "grade": "correct",
+          "reason": "Meridian Asia Capital intern in Jiangxi, China, Jul.2019–Aug.2019 matches 2019-07 to 2019-08, and the CN market quote from the title \"(Chinese Bond and Equity Market)\" supports equities and fixed income."
+        },
+        {
+          "field": "experience[4]",
+          "grade": "correct",
+          "reason": "Fujia Aid Teaching Society Vice President & Head of PR, Sep.2019–Jun.2020, matches 2019-09 to 2020-06 and is tagged extracurricular/unrelated."
+        },
+        {
+          "field": "experience[5]",
+          "grade": "correct",
+          "reason": "University Swimming Club Head of Promotion Team, Sep.2018–Sep.2019, matches 2018-09 to 2019-09 and is tagged extracurricular/unrelated."
+        }
+      ],
+      "human_agreement": {
+        "exact": 0.9333333333333333,
+        "within_one_level": 1.0,
+        "n": 15,
+        "disagreements": [
+          {
+            "field": "skills",
+            "human": "partial",
+            "judge": "correct"
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "3c85961c484c",
+      "name": "Marcus Chen-Rodriguez",
+      "text_source": "text_file",
+      "accuracy": 1.0,
+      "soft_accuracy": 1.0,
+      "fields": 13,
+      "hallucinated": 0,
+      "missing": 0,
+      "grades": [
+        {
+          "field": "name",
+          "grade": "correct",
+          "reason": "The name \"Marcus Chen-Rodriguez\" matches the resume header exactly."
+        },
+        {
+          "field": "contact",
+          "grade": "correct",
+          "reason": "Email \"rchen@hotmail\" and phone \"(745) 156-1879\" match the header, and location_text is null because the resume gives no personal location."
+        },
+        {
+          "field": "education",
+          "grade": "correct",
+          "reason": "The Harvard entry (Bachelor of Arts, Economics, secondary in Molecular Biology, Class of 2013) and the undated Stanford Summer Program in Healthcare Innovation and Biotechnology Commercialization both match the text."
+        },
+        {
+          "field": "experience",
+          "grade": "correct",
+          "reason": "The list holds Coatue, Goldman Sachs split into its two separately dated titles (Senior Associate and Associate), and Credit Suisse, with no role invented or merged."
+        },
+        {
+          "field": "skills",
+          "grade": "correct",
+          "reason": "Domain skills are the four listed in the Skills line, plus due diligence, corporate valuation and underwriting, which the bullets clearly use; programming and tools are empty, which is right."
+        },
+        {
+          "field": "certifications",
+          "grade": "correct",
+          "reason": "The resume lists no certifications, and the JSON value is empty."
+        },
+        {
+          "field": "languages",
+          "grade": "correct",
+          "reason": "The resume lists no languages, and the JSON value is empty."
+        },
+        {
+          "field": "investment_approach",
+          "grade": "correct",
+          "reason": "The label Fundamental is supported by the quoted Coatue bullet \"Led due diligence on 12 potential investments...\", which appears verbatim in the text."
+        },
+        {
+          "field": "search_summary",
+          "grade": "correct",
+          "reason": "The Coatue title, 340bps outperformance, 85% hit rate, 12 diligences totaling $2.1B, the listed skills and the Harvard BA in Economics are all in the text or JSON, and the dates behind the computed figure check out."
+        },
+        {
+          "field": "experience[0]",
+          "grade": "correct",
+          "reason": "Coatue Management, Healthcare Analyst, Investment Team, October 2019 to Present matches start 2019-10, end null and is_current true; the healthcare evidence quote is verbatim."
+        },
+        {
+          "field": "experience[1]",
+          "grade": "correct",
+          "reason": "Goldman Sachs, Senior Associate, Investment Team, January 2019 to September 2019 matches 2019-01 to 2019-09, not current, with a verbatim healthcare evidence quote."
+        },
+        {
+          "field": "experience[2]",
+          "grade": "correct",
+          "reason": "Goldman Sachs, Associate, Investment Team, April 2017 to December 2018 matches 2017-04 to 2018-12, not current, with a verbatim healthcare evidence quote."
+        },
+        {
+          "field": "experience[3]",
+          "grade": "correct",
+          "reason": "Credit Suisse, Analyst, Healthcare Investment Banking Group, June 2013 to March 2015 matches 2013-06 to 2015-03; adjacent relevance is reasonable, and the healthcare evidence quote is a verbatim excerpt."
+        }
+      ]
+    },
+    {
+      "candidate_id": "be94ffebe2e1",
+      "name": "Marina Silva Costa",
+      "text_source": "text_file",
+      "accuracy": 0.9167,
+      "soft_accuracy": 0.9583,
+      "fields": 12,
+      "hallucinated": 0,
+      "missing": 0,
+      "grades": [
+        {
+          "field": "name",
+          "grade": "correct",
+          "reason": "The name \"Marina Silva Costa\" matches the resume header \"MARINA SILVA COSTA\"."
+        },
+        {
+          "field": "contact",
+          "grade": "correct",
+          "reason": "The email and phone match the header exactly, and location_text is null because the header gives no personal location."
+        },
+        {
+          "field": "education",
+          "grade": "correct",
+          "reason": "Both entries match the text: MIT Sloan MBA August/2019–May/2021 (2019-08 to 2021-05) and FGV BS in Economics 2013–2016, with correct levels and fields."
+        },
+        {
+          "field": "experience",
+          "grade": "correct",
+          "reason": "All three roles are present with none invented or merged: the two Vanguard Group roles (Analyst and Summer Analyst) and Bain & Company Business Analyst."
+        },
+        {
+          "field": "skills",
+          "grade": "correct",
+          "reason": "Python, R and Excel/VBA come from the Programming line, and financial modeling, fundamental research and equity research are clearly used in the Vanguard roles."
+        },
+        {
+          "field": "certifications",
+          "grade": "correct",
+          "reason": "The resume lists no certifications (the GMAT is a test, not a certification), so the empty list is right."
+        },
+        {
+          "field": "languages",
+          "grade": "correct",
+          "reason": "Fluent Portuguese and English and conversational Spanish match the Languages line."
+        },
+        {
+          "field": "investment_approach",
+          "grade": "correct",
+          "reason": "The Fundamental label is backed by the verbatim quote \"through fundamental research including financial modeling and proprietary studies\"."
+        },
+        {
+          "field": "search_summary",
+          "grade": "correct",
+          "reason": "Its claims (Vanguard Equity Research Analyst, healthcare/consumer discretionary/telecom, LatAm and EMEA, the Bain pricing tool with 35 categories, 4 channels and 180+ markets, Python/R/VBA/Excel, MIT Sloan MBA) are all in the text, and the 8.2y figure rests on correct dates."
+        },
+        {
+          "field": "experience[0]",
+          "grade": "partial",
+          "reason": "Employer, title, start 2021-08, open end and is_current (\"Present\") are correct, but the Technology sector label is tied to a quote that says \"telecom\" and never mentions technology."
+        },
+        {
+          "field": "experience[1]",
+          "grade": "correct",
+          "reason": "Equity Research Summer Analyst June/2020–August/2020 (2020-06 to 2020-08) is correctly typed as an internship, and the water technology quote reasonably supports Industrials."
+        },
+        {
+          "field": "experience[2]",
+          "grade": "correct",
+          "reason": "Bain & Company Business Analyst 2016–2019 in Sao Paulo matches the text, with is_current false, full_time and adjacent relevance, and the Consumer quote appears verbatim."
+        }
+      ]
+    },
+    {
+      "candidate_id": "3263f3e4fe14",
+      "name": "Michael Rodriguez",
+      "text_source": "text_file",
+      "accuracy": 1.0,
+      "soft_accuracy": 1.0,
+      "fields": 16,
+      "hallucinated": 0,
+      "missing": 0,
+      "grades": [
+        {
+          "field": "name",
+          "grade": "correct",
+          "reason": "The name \"Michael Rodriguez\" matches the resume header, with the CFA credential suffix correctly left off."
+        },
+        {
+          "field": "contact",
+          "grade": "correct",
+          "reason": "The email mrodriguez84@gmail.com, phone 317.441.1999 and Boston, MA home address all match the header."
+        },
+        {
+          "field": "education",
+          "grade": "correct",
+          "reason": "The University of Michigan Ross BS in Business, Finance major, ending May 2017 with no start date given, matches the text."
+        },
+        {
+          "field": "experience",
+          "grade": "correct",
+          "reason": "All five professional roles are present and none are merged or invented; the two ACTIVITIES entries are included but correctly typed as extracurricular and unrelated."
+        },
+        {
+          "field": "skills",
+          "grade": "correct",
+          "reason": "Every item checks out: Bloomberg, Excel, FactSet and Capital IQ come from Technical Skills, SQL from the Guaranteed Rate bullet, RUNZ/ALLQ from the bond-pricing bullet, and the modeling items from bullets."
+        },
+        {
+          "field": "certifications",
+          "grade": "correct",
+          "reason": "CFA Charterholder and FINRA Series 7, 63 and 87 are all stated in the text."
+        },
+        {
+          "field": "languages",
+          "grade": "correct",
+          "reason": "The text lists no languages and the JSON list is empty."
+        },
+        {
+          "field": "investment_approach",
+          "grade": "correct",
+          "reason": "The label Fundamental is supported by the quoted Fidelity bullet on diligence of public filings and valuation analysis, which appears verbatim in the text."
+        },
+        {
+          "field": "search_summary",
+          "grade": "correct",
+          "reason": "Every claim is in the text or JSON and the role dates the figure rests on are correct: Fidelity analyst current, 20+ TMT initiations at Fidelity, the 70+ page 3D printing report with 29 competitors at William Blair, the tools, the Ross BS, CFA and Series 7/63/87."
+        },
+        {
+          "field": "experience[0]",
+          "grade": "correct",
+          "reason": "Fidelity Asset Management, Analyst, Consumer Internet & Software, May 2022 to Present with is_current true, matches the text, and both sector quotes support their labels."
+        },
+        {
+          "field": "experience[1]",
+          "grade": "correct",
+          "reason": "William Blair Equity Research, Associate TMT, April 2019 to January 2022, matches the text, and the TMT and consumer internet quotes support the Technology and Consumer labels."
+        },
+        {
+          "field": "experience[2]",
+          "grade": "correct",
+          "reason": "William Blair Fixed Income S&T, Jr. Desk Analyst, April 2018 to April 2019, matches the text, and the HY/XO/IG quote supports the Credit label."
+        },
+        {
+          "field": "experience[3]",
+          "grade": "correct",
+          "reason": "Guaranteed Rate, Capital Markets Analyst, July 2017 to March 2018 in Chicago, matches the text."
+        },
+        {
+          "field": "experience[4]",
+          "grade": "correct",
+          "reason": "Magnetar Capital Management, Summer Intern, May 2016 to August 2016 in Evanston, typed internship, matches the text."
+        },
+        {
+          "field": "experience[5]",
+          "grade": "correct",
+          "reason": "Ross Investment Banking Club, March 2015 to May 2017, is an activity with no location given, and it is correctly typed extracurricular."
+        },
+        {
+          "field": "experience[6]",
+          "grade": "correct",
+          "reason": "Campus Tutoring Service in Ann Arbor, January 2015 to May 2015, matches the text and is correctly typed extracurricular."
+        }
+      ]
+    },
+    {
+      "candidate_id": "05c2a9b47e80",
+      "name": "Omar El-Hassan",
+      "text_source": "text_file",
+      "accuracy": 1.0,
+      "soft_accuracy": 1.0,
+      "fields": 12,
+      "hallucinated": 0,
+      "missing": 0,
+      "grades": [
+        {
+          "field": "name",
+          "grade": "correct",
+          "reason": "The name \"Omar El-Hassan\" matches the resume header."
+        },
+        {
+          "field": "contact",
+          "grade": "correct",
+          "reason": "The email o.elhassan15@gmail.com and phone \"+ 33678924531\" match the text, and location_text is null because the resume gives no personal location, only job locations."
+        },
+        {
+          "field": "education",
+          "grade": "correct",
+          "reason": "All three entries match the text: INSA Lyon Diplôme d'Ingénieur in Financial Engineering 2019-09 to 2022-09, Universite Lyon Master's in Quantitative Finance 2021-09 to 2022-09, and École Royale Navale Preparatory Classes in Mathematics and Physics 2017-09 to 2019-07, with reasonable levels."
+        },
+        {
+          "field": "experience",
+          "grade": "correct",
+          "reason": "The text lists the BNP Quantitative Developer role (since May 2022), an internship dated April 2022 to August 2022 within the BNP section, and the Société Générale internship; on the most reasonable reading of this ambiguous layout, splitting the BNP internship out as its own role is justified, and no role is invented."
+        },
+        {
+          "field": "skills",
+          "grade": "correct",
+          "reason": "The programming items (C++, C#/.NET, Python, Java, R, SQL), the tools (MongoDB, Excel) and the domain items (stochastic calculus, probability, statistics, Monte Carlo, ML, and the copula, Greeks, backtesting and yield curve work) are all listed or clearly used in the text."
+        },
+        {
+          "field": "certifications",
+          "grade": "correct",
+          "reason": "The resume lists no certifications and the JSON list is empty."
+        },
+        {
+          "field": "languages",
+          "grade": "correct",
+          "reason": "English and Arabic are listed in the text with no levels, matching the JSON."
+        },
+        {
+          "field": "investment_approach",
+          "grade": "correct",
+          "reason": "The label Unclear fits a sell-side quant developer profile, and the quote \"Development and back testing of momentum-based trading strategies\" appears verbatim in the text."
+        },
+        {
+          "field": "search_summary",
+          "grade": "correct",
+          "reason": "The BNP Paribas CIB Quantitative Developer role, the copula model, local spread option, scenario analysis and Greeks in the C++ pricing library, the skills Python/R/SQL/Monte Carlo and the INSA Lyon Financial Engineering diploma are all supported, and the 4.4y figure rests on dates I found correct."
+        },
+        {
+          "field": "experience[0]",
+          "grade": "correct",
+          "reason": "BNP Paribas CIB, Quantitative Developer, Paris, France, start 2022-05 with null end and is_current true all match \"Since May 2022\", and the core relevance and fixed income/derivatives classes fit the bullets."
+        },
+        {
+          "field": "experience[1]",
+          "grade": "correct",
+          "reason": "The internship dated April 2022 to August 2022 sits under the BNP section, with the C# testing framework bullet; the start 2022-04, end 2022-08, internship type and BNP attribution are the most reasonable reading of the ambiguous layout."
+        },
+        {
+          "field": "experience[2]",
+          "grade": "correct",
+          "reason": "Société Générale - SGATS (SGCIB), Quantitative Strategist - Intern, Rabat, Morocco, June 2021 to August 2021 matches the text, and the fixed income class is supported by the yield curve construction bullet."
+        }
+      ],
+      "human_agreement": {
+        "exact": 0.9166666666666666,
+        "within_one_level": 1.0,
+        "n": 12,
+        "disagreements": [
+          {
+            "field": "skills",
+            "human": "partial",
+            "judge": "correct"
+          }
+        ]
+      }
+    },
+    {
+      "candidate_id": "187e832c155d",
+      "name": "Priya Nakamura",
+      "text_source": "text_file",
+      "accuracy": 1.0,
+      "soft_accuracy": 1.0,
+      "fields": 15,
+      "hallucinated": 0,
+      "missing": 0,
+      "grades": [
+        {
+          "field": "name",
+          "grade": "correct",
+          "reason": "The name \"Priya Nakamura\" matches the resume header."
+        },
+        {
+          "field": "contact",
+          "grade": "correct",
+          "reason": "The resume gives no email, phone or location, so the null contact values are right."
+        },
+        {
+          "field": "education",
+          "grade": "correct",
+          "reason": "All five entries match the table: MBA Finance at MIMS 2011-2013, MCOM at University of Pune 2013, B.M.S at Thakur 2007, HSC at Jai Hind 2004 and SSC at Modern High School 2002, with reasonable degree levels."
+        },
+        {
+          "field": "experience",
+          "grade": "correct",
+          "reason": "All six roles (ICICI Securities, J.P. Morgan Chase, Jardine Lloyd Thompson, Centrum Broking, Morgan Stanley, Transparent Value) are present in order, with none invented, merged or split."
+        },
+        {
+          "field": "skills",
+          "grade": "correct",
+          "reason": "Equity research, financial modeling, competitive analysis, value investing, earnings analysis and initiation reports are all clearly used in the role descriptions, and the empty programming and tools lists match a text that names none."
+        },
+        {
+          "field": "certifications",
+          "grade": "correct",
+          "reason": "The resume lists no certifications, so the empty list is right."
+        },
+        {
+          "field": "languages",
+          "grade": "correct",
+          "reason": "The resume lists no languages, so the empty list is right."
+        },
+        {
+          "field": "investment_approach",
+          "grade": "correct",
+          "reason": "The label Fundamental is supported by the verbatim quote about studying companies on parameters of value investing for initiating coverage, which appears in the Morgan Stanley section."
+        },
+        {
+          "field": "search_summary",
+          "grade": "correct",
+          "reason": "The ICICI 32 companies and AKUMS/Jupiter/Innova/Entero fund raise, the Transparent Value 25 US and European pharma companies, the MBA Finance from MIMS and the India/US/Europe markets all match the text, and the 12.9y figure rests on correct dates from Oct 2013, though specialty chemicals is loosely grouped under healthcare."
+        },
+        {
+          "field": "experience[0]",
+          "grade": "correct",
+          "reason": "ICICI Securities, Lead Healthcare Analyst, from 2023-05 with \"till date\" matches the text, so is_current true is right, and the Healthcare and IN evidence quotes appear verbatim."
+        },
+        {
+          "field": "experience[1]",
+          "grade": "correct",
+          "reason": "J.P. Morgan Chase, Lead Healthcare Analyst, 2021-09 to 2023-05 matches \"Sep’21 to Mayr’23\" (a typo for May), and the healthcare value chain quote supports Healthcare."
+        },
+        {
+          "field": "experience[2]",
+          "grade": "correct",
+          "reason": "Jardine Lloyd Thompson, Lead Pharma Analyst, 2020-01 to 2021-09 matches the header, and the Healthcare quote appears verbatim; the bullet's mention of Anand Rathi is ambiguous, but keeping the header employer is the most reasonable reading."
+        },
+        {
+          "field": "experience[3]",
+          "grade": "correct",
+          "reason": "Centrum Broking Ltd, Research Analyst, 2017-01 to 2019-12 matches \"Jan’17 to Dec’19\", and the pharmaceutical-sector quote supports Healthcare."
+        },
+        {
+          "field": "experience[4]",
+          "grade": "correct",
+          "reason": "Morgan Stanley, Equity Research Analyst, 2015-10 to 2016-12 matches \"Oct’15 to Dec'16\", and the quote on Indian pharmaceutical and speciality chemical space supports the Healthcare, Materials and IN labels."
+        },
+        {
+          "field": "experience[5]",
+          "grade": "correct",
+          "reason": "Transparent Value, Equity Research Analyst, 2013-10 to 2015-10 matches \"Oct'13 to Oct’15\", and the 25 US and European pharma companies quote supports the Healthcare, US and Europe labels."
+        }
+      ]
+    },
+    {
+      "candidate_id": "60494a768739",
+      "name": "Ryan Patel",
+      "text_source": "text_file",
+      "accuracy": 1.0,
+      "soft_accuracy": 1.0,
+      "fields": 15,
+      "hallucinated": 0,
+      "missing": 0,
+      "grades": [
+        {
+          "field": "name",
+          "grade": "correct",
+          "reason": "The name 'Ryan Patel' matches the resume header 'RYAN PATEL'."
+        },
+        {
+          "field": "contact",
+          "grade": "correct",
+          "reason": "The email ryan.patel0403@gmail.com, phone +1 (516) 523-3113 and the Brooklyn, NY 11201 address all match the header."
+        },
+        {
+          "field": "education",
+          "grade": "correct",
+          "reason": "The single Columbia Business School entry matches the text: BS in Business, Finance and International Business concentration, Statistics minor, Sep 2013 – May 2017, bachelor level."
+        },
+        {
+          "field": "experience",
+          "grade": "correct",
+          "reason": "All six roles in the text are present, none is invented, merged or split: Meridian, Millennium, Apollo, J.P. Morgan, Global Education Alliance and Beta Alpha Psi."
+        },
+        {
+          "field": "skills",
+          "grade": "correct",
+          "reason": "Each domain skill (DCF, LBO, comparable companies, precedent transactions, operating model, factor attribution, position sizing, hedging, due diligence, valuation, financial modeling) is listed or clearly used in the bullets, and no programming languages or tools are named in the text."
+        },
+        {
+          "field": "certifications",
+          "grade": "correct",
+          "reason": "The resume lists no certifications, and the JSON has an empty list."
+        },
+        {
+          "field": "languages",
+          "grade": "correct",
+          "reason": "The resume lists no languages, and the JSON has an empty list."
+        },
+        {
+          "field": "investment_approach",
+          "grade": "correct",
+          "reason": "The label 'Fundamental' is supported by the quote 'managing the only long short fundamental equity portfolio', which appears verbatim in the Meridian bullets."
+        },
+        {
+          "field": "search_summary",
+          "grade": "correct",
+          "reason": "Each claim is supported by the text or the JSON: the Meridian title, the $4.2bn portfolio and DCF/LBO models at Millennium, the $8.5bn BioPharm deal at J.P. Morgan, credit coverage from the debt transactions, and the Columbia BS."
+        },
+        {
+          "field": "experience[0]",
+          "grade": "correct",
+          "reason": "Meridian Capital Partners, the full title, Greenwich CT, US, Mar 2023 – Present with is_current true, and core relevance all match the text."
+        },
+        {
+          "field": "experience[1]",
+          "grade": "correct",
+          "reason": "Millennium Management, the Investment Analyst Consumer & TMT title, New York, Sep 2021 – Aug 2022 and not current all match the text, and the Consumer/Technology sector quote appears verbatim; the text itself is inconsistent in naming North53 Capital in the title and Vertex Capital in a bullet."
+        },
+        {
+          "field": "experience[2]",
+          "grade": "correct",
+          "reason": "Apollo Global Management, Associate – Private Equity, Aug 2019 – Aug 2021 match the text, and the sector quote 'across the Business & Technology Services, Consumer, and Healthcare' supports the Consumer, Healthcare and Technology labels."
+        },
+        {
+          "field": "experience[3]",
+          "grade": "correct",
+          "reason": "The two stints, Summer 2016 (stored as year 2016 because no month is given) and Jul 2017 – Jul 2019, match the text, the employer typo 'J.P.Mogan' is copied as written, and the Healthcare quote matches the title."
+        },
+        {
+          "field": "experience[4]",
+          "grade": "correct",
+          "reason": "Global Education Alliance, Co-Founder, Mumbai IN, Jan 2017 – Present with is_current true, and extracurricular type match the volunteer section."
+        },
+        {
+          "field": "experience[5]",
+          "grade": "correct",
+          "reason": "Beta Alpha Psi, the President/Alumni Relations Chair/Finance Committee title, New York, Feb 2014 – May 2017 and extracurricular type match the text."
+        }
+      ]
+    },
+    {
+      "candidate_id": "198398458280",
+      "name": "Vikram Shah",
+      "text_source": "text_file",
+      "accuracy": 1.0,
+      "soft_accuracy": 1.0,
+      "fields": 14,
+      "hallucinated": 0,
+      "missing": 0,
+      "grades": [
+        {
+          "field": "name",
+          "grade": "correct",
+          "reason": "The name \"Vikram Shah\" matches the resume header \"Vikram Shah, CFA\"; the CFA credential is captured separately under certifications."
+        },
+        {
+          "field": "contact",
+          "grade": "correct",
+          "reason": "The email Vshah@gmail.com and phone 267-328-0909 match the header, and location_text is null because the header gives no personal location."
+        },
+        {
+          "field": "education",
+          "grade": "correct",
+          "reason": "The single Northwestern Kellogg BSBA entry ending 2014-05 matches \"Graduated May 2014\", with the duplicated institution line reasonably merged and no start date given in the text."
+        },
+        {
+          "field": "experience",
+          "grade": "correct",
+          "reason": "All five roles (Cinctive, Goldman Sachs, JPMAM, JPMorgan Chase CFO office, PwC) are present in order, with none invented, merged or split."
+        },
+        {
+          "field": "skills",
+          "grade": "correct",
+          "reason": "The tools Bloomberg, FactSet and Microsoft Office and the skill Financial Modeling are listed in the Skills line, and the other domain items (DCF, comparable company, sum-of-the-parts, IPO due diligence, etc.) are clearly used in the bullets."
+        },
+        {
+          "field": "certifications",
+          "grade": "correct",
+          "reason": "\"CFA Charterholder\" matches \"CFA® Charterholder, CFA Institute: Issued March 2019\"."
+        },
+        {
+          "field": "languages",
+          "grade": "correct",
+          "reason": "Mandarin (fluent) and Cantonese (conversational) match the Skills line exactly."
+        },
+        {
+          "field": "investment_approach",
+          "grade": "correct",
+          "reason": "The Fundamental label is supported by the quote \"Source investment ideas through fundamental research...\", which appears verbatim in the Cinctive bullets."
+        },
+        {
+          "field": "search_summary",
+          "grade": "correct",
+          "reason": "The claims about Cinctive (~75 Technology/Media stocks, long/short), Goldman's eight IPO due diligence transactions, Bloomberg/FactSet/DCF, the Kellogg BSBA and the CFA are all in the text, and the relevance figure rests on dates I found correct."
+        },
+        {
+          "field": "experience[0]",
+          "grade": "correct",
+          "reason": "Cinctive Capital Management, Investment Analyst, 2021-09 to present with is_current true, matches \"Sep 2021 - Present\", and the Technology sector quote appears in the text."
+        },
+        {
+          "field": "experience[1]",
+          "grade": "correct",
+          "reason": "The Goldman Sachs Equity Research Associate role, 2019-02 to 2021-09, matches \"Feb 2019 - Sep 2021\", and the technology sector quote appears verbatim."
+        },
+        {
+          "field": "experience[2]",
+          "grade": "correct",
+          "reason": "The J.P. Morgan Asset Management U.S. Equity Business Management Associate role, 2017-07 to 2019-02, matches \"Jul 2017 - Feb 2019\", and adjacent relevance fits its vendor and capacity work."
+        },
+        {
+          "field": "experience[3]",
+          "grade": "correct",
+          "reason": "The J.P. Morgan Chase & Co. Office of the CFO Analyst role, 2016-05 to 2017-07, matches \"May 2016 - Jul 2017\"."
+        },
+        {
+          "field": "experience[4]",
+          "grade": "correct",
+          "reason": "The PwC CDTS Analyst role, 2014-08 to 2016-05, matches \"Aug 2014 - May 2016\", with location New York, NY."
+        }
+      ]
+    },
+    {
+      "candidate_id": "595961ed436e",
+      "name": "Viktor Sharat",
+      "text_source": "text_file",
+      "accuracy": 0.9375,
+      "soft_accuracy": 0.9688,
+      "fields": 16,
+      "hallucinated": 0,
+      "missing": 0,
+      "grades": [
+        {
+          "field": "name",
+          "grade": "correct",
+          "reason": "The name \"Viktor Sharat\" matches the resume header."
+        },
+        {
+          "field": "contact",
+          "grade": "correct",
+          "reason": "The resume gives no email, phone or location, so null values are right."
+        },
+        {
+          "field": "education",
+          "grade": "correct",
+          "reason": "All four entries match the academic table: PGDM 2015, M.Tech(Integrated) 2010, HSC 2006 and SSC 2004, with reasonable levels and null fields since no field of study is stated."
+        },
+        {
+          "field": "experience",
+          "grade": "correct",
+          "reason": "All five roles plus the MCRI stint under Others are captured, and reading the Prism summer internship and Reliance concurrent project as short engagements is reasonable; nothing is invented or merged."
+        },
+        {
+          "field": "skills",
+          "grade": "partial",
+          "reason": "\"Machine Learning\" is taken from a co-authored paper title rather than a listed skill, so this item is only weakly supported."
+        },
+        {
+          "field": "certifications",
+          "grade": "correct",
+          "reason": "The text states \"Successfully completed Chartered Financial Analyst Level 3 (CFA, USA)\", which matches the entry."
+        },
+        {
+          "field": "languages",
+          "grade": "correct",
+          "reason": "The resume lists no languages, so an empty list is right."
+        },
+        {
+          "field": "investment_approach",
+          "grade": "correct",
+          "reason": "The quote about a sector-agnostic approach focusing on company fundamentals appears in the Meridian entry and supports the Fundamental label."
+        },
+        {
+          "field": "search_summary",
+          "grade": "correct",
+          "reason": "The ICICI claims (42 stocks, associate to lead analyst within 3 years), the Axis claim (38 healthcare portfolio companies), the PGDM and the CFA Level 3 are all in the text; the Machine Learning skill claim rests on the weak skills item."
+        },
+        {
+          "field": "experience[0]",
+          "grade": "correct",
+          "reason": "Axis Mutual Fund, Research Analyst and 2 months with no dates in the text are correct, and the Healthcare and Materials labels are supported by \"Covering Pharmaceuticals and Specialty Chemicals\"."
+        },
+        {
+          "field": "experience[1]",
+          "grade": "correct",
+          "reason": "Meridian Capital, Research analyst and 10 months with no dates are correct, and the Energy, Industrials and IN labels are supported by the renewable energy and Indian infrastructure quotes."
+        },
+        {
+          "field": "experience[2]",
+          "grade": "correct",
+          "reason": "ICICI Securities, Research Analyst and 8 years 10 months (106 months) with no dates are correct, and the four sector labels map to Healthcare, Oil&Gas, Logistics and Alcobev."
+        },
+        {
+          "field": "experience[3]",
+          "grade": "correct",
+          "reason": "BioAnalytics Research India, Biomodeller Trainee and 7 months with no dates are correct, and internship type and unrelated relevance are reasonable for a trainee role."
+        },
+        {
+          "field": "experience[4]",
+          "grade": "correct",
+          "reason": "The text says \"8 months of research experience at Mumbai Cancer Research Institute (MCRI) as a Research Associate\" with no dates, and the parser captured this; attributing the co-authored paper to this role is a reasonable reading."
+        },
+        {
+          "field": "experience[5]",
+          "grade": "correct",
+          "reason": "Prism Asset Management summer internship of 3 months with no dates is correct, and the Technology and IN labels are supported by \"Comprehensive equity analysis of Indian Technology Sector\"."
+        },
+        {
+          "field": "experience[6]",
+          "grade": "correct",
+          "reason": "The Reliance Infrastructure concurrent project of 8 weeks with no dates is correct, and the Energy and IN labels are supported by the Indian renewable energy quote."
+        }
+      ]
+    },
+    {
+      "candidate_id": "5000799aceba",
+      "name": "Zara Al-Rashid",
+      "text_source": "text_file",
+      "accuracy": 0.9333,
+      "soft_accuracy": 0.9667,
+      "fields": 15,
+      "hallucinated": 0,
+      "missing": 0,
+      "grades": [
+        {
+          "field": "name",
+          "grade": "correct",
+          "reason": "The text reads \"Dr. Zara Al-Rashid\", and the JSON gives \"Zara Al-Rashid\", dropping only the honorific."
+        },
+        {
+          "field": "contact",
+          "grade": "correct",
+          "reason": "The resume has no email, phone or location line, so null for all three contact fields is correct."
+        },
+        {
+          "field": "education",
+          "grade": "correct",
+          "reason": "All four entries match the text: PGDM Finance from ISBM Pune in 2012, M.B.B.S from K.J. Somaiya in 2010, XII Std. from Mithibai in 2004 and X Std. from St. Xavier's in 2002; the M.B.B.S field \"Medicine\" and the levels are reasonable readings."
+        },
+        {
+          "field": "experience",
+          "grade": "correct",
+          "reason": "All six roles in the text (Meridian, Prism, Kotak, DataFlow, J.P. Morgan, Cipla) are present in order, with none invented, merged or split."
+        },
+        {
+          "field": "skills",
+          "grade": "correct",
+          "reason": "The tools (MS Office, Bloomberg, Factset, Reuters and the healthcare databases FDA through PubMed) are listed under Database Skills, and equity research and MDS/Perceptual Mapping are clearly used in the roles."
+        },
+        {
+          "field": "certifications",
+          "grade": "correct",
+          "reason": "The text lists no certifications, so the empty list is correct."
+        },
+        {
+          "field": "languages",
+          "grade": "correct",
+          "reason": "The text mentions no languages, so the empty list is correct."
+        },
+        {
+          "field": "investment_approach",
+          "grade": "correct",
+          "reason": "The quote about publishing equity research ratings with price targets on 28 stocks appears verbatim in the text and supports a Fundamental label."
+        },
+        {
+          "field": "search_summary",
+          "grade": "correct",
+          "reason": "Each claim is in the text: Meridian Lead Analyst, 28 stocks with price targets, the 35% brokerage revenue increase at Prism, Bloomberg/Factset/Reuters, PGDM Finance from ISBM, and India/US coverage; the 10.8y figure rests on dates I found correct."
+        },
+        {
+          "field": "experience[0]",
+          "grade": "correct",
+          "reason": "Meridian Research Partners, Lead Analyst – Pharmaceuticals and Healthcare, \"May'22 to till now\" matches start 2022-05 with is_current true, and the healthcare and India quotes appear in the text and support their labels."
+        },
+        {
+          "field": "experience[1]",
+          "grade": "correct",
+          "reason": "Prism Financial Services, Lead Analyst, Oct'20 to Apr'22 matches 2020-10 to 2022-04, and the healthcare sector quote is the title line in the text."
+        },
+        {
+          "field": "experience[2]",
+          "grade": "correct",
+          "reason": "Kotak Securities, Lead Analyst, Apr'18 to Apr'20 matches 2018-04 to 2020-04, and the India quote on Indian generics expansion appears in the text."
+        },
+        {
+          "field": "experience[3]",
+          "grade": "correct",
+          "reason": "DataFlow Research, Noida, Manager – Equity Research, May'15 to Mar'18 matches 2015-05 to 2018-03, and the U.S. Healthcare Services quote listed under this role supports the Healthcare and US labels."
+        },
+        {
+          "field": "experience[4]",
+          "grade": "partial",
+          "reason": "The three one-month stints Sep 2013, Dec 2013 and Nov 2014, the London location and the title match the text, but employment_type \"internship\" is not stated; the text describes temporary cover during a research associate's replacement."
+        },
+        {
+          "field": "experience[5]",
+          "grade": "correct",
+          "reason": "Cipla Pharmaceuticals, Mumbai, Summer Intern, Apr'11 to May'11 matches 2011-04 to 2011-05 as an internship, and the Calpol T quote reasonably supports the Healthcare label."
+        }
+      ],
+      "human_agreement": {
+        "exact": 1.0,
+        "within_one_level": 1.0,
+        "n": 15,
+        "disagreements": []
+      }
+    }
+  ],
+  "cost_usd": 0.6459,
+  "tokens": {
+    "input": 64195,
+    "output": 19456,
+    "cache_read": 0,
+    "cache_write": 0,
+    "calls": 10
+  }
+}

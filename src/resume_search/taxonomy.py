@@ -95,6 +95,8 @@ class Taxonomy:
     # market label -> (ISO-2 codes it expands to, regions it expands to)
     market_expansion: dict[str, tuple[frozenset[str], frozenset[str]]]
     skill_canonical: dict[str, str]
+    skill_category: dict[str, str]  # canonical -> programming, tools, domain or cert
+    skill_umbrellas: dict[str, frozenset[str]]  # umbrella key -> member keys
     tag_to_core: dict[str, str]
 
 
@@ -123,5 +125,10 @@ def load_taxonomy_data() -> Taxonomy:
         phone_prefix={p: tuple(v) for p, v in phone_prefixes().items()},
         market_expansion=expansion,
         skill_canonical={k: v["canonical"] for k, v in skill_variants().items()},
+        skill_category={v["canonical"]: v["category"] for v in skill_variants().values()},
+        skill_umbrellas={
+            name.lower(): frozenset(m.lower() for m in u["members"])
+            for u in _load("skills").get("umbrellas", []) for name in u["names"]
+        },
         tag_to_core={str(k).lower(): v for k, v in _load("sectors")["tag_to_core"].items()},
     )

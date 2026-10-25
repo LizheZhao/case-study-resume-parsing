@@ -4,7 +4,7 @@ import re
 
 from rapidfuzz import fuzz, process
 
-from resume_search.parse.models import ParsedResume
+from resume_search.parse.models import ParsedResume, Skills
 from resume_search.taxonomy import Taxonomy
 
 FUZZY_THRESHOLD = 90
@@ -40,6 +40,27 @@ def split_compound(raw: str, tax: Taxonomy) -> list[str]:
     if len(parts) > 1 and all(p.lower() in tax.skill_canonical for p in parts):
         return parts
     return [raw]
+
+
+def tidy_skills(skills: Skills, tax: Taxonomy) -> Skills:
+    """Put each known skill in its taxonomy group (MongoDB is tools wherever the LLM filed it),
+    keep the first spelling of each normalized skill, and drop a suite listed next to its own
+    members. Unknown skills stay in the group the LLM chose."""
+    groups: dict[str, list[str]] = {"programming": [], "tools": [], "domain": []}
+    items = [
+        (g, p.strip()) for g in groups for r in getattr(skills, g) if r.strip()
+        for p in split_compound(r, tax)
+    ]
+    keys = [normalize_skill(p, tax) for _, p in items]
+    present = set(keys)
+    seen: set[str] = set()
+    for (group, raw), key in zip(items, keys, strict=True):
+        if key in seen or tax.skill_umbrellas.get(key, frozenset()) & present:
+            continue
+        seen.add(key)
+        category = tax.skill_category.get(key)
+        groups[category if category in groups else group].append(raw)
+    return Skills(**groups)
 
 
 def skills_normalized(parsed: ParsedResume, tax: Taxonomy) -> list[str]:
