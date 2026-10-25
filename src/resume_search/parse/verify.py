@@ -221,7 +221,23 @@ def _skill_hits(s: str) -> dict[str, re.Match]:
     return hits
 
 
+_COURSE_LINE = re.compile(r"^\s*(?:related\s+|relevant\s+)?(?:courses|coursework)\s*:", re.IGNORECASE)
+
+
+def _drop_course_lists(text: str) -> str:
+    """Blank course-list lines, and a line continuing one that ends in a comma. The prompt
+    keeps course names out of skills, so the check must not demand them back."""
+    lines = text.split("\n")
+    in_list = False
+    for i, line in enumerate(lines):
+        if _COURSE_LINE.match(line) or in_list:
+            in_list = line.rstrip().endswith(",")
+            lines[i] = ""
+    return "\n".join(lines)
+
+
 def _extract_skills(text: str, filename: str, anchor: str | None = None) -> Found:
+    text = _drop_course_lists(text)
     hits = _skill_hits(text)
     first = next(iter(hits.values()), None)
     return Found(sorted(hits), _snip(text, first.start(), first.end()) if first else "")

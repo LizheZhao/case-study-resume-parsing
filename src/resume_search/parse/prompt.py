@@ -5,7 +5,7 @@ from html import escape
 from resume_search import taxonomy
 from resume_search.extract.types import ExtractedText
 
-PROMPT_VERSION = "v4"
+PROMPT_VERSION = "v6"
 
 _COMMON = """\
 You extract structured data from a single candidate resume for a hedge fund
@@ -38,8 +38,10 @@ languages). Ignore work history.
   diplomas, high school and board exams are Other.
 - skills: programming languages, tools and software, and domain methods
   ("DCF", "factor models", "options pricing") as the resume names them. Include
-  every one named anywhere in the resume, in experience bullets and coursework as
-  well as in a skills section.
+  every one named in a skills section or in experience and project bullets.
+  Course lists ("Related Courses:", "Courses:", "Relevant coursework") are not
+  skills: never copy a course name, and take a skill from a course list only
+  when the resume also names it outside that list.
 - certifications: professional credentials such as CFA, FRM, CAIA, CPA, ACCA,
   with a level or "candidate" status when stated ("CFA Level II candidate").
   A competition or event run by an institute is not a certification.
@@ -115,8 +117,18 @@ there only so approach evidence can be quoted from it.
   3. Markets covered, only if stated in the JSON.
   4. Current or most recent employer, firm type in parentheses, and title.
   5. Two or three standout skills, tools or achievements, with numbers when
-     present.
+     present. Each achievement belongs to the role whose bullets contain it
+     in the experience JSON. When that is not the slot 4 role, name its
+     employer in the same sentence ("at William Blair, built ..."). Never
+     place an earlier role's achievement right after the current role
+     without naming its employer. The same holds for skills and tools: tie
+     one to a role only when that role's bullets name it; a skill named only
+     in the profile skills goes in its own sentence with no role attached
+     ("Skills include Python, R and SQL").
   6. Highest degree and institution, then certifications.
+  Do not mix information between slots. Each slot covers only its own
+  information: the slot 4 sentence names the employer, firm type and title
+  and nothing else, and skills, tools and achievements appear only in slot 5.
   No contact details. No evaluative adjectives such as "passionate" or
   "strong". Use only facts in the JSON.
 """
