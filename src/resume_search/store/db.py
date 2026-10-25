@@ -21,10 +21,10 @@ _CHILD_TABLES = (
 )
 
 
-def connect(path: str | Path) -> sqlite3.Connection:
+def connect(path: str | Path, *, check_same_thread: bool = True) -> sqlite3.Connection:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(path)
+    conn = sqlite3.connect(path, check_same_thread=check_same_thread)
     conn.row_factory = sqlite3.Row
     conn.executescript(SCHEMA)
     return conn
