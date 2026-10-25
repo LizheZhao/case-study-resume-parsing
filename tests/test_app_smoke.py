@@ -117,6 +117,9 @@ def test_search_reranks_and_shows_reasons(app_env, monkeypatch):
     at.text_area(key="jd_text").set_value("technology semiconductors")
     at.button[1].click().run()
     no_errors(at)
+    assert not any(m.value.startswith("**Why ranked here.**") for m in at.markdown)
+    at.toggle(key="rerank").set_value(True).run()
+    no_errors(at)
     assert any(m.value.startswith("**Why ranked here.**") for m in at.markdown)
 
 

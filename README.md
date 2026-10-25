@@ -36,7 +36,7 @@ You need Python 3.12 and [uv](https://docs.astral.sh/uv/).
 
    The app reads `exports/candidates.sqlite`. Set `RESUME_DB` to use another file.
 
-The SQLite file is git-ignored. Parsing is the only step that needs a key. Search, the notebook demos, and the app all run without one, except for three spots that call the API on purpose: the JD parser, the rerank toggle, and the Ingest page.
+The SQLite file is git-ignored. Parsing is the only step that needs a key. Search, the notebook demos, and the app all run without one, except for three spots that call the API on purpose: the JD parser, the optional rerank toggle (off by default), and the Ingest page.
 
 ## CLI reference
 

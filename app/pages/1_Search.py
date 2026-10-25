@@ -129,10 +129,17 @@ with st.expander(f"Filters ({n_set} set)" if n_set else "Filters", expanded=True
     with c[1]:
         picker("Preferred skills", "f_skills_pref", picks["skills"], None, accept_new_options=True)
 
-if st.button("Search", type="primary", disabled=req is None):
+go, opt = st.columns([1, 3], vertical_alignment="center")
+if go.button("Search", type="primary", disabled=req is None):
     n_all = common.conn().execute("SELECT COUNT(*) FROM candidates").fetchone()[0]
     ss["_last"] = {"req": common.req_cache_key(req), "top": max(n_all, 1)}
     ss["_page"] = 0
+rerank_on = opt.toggle(
+    f"Rerank the top {RERANK_TOP} with an LLM", key="rerank",
+    help="Optional. Sends the top candidates and the requisition to Sonnet, which reorders them "
+         "and gives a one-line reason each. One API call per search; off means the blended score "
+         "decides the order.",
+)
 last = ss.get("_last")
 if last is None:
     st.info("Set a few filters or paste a job description, then hit Search.")
@@ -143,17 +150,19 @@ searched = Requisition.model_validate_json(last["req"])
 if searched.is_empty():
     st.caption("Nothing to filter on yet, so this is everyone.")
 
-# The LLM reorders the top of the list. A failure keeps the plain ranking.
+# With the toggle on, the LLM reorders the top of the list. A failure keeps the plain ranking.
 reasons: dict[str, str] = {}
 key = f"{last['req']}|{[r.candidate_id for r in results[:RERANK_TOP]]}"
 cache = ss.setdefault("_rerank", {})
-if key not in cache and results:
+if rerank_on and key not in cache and results:
     try:
         with st.spinner("Reranking the top candidates"):
             cache[key] = rerank_llm(searched, results[:RERANK_TOP])
     except Exception:  # noqa: BLE001  ranking stays as scored
         cache[key] = None
-if cache.get(key):
+if rerank_on and results and cache.get(key) is None:
+    st.caption("The rerank call failed, so this is the blended order. It needs ANTHROPIC_API_KEY.")
+if rerank_on and cache.get(key):
     reasons = dict(cache[key])
     by_id = {r.candidate_id: r for r in results}
     results = [by_id[i] for i, _ in cache[key]] + results[RERANK_TOP:]
