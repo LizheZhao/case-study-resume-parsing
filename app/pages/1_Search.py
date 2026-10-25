@@ -105,7 +105,8 @@ with st.expander(f"Filters ({n_set} set)" if n_set else "Filters", expanded=True
     with c[0]:
         labeled("Approach", "approach")
         st.selectbox("Approach", [common.ANY, *APPROACHES], key="f_approach", label_visibility="collapsed")
-        picker("Markets covered", "f_markets", tax["markets"], "markets_covered")
+        picker("Markets covered", "f_markets", tax["markets"], "markets_covered",
+               format_func=common.market_option)
     with c[1]:
         picker("Sectors", "f_sectors", tax["sectors"], "sectors")
         picker("Asset classes", "f_assets", tax["asset_classes"], "asset_classes")

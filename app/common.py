@@ -79,7 +79,8 @@ def get_taxonomy() -> dict:
         "sectors": tx.sectors(),
         "asset_classes": tx.asset_classes(),
         "firm_types": tx.firm_types(),
-        "markets": sorted(tx.market_labels() | tx.iso2_codes()),
+        "markets": sorted(tx.market_labels() | tx.iso2_codes(),
+                          key=lambda v: (countries[v]["name"] if v in countries else v).casefold()),
         "skills": sorted({s["canonical"] for s in skills if s["category"] != "cert"}),
         "certs": sorted({s["canonical"].upper() for s in skills if s["category"] == "cert"}),
     }
@@ -132,6 +133,11 @@ def country_code(iso: str | None) -> str:
 
 def country_option(iso: str) -> str:
     return f"{country_code(iso)} – {get_taxonomy()['countries'][iso]}"
+
+
+def market_option(value: str) -> str:
+    """A market is a region or market label shown as is, or an ISO-2 code shown as the country name."""
+    return get_taxonomy()["countries"].get(value, value)
 
 
 def location_label(country: str | None, region: str | None) -> str:
