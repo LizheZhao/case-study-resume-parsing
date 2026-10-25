@@ -431,6 +431,7 @@ def build() -> nbformat.NotebookNode:
     cells = [
         new_markdown_cell(brief.source),
         md(text.HOW_TO_READ),
+        *(md(section) for section in text.SOLUTION_SUMMARY),
         md(text.ARCHITECTURE.replace("{MODULE_ROWS}", module_rows(files))),
     ]
 
