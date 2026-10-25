@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import os
 import re
+from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
 
@@ -82,3 +83,45 @@ def phone_prefixes() -> dict[str, list[str]]:
         for prefix in c.get("phone", []):
             out.setdefault(prefix, []).append(iso)
     return out
+
+
+@dataclass(frozen=True)
+class Taxonomy:
+    """Plain-data view of the YAML files so derive() stays pure and tests can hand-build one."""
+
+    country_region: dict[str, str]
+    country_names: dict[str, tuple[str, ...]]
+    phone_prefix: dict[str, tuple[str, ...]]
+    # market label -> (ISO-2 codes it expands to, regions it expands to)
+    market_expansion: dict[str, tuple[frozenset[str], frozenset[str]]]
+    skill_canonical: dict[str, str]
+    tag_to_core: dict[str, str]
+
+
+def load_taxonomy_data() -> Taxonomy:
+    country_region = {iso: c["region"] for iso, c in countries().items()}
+    expansion: dict[str, tuple[frozenset[str], frozenset[str]]] = {
+        iso: (frozenset({iso}), frozenset({region})) for iso, region in country_region.items()
+    }
+    for label, target in _load("countries")["market_labels"].items():
+        if target is None:
+            expansion[label] = (frozenset(), frozenset())
+        elif isinstance(target, str):
+            expansion[label] = (frozenset(), frozenset({target}))
+        else:
+            expansion[label] = (
+                frozenset(target),
+                frozenset(country_region[c] for c in target),
+            )
+    for region in _load("countries")["regions"]:
+        expansion.setdefault(region, (frozenset(), frozenset({region})))
+    return Taxonomy(
+        country_region=country_region,
+        country_names={
+            iso: (c["name"], *c.get("aliases", [])) for iso, c in countries().items()
+        },
+        phone_prefix={p: tuple(v) for p, v in phone_prefixes().items()},
+        market_expansion=expansion,
+        skill_canonical={k: v["canonical"] for k, v in skill_variants().items()},
+        tag_to_core={str(k).lower(): v for k, v in _load("sectors")["tag_to_core"].items()},
+    )
