@@ -1,0 +1,162 @@
+{
+ "us-fundamental-healthcare|187e832c155d|rj1": {
+  "grade": 1,
+  "reason": "She is a fundamental healthcare sell-side analyst with 12.8 years covering pharma and medical devices and builds financial models, but she is based in India and her coverage centres on 32 Indian companies rather than US names.",
+  "input_hash": "8ad4fd83a9ef419b"
+ },
+ "us-fundamental-healthcare|3c85961c484c|rj1": {
+  "grade": 2,
+  "reason": "He is a US-based fundamental healthcare analyst at hedge fund Coatue with 11.2 years covering MedTech, therapeutics and diagnostics equities, has financial modeling skills and a strong long-recommendation record.",
+  "input_hash": "33f003b066d52adf"
+ },
+ "us-fundamental-healthcare|5000799aceba|rj1": {
+  "grade": 1,
+  "reason": "She is a fundamental pharma and healthcare sell-side lead analyst with 12 years and 28 stocks covering India and the US, but she is based in India and lists no financial modeling or DCF skills.",
+  "input_hash": "0a12304b2d95b806"
+ },
+ "us-fundamental-healthcare|595961ed436e|rj1": {
+  "grade": 1,
+  "reason": "He meets the healthcare requirement with 9.8 years of fundamental equity work, but he is a multi-sector analyst at an Indian asset manager covering India only, with no US healthcare focus or modeling skills listed.",
+  "input_hash": "b390f5e6135439f2"
+ },
+ "us-fundamental-healthcare|60494a768739|rj1": {
+  "grade": 1,
+  "reason": "He is a US fundamental long/short hedge fund investor with DCF and financial modeling skills and healthcare among his sectors, but he is a generalist whose standout portfolio work was in Consumer and Technology rather than healthcare.",
+  "input_hash": "687def140329e7e4"
+ },
+ "us-fundamental-healthcare|be94ffebe2e1|rj1": {
+  "grade": 1,
+  "reason": "She is a fundamental equity analyst with 8.2 years, healthcare coverage and financial modeling, but she is based in the UK, covers LatAm and EMEA rather than the US, and splits time with consumer and telecom.",
+  "input_hash": "535f273d45b411c6"
+ },
+ "us-fundamental-healthcare|e89dc25ec722|rj1": {
+  "grade": 0,
+  "reason": "He is a systematic analyst with only 2.3 years of experience focused on Greater China technology equities, which does not match a fundamental US healthcare analyst role.",
+  "input_hash": "b2c23ea3d86f9deb"
+ },
+ "apac-systematic-equities|e89dc25ec722|rj1": {
+  "grade": 2,
+  "reason": "Systematic equity analyst based in Hong Kong with 2.2 years of experience covering Greater China and Asia; he built a multi-factor model and backtests in Python, and lists machine learning.",
+  "input_hash": "a70bf8d0beb07d0b"
+ },
+ "apac-systematic-equities|595961ed436e|rj1": {
+  "grade": 1,
+  "reason": "Covers Indian (APAC) equities and lists machine learning, but his approach is fundamental, he has no Python or backtesting, and his 9.8 years are slightly above the range.",
+  "input_hash": "8311e9a5c9db4a3b"
+ },
+ "apac-systematic-equities|187e832c155d|rj1": {
+  "grade": 0,
+  "reason": "Principal fundamental sell-side healthcare analyst with 12.8 years covering India, with no systematic, Python or backtesting experience, so the experience does not match a quant researcher role.",
+  "input_hash": "0880b4b8813e0982"
+ },
+ "apac-systematic-equities|198398458280|rj1": {
+  "grade": 0,
+  "reason": "US-based fundamental long/short tech analyst with 12.2 years, no APAC coverage and no quantitative modelling or Python skills.",
+  "input_hash": "eb7db534e25be9be"
+ },
+ "apac-systematic-equities|3263f3e4fe14|rj1": {
+  "grade": 0,
+  "reason": "US fundamental TMT analyst with no APAC coverage, Python, backtesting or systematic experience.",
+  "input_hash": "3a15ccb641306b5a"
+ },
+ "apac-systematic-equities|3c85961c484c|rj1": {
+  "grade": 0,
+  "reason": "US fundamental healthcare analyst with 11.1 years, no APAC markets and no quantitative or Python skills.",
+  "input_hash": "e6e17d6b8d947ad8"
+ },
+ "apac-systematic-equities|5000799aceba|rj1": {
+  "grade": 0,
+  "reason": "Principal fundamental sell-side pharma analyst covering India with 11.9 years and no systematic, Python or backtesting skills.",
+  "input_hash": "07961318cb48e911"
+ },
+ "apac-systematic-equities|60494a768739|rj1": {
+  "grade": 0,
+  "reason": "US fundamental long/short generalist with no APAC coverage, Python or backtesting; factor attribution alone does not make him a systematic researcher.",
+  "input_hash": "b7b7d0815c389812"
+ },
+ "apac-systematic-equities|be94ffebe2e1|rj1": {
+  "grade": 0,
+  "reason": "Fundamental analyst covering LatAm and EMEA; her Python skill aside, she has no systematic approach, backtesting or APAC coverage.",
+  "input_hash": "7e363151981cce7d"
+ },
+ "europe-credit|05c2a9b47e80|rj1": {
+  "grade": 1,
+  "reason": "Has worked in France, meeting the Europe location must, and has 4.4 years in fixed income, but he is a systematic quant developer building pricing libraries rather than a fundamental credit analyst.",
+  "input_hash": "e473dbb024dca817"
+ },
+ "europe-credit|5000799aceba|rj1": {
+  "grade": 0,
+  "reason": "Meets the location must through work in GB, but is a principal healthcare equity analyst covering India and the US with no credit or fixed income experience, so the experience does not match the role.",
+  "input_hash": "22b44df6770db8f5"
+ },
+ "europe-credit|be94ffebe2e1|rj1": {
+  "grade": 1,
+  "reason": "London-based fundamental analyst with 8.2 years and financial modeling skills who meets the location must and seniority range, but covers equities with no credit or fixed income experience.",
+  "input_hash": "d315c5c8258ef136"
+ },
+ "india-sellside-healthcare|187e832c155d|rj1": {
+  "grade": 2,
+  "reason": "Principal fundamental healthcare analyst with 12.8 years, India-based at sell-side broker ICICI Securities covering 32 listed Indian healthcare companies and building financial models, so the India market must is met along with all preferred criteria.",
+  "input_hash": "c0cb65a2e8056d6d"
+ },
+ "india-sellside-healthcare|5000799aceba|rj1": {
+  "grade": 2,
+  "reason": "Principal fundamental sell-side analyst with 12 years in India covering pharma and healthcare services (28 stocks), with equity-research skill and recognition from domestic institutional investors, so the India market must is met along with the preferred criteria.",
+  "input_hash": "5750b36f8aa4a4d8"
+ },
+ "india-sellside-healthcare|595961ed436e|rj1": {
+  "grade": 1,
+  "reason": "Senior fundamental analyst with 9.8 years covering India including healthcare, which meets the India market must, but he is buy-side at Axis Mutual Fund with sector-agnostic coverage rather than a dedicated sell-side healthcare analyst, a gap to probe in interview.",
+  "input_hash": "ed808debbf3692a8"
+ },
+ "junior-quant-developer|05c2a9b47e80|rj1": {
+  "grade": 2,
+  "reason": "He holds a Master's in Quantitative Finance, builds a C++ pricing library at BNP Paribas, implements payoffs and models, and does Monte Carlo, Greeks and Python work on derivatives in France; at 4.4 years he is only slightly above the preferred 4-year maximum.",
+  "input_hash": "a110b2030cc287a8"
+ },
+ "junior-quant-developer|187e832c155d|rj1": {
+  "grade": 0,
+  "reason": "She is a principal fundamental healthcare equity analyst with 12.8 years of experience and no C++, derivatives pricing or quant development experience, so her background does not match the role.",
+  "input_hash": "e4b42e42e32415b1"
+ },
+ "junior-quant-developer|5000799aceba|rj1": {
+  "grade": 0,
+  "reason": "She is a principal fundamental pharma equity research analyst with no C++, Python or derivatives pricing skills, which does not match a quant developer role.",
+  "input_hash": "e14acb3bc57642b6"
+ },
+ "junior-quant-developer|595961ed436e|rj1": {
+  "grade": 0,
+  "reason": "He is a senior fundamental equity analyst in India with 9.8 years of experience and no C++, Python or derivatives pricing skills, which does not match the role.",
+  "input_hash": "e156ee03d526a95b"
+ },
+ "junior-quant-developer|be94ffebe2e1|rj1": {
+  "grade": 0,
+  "reason": "She is a senior fundamental equity research analyst with 8.2 years of experience and only Python among the preferred skills, with no C++ or derivatives pricing, so her experience does not match a pricing library developer.",
+  "input_hash": "9b3c1f3115717bbc"
+ },
+ "junior-quant-developer|e89dc25ec722|rj1": {
+  "grade": 0,
+  "reason": "He has a Master's, Python skills and 2.2 years of experience, but he is a Hong Kong-based systematic equity analyst with no C++, derivatives pricing or pricing-library development experience.",
+  "input_hash": "bf783f43babcf0dc"
+ },
+ "senior-generalist-ls|198398458280|rj1": {
+  "grade": 1,
+  "reason": "US-based Principal fundamental long/short equity analyst with 12.2 years and DCF/modeling/valuation skills meets all must and preferred criteria, but coverage is concentrated in Technology/Media rather than the multi-sector generalist remit.",
+  "input_hash": "932c1f6daf35b050"
+ },
+ "senior-generalist-ls|3263f3e4fe14|rj1": {
+  "grade": 1,
+  "reason": "US-based Senior fundamental analyst with 8.8 years, financial modeling and valuation skills meets the musts, but is at an asset manager covering mainly TMT/consumer internet with no long/short pitching, so the generalist hedge fund fit is partial.",
+  "input_hash": "be4e0d4c5bbf05aa"
+ },
+ "senior-generalist-ls|3c85961c484c|rj1": {
+  "grade": 1,
+  "reason": "US-based Principal fundamental analyst with 11.1 years at a hedge fund and modeling/valuation skills meets the musts, but is a healthcare specialist rather than a multi-sector generalist.",
+  "input_hash": "c4045180fe5f00eb"
+ },
+ "senior-generalist-ls|60494a768739|rj1": {
+  "grade": 2,
+  "reason": "US-based Senior fundamental generalist at a hedge fund with 8.5 years covering consumer, technology and healthcare in a long/short equity portfolio, with DCF, modeling and valuation skills, matches the role.",
+  "input_hash": "ef0c9b93084e5851"
+ }
+}

@@ -1,0 +1,470 @@
+{
+  "suite": "ranking",
+  "run_at": "2026-10-25T15:42:36+00:00",
+  "task_model": "claude-sonnet-5-5",
+  "judge_model": "claude-opus-5-5",
+  "prompt_version": "rj1",
+  "metrics": {
+    "requisitions": 6,
+    "pool_sizes": {
+      "us-fundamental-healthcare": 7,
+      "apac-systematic-equities": 9,
+      "europe-credit": 3,
+      "india-sellside-healthcare": 3,
+      "junior-quant-developer": 6,
+      "senior-generalist-ls": 4
+    },
+    "mean": {
+      "full": {
+        "ndcg5": 0.9689,
+        "p3": 0.7222
+      },
+      "rule_only": {
+        "ndcg5": 0.9583,
+        "p3": 0.7222
+      },
+      "keyword_only": {
+        "ndcg5": 0.9677,
+        "p3": 0.7778
+      },
+      "embedding_only": {
+        "ndcg5": 0.9266,
+        "p3": 0.7222
+      }
+    },
+    "judge_calls_this_run": 6,
+    "tie_break": "score ties sort by candidate name, so a variant that scores many ties is ranked alphabetically within the tie"
+  },
+  "items": [
+    {
+      "requisition_id": "us-fundamental-healthcare",
+      "title": "US fundamental healthcare analyst",
+      "pool_size": 7,
+      "relevant_in_pool": 6,
+      "from_cache": false,
+      "full_ndcg5": 0.9065,
+      "full_p3": 1.0,
+      "rule_only_ndcg5": 0.9065,
+      "rule_only_p3": 1.0,
+      "keyword_only_ndcg5": 0.8558,
+      "keyword_only_p3": 1.0,
+      "embedding_only_ndcg5": 0.8734,
+      "embedding_only_p3": 1.0,
+      "candidates": [
+        {
+          "candidate_id": "187e832c155d",
+          "name": "Priya Nakamura",
+          "grade": 1,
+          "reason": "She is a fundamental healthcare sell-side analyst with 12.8 years covering pharma and medical devices and builds financial models, but she is based in India and her coverage centres on 32 Indian companies rather than US names.",
+          "rank_full": 1,
+          "rank_rule_only": 4,
+          "rank_keyword_only": 2,
+          "rank_embedding_only": 1
+        },
+        {
+          "candidate_id": "3c85961c484c",
+          "name": "Marcus Chen-Rodriguez",
+          "grade": 2,
+          "reason": "He is a US-based fundamental healthcare analyst at hedge fund Coatue with 11.2 years covering MedTech, therapeutics and diagnostics equities, has financial modeling skills and a strong long-recommendation record.",
+          "rank_full": 2,
+          "rank_rule_only": 2,
+          "rank_keyword_only": 4,
+          "rank_embedding_only": 3
+        },
+        {
+          "candidate_id": "595961ed436e",
+          "name": "Viktor Sharat",
+          "grade": 1,
+          "reason": "He meets the healthcare requirement with 9.8 years of fundamental equity work, but he is a multi-sector analyst at an Indian asset manager covering India only, with no US healthcare focus or modeling skills listed.",
+          "rank_full": 3,
+          "rank_rule_only": 5,
+          "rank_keyword_only": 1,
+          "rank_embedding_only": 2
+        },
+        {
+          "candidate_id": "60494a768739",
+          "name": "Ryan Patel",
+          "grade": 1,
+          "reason": "He is a US fundamental long/short hedge fund investor with DCF and financial modeling skills and healthcare among his sectors, but he is a generalist whose standout portfolio work was in Consumer and Technology rather than healthcare.",
+          "rank_full": 4,
+          "rank_rule_only": 1,
+          "rank_keyword_only": 3,
+          "rank_embedding_only": 7
+        },
+        {
+          "candidate_id": "5000799aceba",
+          "name": "Zara Al-Rashid",
+          "grade": 1,
+          "reason": "She is a fundamental pharma and healthcare sell-side lead analyst with 12 years and 28 stocks covering India and the US, but she is based in India and lists no financial modeling or DCF skills.",
+          "rank_full": 5,
+          "rank_rule_only": 6,
+          "rank_keyword_only": 5,
+          "rank_embedding_only": 5
+        },
+        {
+          "candidate_id": "be94ffebe2e1",
+          "name": "Marina Silva Costa",
+          "grade": 1,
+          "reason": "She is a fundamental equity analyst with 8.2 years, healthcare coverage and financial modeling, but she is based in the UK, covers LatAm and EMEA rather than the US, and splits time with consumer and telecom.",
+          "rank_full": 6,
+          "rank_rule_only": 3,
+          "rank_keyword_only": 7,
+          "rank_embedding_only": 4
+        },
+        {
+          "candidate_id": "e89dc25ec722",
+          "name": "Chen Li",
+          "grade": 0,
+          "reason": "He is a systematic analyst with only 2.3 years of experience focused on Greater China technology equities, which does not match a fundamental US healthcare analyst role.",
+          "rank_full": 7,
+          "rank_rule_only": 7,
+          "rank_keyword_only": 6,
+          "rank_embedding_only": 6
+        }
+      ]
+    },
+    {
+      "requisition_id": "apac-systematic-equities",
+      "title": "APAC systematic equities researcher",
+      "pool_size": 9,
+      "relevant_in_pool": 2,
+      "from_cache": false,
+      "full_ndcg5": 0.9072,
+      "full_p3": 0.3333,
+      "rule_only_ndcg5": 0.9239,
+      "rule_only_p3": 0.3333,
+      "keyword_only_ndcg5": 0.9502,
+      "keyword_only_p3": 0.6667,
+      "embedding_only_ndcg5": 0.9072,
+      "embedding_only_p3": 0.3333,
+      "candidates": [
+        {
+          "candidate_id": "e89dc25ec722",
+          "name": "Chen Li",
+          "grade": 2,
+          "reason": "Systematic equity analyst based in Hong Kong with 2.2 years of experience covering Greater China and Asia; he built a multi-factor model and backtests in Python, and lists machine learning.",
+          "rank_full": 1,
+          "rank_rule_only": 1,
+          "rank_keyword_only": 1,
+          "rank_embedding_only": 1
+        },
+        {
+          "candidate_id": "be94ffebe2e1",
+          "name": "Marina Silva Costa",
+          "grade": 0,
+          "reason": "Fundamental analyst covering LatAm and EMEA; her Python skill aside, she has no systematic approach, backtesting or APAC coverage.",
+          "rank_full": 2,
+          "rank_rule_only": 5,
+          "rank_keyword_only": 5,
+          "rank_embedding_only": 2
+        },
+        {
+          "candidate_id": "5000799aceba",
+          "name": "Zara Al-Rashid",
+          "grade": 0,
+          "reason": "Principal fundamental sell-side pharma analyst covering India with 11.9 years and no systematic, Python or backtesting skills.",
+          "rank_full": 3,
+          "rank_rule_only": 3,
+          "rank_keyword_only": 7,
+          "rank_embedding_only": 3
+        },
+        {
+          "candidate_id": "187e832c155d",
+          "name": "Priya Nakamura",
+          "grade": 0,
+          "reason": "Principal fundamental sell-side healthcare analyst with 12.8 years covering India, with no systematic, Python or backtesting experience, so the experience does not match a quant researcher role.",
+          "rank_full": 4,
+          "rank_rule_only": 2,
+          "rank_keyword_only": 4,
+          "rank_embedding_only": 4
+        },
+        {
+          "candidate_id": "595961ed436e",
+          "name": "Viktor Sharat",
+          "grade": 1,
+          "reason": "Covers Indian (APAC) equities and lists machine learning, but his approach is fundamental, he has no Python or backtesting, and his 9.8 years are slightly above the range.",
+          "rank_full": 5,
+          "rank_rule_only": 4,
+          "rank_keyword_only": 3,
+          "rank_embedding_only": 5
+        },
+        {
+          "candidate_id": "3263f3e4fe14",
+          "name": "Michael Rodriguez",
+          "grade": 0,
+          "reason": "US fundamental TMT analyst with no APAC coverage, Python, backtesting or systematic experience.",
+          "rank_full": 6,
+          "rank_rule_only": 7,
+          "rank_keyword_only": 8,
+          "rank_embedding_only": 6
+        },
+        {
+          "candidate_id": "60494a768739",
+          "name": "Ryan Patel",
+          "grade": 0,
+          "reason": "US fundamental long/short generalist with no APAC coverage, Python or backtesting; factor attribution alone does not make him a systematic researcher.",
+          "rank_full": 7,
+          "rank_rule_only": 6,
+          "rank_keyword_only": 6,
+          "rank_embedding_only": 8
+        },
+        {
+          "candidate_id": "198398458280",
+          "name": "Vikram Shah",
+          "grade": 0,
+          "reason": "US-based fundamental long/short tech analyst with 12.2 years, no APAC coverage and no quantitative modelling or Python skills.",
+          "rank_full": 8,
+          "rank_rule_only": 9,
+          "rank_keyword_only": 9,
+          "rank_embedding_only": 7
+        },
+        {
+          "candidate_id": "3c85961c484c",
+          "name": "Marcus Chen-Rodriguez",
+          "grade": 0,
+          "reason": "US fundamental healthcare analyst with 11.1 years, no APAC markets and no quantitative or Python skills.",
+          "rank_full": 9,
+          "rank_rule_only": 8,
+          "rank_keyword_only": 2,
+          "rank_embedding_only": 9
+        }
+      ]
+    },
+    {
+      "requisition_id": "europe-credit",
+      "title": "Europe credit analyst",
+      "pool_size": 3,
+      "relevant_in_pool": 2,
+      "from_cache": false,
+      "full_ndcg5": 1.0,
+      "full_p3": 0.6667,
+      "rule_only_ndcg5": 0.9197,
+      "rule_only_p3": 0.6667,
+      "keyword_only_ndcg5": 1.0,
+      "keyword_only_p3": 0.6667,
+      "embedding_only_ndcg5": 0.9197,
+      "embedding_only_p3": 0.6667,
+      "candidates": [
+        {
+          "candidate_id": "be94ffebe2e1",
+          "name": "Marina Silva Costa",
+          "grade": 1,
+          "reason": "London-based fundamental analyst with 8.2 years and financial modeling skills who meets the location must and seniority range, but covers equities with no credit or fixed income experience.",
+          "rank_full": 1,
+          "rank_rule_only": 1,
+          "rank_keyword_only": 2,
+          "rank_embedding_only": 1
+        },
+        {
+          "candidate_id": "05c2a9b47e80",
+          "name": "Omar El-Hassan",
+          "grade": 1,
+          "reason": "Has worked in France, meeting the Europe location must, and has 4.4 years in fixed income, but he is a systematic quant developer building pricing libraries rather than a fundamental credit analyst.",
+          "rank_full": 2,
+          "rank_rule_only": 3,
+          "rank_keyword_only": 1,
+          "rank_embedding_only": 3
+        },
+        {
+          "candidate_id": "5000799aceba",
+          "name": "Zara Al-Rashid",
+          "grade": 0,
+          "reason": "Meets the location must through work in GB, but is a principal healthcare equity analyst covering India and the US with no credit or fixed income experience, so the experience does not match the role.",
+          "rank_full": 3,
+          "rank_rule_only": 2,
+          "rank_keyword_only": 3,
+          "rank_embedding_only": 2
+        }
+      ]
+    },
+    {
+      "requisition_id": "india-sellside-healthcare",
+      "title": "India sell-side healthcare analyst",
+      "pool_size": 3,
+      "relevant_in_pool": 3,
+      "from_cache": false,
+      "full_ndcg5": 1.0,
+      "full_p3": 1.0,
+      "rule_only_ndcg5": 1.0,
+      "rule_only_p3": 1.0,
+      "keyword_only_ndcg5": 1.0,
+      "keyword_only_p3": 1.0,
+      "embedding_only_ndcg5": 1.0,
+      "embedding_only_p3": 1.0,
+      "candidates": [
+        {
+          "candidate_id": "187e832c155d",
+          "name": "Priya Nakamura",
+          "grade": 2,
+          "reason": "Principal fundamental healthcare analyst with 12.8 years, India-based at sell-side broker ICICI Securities covering 32 listed Indian healthcare companies and building financial models, so the India market must is met along with all preferred criteria.",
+          "rank_full": 1,
+          "rank_rule_only": 1,
+          "rank_keyword_only": 1,
+          "rank_embedding_only": 1
+        },
+        {
+          "candidate_id": "5000799aceba",
+          "name": "Zara Al-Rashid",
+          "grade": 2,
+          "reason": "Principal fundamental sell-side analyst with 12 years in India covering pharma and healthcare services (28 stocks), with equity-research skill and recognition from domestic institutional investors, so the India market must is met along with the preferred criteria.",
+          "rank_full": 2,
+          "rank_rule_only": 2,
+          "rank_keyword_only": 2,
+          "rank_embedding_only": 2
+        },
+        {
+          "candidate_id": "595961ed436e",
+          "name": "Viktor Sharat",
+          "grade": 1,
+          "reason": "Senior fundamental analyst with 9.8 years covering India including healthcare, which meets the India market must, but he is buy-side at Axis Mutual Fund with sector-agnostic coverage rather than a dedicated sell-side healthcare analyst, a gap to probe in interview.",
+          "rank_full": 3,
+          "rank_rule_only": 3,
+          "rank_keyword_only": 3,
+          "rank_embedding_only": 3
+        }
+      ]
+    },
+    {
+      "requisition_id": "junior-quant-developer",
+      "title": "Junior quantitative developer",
+      "pool_size": 6,
+      "relevant_in_pool": 1,
+      "from_cache": false,
+      "full_ndcg5": 1.0,
+      "full_p3": 0.3333,
+      "rule_only_ndcg5": 1.0,
+      "rule_only_p3": 0.3333,
+      "keyword_only_ndcg5": 1.0,
+      "keyword_only_p3": 0.3333,
+      "embedding_only_ndcg5": 1.0,
+      "embedding_only_p3": 0.3333,
+      "candidates": [
+        {
+          "candidate_id": "05c2a9b47e80",
+          "name": "Omar El-Hassan",
+          "grade": 2,
+          "reason": "He holds a Master's in Quantitative Finance, builds a C++ pricing library at BNP Paribas, implements payoffs and models, and does Monte Carlo, Greeks and Python work on derivatives in France; at 4.4 years he is only slightly above the preferred 4-year maximum.",
+          "rank_full": 1,
+          "rank_rule_only": 1,
+          "rank_keyword_only": 1,
+          "rank_embedding_only": 1
+        },
+        {
+          "candidate_id": "e89dc25ec722",
+          "name": "Chen Li",
+          "grade": 0,
+          "reason": "He has a Master's, Python skills and 2.2 years of experience, but he is a Hong Kong-based systematic equity analyst with no C++, derivatives pricing or pricing-library development experience.",
+          "rank_full": 2,
+          "rank_rule_only": 2,
+          "rank_keyword_only": 3,
+          "rank_embedding_only": 2
+        },
+        {
+          "candidate_id": "be94ffebe2e1",
+          "name": "Marina Silva Costa",
+          "grade": 0,
+          "reason": "She is a senior fundamental equity research analyst with 8.2 years of experience and only Python among the preferred skills, with no C++ or derivatives pricing, so her experience does not match a pricing library developer.",
+          "rank_full": 3,
+          "rank_rule_only": 3,
+          "rank_keyword_only": 2,
+          "rank_embedding_only": 5
+        },
+        {
+          "candidate_id": "187e832c155d",
+          "name": "Priya Nakamura",
+          "grade": 0,
+          "reason": "She is a principal fundamental healthcare equity analyst with 12.8 years of experience and no C++, derivatives pricing or quant development experience, so her background does not match the role.",
+          "rank_full": 4,
+          "rank_rule_only": 5,
+          "rank_keyword_only": 4,
+          "rank_embedding_only": 3
+        },
+        {
+          "candidate_id": "595961ed436e",
+          "name": "Viktor Sharat",
+          "grade": 0,
+          "reason": "He is a senior fundamental equity analyst in India with 9.8 years of experience and no C++, Python or derivatives pricing skills, which does not match the role.",
+          "rank_full": 5,
+          "rank_rule_only": 6,
+          "rank_keyword_only": 6,
+          "rank_embedding_only": 4
+        },
+        {
+          "candidate_id": "5000799aceba",
+          "name": "Zara Al-Rashid",
+          "grade": 0,
+          "reason": "She is a principal fundamental pharma equity research analyst with no C++, Python or derivatives pricing skills, which does not match a quant developer role.",
+          "rank_full": 6,
+          "rank_rule_only": 4,
+          "rank_keyword_only": 5,
+          "rank_embedding_only": 6
+        }
+      ]
+    },
+    {
+      "requisition_id": "senior-generalist-ls",
+      "title": "Senior generalist long/short equity analyst",
+      "pool_size": 4,
+      "relevant_in_pool": 4,
+      "from_cache": false,
+      "full_ndcg5": 1.0,
+      "full_p3": 1.0,
+      "rule_only_ndcg5": 1.0,
+      "rule_only_p3": 1.0,
+      "keyword_only_ndcg5": 1.0,
+      "keyword_only_p3": 1.0,
+      "embedding_only_ndcg5": 0.8596,
+      "embedding_only_p3": 1.0,
+      "candidates": [
+        {
+          "candidate_id": "60494a768739",
+          "name": "Ryan Patel",
+          "grade": 2,
+          "reason": "US-based Senior fundamental generalist at a hedge fund with 8.5 years covering consumer, technology and healthcare in a long/short equity portfolio, with DCF, modeling and valuation skills, matches the role.",
+          "rank_full": 1,
+          "rank_rule_only": 1,
+          "rank_keyword_only": 1,
+          "rank_embedding_only": 3
+        },
+        {
+          "candidate_id": "198398458280",
+          "name": "Vikram Shah",
+          "grade": 1,
+          "reason": "US-based Principal fundamental long/short equity analyst with 12.2 years and DCF/modeling/valuation skills meets all must and preferred criteria, but coverage is concentrated in Technology/Media rather than the multi-sector generalist remit.",
+          "rank_full": 2,
+          "rank_rule_only": 2,
+          "rank_keyword_only": 2,
+          "rank_embedding_only": 1
+        },
+        {
+          "candidate_id": "3263f3e4fe14",
+          "name": "Michael Rodriguez",
+          "grade": 1,
+          "reason": "US-based Senior fundamental analyst with 8.8 years, financial modeling and valuation skills meets the musts, but is at an asset manager covering mainly TMT/consumer internet with no long/short pitching, so the generalist hedge fund fit is partial.",
+          "rank_full": 3,
+          "rank_rule_only": 4,
+          "rank_keyword_only": 4,
+          "rank_embedding_only": 2
+        },
+        {
+          "candidate_id": "3c85961c484c",
+          "name": "Marcus Chen-Rodriguez",
+          "grade": 1,
+          "reason": "US-based Principal fundamental analyst with 11.1 years at a hedge fund and modeling/valuation skills meets the musts, but is a healthcare specialist rather than a multi-sector generalist.",
+          "rank_full": 4,
+          "rank_rule_only": 3,
+          "rank_keyword_only": 3,
+          "rank_embedding_only": 4
+        }
+      ]
+    }
+  ],
+  "cost_usd": 0.1741,
+  "tokens": {
+    "input": 21915,
+    "output": 4324,
+    "cache_read": 0,
+    "cache_write": 0,
+    "calls": 6
+  }
+}
